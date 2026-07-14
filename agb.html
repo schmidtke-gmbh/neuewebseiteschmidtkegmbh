@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <title>Allgemeine Geschäftsbedingungen | Schmidtke GmbH</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- ═══ Tracking & Cookie-Banner ═══ -->
+    <script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+
+    <style>
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff') format('woff');
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff') format('woff');
+            font-weight: 700; font-style: normal; font-display: swap;
+        }
+
+        :root {
+            --navy: #07162A;
+            --navy-light: #0c1f3a;
+            --navy-card: #0f2847;
+            --gold: #D4A574;
+            --white: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.78);
+            --text-muted: rgba(255,255,255,0.55);
+            --border-subtle: rgba(255,255,255,0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        nav {
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px; font-weight: 700;
+            color: var(--white); text-decoration: none; letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--gold); }
+        .nav-back {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--gold); }
+
+        main {
+            flex: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 60px 28px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 32px; font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .page-sub {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 20px; font-weight: 700;
+            margin-top: 44px; margin-bottom: 16px;
+            color: var(--gold);
+        }
+        h3 {
+            font-size: 16px; font-weight: 700;
+            margin-top: 28px; margin-bottom: 10px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        li { margin-bottom: 6px; }
+        a { color: var(--gold); }
+
+        footer {
+            padding: 24px 28px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        footer p { font-size: 12px; color: var(--text-muted); }
+        footer a {
+            color: var(--text-muted); text-decoration: none;
+            margin: 0 8px; transition: color 0.2s;
+        }
+        footer a:hover { color: var(--gold); }
+
+        /* ═══ MOBILE MENU ═══ */
+        .burger {
+            display: none; flex-direction: column; justify-content: center;
+            gap: 5px; width: 44px; height: 44px; padding: 10px;
+            background: none; border: none; cursor: pointer; z-index: 200;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .burger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--white); border-radius: 2px;
+            transition: all 0.3s ease; transform-origin: center;
+        }
+        .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 22, 42, 0.97);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 150; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .mobile-overlay.open { display: flex; }
+        .mobile-overlay a {
+            color: var(--white); text-decoration: none;
+            font-size: 22px; font-weight: 700;
+            padding: 16px 32px; transition: color 0.2s; text-align: center;
+        }
+        .mobile-overlay a:hover, .mobile-overlay a:active { color: var(--gold); }
+        .mobile-overlay .mobile-cta {
+            margin-top: 20px; background: var(--red); color: white;
+            padding: 18px 44px; border-radius: 100px;
+            font-size: 17px; font-weight: 700;
+            box-shadow: 0 8px 28px rgba(230, 47, 31, 0.3);
+        }
+        .mobile-overlay .mobile-cta:hover { background: #c92518; }
+        .mobile-overlay .mobile-legal {
+            display: flex; gap: 20px; margin-top: 40px;
+            padding-top: 24px; border-top: 1px solid var(--border-subtle);
+        }
+        .mobile-overlay .mobile-legal a {
+            font-size: 13px; font-weight: 600; color: var(--text-muted); padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .burger { display: flex; }
+            .nav-back { display: none; }
+            main { padding: 40px 20px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 18px; margin-top: 36px; }
+            nav { padding: 14px 20px; }
+            .logo { font-size: 20px; }
+        }
+        @media (max-width: 480px) {
+            main { padding: 32px 14px; }
+            h1 { font-size: 22px; }
+            nav { padding: 12px 14px; }
+            .logo { font-size: 18px; }
+            p, li { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">schmidtke<span>.</span></a>
+    <a href="index.html" class="nav-back">&#8592; Zurück zur Startseite</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
+    <a href="index.html">Startseite</a>
+    <a href="index.html#analyse">KI-Analyse</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#warum">Warum wir</a>
+    <a href="index.html#foerderung">Förderung</a>
+    <a href="formular.html" class="mobile-cta">Erstgespräch sichern &#8594;</a>
+    <div class="mobile-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </div>
+</div>
+
+<main>
+    <h1>Allgemeine Geschäftsbedingungen</h1>
+    <p class="page-sub">Schmidtke GmbH – Stand: März 2026</p>
+
+    <!-- ═══ §1 ═══ -->
+    <h2>§ 1 Geltungsbereich</h2>
+    <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Geschäftsbeziehungen zwischen der Schmidtke GmbH, Neckartal 200, 78628 Rottweil (nachfolgend „Anbieter") und dem Kunden (nachfolgend „Auftraggeber").</p>
+    <p>Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Anbieter stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
+
+    <!-- ═══ §2 ═══ -->
+    <h2>§ 2 Leistungsgegenstand</h2>
+    <p>Der Anbieter erbringt Beratungs- und Dienstleistungen in den Bereichen Video-Marketing, YouTube-Strategie, Content-Erstellung, KI-Sichtbarkeitsanalyse und digitale Sichtbarkeit. Art und Umfang der Leistungen ergeben sich aus dem jeweiligen individuellen Angebot bzw. der Auftragsbestätigung.</p>
+    <p>Die im Rahmen der KI-Sichtbarkeitsanalyse erstellten Auswertungen und Handlungsempfehlungen stellen eine fachliche Einschätzung dar und keine Garantie für bestimmte Ergebnisse in KI-Systemen Dritter (z. B. ChatGPT, Gemini, Perplexity).</p>
+
+    <!-- ═══ §3 ═══ -->
+    <h2>§ 3 Vertragsschluss</h2>
+    <p>Die Darstellung der Leistungen auf dieser Website stellt kein rechtlich bindendes Angebot dar, sondern eine unverbindliche Aufforderung zur Anfrage.</p>
+    <p>Durch das Absenden des Kontaktformulars oder Lead-Formulars gibt der Auftraggeber eine unverbindliche Anfrage ab. Ein Vertrag kommt erst durch die schriftliche Auftragsbestätigung des Anbieters oder durch Beginn der Leistungserbringung zustande.</p>
+
+    <!-- ═══ §4 ═══ -->
+    <h2>§ 4 Kostenlose Analyse</h2>
+    <p>Die über das Lead-Formular angeforderte KI-Sichtbarkeitsanalyse ist kostenlos und unverbindlich. Aus der Anforderung der Analyse ergibt sich keine Verpflichtung zur Buchung weiterer Leistungen.</p>
+
+    <!-- ═══ §5 ═══ -->
+    <h2>§ 5 Staatliche Förderung</h2>
+    <p>Der Anbieter weist darauf hin, dass bestimmte Beratungsleistungen durch staatliche Förderprogramme bezuschusst werden können. Die Höhe der Förderung (bis zu 50–80 % der Beratungskosten) hängt von den individuellen Voraussetzungen des Auftraggebers und den jeweils gültigen Förderrichtlinien ab.</p>
+    <p>Der Anbieter unterstützt bei der Antragstellung, übernimmt jedoch keine Garantie für die Bewilligung der Förderung. Der Auftraggeber bleibt in jedem Fall zahlungspflichtig für den nicht geförderten Eigenanteil.</p>
+
+    <!-- ═══ §6 ═══ -->
+    <h2>§ 6 Vergütung und Zahlung</h2>
+    <p>Die Vergütung ergibt sich aus dem individuellen Angebot. Alle Preise verstehen sich zuzüglich der gesetzlichen Umsatzsteuer.</p>
+    <p>Rechnungen sind innerhalb von 14 Tagen nach Rechnungsdatum ohne Abzug zur Zahlung fällig, sofern nicht abweichend vereinbart. Bei Zahlungsverzug gelten die gesetzlichen Verzugsregeln.</p>
+
+    <!-- ═══ §7 ═══ -->
+    <h2>§ 7 Mitwirkungspflichten des Auftraggebers</h2>
+    <p>Der Auftraggeber stellt dem Anbieter alle für die Leistungserbringung erforderlichen Informationen, Zugänge und Materialien rechtzeitig und kostenlos zur Verfügung. Verzögerungen, die durch fehlende Mitwirkung des Auftraggebers entstehen, gehen nicht zu Lasten des Anbieters.</p>
+
+    <!-- ═══ §8 ═══ -->
+    <h2>§ 8 Urheberrecht und Nutzungsrechte</h2>
+    <p>Alle vom Anbieter erstellten Inhalte, Konzepte, Strategien und Materialien unterliegen dem Urheberrecht. Der Auftraggeber erhält nach vollständiger Bezahlung ein einfaches, nicht übertragbares Nutzungsrecht für die vereinbarten Zwecke.</p>
+    <p>Eine Weitergabe an Dritte oder eine über den vereinbarten Zweck hinausgehende Nutzung bedarf der vorherigen schriftlichen Zustimmung des Anbieters.</p>
+
+    <!-- ═══ §9 ═══ -->
+    <h2>§ 9 Vertraulichkeit</h2>
+    <p>Beide Parteien verpflichten sich, vertrauliche Informationen der jeweils anderen Partei geheim zu halten und nur für die Zwecke der Zusammenarbeit zu verwenden. Diese Verpflichtung gilt auch nach Beendigung des Vertragsverhältnisses.</p>
+
+    <!-- ═══ §10 ═══ -->
+    <h2>§ 10 Haftung</h2>
+    <p>Der Anbieter haftet unbeschränkt für Schäden, die auf vorsätzlichem oder grob fahrlässigem Verhalten beruhen, sowie für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit.</p>
+    <p>Bei leichter Fahrlässigkeit haftet der Anbieter nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und nur bis zur Höhe des vorhersehbaren, vertragstypischen Schadens. Im Übrigen ist die Haftung bei leichter Fahrlässigkeit ausgeschlossen.</p>
+    <p>Der Anbieter haftet nicht für den Erfolg bestimmter Platzierungen oder Empfehlungen in KI-Systemen Dritter, da diese Systeme der Kontrolle des jeweiligen Betreibers unterliegen.</p>
+
+    <!-- ═══ §11 ═══ -->
+    <h2>§ 11 Kündigung</h2>
+    <p>Sofern nicht anders vereinbart, kann der Vertrag von beiden Parteien mit einer Frist von 4 Wochen zum Monatsende schriftlich gekündigt werden. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</p>
+    <p>Bei Kündigung durch den Auftraggeber sind bereits erbrachte Leistungen vollständig zu vergüten.</p>
+
+    <!-- ═══ §12 ═══ -->
+    <h2>§ 12 Schlussbestimmungen</h2>
+    <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand für alle Streitigkeiten ist – soweit gesetzlich zulässig – Rottweil.</p>
+    <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, so bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung gilt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+    <p>Änderungen und Ergänzungen dieser AGB bedürfen der Schriftform. Dies gilt auch für die Aufhebung dieses Schriftformerfordernisses.</p>
+</main>
+
+<footer>
+    <p>
+        &copy; 2026 Schmidtke GmbH
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </p>
+</footer>
+
+<script>
+(function() {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+    function toggleMenu() {
+        const isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        burger.classList.toggle('active');
+        burger.setAttribute('aria-expanded', String(!isOpen));
+        menu.setAttribute('aria-hidden', String(isOpen));
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+    burger.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('open');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) toggleMenu();
+    });
+})();
+
+// UTM FORWARDING: Preserve UTMs across pages
+(function() {
+    const params = new URLSearchParams(window.location.search);
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    utmKeys.forEach(key => { const val = params.get(key); if (val) sessionStorage.setItem(key, val); });
+    if (!sessionStorage.getItem('original_referrer')) sessionStorage.setItem('original_referrer', document.referrer || 'direct');
+    if (!sessionStorage.getItem('landing_page')) sessionStorage.setItem('landing_page', window.location.href);
+    document.querySelectorAll('a[href*="formular.html"]').forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        utmKeys.forEach(key => { const val = params.get(key) || sessionStorage.getItem(key); if (val) url.searchParams.set(key, val); });
+        link.href = url.pathname + url.search;
+    });
+})();
+</script>
+
+<!-- ═══ Vibetrack Cookie-Banner ═══ -->
+<script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+
+</body>
+</html>

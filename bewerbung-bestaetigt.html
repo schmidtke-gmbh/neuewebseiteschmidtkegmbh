@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <title>Bewerbung eingegangen | Schmidtke GmbH</title>
+    <meta name="description" content="Deine Bewerbung ist bei uns angekommen — inklusive Persönlichkeitstyp. Wir melden uns persönlich innerhalb von 48 Stunden.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://aosparadox.github.io" crossorigin>
+    <link rel="preload" href="https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff" as="font" type="font/woff" crossorigin>
+
+    <style>
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff') format('woff');
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff') format('woff');
+            font-weight: 700; font-style: normal; font-display: swap;
+        }
+
+        :root {
+            --navy: #07162A;
+            --navy-light: #0c1f3a;
+            --navy-card: #0f2847;
+            --navy-surface: #132d4f;
+            --blue: #3B9AE8;
+            --red: #E62F1F;
+            --red-dark: #c92518;
+            --red-glow: rgba(230, 47, 31, 0.25);
+            --gold: #D4A574;
+            --gold-light: #E8C4A0;
+            --gold-glow: rgba(212, 165, 116, 0.2);
+            --green: #34D399;
+            --green-dark: #22A574;
+            --green-glow: rgba(52, 211, 153, 0.25);
+            --white: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.78);
+            --text-muted: rgba(255,255,255,0.55);
+            --border-subtle: rgba(255,255,255,0.07);
+            --border-field: rgba(255,255,255,0.12);
+
+            --h1-size: clamp(40px, 5vw, 58px);
+            --h2-size: clamp(26px, 3vw, 34px);
+            --body-size: 16px;
+            --body-line: 1.55;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            font-size: var(--body-size);
+            line-height: var(--body-line);
+            background: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+        .container { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+        /* ═══ NAV (schlanke Variante) ═══ */
+        nav {
+            padding: 16px 0;
+            background: rgba(7,22,42,0.92);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1140px; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+        .logo span { color: var(--gold); }
+        .nav-back {
+            font-size: 14px; font-weight: 600;
+            color: var(--text-muted); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: color .2s;
+        }
+        .nav-back:hover { color: var(--gold); }
+
+        /* ═══ HERO SUCCESS ═══ */
+        .s-hero {
+            padding: 96px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .s-hero::before {
+            content: '';
+            position: absolute;
+            top: 30px; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 60%);
+            pointer-events: none;
+            filter: blur(40px);
+        }
+        .s-hero > * { position: relative; z-index: 2; }
+
+        .s-check {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            display: inline-flex; align-items: center; justify-content: center;
+            margin: 0 auto 32px;
+            box-shadow: 0 20px 60px var(--green-glow), 0 0 0 8px rgba(52,211,153,0.08);
+            animation: s-check-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .s-check svg {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: s-check-draw 0.5s ease 0.3s forwards;
+        }
+        @keyframes s-check-pop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes s-check-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .s-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 14px;
+            background: rgba(52,211,153,0.1);
+            border: 1px solid rgba(52,211,153,0.3);
+            border-radius: 100px;
+            color: var(--green);
+            font-size: 12px; font-weight: 700;
+            letter-spacing: 0.8px; text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .s-hero h1 {
+            font-size: var(--h1-size);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            margin-bottom: 22px;
+            max-width: 720px;
+            margin-left: auto; margin-right: auto;
+        }
+        .s-hero h1 span { color: var(--gold); }
+        .s-hero-sub {
+            font-size: 19px;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.55;
+        }
+
+        /* ═══ INBOX CARD ═══ */
+        .s-inbox {
+            margin: 48px auto 0;
+            max-width: 620px;
+            background: var(--navy-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px 32px;
+            display: flex; align-items: center; gap: 20px;
+            text-align: left;
+        }
+        .s-inbox-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: rgba(59,154,232,0.1);
+            color: var(--blue);
+            display: inline-flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .s-inbox-t {
+            font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px;
+        }
+        .s-inbox-s {
+            font-size: 14px; color: var(--text-muted); line-height: 1.5;
+        }
+        .s-inbox-s b { color: var(--gold); font-weight: 600; }
+
+        /* ═══ DIVIDER ═══ */
+        .s-divider {
+            max-width: 80px;
+            height: 1px;
+            background: var(--border-subtle);
+            margin: 80px auto 0;
+        }
+
+        /* ═══ NEXT STEPS TIMELINE ═══ */
+        .s-next {
+            padding: 56px 0 72px;
+        }
+        .s-next-head {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .s-next-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px;
+            background: rgba(212,165,116,0.1);
+            border: 1px solid rgba(212,165,116,0.3);
+            border-radius: 100px;
+            color: var(--gold);
+            font-size: 12px; font-weight: 700;
+            letter-spacing: 0.6px; text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .s-next h2 {
+            font-size: var(--h2-size);
+            font-weight: 500;
+            letter-spacing: -0.4px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .s-next h2 span { color: var(--gold); font-weight: 700; }
+        .s-next-lead {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ═══ TIMELINE ═══ */
+        .s-timeline {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .s-timeline::before {
+            content: '';
+            position: absolute;
+            left: 27px; top: 28px; bottom: 28px;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                rgba(212,165,116,0.45) 0%,
+                rgba(212,165,116,0.22) 50%,
+                rgba(212,165,116,0.08) 100%);
+        }
+        .s-step {
+            position: relative;
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 22px;
+            padding: 22px 0;
+        }
+        .s-step-num {
+            position: relative;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--navy-card);
+            border: 2px solid rgba(212,165,116,0.35);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: var(--gold);
+            font-size: 17px; font-weight: 700;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        .s-step.done .s-step-num {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            border-color: var(--green);
+            color: var(--white);
+        }
+        .s-step-body {
+            padding: 6px 0 0 4px;
+        }
+        .s-step-label {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-size: 11.5px; font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.6px; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .s-step.done .s-step-label {
+            color: var(--green);
+        }
+        .s-step-t {
+            font-size: 19px; font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.2px;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .s-step-s {
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            max-width: 540px;
+        }
+        .s-step-s b { color: var(--gold); font-weight: 600; }
+
+        /* ═══ FOOT CTA ═══ */
+        .s-foot {
+            margin-top: 56px;
+            text-align: center;
+        }
+        .s-foot-t {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .s-foot-cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px; font-weight: 600;
+            border: 1px solid var(--border-field);
+            border-radius: 100px;
+            padding: 12px 22px;
+            transition: all .25s;
+        }
+        .s-foot-cta:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            background: rgba(212,165,116,0.05);
+        }
+
+        /* ═══ FOOTER ═══ */
+        footer {
+            padding: 48px 0 32px;
+            background: #050d1a;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            margin-top: 80px;
+        }
+        .footer-brand { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+        .footer-brand span { color: var(--gold); }
+        .footer-copy { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 13px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--gold); }
+
+        /* ═══ MOBILE ═══ */
+        @media (max-width: 820px) {
+            .s-hero { padding: 64px 0 24px; }
+            .s-check { width: 76px; height: 76px; margin-bottom: 24px; }
+            .s-inbox { flex-direction: column; text-align: center; align-items: center; padding: 24px; }
+            .s-next { padding: 40px 0 56px; }
+            .s-next-head { margin-bottom: 32px; }
+            .s-timeline::before { left: 23px; }
+            .s-step { grid-template-columns: 48px 1fr; gap: 16px; padding: 18px 0; }
+            .s-step-num { width: 48px; height: 48px; font-size: 15px; }
+            .s-step-t { font-size: 17px; }
+            .s-step-s { font-size: 14px; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAV (schlank) ═══ -->
+<nav>
+    <div class="container">
+        <a href="index-neu.html" class="logo">Schmidtke<span>.</span></a>
+        <a href="index-neu.html" class="nav-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Zur Startseite
+        </a>
+    </div>
+</nav>
+
+<!-- ═══ SUCCESS HERO ═══ -->
+<section class="s-hero">
+    <div class="container">
+        <div class="s-check" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+        <span class="s-tag">Komplett eingegangen</span>
+        <h1>Alles da, <span>Bewerbung inklusive Persönlichkeitstyp</span>.</h1>
+        <p class="s-hero-sub">Danke, dass du dir die Zeit für den Test genommen hast. Wir schauen uns alles persönlich an und melden uns innerhalb von <b>48 Stunden</b>.</p>
+
+        <div class="s-inbox">
+            <div class="s-inbox-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div>
+                <div class="s-inbox-t">Check deine E-Mails</div>
+                <div class="s-inbox-s">Wir haben dir gerade eine <b>Eingangsbestätigung</b> mit allen Infos geschickt. Falls nichts da ist, schau bitte kurz in den Spam.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ═══ NEXT STEPS TIMELINE ═══ -->
+<section class="s-next">
+    <div class="container">
+
+        <div class="s-next-head">
+            <span class="s-next-eyebrow">Wie es jetzt weitergeht</span>
+            <h2>Vier Schritte bis <span>zum Kennenlernen</span>.</h2>
+            <p class="s-next-lead">Du hast deinen Teil erledigt, Bewerbung und Persönlichkeitstyp sind bei uns. Jetzt sind wir dran. So läuft der weitere Prozess ab.</p>
+        </div>
+
+        <div class="s-timeline">
+
+            <div class="s-step done">
+                <div class="s-step-num">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="s-step-body">
+                    <div class="s-step-label">Erledigt · gerade eben</div>
+                    <div class="s-step-t">Bewerbung &amp; Persönlichkeitstyp eingegangen</div>
+                    <div class="s-step-s">Alle deine Unterlagen liegen bei uns im System, inklusive deines 16Personalities-Typs. <b>Damit hast du alles getan, was du tun musst.</b></div>
+                </div>
+            </div>
+
+            <div class="s-step">
+                <div class="s-step-num">1</div>
+                <div class="s-step-body">
+                    <div class="s-step-label">Heute · spätestens morgen</div>
+                    <div class="s-step-t">Wir lesen deine Bewerbung, persönlich</div>
+                    <div class="s-step-s">Fabian und das Team gehen jede Bewerbung selbst durch. Kein automatisches Vorscreening, keine Keyword-Filter. Dein Persönlichkeitsprofil hilft uns dabei, dich als Mensch einzuordnen, nicht nur als Lebenslauf.</div>
+                </div>
+            </div>
+
+            <div class="s-step">
+                <div class="s-step-num">2</div>
+                <div class="s-step-body">
+                    <div class="s-step-label">Innerhalb 48 Stunden</div>
+                    <div class="s-step-t">Persönliche Rückmeldung per E-Mail</div>
+                    <div class="s-step-s">Du bekommst von uns eine echte Antwort, keine Standard-Floskel. Entweder eine Einladung zum Erstgespräch oder eine ehrliche, begründete Absage. Ghosting ist hier kein Konzept.</div>
+                </div>
+            </div>
+
+            <div class="s-step">
+                <div class="s-step-num">3</div>
+                <div class="s-step-body">
+                    <div class="s-step-label">Woche 1–2</div>
+                    <div class="s-step-t">Digitales Erstgespräch (30 Min)</div>
+                    <div class="s-step-s">Lockeres Video-Call mit Fabian oder einem Team-Lead. Wir lernen uns kennen, beantworten deine Fragen und schauen, ob die Chemie passt. Kein Stress-Interview, keine Trick-Fragen.</div>
+                </div>
+            </div>
+
+            <div class="s-step">
+                <div class="s-step-num">4</div>
+                <div class="s-step-body">
+                    <div class="s-step-label">Woche 2–3</div>
+                    <div class="s-step-t">Kennenlernen vor Ort in Rottweil</div>
+                    <div class="s-step-s">Wenn beide Seiten weitermachen wollen: Du kommst zu uns ins Büro im Neckartal, lernst das Team kennen und siehst, wie wir wirklich arbeiten. Kaffee gibt's gratis, Fahrtkosten erstatten wir.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="s-foot">
+            <div class="s-foot-t">Fragen, die nicht warten können?</div>
+            <a href="mailto:karriere@schmidtke-gmbh.de" class="s-foot-cta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                karriere@schmidtke-gmbh.de
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="container">
+        <div class="footer-brand">Schmidtke<span>.</span></div>
+        <div class="footer-copy">© 2026 Schmidtke GmbH · Neckartal 200 · 78628 Rottweil</div>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="karriere.html">Karriere</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

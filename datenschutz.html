@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <title>Datenschutzerklärung | Schmidtke GmbH</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- ═══ Tracking & Cookie-Banner ═══ -->
+    <script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+
+    <style>
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff') format('woff');
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff') format('woff');
+            font-weight: 700; font-style: normal; font-display: swap;
+        }
+
+        :root {
+            --navy: #07162A;
+            --navy-light: #0c1f3a;
+            --navy-card: #0f2847;
+            --gold: #D4A574;
+            --white: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.78);
+            --text-muted: rgba(255,255,255,0.55);
+            --border-subtle: rgba(255,255,255,0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        nav {
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px; font-weight: 700;
+            color: var(--white); text-decoration: none; letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--gold); }
+        .nav-back {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 14px; font-weight: 600; transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--gold); }
+
+        main {
+            flex: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 60px 28px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 32px; font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .page-sub {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 20px; font-weight: 700;
+            margin-top: 44px; margin-bottom: 16px;
+            color: var(--gold);
+        }
+        h3 {
+            font-size: 16px; font-weight: 700;
+            margin-top: 28px; margin-bottom: 10px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        ul {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        li { margin-bottom: 6px; }
+        a { color: var(--gold); }
+
+        .legal-card {
+            background: linear-gradient(145deg, var(--navy-card), var(--navy-light));
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+        }
+        .legal-card p { margin-bottom: 4px; }
+        .legal-card .label {
+            font-size: 12px; font-weight: 700;
+            color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 1px; margin-top: 16px; margin-bottom: 6px;
+        }
+        .legal-card .label:first-child { margin-top: 0; }
+
+        footer {
+            padding: 24px 28px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        footer p { font-size: 12px; color: var(--text-muted); }
+        footer a {
+            color: var(--text-muted); text-decoration: none;
+            margin: 0 8px; transition: color 0.2s;
+        }
+        footer a:hover { color: var(--gold); }
+
+        /* ═══ MOBILE MENU ═══ */
+        .burger {
+            display: none; flex-direction: column; justify-content: center;
+            gap: 5px; width: 44px; height: 44px; padding: 10px;
+            background: none; border: none; cursor: pointer; z-index: 200;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .burger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--white); border-radius: 2px;
+            transition: all 0.3s ease; transform-origin: center;
+        }
+        .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 22, 42, 0.97);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 150; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .mobile-overlay.open { display: flex; }
+        .mobile-overlay a {
+            color: var(--white); text-decoration: none;
+            font-size: 22px; font-weight: 700;
+            padding: 16px 32px; transition: color 0.2s; text-align: center;
+        }
+        .mobile-overlay a:hover, .mobile-overlay a:active { color: var(--gold); }
+        .mobile-overlay .mobile-cta {
+            margin-top: 20px; background: var(--red); color: white;
+            padding: 18px 44px; border-radius: 100px;
+            font-size: 17px; font-weight: 700;
+            box-shadow: 0 8px 28px rgba(230, 47, 31, 0.3);
+        }
+        .mobile-overlay .mobile-cta:hover { background: #c92518; }
+        .mobile-overlay .mobile-legal {
+            display: flex; gap: 20px; margin-top: 40px;
+            padding-top: 24px; border-top: 1px solid var(--border-subtle);
+        }
+        .mobile-overlay .mobile-legal a {
+            font-size: 13px; font-weight: 600; color: var(--text-muted); padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .burger { display: flex; }
+            .nav-back { display: none; }
+            main { padding: 40px 20px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 18px; margin-top: 36px; }
+            .legal-card { padding: 24px 20px; }
+            nav { padding: 14px 20px; }
+            .logo { font-size: 20px; }
+        }
+        @media (max-width: 480px) {
+            main { padding: 32px 14px; }
+            h1 { font-size: 22px; }
+            .legal-card { padding: 20px 16px; border-radius: 12px; }
+            nav { padding: 12px 14px; }
+            .logo { font-size: 18px; }
+            p, li { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">schmidtke<span>.</span></a>
+    <a href="index.html" class="nav-back">&#8592; Zurück zur Startseite</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
+    <a href="index.html">Startseite</a>
+    <a href="index.html#analyse">KI-Analyse</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#warum">Warum wir</a>
+    <a href="index.html#foerderung">Förderung</a>
+    <a href="formular.html" class="mobile-cta">Erstgespräch sichern &#8594;</a>
+    <div class="mobile-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </div>
+</div>
+
+<main>
+    <h1>Datenschutzerklärung</h1>
+    <p class="page-sub">Stand: März 2026</p>
+
+    <!-- ═══ 1. VERANTWORTLICHER ═══ -->
+    <h2>1. Verantwortlicher</h2>
+    <div class="legal-card">
+        <p><strong style="color: var(--white);">Schmidtke GmbH</strong></p>
+        <p>Neckartal 200, 78628 Rottweil</p>
+        <p>Geschäftsführer: Fabian Schmidtke</p>
+        <p>Telefon: <a href="tel:+4974194213040">+49 741 942 130 40</a></p>
+        <p>E-Mail: <a href="mailto:info@schmidtkeconsulting.de">info@schmidtkeconsulting.de</a></p>
+    </div>
+
+    <!-- ═══ 2. ÜBERBLICK ═══ -->
+    <h2>2. Allgemeine Hinweise</h2>
+    <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit deinen personenbezogenen Daten passiert, wenn du diese Website besuchst. Personenbezogene Daten sind alle Daten, mit denen du persönlich identifiziert werden kannst.</p>
+
+    <h3>Wer ist verantwortlich für die Datenerfassung?</h3>
+    <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber (siehe oben). Die Kontaktdaten findest du im Impressum.</p>
+
+    <h3>Wie erfassen wir deine Daten?</h3>
+    <p>Deine Daten werden zum einen dadurch erhoben, dass du uns diese mitteilst, z. B. durch Eingabe in unser Kontaktformular. Andere Daten werden automatisch oder nach deiner Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+
+    <!-- ═══ 3. HOSTING ═══ -->
+    <h2>3. Hosting</h2>
+    <p>Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Hierbei kann es sich um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.</p>
+    <p>Die Nutzung des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots (Art. 6 Abs. 1 lit. f DSGVO).</p>
+
+    <!-- ═══ 4. PFLICHTINFOS ═══ -->
+    <h2>4. Allgemeine Hinweise und Pflichtinformationen</h2>
+
+    <h3>Datenschutz</h3>
+    <p>Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Wir behandeln deine personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+
+    <h3>Widerruf deiner Einwilligung</h3>
+    <p>Viele Datenverarbeitungsvorgänge sind nur mit deiner ausdrücklichen Einwilligung möglich. Du kannst eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+
+    <h3>Beschwerderecht bei der Aufsichtsbehörde</h3>
+    <p>Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu. Die zuständige Aufsichtsbehörde ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg.</p>
+
+    <h3>Recht auf Datenübertragbarkeit</h3>
+    <p>Du hast das Recht, Daten, die wir auf Grundlage deiner Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an dich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.</p>
+
+    <h3>Auskunft, Berichtigung und Löschung</h3>
+    <p>Du hast jederzeit das Recht auf unentgeltliche Auskunft über deine gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten kannst du dich jederzeit an uns wenden.</p>
+
+    <!-- ═══ 5. DATENERFASSUNG ═══ -->
+    <h2>5. Datenerfassung auf dieser Website</h2>
+
+    <h3>Server-Log-Dateien</h3>
+    <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die dein Browser automatisch übermittelt. Dies sind:</p>
+    <ul>
+        <li>Browsertyp und Browserversion</li>
+        <li>Verwendetes Betriebssystem</li>
+        <li>Referrer URL</li>
+        <li>Hostname des zugreifenden Rechners</li>
+        <li>Uhrzeit der Serveranfrage</li>
+        <li>IP-Adresse</li>
+    </ul>
+    <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+    <h3>Kontaktformular</h3>
+    <p>Wenn du uns per Kontaktformular Anfragen zukommen lässt, werden deine Angaben aus dem Anfrageformular inklusive der von dir dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne deine Einwilligung weiter.</p>
+    <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern deine Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse (Art. 6 Abs. 1 lit. f DSGVO).</p>
+    <p>Die von dir im Kontaktformular eingegebenen Daten verbleiben bei uns, bis du uns zur Löschung aufforderst, deine Einwilligung zur Speicherung widerrufst oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.</p>
+
+    <h3>Anfrage per E-Mail oder Telefon</h3>
+    <p>Wenn du uns per E-Mail oder Telefon kontaktierst, wird deine Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung deines Anliegens bei uns gespeichert und verarbeitet.</p>
+
+    <!-- ═══ 6. LEAD-FORMULAR ═══ -->
+    <h2>6. Lead-Formular (KI-Sichtbarkeitsanalyse)</h2>
+    <p>Auf dieser Website bieten wir ein Formular zur Anforderung einer kostenlosen KI-Sichtbarkeitsanalyse an. Dabei werden folgende Daten erhoben:</p>
+    <ul>
+        <li>Branche</li>
+        <li>Website-URL</li>
+        <li>Vorname</li>
+        <li>E-Mail-Adresse</li>
+        <li>Telefonnummer (freiwillig)</li>
+    </ul>
+    <p>Zusätzlich werden technische Daten erfasst, die zur Auswertung unserer Marketingkampagnen dienen (UTM-Parameter, Referrer-URL, Zeitstempel). Diese Daten werden ausschließlich zur Bearbeitung deiner Anfrage, zur Durchführung der Analyse und zur Kontaktaufnahme verwendet.</p>
+    <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Anfragen).</p>
+    <p>Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind.</p>
+
+    <!-- ═══ 7. COOKIES & CONSENT ═══ -->
+    <h2>7. Cookies und Einwilligungsmanagement</h2>
+    <p>Diese Website verwendet Cookies. Cookies sind kleine Textdateien, die auf deinem Endgerät gespeichert werden und die dein Browser speichert.</p>
+
+    <h3>a) Cookie-Consent (Cookiebot)</h3>
+    <p>Wir nutzen den Dienst Cookiebot der Firma Usercentrics A/S, Havnegade 39, 1058 Kopenhagen, Dänemark, um deine Einwilligung zur Speicherung von Cookies einzuholen und zu dokumentieren. Cookiebot setzt dabei einen technisch notwendigen Cookie ("CookieConsent"), um deinen Einwilligungsstatus zu speichern. Dieser Cookie ist für den Betrieb der Website erforderlich und kann nicht deaktiviert werden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung). Weitere Informationen findest du unter: <a href="https://www.cookiebot.com/de/privacy-policy/" target="_blank" rel="noopener">cookiebot.com/de/privacy-policy</a></p>
+
+    <h3>b) Meta Pixel (Facebook)</h3>
+    <p>Mit deiner Einwilligung setzen wir das Meta Pixel der Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2, Irland, ein. Das Meta Pixel ermöglicht es uns, die Wirksamkeit unserer Werbeanzeigen auf Facebook und Instagram zu messen und unsere Angebote zu verbessern. Dabei werden Daten an Meta übermittelt und dort verarbeitet. Eine Übermittlung in die USA kann stattfinden; Meta hat sich dem EU-U.S. Data Privacy Framework angeschlossen.</p>
+    <p>Das Meta Pixel wird nur aktiviert, wenn du über den Cookie-Banner aktiv in die Kategorie "Marketing" einwilligst. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Du kannst deine Einwilligung jederzeit über den Cookie-Banner widerrufen.</p>
+
+    <h3>c) UTM-Parameter</h3>
+    <p>Wir setzen UTM-Parameter ein, um nachzuvollziehen, über welche Kampagne oder Quelle Besucher auf unsere Seite gelangen. Diese Informationen werden im sessionStorage deines Browsers gespeichert (kein Cookie, wird beim Schließen des Tabs gelöscht) und bei einer Formularanfrage zusammen mit deinen Angaben übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Auswertung von Marketingmaßnahmen).</p>
+
+    <!-- ═══ 8. SSL ═══ -->
+    <h2>8. SSL- bzw. TLS-Verschlüsselung</h2>
+    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennst du daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in deiner Browserzeile.</p>
+
+    <!-- ═══ 9. DEINE RECHTE ═══ -->
+    <h2>9. Deine Rechte</h2>
+    <p>Du hast gegenüber uns folgende Rechte hinsichtlich deiner personenbezogenen Daten:</p>
+    <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
+    </ul>
+    <p>Zur Ausübung deiner Rechte wende dich bitte an: <a href="mailto:info@schmidtkeconsulting.de">info@schmidtkeconsulting.de</a></p>
+</main>
+
+<footer>
+    <p>
+        &copy; 2026 Schmidtke GmbH
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </p>
+</footer>
+
+<script>
+(function() {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobileMenu');
+    if (!burger || !menu) return;
+    function toggleMenu() {
+        const isOpen = menu.classList.contains('open');
+        menu.classList.toggle('open');
+        burger.classList.toggle('active');
+        burger.setAttribute('aria-expanded', String(!isOpen));
+        menu.setAttribute('aria-hidden', String(isOpen));
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+    burger.addEventListener('click', toggleMenu);
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('open');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) toggleMenu();
+    });
+})();
+
+// UTM FORWARDING: Preserve UTMs across pages
+(function() {
+    const params = new URLSearchParams(window.location.search);
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    utmKeys.forEach(key => { const val = params.get(key); if (val) sessionStorage.setItem(key, val); });
+    if (!sessionStorage.getItem('original_referrer')) sessionStorage.setItem('original_referrer', document.referrer || 'direct');
+    if (!sessionStorage.getItem('landing_page')) sessionStorage.setItem('landing_page', window.location.href);
+    document.querySelectorAll('a[href*="formular.html"]').forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        utmKeys.forEach(key => { const val = params.get(key) || sessionStorage.getItem(key); if (val) url.searchParams.set(key, val); });
+        link.href = url.pathname + url.search;
+    });
+})();
+</script>
+
+<!-- ═══ Vibetrack Cookie-Banner ═══ -->
+<script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+
+</body>
+</html>

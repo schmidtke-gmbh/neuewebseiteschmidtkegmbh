@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube-Kanal aufbauen lassen: Done4You von der Agentur | Schmidtke GmbH</title>
+<meta name="description" content="YouTube-Kanal aufbauen lassen: Strategie, Studio, Produktion & Funnel aus einer Hand. 60 Min/Woche Eigenaufwand, messbare Anfragen. Jetzt kostenloses Erstgespräch sichern.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    :root {
+        --navy: #07162A; --navy-deep: #040d1c; --navy-card: #0f2847;
+        --blue: #3B9AE8; --red: #E62F1F; --gold: #D4A574;
+        --dim: rgba(255,255,255,0.72); --faint: rgba(255,255,255,0.45);
+        --hairline: rgba(255,255,255,0.09);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'SK Modernist', -apple-system, sans-serif; background: var(--navy-deep); color: #fff; line-height: 1.6; overflow-x: hidden; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+    .section-tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--hairline); background: rgba(255,255,255,0.04); border-radius: 100px; padding: 8px 16px; font-size: 11px; letter-spacing: 0.22em;  color: var(--dim); margin-bottom: 22px; }
+    .section-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .rd1 { transition-delay: 0.1s; } .rd2 { transition-delay: 0.2s; } .rd3 { transition-delay: 0.3s; }
+    .grid-hover-base, .grid-hover-glow { position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(255,255,255,0.032) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.032) 1px, transparent 1px); background-size: 56px 56px; }
+    .grid-hover-glow { background-image: linear-gradient(rgba(255,255,255,0.30) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.30) 1px, transparent 1px); -webkit-mask-image: radial-gradient(260px circle at var(--gx,-999px) var(--gy,-999px), black 0%, rgba(0,0,0,0.35) 50%, transparent 72%); mask-image: radial-gradient(260px circle at var(--gx,-999px) var(--gy,-999px), black 0%, rgba(0,0,0,0.35) 50%, transparent 72%); opacity: 0; transition: opacity 0.35s ease; }
+    .grid-hover-host:hover .grid-hover-glow { opacity: 1; }
+    @media (hover: none) { .grid-hover-base, .grid-hover-glow { display: none; } }
+    nav { position: sticky; top: 14px; z-index: 100; padding: 14px 16px 0; }
+    .nav-pill { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 26px; background: rgba(10,26,48,0.82); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; padding: 12px 14px 12px 26px; box-shadow: 0 18px 40px -18px rgba(0,0,0,0.6); }
+    .logo { font-size: 21px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+    .logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 22px; margin-left: auto; }
+    .nav-links a { color: var(--dim); text-decoration: none; font-size: 14.5px; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { background: var(--red); color: #fff; font-weight: 700; font-size: 14px; text-decoration: none; border-radius: 100px; padding: 12px 22px; white-space: nowrap; }
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-cta { margin-left: auto; } }
+    .p-hero { position: relative; padding: 100px 0 90px; background: radial-gradient(ellipse 90% 60% at 50% -5%, #0d2647 0%, var(--navy) 55%, var(--navy-deep) 100%); overflow: hidden; }
+    .p-hero h1 { font-size: clamp(32px, 4.4vw, 56px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.07; margin-bottom: 22px; max-width: 900px; }
+    .p-hero h1 .r { color: var(--red); } .p-hero h1 .g { color: var(--gold); }
+    .answer { border-left: 3px solid var(--gold); background: rgba(212,165,116,0.06); border-radius: 0 14px 14px 0; padding: 18px 24px; max-width: 760px; margin-bottom: 28px; }
+    .answer p { color: var(--dim); font-size: 16px; margin: 0; }
+    .answer p strong { color: #fff; }
+    .btn-r { display: inline-flex; align-items: center; gap: 10px; background: var(--red); color: #fff; font-weight: 700; font-size: 15px; border-radius: 100px; padding: 16px 30px; text-decoration: none; box-shadow: 0 16px 38px -12px rgba(230,47,31,0.65); transition: transform .25s ease; }
+    .btn-r:hover { transform: translateY(-2px); }
+    .btn-g { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.28); color: #fff; font-weight: 700; font-size: 14.5px; border-radius: 100px; padding: 15px 26px; text-decoration: none; background: rgba(255,255,255,0.03); transition: border-color .25s; }
+    .btn-g:hover { border-color: var(--red); }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .p-facts { display: flex; gap: 36px; margin-top: 40px; flex-wrap: wrap; }
+    .p-facts b { display: block; font-size: 24px; color: var(--gold); letter-spacing: -0.02em; }
+    .p-facts span { font-size: 11.5px; color: var(--faint); letter-spacing: 0.06em;  }
+    .sec { position: relative; padding: 120px 0; background: var(--navy); }
+    .sec.alt { background: var(--navy-deep); border-top: 1px solid rgba(255,255,255,0.05); }
+    .sec-h2 { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px; }
+    .sec-h2 .g { color: var(--gold); } .sec-h2 .r { color: var(--red); } .sec-h2 .b { color: var(--blue); }
+    .sec-sub { color: var(--dim); font-size: 15.5px; max-width: 620px; }
+    .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; }
+    .card { position: relative; background: linear-gradient(165deg, var(--navy-card), #0a1a30 70%); border: 1px solid var(--hairline); border-radius: 20px; padding: 30px 28px; overflow: hidden; transition: transform .35s cubic-bezier(0.22,1,0.36,1), border-color .35s ease; }
+    .card:hover { transform: translateY(-5px); border-color: rgba(230,47,31,0.4); }
+    .card::before { content: ''; position: absolute; top: 0; left: 28px; right: 55%; height: 2px; background: linear-gradient(90deg, var(--red), transparent); }
+    .card .ico { font-size: 24px; margin-bottom: 14px; display: block; }
+    .card h3 { font-size: 17px; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .card p { font-size: 13.5px; color: var(--faint); line-height: 1.6; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 46px; border-top: 1px solid var(--hairline); }
+    .step { padding: 26px 22px 0; border-left: 1px solid rgba(255,255,255,0.07); }
+    .step:first-child { border-left: none; padding-left: 0; }
+    .no { font-size: 26px; font-weight: 700; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.35); display: block; margin-bottom: 10px; }
+    .step h3 { font-size: 16px; margin-bottom: 6px; }
+    .step p { font-size: 13px; color: var(--faint); line-height: 1.55; }
+    .casebox { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 0; border: 1px solid var(--hairline); border-radius: 22px; overflow: hidden; background: linear-gradient(165deg, var(--navy-card), #0a1a30 70%); margin-top: 46px; }
+    .casebox .cimg { min-height: 300px; background-size: cover; background-position: center; }
+    .casebox .cbody { padding: 36px 38px; }
+    .casebox .cbody .ctag { font-size: 10.5px; letter-spacing: 0.16em;  color: var(--gold); margin-bottom: 12px; display: block; }
+    .casebox h3 { font-size: 22px; letter-spacing: -0.015em; margin-bottom: 12px; }
+    .casebox p { font-size: 14px; color: var(--dim); margin-bottom: 18px; }
+    .cstats { display: flex; gap: 30px; margin: 4px 0 22px; flex-wrap: wrap; }
+    .cstats b { display: block; font-size: 22px; color: var(--gold); }
+    .cstats span { font-size: 11px; color: var(--faint);  letter-spacing: 0.06em; }
+    .clink { color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; }
+    .clink:hover { border-color: var(--red); }
+    .quote { border-left: 3px solid var(--red); background: rgba(255,255,255,0.03); border-radius: 0 16px 16px 0; padding: 24px 30px; max-width: 760px; margin: 40px 0 0; }
+    .quote blockquote { font-size: 17px; color: var(--dim); font-style: italic; line-height: 1.65; }
+    .quote figcaption { margin-top: 12px; font-size: 12.5px; color: var(--faint); }
+    .quote figcaption b { color: #fff; }
+    @media (max-width: 860px) { .casebox { grid-template-columns: 1fr; } .cards3 { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr; border-top: none; } .step { border-left: none; border-top: 1px solid rgba(255,255,255,0.07); padding: 18px 0 0; } .sec { padding: 76px 0; } }
+    .faq-list { max-width: 820px; margin: 40px 0 0; }
+    .q { border-bottom: 1px solid var(--hairline); }
+    .q button { width: 100%; background: none; border: none; color: #fff; font-family: inherit; font-size: 16px; font-weight: 700; text-align: left; padding: 20px 40px 20px 0; cursor: pointer; position: relative; }
+    .q button::after { content: '+'; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--blue); font-weight: 400; transition: transform .3s ease; }
+    .q.open button::after { transform: translateY(-50%) rotate(45deg); }
+    .a { max-height: 0; overflow: hidden; transition: max-height .45s cubic-bezier(0.22,1,0.36,1); }
+    .a p { padding: 0 0 20px; color: var(--dim); font-size: 14.5px; max-width: 720px; }
+    .foot { position: relative; padding: 130px 0 60px; background: radial-gradient(ellipse 100% 70% at 50% 0%, #0a1e39 0%, var(--navy) 45%, #030a16 100%); text-align: center; overflow: hidden; }
+    .foot-big { position: absolute; bottom: -2%; left: 50%; transform: translateX(-50%); font-weight: 700; font-size: clamp(100px, 16vw, 260px); letter-spacing: -0.04em; line-height: 0.85; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.06); pointer-events: none; }
+    .foot h2 { font-size: clamp(28px, 4vw, 50px); letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 16px; }
+    .foot h2 em { font-style: italic; font-family: Georgia, serif; font-weight: 400; color: var(--gold); }
+    .foot .sec-sub { margin: 0 auto 32px; }
+    .legal { display: flex; justify-content: center; gap: 8px; margin-top: 76px; }
+    .legal a { font-size: 11.5px; color: var(--faint); text-decoration: none; border: 1px solid var(--hairline); border-radius: 100px; padding: 7px 14px; }
+    .copy { margin-top: 18px; font-size: 11px; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<nav aria-label="Hauptnavigation">
+    <div class="nav-pill">
+        <a href="index-v4.html" class="logo">schmidtke<span>.</span></a>
+        <div class="nav-links">
+            <a href="youtube-kanal-aufbauen-lassen.html" class="active">Kanal aufbauen</a>
+            <a href="done4you.html">Done4You</a>
+            <a href="ki-sichtbarkeit.html">KI-Sichtbarkeit</a>
+            <a href="index-v4.html#cases">Cases</a>
+            <a href="ueber-uns.html">Über uns</a>
+            <a href="karriere-neu.html">Karriere</a>
+        </div>
+        <a href="formular.html" class="nav-cta">Erstgespräch sichern</a>
+    </div>
+</nav>
+<header class="p-hero grid-hover-host"><div class="grid-hover-base" aria-hidden="true"></div><div class="grid-hover-glow" aria-hidden="true"></div><div class="container"><span class="section-tag reveal">YouTube-Kanal aufbauen lassen</span><h1 class="reveal">Dein YouTube-Kanal.<br><span class="r">Aufgebaut von Profis.</span></h1><div class="answer reveal rd1"><p><strong>Direkt beantwortet:</strong> Einen YouTube-Kanal aufbauen zu lassen heißt: Eine spezialisierte Agentur übernimmt Strategie, Studio-Setup, Produktion, Schnitt und Optimierung, du stehst nur vor der Kamera. Bei uns sind das <strong>60 Minuten pro Woche</strong>, der Rest ist Done4You. Das Ergebnis: ein Kanal, der planbar Anfragen bringt und dich zusätzlich in der KI-Suche sichtbar macht.</p></div><div class="cta-row reveal rd2"><a href="formular.html" class="btn-r">Kostenloses Erstgespräch sichern</a><a href="done4you.html" class="btn-g">Das Done4You-System ansehen</a></div><div class="p-facts reveal rd3"><div><b>60 Min</b><span>pro Woche für dich</span></div><div><b>10 Mio+</b><span>organische Aufrufe</span></div><div><b>Seit 2016</b><span>YouTube-Fokus</span></div></div></div></header><section class="sec"><div class="container"><span class="section-tag reveal">Was du bekommst</span><h2 class="sec-h2 reveal">Alles, was ein Kanal braucht,<br><span class="g">aus einer Hand.</span></h2><div class="cards3"><div class="card reveal"><span class="ico">🎯</span><h3>Strategie &amp; Positionierung</h3><p>Kanal-Konzept, Zielgruppen-Analyse und ein 12-Monats-Themenplan, mit dem jedes Video auf Anfragen einzahlt.</p></div><div class="card reveal rd1"><span class="ico">🎬</span><h3>Studio-Setup bei dir vor Ort</h3><p>Kamera, Licht, Ton, professionell aufgebaut in deinem Büro. Du musst nirgends hinfahren.</p></div><div class="card reveal rd2"><span class="ico">✂️</span><h3>Produktion komplett</h3><p>Skripte, Dreh-Begleitung, Schnitt, Thumbnails, Titel, Upload, ein Drehtag pro Monat, wir erledigen den Rest.</p></div><div class="card reveal"><span class="ico">🌐</span><h3>Landingpage &amp; Funnel</h3><p>Aus Zuschauern werden qualifizierte Anfragen, mit Tracking bis zur einzelnen Video-Quelle.</p></div><div class="card reveal rd1"><span class="ico">✨</span><h3>KI-Sichtbarkeit inklusive</h3><p>Deine Videos machen dich zusätzlich in ChatGPT &amp; Co. empfehlbar. <a class="clink" href="ki-sichtbarkeit.html">Wie das funktioniert →</a></p></div><div class="card reveal rd2"><span class="ico">📊</span><h3>Messung &amp; Skalierung</h3><p>Live-Dashboard, monatliche Strategie-Reviews und Ads-Verstärkung für deine besten Videos.</p></div></div></div></section><section class="sec alt grid-hover-host"><div class="grid-hover-base" aria-hidden="true"></div><div class="grid-hover-glow" aria-hidden="true"></div><div class="container"><span class="section-tag reveal">Der Ablauf</span><h2 class="sec-h2 reveal">Von 0 auf Kanal, <span class="g">in 4 Schritten.</span></h2><div class="steps"><div class="step reveal"><span class="no">01</span><h3>Erstgespräch</h3><p>20 Minuten Klarheit: Passt YouTube zu deinem Geschäft? Wenn nein, sagen wir es ehrlich.</p></div><div class="step reveal rd1"><span class="no">02</span><h3>Strategie &amp; Setup</h3><p>Positionierung, Themenplan, Studio-Aufbau bei dir vor Ort, Kamera-Training.</p></div><div class="step reveal rd2"><span class="no">03</span><h3>Produktion &amp; Launch</h3><p>Erster Drehtag, Schnitt und Optimierung, dein Kanal geht mit System live.</p></div><div class="step reveal rd3"><span class="no">04</span><h3>Wachstum</h3><p>Monat für Monat neue Videos, messbare Anfragen, Skalierung über Ads und Shorts.</p></div></div></div></section><section class="sec"><div class="container"><span class="section-tag reveal">Aus der Praxis</span><h2 class="sec-h2 reveal">So sieht das Ergebnis aus.</h2><div class="casebox reveal rd1"><div class="cimg" style="background-image:url('case-barwig.jpg');"></div><div class="cbody"><span class="ctag">Handwerk · Barwig Group</span><h3>Vom Handwerksbetrieb zum regionalen YouTube-Experten.</h3><p>Mit einem konsequenten Kanal-Aufbau wurde die Barwig Group zur bekanntesten Stimme ihres Fachs in der Region. Anfragen kommen heute über Videos, die vor Monaten gedreht wurden.</p><a class="clink" href="case-barwig.html">Zum vollständigen Case →</a></div></div></div></section><section class="sec alt" id="faq"><div class="container"><span class="section-tag reveal">FAQ</span><h2 class="sec-h2 reveal">Häufige Fragen zum <span class="g">Kanal-Aufbau</span>.</h2><div class="faq-list"><div class="q reveal"><button aria-expanded="false">Was kostet es, einen YouTube-Kanal aufbauen zu lassen?</button><div class="a"><p>Das hängt vom Umfang ab: Strategie, Studio-Setup, Anzahl der Videos und Funnel-Aufbau unterscheiden sich je nach Unternehmen. Seriöse Anbieter nennen dir nach einem Erstgespräch eine klare Einschätzung. Gut zu wissen: Unsere Strategie- und Beratungsleistung ist für viele Unternehmen staatlich förderfähig.</p></div></div><div class="q reveal"><button aria-expanded="false">Wie viel Zeit muss ich selbst investieren?</button><div class="a"><p>Bei unserem Done4You-System stehst du im Schnitt 60 Minuten pro Woche vor der Kamera, plus einen Drehtag im Monat. Skripte, Dreh-Organisation, Schnitt, Thumbnails, Upload und Auswertung übernehmen wir.</p></div></div><div class="q reveal"><button aria-expanded="false">Wie schnell bringt ein YouTube-Kanal Anfragen?</button><div class="a"><p>Über die begleitende Landingpage und Anzeigen können erste Anfragen schon in den ersten Wochen entstehen. Der organische Kanal-Effekt baut sich über Monate auf, dafür arbeitet er dann dauerhaft, auch ohne Werbebudget.</p></div></div><div class="q reveal"><button aria-expanded="false">Ich war noch nie vor der Kamera, funktioniert das trotzdem?</button><div class="a"><p>Ja. Die meisten unserer Kunden hatten vorher keinerlei Kamera-Erfahrung. Wir trainieren dich, arbeiten mit Teleprompter und Interview-Technik, nach wenigen Drehs fühlt es sich normal an.</p></div></div><div class="q reveal"><button aria-expanded="false">Warum nicht einfach selbst drehen?</button><div class="a"><p>Kannst du, wenn du 5–8 Stunden pro Woche für Skripte, Dreh, Schnitt und Optimierung übrig hast und die Lernkurve in Kauf nimmst. Ein spezialisiertes Team liefert planbarer, schneller und in einer Qualität, die auf dich als Marke einzahlt. Wenn YouTube für dein Unternehmen der falsche Hebel ist, sagen wir dir das übrigens vor dem Vertrag.</p></div></div></div></div></section><footer class="foot grid-hover-host" id="kontakt"><div class="grid-hover-base" aria-hidden="true"></div><div class="grid-hover-glow" aria-hidden="true"></div><div class="foot-big" aria-hidden="true">SCHMIDTKE</div><div class="container"><span class="section-tag reveal">Jetzt starten</span><h2 class="reveal">Bereit für einen Kanal,<br><em>der für dich arbeitet?</em></h2><p class="sec-sub reveal rd1" style="margin-left:auto;margin-right:auto;">20 Minuten, kein Verkaufsgespräch. Nur Klarheit, ob und wie ein YouTube-Kanal für dein Unternehmen funktioniert, direkt mit Fabian.</p><div class="cta-row reveal rd2" style="justify-content:center;"><a href="formular.html" class="btn-r">Kostenloses Erstgespräch sichern</a></div><div class="legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div><div class="copy">© 2026 Schmidtke GmbH · Made in Rottweil · Schwarzwald · <span style="color:rgba(255,255,255,0.45)">Zuletzt aktualisiert: 05.07.2026</span></div></div></footer>
+<script>
+const obs = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.grid-hover-host').forEach(function(host) {
+    var glow = host.querySelector('.grid-hover-glow');
+    if (!glow) return;
+    var raf = null;
+    host.addEventListener('mousemove', function(e) {
+        if (raf) return;
+        raf = requestAnimationFrame(function() {
+            var r = host.getBoundingClientRect();
+            glow.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+            glow.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+            raf = null;
+        });
+    }, { passive: true });
+});
+document.querySelectorAll('.q button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const q = btn.parentElement, a = q.querySelector('.a');
+        const open = q.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+        a.style.maxHeight = open ? a.scrollHeight + 'px' : '0px';
+    });
+});
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Was kostet es, einen YouTube-Kanal aufbauen zu lassen?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt vom Umfang ab: Strategie, Studio-Setup, Anzahl der Videos und Funnel-Aufbau unterscheiden sich je nach Unternehmen. Seriöse Anbieter nennen dir nach einem Erstgespräch eine klare Einschätzung. Gut zu wissen: Unsere Strategie- und Beratungsleistung ist für viele Unternehmen staatlich förderfähig."}}, {"@type": "Question", "name": "Wie viel Zeit muss ich selbst investieren?", "acceptedAnswer": {"@type": "Answer", "text": "Bei unserem Done4You-System stehst du im Schnitt 60 Minuten pro Woche vor der Kamera, plus einen Drehtag im Monat. Skripte, Dreh-Organisation, Schnitt, Thumbnails, Upload und Auswertung übernehmen wir."}}, {"@type": "Question", "name": "Wie schnell bringt ein YouTube-Kanal Anfragen?", "acceptedAnswer": {"@type": "Answer", "text": "Über die begleitende Landingpage und Anzeigen können erste Anfragen schon in den ersten Wochen entstehen. Der organische Kanal-Effekt baut sich über Monate auf, dafür arbeitet er dann dauerhaft, auch ohne Werbebudget."}}, {"@type": "Question", "name": "Ich war noch nie vor der Kamera, funktioniert das trotzdem?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Die meisten unserer Kunden hatten vorher keinerlei Kamera-Erfahrung. Wir trainieren dich, arbeiten mit Teleprompter und Interview-Technik, nach wenigen Drehs fühlt es sich normal an."}}, {"@type": "Question", "name": "Warum nicht einfach selbst drehen?", "acceptedAnswer": {"@type": "Answer", "text": "Kannst du, wenn du 5–8 Stunden pro Woche für Skripte, Dreh, Schnitt und Optimierung übrig hast und die Lernkurve in Kauf nimmst. Ein spezialisiertes Team liefert planbarer, schneller und in einer Qualität, die auf dich als Marke einzahlt. Wenn YouTube für dein Unternehmen der falsche Hebel ist, sagen wir dir das übrigens vor dem Vertrag."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "YouTube-Kanal aufbauen lassen (Done4You)", "provider": {"@type": "Organization", "name": "Schmidtke GmbH", "url": "https://schmidtke-gmbh.de", "address": {"@type": "PostalAddress", "streetAddress": "Neckartal 200", "postalCode": "78628", "addressLocality": "Rottweil", "addressCountry": "DE"}}, "areaServed": ["DE", "AT", "CH"], "description": "Done4You-Aufbau von YouTube-Kanälen für Selbstständige und Unternehmen: Strategie, Studio-Setup, Produktion, Funnel und KI-Sichtbarkeit bei 60 Minuten Eigenaufwand pro Woche."}</script>
+</body>
+</html>

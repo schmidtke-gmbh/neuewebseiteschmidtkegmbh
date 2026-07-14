@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <title>Danke für deine Anfrage | Schmidtke GmbH</title>
+    <meta name="description" content="Deine KI-Sichtbarkeitsanalyse ist unterwegs. Wir melden uns innerhalb von 24 Stunden.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- ═══ Tracking & Cookie-Banner ═══ -->
+    <script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+    <!-- Facebook Pixel ID: 854548551673414 — wird über vibetrack verwaltet -->
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           DANKE.HTML – Schmidtke GmbH
+           ─────────────────────────────────────────────
+           ANPASSUNGEN:
+
+           Texte ändern?       → Suche nach "TEXTE ANPASSEN"
+           Nächste Schritte?   → Suche nach "SCHRITTE ANPASSEN"
+           Tracking-Pixel?     → Suche nach "CONVERSION TRACKING"
+           ═══════════════════════════════════════════════ */
+
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff') format('woff');
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'SK Modernist';
+            src: url('https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff') format('woff');
+            font-weight: 700; font-style: normal; font-display: swap;
+        }
+
+        :root {
+            --navy: #07162A;
+            --navy-light: #0c1f3a;
+            --navy-card: #0f2847;
+            --navy-surface: #132d4f;
+            --blue: #3B9AE8;
+            --blue-dark: #277DC1;
+            --red: #E62F1F;
+            --gold: #D4A574;
+            --green: #34D399;
+            --white: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.78);
+            --text-muted: rgba(255,255,255,0.55);
+            --border-subtle: rgba(255,255,255,0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ═══ NAV ═══ */
+        nav {
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--gold); }
+
+        /* ═══ MAIN ═══ */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 28px;
+        }
+
+        .thank-you {
+            max-width: 900px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Success animation */
+        .check-circle {
+            width: 88px; height: 88px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.1);
+            border: 3px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .check-circle svg {
+            width: 40px; height: 40px;
+            stroke: var(--green);
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .check-circle svg path {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: drawCheck 0.5s 0.3s ease forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* ══════════════════════════════════════
+           TEXTE ANPASSEN – Headline & Text
+           ══════════════════════════════════════ */
+        .thank-you h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .thank-you h1 .name { color: var(--gold); }
+        .thank-you .lead-text {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 44px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ══════════════════════════════════════
+           SCHRITTE ANPASSEN – Nächste Schritte
+           ══════════════════════════════════════ */
+        .steps-card {
+            background: linear-gradient(145deg, var(--navy-card), var(--navy-surface));
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 36px 32px;
+            text-align: left;
+            margin-bottom: 36px;
+        }
+        .steps-card h3 {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: 700;
+            
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        .step-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 14px 0;
+        }
+        .step-item + .step-item {
+            border-top: 1px solid var(--border-subtle);
+        }
+        .step-num {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: rgba(59, 154, 232, 0.12);
+            border: 1px solid rgba(59, 154, 232, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+            flex-shrink: 0;
+        }
+        .step-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .step-text p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(230, 47, 31, 0.08);
+            border: 1px solid rgba(230, 47, 31, 0.25);
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        .urgency-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+            line-height: 1.4;
+        }
+        .urgency-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .urgency-text strong {
+            color: var(--white);
+            font-size: 15px;
+        }
+
+        /* Cal.com Booking Section */
+        .booking-section {
+            margin-top: 8px;
+            margin-bottom: 36px;
+            text-align: center;
+        }
+        .booking-card {
+            background: linear-gradient(145deg, var(--navy-card), var(--navy-surface));
+            border: 2px solid rgba(52, 211, 153, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+            overflow: hidden;
+        }
+        .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon {
+            width: 100%;
+            min-height: 580px;
+            overflow: auto;
+            border-radius: 16px;
+        }
+        .booking-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--green);
+            animation: bounce-arrow 2s ease-in-out infinite;
+        }
+        .booking-arrow span {
+            font-size: 24px;
+        }
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* Booking Benefits */
+        .booking-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .booking-benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .booking-benefit-item .ico { color: var(--green); }
+
+        /* CTA Button */
+        .btn-home {
+            display: inline-block;
+            padding: 16px 36px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'SK Modernist', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.25s;
+        }
+        .btn-home:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Socials */
+        .social-hint {
+            margin-top: 36px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .social-hint a {
+            color: var(--gold);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* ═══ FOOTER ═══ */
+        footer {
+            padding: 24px 28px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 8px;
+            transition: color 0.2s;
+        }
+        footer a:hover { color: var(--gold); }
+
+        /* ═══ MOBILE MENU ═══ */
+        .burger {
+            display: none; flex-direction: column; justify-content: center;
+            gap: 5px; width: 44px; height: 44px; padding: 10px;
+            background: none; border: none; cursor: pointer; z-index: 200;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .burger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--white); border-radius: 2px;
+            transition: all 0.3s ease; transform-origin: center;
+        }
+        .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(7, 22, 42, 0.97);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 150; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .mobile-overlay.open { display: flex; }
+        .mobile-overlay a {
+            color: var(--white); text-decoration: none;
+            font-size: 22px; font-weight: 700;
+            padding: 16px 32px; transition: color 0.2s; text-align: center;
+        }
+        .mobile-overlay a:hover, .mobile-overlay a:active { color: var(--gold); }
+        .mobile-overlay .mobile-cta {
+            margin-top: 20px; background: var(--red); color: white;
+            padding: 18px 44px; border-radius: 100px;
+            font-size: 17px; font-weight: 700;
+            box-shadow: 0 8px 28px rgba(230, 47, 31, 0.3);
+        }
+        .mobile-overlay .mobile-cta:hover { background: #c92518; }
+        .mobile-overlay .mobile-legal {
+            display: flex; gap: 20px; margin-top: 40px;
+            padding-top: 24px; border-top: 1px solid var(--border-subtle);
+        }
+        .mobile-overlay .mobile-legal a {
+            font-size: 13px; font-weight: 600; color: var(--text-muted); padding: 8px;
+        }
+
+        /* ═══ RESPONSIVE – TABLET ═══ */
+        @media (max-width: 768px) {
+            .burger { display: flex; }
+            main { padding: 32px 16px; align-items: flex-start; }
+            .thank-you h1 { font-size: 24px; }
+            .lead-text { font-size: 14px; margin-bottom: 24px; }
+            .check-circle { width: 64px; height: 64px; margin-bottom: 20px; }
+            .check-circle svg { width: 30px; height: 30px; }
+            .urgency-banner { padding: 14px 16px; gap: 10px; margin-bottom: 24px; }
+            .urgency-text { font-size: 13px; }
+            .urgency-text strong { font-size: 14px; }
+            .booking-section { margin-top: 4px; margin-bottom: 28px; }
+            .booking-benefits { gap: 12px; }
+            .booking-benefit-item { font-size: 12px; }
+            .booking-card { padding: 2px; border-radius: 16px; }
+            .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon { min-height: 500px; }
+            .steps-card { padding: 24px 18px; margin-bottom: 24px; }
+            .steps-card h3 { font-size: 14px; margin-bottom: 16px; }
+            .step-item { gap: 12px; padding: 10px 0; }
+            .step-num { width: 30px; height: 30px; font-size: 12px; border-radius: 8px; }
+            .step-text h4 { font-size: 14px; }
+            .step-text p { font-size: 13px; }
+            .btn-home { padding: 14px 28px; font-size: 14px; }
+            .social-hint { font-size: 13px; margin-top: 24px; }
+            nav { padding: 14px 20px; }
+            .logo { font-size: 20px; }
+            footer { padding: 20px; }
+        }
+
+        /* ═══ RESPONSIVE – MOBILE ═══ */
+        @media (max-width: 480px) {
+            main { padding: 24px 10px; }
+            .thank-you h1 { font-size: 20px; }
+            .lead-text { font-size: 13px; margin-bottom: 20px; max-width: 100%; }
+            .check-circle { width: 56px; height: 56px; margin-bottom: 16px; }
+            .check-circle svg { width: 26px; height: 26px; }
+            .urgency-banner { padding: 12px 14px; border-radius: 12px; }
+            .urgency-icon { font-size: 18px; }
+            .booking-section { margin-top: 0; margin-bottom: 24px; }
+            .booking-benefits { flex-direction: column; align-items: center; gap: 8px; }
+            .booking-card { border-radius: 14px; border-width: 1px; }
+            .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon { min-height: 460px; border-radius: 12px; }
+            .steps-card { padding: 20px 16px; border-radius: 14px; }
+            .step-item { gap: 10px; }
+            .btn-home { padding: 14px 24px; font-size: 14px; width: 100%; text-align: center; display: block; border-radius: 12px; }
+            .social-hint { font-size: 12px; }
+            nav { padding: 12px 14px; }
+            .logo { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+    <a href="index.html" class="logo">schmidtke<span>.</span></a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
+    <a href="index.html">Startseite</a>
+    <a href="index.html#analyse">KI-Analyse</a>
+    <a href="index.html#leistungen">Leistungen</a>
+    <a href="index.html#warum">Warum wir</a>
+    <a href="index.html#foerderung">Förderung</a>
+    <a href="formular.html" class="mobile-cta">Erstgespräch sichern &#8594;</a>
+    <div class="mobile-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<main>
+    <div class="thank-you">
+
+        <!-- Animated Checkmark -->
+        <div class="check-circle">
+            <svg viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TEXTE ANPASSEN – Headline & Beschreibung
+             ══════════════════════════════════════ -->
+        <h1><span class="name" id="userName">Fabian</span>, jetzt nur noch ein wichtiger Schritt!</h1>
+        <p class="lead-text">
+            Buche dir jetzt ein kurzes 20-Minuten-Telefonat, damit wir gemeinsam schauen können: Gibt es Fördermöglichkeiten? Ist der Workshop das Richtige für dich?. Kostenlos und unverbindlich<span id="emailDisplay"></span>.
+        </p>
+
+        <!-- ══════════════════════════════════════
+             URGENCY BANNER
+             ══════════════════════════════════════ -->
+        <div class="urgency-banner">
+            <div class="urgency-icon">&#9888;</div>
+            <div class="urgency-text">
+                <strong>Ohne Termin können wir deine Analyse nicht besprechen.</strong><br>
+                Sichere dir jetzt einen Platz, die Slots sind begrenzt.
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             CAL.COM BOOKING WIDGET
+             ══════════════════════════════════════ -->
+        <div class="booking-section">
+            <div class="booking-arrow"><span>&#8595;</span> Wähle deinen Wunschtermin</div>
+            <div class="booking-card">
+                <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-20-min-forderanfrage-gesprach-am-telefon"></div>
+            </div>
+            <div class="booking-benefits">
+                <div class="booking-benefit-item"><span class="ico">&#10003;</span> 100 % kostenlos &amp; unverbindlich</div>
+                <div class="booking-benefit-item"><span class="ico">&#10003;</span> 20 Min. telefonisches Kennenlernen</div>
+                <div class="booking-benefit-item"><span class="ico">&#10003;</span> Fördermöglichkeiten direkt klären</div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             SCHRITTE ANPASSEN – Was passiert im Gespräch
+             ══════════════════════════════════════ -->
+        <div class="steps-card">
+            <h3>So geht es nach deinem Termin weiter</h3>
+
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <h4>Telefonisches Erstgespräch (20 Min.)</h4>
+                    <p>Wir lernen uns kurz kennen, schauen uns deine aktuelle Situation an und prüfen gemeinsam: Gibt es Fördermöglichkeiten für dich? Ist ein Workshop sinnvoll? Wie sieht es konkret bei dir aus?. Kostenlos und unverbindlich.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <h4>Strategiegespräch per Zoom (60–90 Min.)</h4>
+                    <p>Wenn alles passt, folgt ein intensives Zoom-Gespräch. Hier gehen wir in die Tiefe: Dein KI-Status, deine Branche, konkrete Maßnahmen und ein klarer Fahrplan für deine KI-Sichtbarkeit.. Auch das ist komplett unverbindlich.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                    <h4>Workshop &amp; Umsetzung</h4>
+                    <p>Erst wenn du überzeugt bist, starten wir den Workshop, 50–80 % staatlich gefördert*. Du entscheidest, kein Druck.</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 12px; color: var(--text-muted); text-align: left; max-width: 900px; margin: -20px auto 36px; padding: 0 32px; line-height: 1.6;">
+            *Die staatliche Förderung von 50–80 % ist an bestimmte Voraussetzungen geknüpft und nicht garantiert. Im Erstgespräch prüfen wir gemeinsam, ob dein Unternehmen förderfähig ist.
+        </p>
+
+        <a href="index.html" class="btn-home">&#8592; Zurück zur Startseite</a>
+
+        <p class="social-hint">
+            Folge uns auf <a href="https://www.youtube.com/@fabian-schmidtke" target="_blank" rel="noopener">YouTube</a>
+            für mehr Tipps rund um KI-Sichtbarkeit.
+        </p>
+    </div>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <p>
+        &copy; 2026 Schmidtke GmbH
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+    </p>
+</footer>
+
+<!-- ═══ CONVERSION TRACKING ═══ -->
+<script type="text/plain" data-cookieconsent="marketing">
+  // Meta Pixel: Lead-Event (feuert nur nach Cookie-Consent)
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead');
+  }
+</script>
+
+<script>
+    // Personalisierung mit Vorname aus dem Formular
+    (function() {
+        const name = sessionStorage.getItem('lead_vorname');
+        const email = sessionStorage.getItem('lead_email');
+
+        if (name) {
+            document.getElementById('userName').textContent = name;
+        }
+
+        if (email) {
+            document.getElementById('emailDisplay').innerHTML = ' an <strong>' + email + '</strong>';
+        }
+
+        // Tipp: Prüfe den Spam-Ordner-Hinweis
+        // sessionStorage nach Anzeige aufräumen (optional)
+        // sessionStorage.removeItem('lead_vorname');
+        // sessionStorage.removeItem('lead_email');
+    })();
+
+    // ═══ MOBILE MENU ═══
+    (function() {
+        const burger = document.getElementById('burger');
+        const menu = document.getElementById('mobileMenu');
+        if (!burger || !menu) return;
+        function toggleMenu() {
+            const isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open');
+            burger.classList.toggle('active');
+            burger.setAttribute('aria-expanded', String(!isOpen));
+            menu.setAttribute('aria-hidden', String(isOpen));
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+        burger.addEventListener('click', toggleMenu);
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('open');
+                burger.classList.remove('active');
+                burger.setAttribute('aria-expanded', 'false');
+                menu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('open')) toggleMenu();
+        });
+    })();
+</script>
+
+<!-- ═══ CAL.COM EMBED ═══ -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "20-min-forderanfrage-gesprach-am-telefon", {origin:"https://app.cal.com"});
+  Cal.ns["20-min-forderanfrage-gesprach-am-telefon"]("inline", {
+    elementOrSelector:"#my-cal-inline-20-min-forderanfrage-gesprach-am-telefon",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "schmidtke-gmbh/20-min-forderanfrage-gesprach-am-telefon",
+  });
+  Cal.ns["20-min-forderanfrage-gesprach-am-telefon"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<!-- ═══ Vibetrack Cookie-Banner ═══ -->
+<script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+
+</body>
+</html>

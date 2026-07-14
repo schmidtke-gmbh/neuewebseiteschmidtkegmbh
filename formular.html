@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Kostenloses Erstgespräch vereinbaren | Schmidtke GmbH</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff') format('woff'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff') format('woff'); font-weight: 700; font-display: swap; }
+    :root {
+        --navy: #07162A; --navy-deep: #040d1c; --navy-card: #0f2847;
+        --blue: #3B9AE8; --red: #E62F1F; --gold: #D4A574; --green: #34D399;
+        --dim: rgba(255,255,255,0.72); --faint: rgba(255,255,255,0.45);
+        --hairline: rgba(255,255,255,0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+        font-family: 'SK Modernist', -apple-system, sans-serif;
+        background: radial-gradient(ellipse 90% 60% at 50% -5%, #0d2647 0%, var(--navy) 55%, var(--navy-deep) 100%) fixed, var(--navy-deep);
+        color: #fff; line-height: 1.6;
+        min-height: 100dvh;
+        display: flex; flex-direction: column;
+    }
+    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px); background-size: 56px 56px; }
+
+    /* ── Kopf: Logo + Fortschritt ── */
+    header { position: relative; z-index: 2; padding: 18px 20px 0; }
+    .head-in { max-width: 620px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .logo { font-size: 20px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+    .logo span { color: var(--gold); }
+    .head-exit { color: var(--faint); text-decoration: none; font-size: 13.5px; white-space: nowrap; }
+    .head-exit:hover { color: #fff; }
+    .prog { max-width: 620px; margin: 18px auto 0; }
+    .prog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--faint); margin-bottom: 8px; }
+    .prog-meta b { color: var(--dim); font-weight: 700; }
+    .prog-track { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .prog-fill { height: 100%; width: 0; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--red)); transition: width .45s cubic-bezier(0.22,1,0.36,1); }
+
+    /* ── Formular-Bühne ── */
+    main { position: relative; z-index: 2; flex: 1; display: flex; align-items: flex-start; padding: clamp(40px, 14vh, 150px) 20px 40px; }
+    .stage { width: 100%; max-width: 620px; margin: 0 auto; }
+    .f-step { display: none; }
+    .f-step.active { display: block; animation: stepIn .45s cubic-bezier(0.22,1,0.36,1); }
+    .f-step.leaving { animation: stepOut .28s ease forwards; }
+    @keyframes stepIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+    @keyframes stepOut { to { opacity: 0; transform: translateY(-18px); } }
+
+    .q-num { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 12px; }
+    .q-title { font-size: clamp(23px, 3.4vw, 34px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; margin-bottom: 8px; }
+    .q-sub { color: var(--faint); font-size: 14.5px; margin-bottom: 26px; }
+
+    /* Auswahl-Buttons */
+    .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choice {
+        display: flex; align-items: center; gap: 12px; text-align: left;
+        background: rgba(15,40,71,0.55); border: 1px solid var(--hairline); border-radius: 14px;
+        color: #fff; font-family: inherit; font-size: 15px; font-weight: 700;
+        padding: 16px 18px; cursor: pointer; min-height: 56px;
+        transition: border-color .2s ease, background .2s ease, transform .15s ease;
+    }
+    .choice:hover { border-color: rgba(212,165,116,0.55); background: rgba(212,165,116,0.08); }
+    .choice:active { transform: scale(0.985); }
+    .choice.selected { border-color: var(--red); background: rgba(230,47,31,0.12); }
+    .choice i { font-style: normal; width: 26px; height: 26px; flex: 0 0 auto; border-radius: 8px; border: 1px solid var(--hairline); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--dim); background: rgba(4,13,28,0.5); }
+    .choice.selected i { background: var(--red); border-color: var(--red); color: #fff; }
+
+    /* Mobiles Auswahlfeld (öffnet natives Auswahl-Popup) */
+    .choice-select {
+        display: none;
+        width: 100%; background: #fff; border: 1px solid rgba(15,23,42,0.15);
+        border-radius: 14px; padding: 17px 44px 17px 18px; color: #0F172A;
+        font-family: inherit; font-size: 16.5px; font-weight: 700;
+        appearance: none; -webkit-appearance: none; cursor: pointer;
+        box-shadow: 0 14px 34px -18px rgba(0,0,0,0.6);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%230F172A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 18px center;
+    }
+    .choice-select:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,154,232,0.3); }
+    .choice-select:invalid, .choice-select option[value=""] { color: #94A3B8; }
+
+    /* Eingaben */
+    .inputs { display: grid; gap: 14px; }
+    .inputs.two { grid-template-columns: 1fr 1fr; }
+    input {
+        width: 100%; background: #fff; border: 1px solid rgba(15,23,42,0.15);
+        border-radius: 14px; padding: 17px 18px; color: #0F172A;
+        font-family: inherit; font-size: 16.5px;
+        transition: border-color .25s ease, box-shadow .25s ease;
+        appearance: none; -webkit-appearance: none;
+        box-shadow: 0 14px 34px -18px rgba(0,0,0,0.6);
+    }
+    input::placeholder { color: #94A3B8; }
+    input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,154,232,0.3), 0 14px 34px -18px rgba(0,0,0,0.6); }
+    .invalid input { border-color: var(--red); box-shadow: 0 0 0 3px rgba(230,47,31,0.2); }
+    .f-error { display: none; color: #ff8d84; font-size: 13px; margin-top: 10px; }
+    .invalid-msg .f-error { display: block; }
+
+    /* Aktionen */
+    .f-actions { display: flex; align-items: center; gap: 14px; margin-top: 26px; }
+    .btn-r {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        background: var(--red); color: #fff; font-weight: 700; font-size: 16px; font-family: inherit;
+        border: none; border-radius: 100px; padding: 17px 34px; cursor: pointer; min-height: 56px;
+        box-shadow: 0 16px 38px -12px rgba(230,47,31,0.65);
+        transition: transform .25s ease, opacity .25s ease;
+    }
+    .btn-r:hover { transform: translateY(-2px); }
+    .btn-r:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .btn-back { background: none; border: 1px solid var(--hairline); color: var(--dim); font-family: inherit; font-size: 14px; border-radius: 100px; padding: 15px 20px; min-height: 56px; cursor: pointer; }
+    .btn-back:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+    .enter-hint { font-size: 12.5px; color: var(--faint); }
+    .enter-hint b { color: var(--dim); border: 1px solid var(--hairline); border-radius: 5px; padding: 1px 6px; font-size: 11px; }
+    .f-secure { display: flex; align-items: center; gap: 7px; margin-top: 22px; font-size: 12px; color: var(--faint); }
+    .f-secure::before { content: '🔒'; font-size: 12px; }
+
+    @media (max-width: 640px) {
+        .choices { grid-template-columns: 1fr; }
+        .choices.choices-many { display: none; }
+        .choice-select { display: block; }
+        .inputs.two { grid-template-columns: 1fr; }
+        main { padding-top: 26px; }
+        .f-actions { flex-wrap: wrap; }
+        .btn-r { flex: 1 1 100%; order: -1; }
+        .enter-hint { display: none; }
+        .choice { min-height: 58px; }
+    }
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<header>
+    <div class="head-in">
+        <a href="index-v4.html" class="logo">schmidtke<span>.</span></a>
+        <a href="index-v4.html" class="head-exit">Schließen ✕</a>
+    </div>
+    <div class="prog" aria-hidden="true">
+        <div class="prog-meta"><b id="progLabel">Frage 1 von 7</b><span id="progPct">0 %</span></div>
+        <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+</header>
+
+<main>
+    <div class="stage">
+        <form id="leadForm" name="erstgespraech" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <p style="display:none;"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+            <input type="hidden" name="branche" id="branche">
+            <input type="hidden" name="budget" id="budget">
+            <input type="hidden" name="utm_source" id="utm_source">
+            <input type="hidden" name="utm_medium" id="utm_medium">
+            <input type="hidden" name="utm_campaign" id="utm_campaign">
+            <input type="hidden" name="utm_content" id="utm_content">
+            <input type="hidden" name="utm_term" id="utm_term">
+            <input type="hidden" name="landing_page" id="landing_page">
+            <input type="hidden" name="referrer" id="form_referrer">
+            <input type="hidden" name="submitted_at" id="submitted_at">
+
+            <!-- 1: Branche -->
+            <section class="f-step active" data-step="1">
+                <p class="q-num">FRAGE 1 VON 7</p>
+                <h1 class="q-title">In welcher Branche bist du tätig?</h1>
+                <p class="q-sub">Damit wir dein Gespräch mit passenden Fallstudien vorbereiten können.</p>
+                <div class="choices choices-many" data-target="branche">
+                    <button type="button" class="choice"><i>A</i>Coach / Trainer</button>
+                    <button type="button" class="choice"><i>B</i>Berater / Consultant</button>
+                    <button type="button" class="choice"><i>C</i>Agentur (Marketing, Design, etc.)</button>
+                    <button type="button" class="choice"><i>D</i>Dienstleister (Handwerk, IT, etc.)</button>
+                    <button type="button" class="choice"><i>E</i>Arzt / Praxis / Gesundheit</button>
+                    <button type="button" class="choice"><i>F</i>Anwalt / Steuerberater</button>
+                    <button type="button" class="choice"><i>G</i>Immobilien / Makler</button>
+                    <button type="button" class="choice"><i>H</i>E-Commerce / Online-Shop</button>
+                    <button type="button" class="choice"><i>I</i>Gastronomie / Hotellerie</button>
+                    <button type="button" class="choice"><i>J</i>Sonstiges</button>
+                </div>
+                <select class="choice-select" id="brancheSelect" aria-label="Branche auswählen">
+                    <option value="">Branche auswählen …</option>
+                    <option>Coach / Trainer</option>
+                    <option>Berater / Consultant</option>
+                    <option>Agentur (Marketing, Design, etc.)</option>
+                    <option>Dienstleister (Handwerk, IT, etc.)</option>
+                    <option>Arzt / Praxis / Gesundheit</option>
+                    <option>Anwalt / Steuerberater</option>
+                    <option>Immobilien / Makler</option>
+                    <option>E-Commerce / Online-Shop</option>
+                    <option>Gastronomie / Hotellerie</option>
+                    <option>Sonstiges</option>
+                </select>
+                <span class="f-error">Bitte wähle deine Branche aus.</span>
+            </section>
+
+            <!-- 2: Angebot -->
+            <section class="f-step" data-step="2">
+                <p class="q-num">FRAGE 2 VON 7</p>
+                <h1 class="q-title">Was bietest du an?</h1>
+                <p class="q-sub">Ein kurzer Satz reicht. Du kannst die Frage auch überspringen.</p>
+                <div class="inputs">
+                    <input type="text" id="dienstleistung" name="dienstleistung" placeholder="z. B. Zahnarztpraxis, SEO-Agentur, Personal Training …" autocomplete="off">
+                </div>
+            </section>
+
+            <!-- 3: Webseite -->
+            <section class="f-step" data-step="3">
+                <p class="q-num">FRAGE 3 VON 7</p>
+                <h1 class="q-title">Wie lautet deine Webseite?</h1>
+                <p class="q-sub">Wir schauen sie uns vor dem Gespräch an.</p>
+                <div class="inputs">
+                    <input type="text" id="website" name="website" placeholder="www.deine-seite.de" required inputmode="url" autocapitalize="off" autocomplete="url">
+                </div>
+                <span class="f-error">Bitte gib deine Webseite an.</span>
+            </section>
+
+            <!-- 4: Budget -->
+            <section class="f-step" data-step="4">
+                <p class="q-num">FRAGE 4 VON 7</p>
+                <h1 class="q-title">Wie hoch ist dein monatliches Werbebudget?</h1>
+                <p class="q-sub">Eine grobe Einordnung genügt.</p>
+                <div class="choices" data-target="budget">
+                    <button type="button" class="choice"><i>A</i>Aktuell kein Werbebudget</button>
+                    <button type="button" class="choice"><i>B</i>Bis 500 € / Monat</button>
+                    <button type="button" class="choice"><i>C</i>Bis 1.000 € / Monat</button>
+                    <button type="button" class="choice"><i>D</i>Bis 3.000 € / Monat</button>
+                    <button type="button" class="choice"><i>E</i>Über 3.000 € / Monat</button>
+                </div>
+                <span class="f-error">Bitte wähle eine Option.</span>
+            </section>
+
+            <!-- 5: Name -->
+            <section class="f-step" data-step="5">
+                <p class="q-num">FRAGE 5 VON 7</p>
+                <h1 class="q-title">Wie heißt du?</h1>
+                <p class="q-sub">Damit Fabian weiß, mit wem er spricht.</p>
+                <div class="inputs two">
+                    <input type="text" id="vorname" name="vorname" placeholder="Vorname" required autocomplete="given-name">
+                    <input type="text" id="nachname" name="nachname" placeholder="Nachname" required autocomplete="family-name">
+                </div>
+                <span class="f-error">Bitte gib deinen Vor- und Nachnamen an.</span>
+            </section>
+
+            <!-- 6: E-Mail -->
+            <section class="f-step" data-step="6">
+                <p class="q-num">FRAGE 6 VON 7</p>
+                <h1 class="q-title">Wie lautet deine E-Mail-Adresse?</h1>
+                <p class="q-sub">Hierhin bekommst du die Terminbestätigung.</p>
+                <div class="inputs">
+                    <input type="email" id="email" name="email" placeholder="max@beispiel.de" required inputmode="email" autocomplete="email">
+                </div>
+                <span class="f-error">Bitte gib eine gültige E-Mail-Adresse an.</span>
+            </section>
+
+            <!-- 7: Telefon -->
+            <section class="f-step" data-step="7">
+                <p class="q-num">FRAGE 7 VON 7</p>
+                <h1 class="q-title">Unter welcher Nummer erreichen wir dich?</h1>
+                <p class="q-sub">Für die Terminabstimmung, kein Verkaufsanruf.</p>
+                <div class="inputs">
+                    <input type="tel" id="telefon" name="telefon" placeholder="+49 123 456789" required inputmode="tel" autocomplete="tel">
+                </div>
+                <span class="f-error">Bitte gib deine Telefonnummer an.</span>
+            </section>
+
+            <div class="f-actions">
+                <button type="button" class="btn-back" id="btnBack" style="visibility: hidden;">← Zurück</button>
+                <button type="button" class="btn-r" id="btnNext">Weiter →</button>
+                <span class="enter-hint">oder <b>Enter</b> drücken</span>
+            </div>
+            <div class="f-secure">Deine Daten werden verschlüsselt übertragen und nicht weitergegeben.</div>
+        </form>
+    </div>
+</main>
+
+<script>
+// ═══ 1. UTM-TRACKING ═══
+(function () {
+    var params = new URLSearchParams(window.location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        var v = params.get(k) || sessionStorage.getItem(k) || '';
+        if (params.get(k)) { try { sessionStorage.setItem(k, params.get(k)); } catch (e) {} }
+        var el = document.getElementById(k);
+        if (el) el.value = v;
+    });
+    var lp = document.getElementById('landing_page');
+    if (lp) { try { lp.value = sessionStorage.getItem('landing_page') || window.location.href; } catch (e) { lp.value = window.location.href; } }
+    var ref = document.getElementById('form_referrer');
+    if (ref) ref.value = document.referrer || '';
+})();
+
+// ═══ 2. STEP-BY-STEP-LOGIK ═══
+(function () {
+    var steps = [].slice.call(document.querySelectorAll('.f-step'));
+    var total = steps.length;
+    var cur = 0;
+    var btnNext = document.getElementById('btnNext');
+    var btnBack = document.getElementById('btnBack');
+    var fill = document.getElementById('progFill');
+    var label = document.getElementById('progLabel');
+    var pct = document.getElementById('progPct');
+    var form = document.getElementById('leadForm');
+
+    function render() {
+        steps.forEach(function (s, i) { s.classList.toggle('active', i === cur); });
+        btnBack.style.visibility = cur === 0 ? 'hidden' : 'visible';
+        btnNext.textContent = cur === total - 1 ? 'Erstgespräch anfragen' : 'Weiter →';
+        var p = Math.round(cur / total * 100);
+        fill.style.width = p + '%';
+        pct.textContent = p + ' %';
+        label.textContent = 'Frage ' + (cur + 1) + ' von ' + total;
+        var inp = steps[cur].querySelector('input:not([type=hidden])');
+        if (inp && window.matchMedia('(min-width: 641px)').matches) setTimeout(function () { inp.focus(); }, 350);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validate(step) {
+        step.classList.remove('invalid', 'invalid-msg');
+        var target = step.querySelector('.choices');
+        if (target) {
+            var hid = document.getElementById(target.getAttribute('data-target'));
+            if (!hid.value) { step.classList.add('invalid-msg'); return false; }
+            return true;
+        }
+        var ok = true;
+        [].slice.call(step.querySelectorAll('input[required]')).forEach(function (f) {
+            var valid = f.checkValidity() && f.value.trim() !== '';
+            if (f.id === 'website') valid = f.value.trim().indexOf('.') > 0;
+            if (!valid) ok = false;
+        });
+        if (!ok) { step.classList.add('invalid', 'invalid-msg'); }
+        return ok;
+    }
+
+    function next() {
+        if (!validate(steps[cur])) return;
+        if (cur === total - 1) { submit(); return; }
+        cur++;
+        render();
+    }
+    function back() {
+        if (cur === 0) return;
+        cur--;
+        render();
+    }
+
+    btnNext.addEventListener('click', next);
+    btnBack.addEventListener('click', back);
+
+    // Auswahl-Buttons: setzen + automatisch weiter
+    [].slice.call(document.querySelectorAll('.choices')).forEach(function (grid) {
+        var hid = document.getElementById(grid.getAttribute('data-target'));
+        [].slice.call(grid.querySelectorAll('.choice')).forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                [].slice.call(grid.querySelectorAll('.choice')).forEach(function (b) { b.classList.remove('selected'); });
+                btn.classList.add('selected');
+                hid.value = btn.textContent.replace(/^[A-J]/, '').trim();
+                setTimeout(next, 220);
+            });
+        });
+    });
+
+    // Mobiles Branche-Auswahlfeld
+    var bsel = document.getElementById('brancheSelect');
+    if (bsel) {
+        bsel.addEventListener('change', function () {
+            if (!bsel.value) return;
+            document.getElementById('branche').value = bsel.value;
+            // Desktop-Buttons optisch synchron halten
+            [].slice.call(document.querySelectorAll('.choices-many .choice')).forEach(function (b) {
+                b.classList.toggle('selected', b.textContent.replace(/^[A-J]/, '').trim() === bsel.value);
+            });
+            setTimeout(next, 250);
+        });
+    }
+
+    // Enter = weiter
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        if (e.target.tagName === 'TEXTAREA') return;
+        e.preventDefault();
+        next();
+    });
+
+    // ═══ 3. SUBMIT: Netlify + Zapier → danke.html ═══
+    var WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/9574685/upqb4lt/';
+    function submit() {
+        var btn = btnNext;
+        btn.disabled = true;
+        btn.textContent = 'Wird gesendet…';
+        document.getElementById('submitted_at').value = new Date().toISOString();
+        // Webseite normalisieren
+        var web = document.getElementById('website');
+        if (web.value && web.value.indexOf('http') !== 0) web.value = 'https://' + web.value.trim();
+
+        var data = new FormData(form);
+        var payload = {};
+        data.forEach(function (v, k) { payload[k] = v; });
+        try { sessionStorage.setItem('lead_vorname', payload.vorname || ''); } catch (err) {}
+
+        var done = function () { window.location.href = 'danke.html'; };
+        var netlify = fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data).toString()
+        }).catch(function () {});
+        var zapier = WEBHOOK_URL ? fetch(WEBHOOK_URL, { method: 'POST', body: JSON.stringify(payload) }).catch(function () {}) : Promise.resolve();
+        Promise.all([netlify, zapier]).then(done).catch(done);
+        setTimeout(done, 4000);
+    }
+
+    render();
+})();
+</script>
+</body>
+</html>

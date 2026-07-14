@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SEO- & GEO-Strategie 2026 | Schmidtke GmbH — Internes Strategiepapier</title>
+<style>
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'SK Modernist'; src: url('https://aosparadox.github.io/fonts/sk-modernist-bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    :root {
+        --navy: #07162A; --navy-deep: #040d1c; --navy-card: #0f2847;
+        --blue: #3B9AE8; --red: #E62F1F; --gold: #D4A574; --green: #34D399;
+        --dim: rgba(255,255,255,0.75); --faint: rgba(255,255,255,0.48);
+        --hairline: rgba(255,255,255,0.09);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'SK Modernist', -apple-system, sans-serif; background: var(--navy-deep); color: #fff; line-height: 1.7; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 30px 120px; }
+    header.doc { padding: 70px 0 30px; border-bottom: 1px solid var(--hairline); margin-bottom: 20px; }
+    .tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--hairline); background: rgba(255,255,255,0.04); border-radius: 100px; padding: 8px 16px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 24px; }
+    .tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+    h1 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px; }
+    h1 span { color: var(--red); }
+    .meta { color: var(--faint); font-size: 13px; }
+
+    h2 { font-size: 26px; letter-spacing: -0.02em; margin: 64px 0 6px; padding-top: 26px; border-top: 1px solid var(--hairline); }
+    h2 .no { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); margin-right: 12px; }
+    h3 { font-size: 17px; margin: 30px 0 10px; color: var(--gold); letter-spacing: 0.01em; }
+    p { color: var(--dim); font-size: 15px; margin-bottom: 14px; max-width: 820px; }
+    p strong, li strong { color: #fff; }
+    p em.hl { font-style: normal; color: var(--gold); }
+    ul, ol { margin: 0 0 16px 0; padding-left: 0; list-style: none; }
+    li { color: var(--dim); font-size: 14.5px; padding: 5px 0 5px 24px; position: relative; }
+    ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+    ol { counter-reset: n; }
+    ol li { counter-increment: n; }
+    ol li::before { content: counter(n, decimal-leading-zero); position: absolute; left: 0; color: var(--gold); font-weight: 700; font-size: 12px; top: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+    th { text-align: left; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.18); }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--hairline); color: var(--dim); vertical-align: top; }
+    td b { color: #fff; }
+    .pr-h { color: #7fe8bd; font-weight: 700; } .pr-m { color: var(--gold); font-weight: 700; } .pr-l { color: var(--faint); }
+    .box { background: linear-gradient(165deg, var(--navy-card), #0a1a30 70%); border: 1px solid var(--hairline); border-radius: 16px; padding: 22px 26px; margin: 20px 0; }
+    .box.warn { border-color: rgba(230,47,31,0.4); }
+    .box.win { border-color: rgba(52,211,153,0.35); }
+    .box h4 { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .box.warn h4 { color: #ff8d84; } .box.win h4 { color: #7fe8bd; }
+    code { font-family: 'SF Mono', Menlo, monospace; font-size: 12.5px; background: rgba(255,255,255,0.07); border-radius: 6px; padding: 2px 7px; color: #9fd0f5; }
+    pre { background: rgba(3,10,22,0.8); border: 1px solid var(--hairline); border-radius: 12px; padding: 16px 18px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; line-height: 1.7; color: #9fc6ea; overflow-x: auto; margin: 14px 0 22px; }
+    .toc { background: rgba(255,255,255,0.03); border: 1px solid var(--hairline); border-radius: 16px; padding: 22px 26px; margin: 26px 0; columns: 2; gap: 30px; }
+    .toc a { display: block; color: var(--dim); text-decoration: none; font-size: 13.5px; padding: 5px 0; break-inside: avoid; }
+    .toc a:hover { color: #fff; }
+    .toc a b { color: var(--gold); margin-right: 8px; }
+    @media (max-width: 700px) { .toc { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+    <span class="tag">Internes Strategiepapier · Stand 05.07.2026</span>
+    <h1>SEO- &amp; GEO-Strategie:<br>Die <span>unumgehbare</span> YouTube-Agentur.</h1>
+    <p class="meta">Schmidtke GmbH · schmidtke-gmbh.de auf Netlify · Recherche-Basis: Wettbewerbs- &amp; Keyword-Analyse DACH, GEO-Studien 2025/26, vidIQ-Kanaldaten (alle Quellen im Recherche-Anhang der Session)</p>
+    <div class="toc">
+        <a href="#s1"><b>01</b> Executive Summary</a>
+        <a href="#s2"><b>02</b> Positionierung &amp; Wettbewerb</a>
+        <a href="#s3"><b>03</b> Keyword-Strategie &amp; Seitenarchitektur</a>
+        <a href="#s4"><b>04</b> Technisches SEO auf Netlify</a>
+        <a href="#s5"><b>05</b> Local SEO Rottweil</a>
+        <a href="#s6"><b>06</b> GEO — Sichtbarkeit in ChatGPT &amp; Co.</a>
+        <a href="#s7"><b>07</b> YouTube-Strategie: Format, Titel, Positionierung</a>
+        <a href="#s8"><b>08</b> 90-Tage-Roadmap</a>
+        <a href="#s9"><b>09</b> KPIs &amp; Monitoring</a>
+    </div>
+</header>
+
+<h2 id="s1"><span class="no">01</span>Executive Summary</h2>
+<p>Der Markt hat eine klaffende Lücke: <strong>Enterprise-Agenturen</strong> (Klein aber, contentkueche) bedienen Konzerne ab 52 Videos/Jahr, <strong>Coach-Funnel-Anbieter</strong> (Ignite/„Martha Auner", Babba Media) verkaufen über SEO-tote One-Pager. Ein Done4You-Anbieter mit seriösem Mittelstands-Auftritt <em class="hl">und</em> echter Content-Substanz existiert praktisch nicht. Genau da stehen wir.</p>
+<p>Die Strategie ruht auf drei Säulen:</p>
+<ol>
+    <li><strong>Kategorie besetzen:</strong> „YouTube = KI-Sichtbarkeit". YouTube ist die meistzitierte Domain in Google AI Overviews — kein DACH-Wettbewerber verkauft das. Wir machen es zum Kern jeder Seite, jedes Videos, jeder Pressemitteilung.</li>
+    <li><strong>Die Content-Lücke füllen:</strong> Transaktionale Longtails („youtube kanal aufbauen lassen", „youtube agentur erfahrungen", Branchen-Seiten) sind fast unbesetzt. Wer sie mit ehrlichen Ratgebern besetzt, fängt kaufbereite Mittelständler ab — bei Google UND in KI-Antworten.</li>
+    <li><strong>Der eigene Kanal als lebender Beweis:</strong> Case-Doku-Format statt Tipps-Content. Nicht kopierbar, nicht KI-fakebar, GEO-Futter durch Transkripte.</li>
+</ol>
+<div class="box warn">
+    <h4>⚠ Messaging-Kollision entdeckt</h4>
+    <p style="margin:0;">Ignite Media/„Martha Auner" (Wien) wirbt wörtlich mit <strong>„dein YouTube-Kanal läuft mit nur 59 Minuten pro Woche"</strong>. Unser 60-Minuten-Claim ist damit allein kein USP mehr. Konsequenz: 60 Min bleibt als Feature, aber der Spitzen-Claim wird die Kombination <em class="hl">Done4You + nachweisbare Zahlen + KI-Sichtbarkeit</em> — das hat niemand.</p>
+</div>
+
+<h2 id="s2"><span class="no">02</span>Positionierung &amp; Wettbewerb</h2>
+<h3>Positioning Statement</h3>
+<div class="box">
+    <p style="margin:0;">Für <strong>Selbstständige und mittelständische Unternehmen im DACH-Raum</strong> ist die Schmidtke GmbH die <strong>Done4You-YouTube-Agentur</strong>, die aus 60 Minuten pro Woche ein komplettes Marketing-System macht — <strong>sichtbar auf YouTube, in Google und in der KI-Suche</strong> — weil wir seit 2016 nichts anderes tun und jede Anfrage messbar einem Video zuordnen.</p>
+</div>
+<h3>Wettbewerbs-Matrix</h3>
+<table>
+    <tr><th>Dimension</th><th>Schmidtke</th><th>Ignite/Martha Auner</th><th>Babba Media</th><th>Klein aber</th><th>contentkueche / Maha</th></tr>
+    <tr><td><b>Zielgruppe</b></td><td>Selbstständige + Mittelstand</td><td>Coaches, Personenmarken</td><td>Coaches, Berater</td><td>Konzerne</td><td>KMU bis Konzern</td></tr>
+    <tr><td><b>Modell</b></td><td>Done4You komplett</td><td>Done4You (Schnitt/Backend)</td><td>Coaching — Kunde dreht selbst</td><td>Brand-Channel-Produktion</td><td>Full-Service Social</td></tr>
+    <tr><td><b>SEO-Substanz</b></td><td class="pr-m">im Aufbau → Chance</td><td class="pr-l">One-Pager, tot</td><td class="pr-l">Funnel-Seiten</td><td class="pr-h">stark (Blog, Cases)</td><td class="pr-h">stark (Keyword-Silo)</td></tr>
+    <tr><td><b>KI-Sichtbarkeits-Story</b></td><td class="pr-h">JA — einzigartig</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Schwäche</b></td><td>Bekanntheit</td><td>Coach-Funnel-Look, 1 Case</td><td>Kunde trägt Aufwand</td><td>unerreichbar für KMU</td><td>kein spitzes Versprechen</td></tr>
+</table>
+<h3>Was wir daraus machen</h3>
+<ul>
+    <li><strong>Gegen Babba:</strong> „5–8 Stunden pro Woche selbst drehen? Bei uns sind es 60 Minuten — wir machen den Rest." (Vergleichs-Content lohnt.)</li>
+    <li><strong>Gegen Klein aber/contentkueche:</strong> „Du brauchst keinen 52-Videos-Vertrag und keinen Konzern-Etat." Mittelstands-Sprache, Förder-Hinweis, Erstgespräch statt Pitch.</li>
+    <li><strong>Gegen Ignite:</strong> Seriosität + Substanz: echtes Büro, echtes Team, Cases mit Zahlen, GmbH seit 2016 — gegen anonyme Funnel-Optik.</li>
+    <li><strong>Strukturelles Vorbild:</strong> das Keyword-Silo von contentkueche (eigene Unterseite pro Leistung) — übernehmen und mit Done4You-Fokus schärfen.</li>
+</ul>
+
+<h2 id="s3"><span class="no">03</span>Keyword-Strategie &amp; Seitenarchitektur</h2>
+<h3>Die Ziel-Architektur (Money-Pages + Wissens-Hub)</h3>
+<pre>
+schmidtke-gmbh.de/
+├── /                                  → „YouTube-Marketing-Agentur für Selbstständige & Unternehmen"
+├── /youtube-agentur                   → Haupt-Money-Page (Kategorie-Keyword)
+├── /youtube-kanal-aufbauen-lassen     → spitzestes Kauf-Keyword, kaum besetzt ★
+├── /youtube-done-for-you              → Offer-Page (= done4you.html) ★
+├── /ki-sichtbarkeit                   → GEO-Kategorie-Page: „Von ChatGPT empfohlen werden" ★★
+├── /youtube-agentur-baden-wuerttemberg → Local-Page (RW, VS, Stuttgart, Schwarzwald)
+├── /branchen/
+│   ├── /youtube-fuer-handwerker       → Barwig-Case als Anker
+│   ├── /youtube-fuer-aerzte-praxen    → Zotzmann-Case als Anker
+│   ├── /youtube-fuer-berater-coaches
+│   └── /youtube-fuer-steuerberater
+├── /cases/…                           → je Case eine indexierbare Seite mit Zahlen
+├── /wissen/                           → Ratgeber-Hub (Blog)
+│   ├── was-kostet-ein-youtube-kanal-aufbau (redaktionell, ohne eigene Preise!)
+│   ├── youtube-agentur-sinnvoll-erfahrungen
+│   ├── lohnt-sich-youtube-fuer-unternehmen-2026
+│   ├── youtube-kanal-aufbauen-anleitung
+│   ├── ki-sichtbarkeit-unternehmen-anleitung
+│   └── wie-kommt-meine-firma-in-chatgpt
+└── /karriere, /ueber-uns, …
+</pre>
+<p><strong>Regel:</strong> Jede Money-Page = eine Suchintention, H1 mit Keyword, FAQ-Block mit Schema, ein Kunden-Case, ein CTA. Jeder Wissens-Artikel verlinkt auf genau eine Money-Page.</p>
+<h3>Priorisierte Keywords (Auswahl aus 40)</h3>
+<table>
+    <tr><th>Keyword</th><th>Intent</th><th>Wettbewerb</th><th>Chance</th><th>Ziel-Seite</th></tr>
+    <tr><td><b>youtube kanal aufbauen lassen</b></td><td>transaktional</td><td>niedrig</td><td class="pr-h">sehr hoch</td><td>eigene Money-Page</td></tr>
+    <tr><td><b>youtube done for you / done4you</b></td><td>transaktional</td><td>sehr niedrig (nur Ignite)</td><td class="pr-h">sehr hoch</td><td>done4you</td></tr>
+    <tr><td><b>ki sichtbarkeit (unternehmen)</b></td><td>trans./inform.</td><td>sehr niedrig, wachsend</td><td class="pr-h">sehr hoch ★</td><td>/ki-sichtbarkeit</td></tr>
+    <tr><td><b>von chatgpt empfohlen werden</b></td><td>informational</td><td>sehr niedrig</td><td class="pr-h">sehr hoch ★</td><td>Wissen → /ki-sichtbarkeit</td></tr>
+    <tr><td><b>youtube agentur</b> (~4.200/M)</td><td>transaktional</td><td>hoch (Klein aber, Verzeichnisse)</td><td class="pr-m">mittel, langfristig</td><td>/youtube-agentur</td></tr>
+    <tr><td><b>youtube agentur mittelstand / kmu</b></td><td>transaktional</td><td>sehr niedrig</td><td class="pr-h">hoch</td><td>/youtube-agentur</td></tr>
+    <tr><td><b>youtube für unternehmen</b> (~3.900/M)</td><td>informational</td><td>niedrig</td><td class="pr-h">hoch</td><td>Wissen-Pillar</td></tr>
+    <tr><td><b>was kostet ein youtube kanal aufbau</b></td><td>inform. kaufnah</td><td>niedrig (2 Ratgeber ranken)</td><td class="pr-h">hoch</td><td>Wissen (ohne eigene Preise)</td></tr>
+    <tr><td><b>youtube agentur erfahrungen / sinnvoll</b></td><td>inform. kaufnah</td><td>minimal</td><td class="pr-h">hoch</td><td>Wissen</td></tr>
+    <tr><td><b>youtube für steuerberater / handwerker / ärzte</b></td><td>transaktional</td><td>sehr niedrig</td><td class="pr-h">hoch</td><td>Branchen-Pages</td></tr>
+    <tr><td><b>marketing agentur rottweil / werbeagentur rottweil</b></td><td>lokal</td><td>niedrig (keine mit YT-Fokus)</td><td class="pr-h">hoch</td><td>Local-Page + GBP</td></tr>
+    <tr><td><b>youtube agentur stuttgart / baden-württemberg</b></td><td>lokal</td><td>niedrig</td><td class="pr-m">mittel-hoch</td><td>Local-Page</td></tr>
+    <tr><td><b>videomarketing agentur</b></td><td>transaktional</td><td>mittel-hoch</td><td class="pr-m">mittel</td><td>/youtube-agentur (sekundär)</td></tr>
+    <tr><td><b>youtube seo (2026)</b></td><td>informational</td><td>mittel (Klein aber bloggt)</td><td class="pr-m">mittel</td><td>Wissen</td></tr>
+    <tr><td><b>leads über youtube / kundengewinnung youtube</b></td><td>informational</td><td>niedrig</td><td class="pr-h">hoch</td><td>Wissen-Pillar</td></tr>
+    <tr><td><b>generative engine optimization / geo agentur</b></td><td>trans./inform.</td><td>niedrig, stark wachsend</td><td class="pr-m">mittel-hoch</td><td>/ki-sichtbarkeit + Wissen</td></tr>
+</table>
+<div class="box win">
+    <h4>★ Die Kombi-Lücke, die niemand besetzt</h4>
+    <p style="margin:0;">„youtube ki sichtbarkeit", „mit youtube in chatgpt empfohlen werden", „youtube ai overviews" — die Verbindung aus unserem Kernprodukt und dem Trend-Cluster ist <strong>komplett frei</strong>. Ein Pillar-Artikel + ein YouTube-Video + eine Money-Page dazu, und wir definieren die Kategorie.</p>
+</div>
+
+<h2 id="s4"><span class="no">04</span>Technisches SEO auf Netlify</h2>
+<h3>Checkliste (einmalig beim Launch)</h3>
+<ul>
+    <li><strong>Ein Canonical-Host:</strong> <code>schmidtke-gmbh.de</code> (ohne www), 301 via <code>_redirects</code>; alte Pfade der Live-Seite auf neue URLs mappen — <em class="hl">kein einziger 404 aus alten Rankings.</em></li>
+    <li><strong>Saubere URLs:</strong> <code>index-v4.html</code> → <code>/</code>, <code>done4you.html</code> → <code>/youtube-done-for-you</code> usw. (Netlify Pretty URLs + Umbenennung).</li>
+    <li><strong>robots.txt:</strong> alles offen, KI-Crawler explizit erlauben (<code>GPTBot</code>, <code>OAI-SearchBot</code>, <code>PerplexityBot</code>, <code>ClaudeBot</code>, <code>Google-Extended</code>) + Sitemap-Zeile.</li>
+    <li><strong>sitemap.xml</strong> aktuell halten (nur indexierbare Seiten; formular/danke/bewerbung-bestätigt auf <code>noindex</code>).</li>
+    <li><strong>Schema.org auf jeder Seite:</strong> <code>Organization</code> + <code>LocalBusiness</code> (Adresse Neckartal 200, Öffnungszeiten, Geo-Koordinaten), <code>Service</code> auf Money-Pages, <code>FAQPage</code> überall wo FAQs sind, <code>VideoObject</code> für eingebettete Videos, <code>JobPosting</code> auf Karriere (Basis ist drin), <code>BreadcrumbList</code>.</li>
+    <li><strong>Performance:</strong> Bilder zu WebP/AVIF konvertieren (aktuell mehrere MB-PNGs!), <code>loading="lazy"</code> unterhalb des Folds, Fonts mit <code>font-display: swap</code> (ist drin), Matrix/Canvas-Animationen pausieren off-screen (ist drin). Ziel: LCP &lt; 2,0 s mobil.</li>
+    <li><strong>_headers:</strong> Cache-Control für Assets (immutable, 1 Jahr), Security-Header (HSTS, X-Content-Type-Options).</li>
+    <li><strong>Meta-Basics pro Seite:</strong> einzigartiger Title (50–60 Z., Keyword vorn), Description mit CTA (150–160 Z.), OG-Image (og-image.jpg existiert — pro Money-Page eine Variante), genau eine H1.</li>
+    <li><strong>„Zuletzt aktualisiert"-Datum</strong> sichtbar auf allen Wissens-Seiten (Frische-Signal für Google UND KI-Engines).</li>
+</ul>
+<h3>robots.txt-Vorlage</h3>
+<pre>User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://schmidtke-gmbh.de/sitemap.xml</pre>
+
+<h2 id="s5"><span class="no">05</span>Local SEO Rottweil</h2>
+<p>Für „Marketing Agentur Rottweil" gibt es <strong>keinen Wettbewerber mit YouTube-Fokus</strong> — das Ranking ist mit Grundlagenarbeit holbar und füttert gleichzeitig die lokale KI-Empfehlungslogik (~die Hälfte der lokalen KI-Sichtbarkeit läuft über Verzeichnis- und Bewertungsdaten).</p>
+<ol>
+    <li><strong>Google Business Profile</strong> ausbauen: Kategorie „Werbeagentur/Marketingagentur", Fotos (Gewächshaus!, Studio, Team), Leistungen, wöchentliche Beiträge, Q&amp;A vorbefüllen.</li>
+    <li><strong>Bewertungs-Maschine:</strong> Nach jedem Projekt-Meilenstein aktiv Google-Rezension erbitten (Ziel: 25+ mit Text und Keyword-Nennungen wie „YouTube-Kanal"). AgenturMarkt/ProvenExpert parallel pflegen.</li>
+    <li><strong>NAP-Konsistenz</strong> überall identisch: Schmidtke GmbH · Neckartal 200 · 78628 Rottweil.</li>
+    <li><strong>Verzeichnisse:</strong> feedbax, Sortlist, Agenturmatching, OMR Reviews, influencermarketinghub-Listen („beste YouTube-Agenturen") aktiv anschreiben — diese Listen zitiert die KI wörtlich.</li>
+    <li><strong>Regionale Presse fortsetzen:</strong> NRWZ war richtig; nächste Ziele Schwarzwälder Bote, Wirtschaft im Südwesten, IHK-Magazin — je Story ein Datenaufhänger („Rottweiler Agentur bringt Handwerker auf 1 Mio. Views").</li>
+    <li><strong>Local-Page</strong> /youtube-agentur-baden-wuerttemberg mit eingebetteter DACH-Karte (haben wir!), Anfahrt, regionalen Cases.</li>
+</ol>
+
+<h2 id="s6"><span class="no">06</span>GEO — Sichtbarkeit in ChatGPT, Perplexity &amp; AI Overviews</h2>
+<p>Kern-Erkenntnis der Forschung: <strong>Zitierfähigkeit schlägt Keyword-Dichte.</strong> Statistiken, Quellen und klare Antworten steigern die KI-Sichtbarkeit um 30–40 %. Und: Die Plattformen zitieren unterschiedliche Quellen (ChatGPT→Wikipedia/Presse, Perplexity→Reddit/Foren, AI Overviews→<em class="hl">YouTube als meistzitierte Domain</em>) — man braucht Präsenz auf mehreren Ebenen.</p>
+<h3>Taktik-Stack nach Priorität</h3>
+<table>
+    <tr><th>#</th><th>Taktik</th><th>Prio</th><th>Aufwand</th></tr>
+    <tr><td>1</td><td><b>Eigene Daten publizieren:</b> jährlicher „Schmidtke YouTube-Mittelstands-Report" (X betreute Kanäle, Y Mio. Views, Median-Zeit bis zur ersten Anfrage, Branchen-Benchmarks). Einzigartige Zahlen = der stärkste Zitiergrund für KI UND Presse.</td><td class="pr-h">sehr hoch</td><td>mittel, 1×/Jahr</td></tr>
+    <tr><td>2</td><td><b>Antwort-Architektur:</b> Jede Wissens-Seite beginnt mit einer 2–3-Satz-Direktantwort, dann Tiefe; FAQ-Blöcke mit FAQPage-Schema auf jeder Money-Page.</td><td class="pr-h">sehr hoch</td><td>gering, laufend</td></tr>
+    <tr><td>3</td><td><b>Verzeichnisse + Bewertungen</b> (siehe Local SEO) — ~86 % der KI-Empfehlungsquellen sind selbst beeinflussbar.</td><td class="pr-h">sehr hoch</td><td>gering</td></tr>
+    <tr><td>4</td><td><b>Earned Media:</b> Presse &amp; Gastbeiträge (OMR, t3n, HORIZONT, Fachmedien der Kunden-Branchen). Redaktionelle Drittquellen sind der meistzitierte Inhaltstyp aller Engines.</td><td class="pr-h">hoch</td><td>mittel, laufend</td></tr>
+    <tr><td>5</td><td><b>YouTube als GEO-Kanal:</b> Videos + vollständige Transkripte auf der Website (crawlbar!). Doppelnutzen: AI-Overview-Zitate + zitierbarer Text.</td><td class="pr-h">hoch</td><td>Teil der Content-Routine</td></tr>
+    <tr><td>6</td><td><b>Reddit/Foren-Präsenz</b> (Perplexity!): hilfreiche Antworten in r/selbststaendig, r/marketing_de &amp; Co. — ohne Spam, als Experte.</td><td class="pr-m">mittel</td><td>gering, laufend</td></tr>
+    <tr><td>7</td><td><b>Wikidata-Eintrag</b> + Branchenlexika (Wikipedia selbst: Relevanzhürde zu hoch, nicht priorisieren).</td><td class="pr-m">mittel</td><td>gering, einmalig</td></tr>
+    <tr><td>8</td><td><b>llms.txt:</b> umstritten (Google: überflüssig) — aber 10 Minuten Aufwand auf Netlify. Machen, nichts erwarten.</td><td class="pr-l">niedrig</td><td>minimal</td></tr>
+</table>
+<div class="box win">
+    <h4>Der Selbstbeweis-Loop</h4>
+    <p style="margin:0;">Unser Verkaufsargument ist unsere eigene Sichtbarkeit: Wenn jemand ChatGPT fragt <em class="hl">„Wer baut mir einen YouTube-Kanal auf?"</em> und Schmidtke genannt wird, ist das die Live-Demo des Produkts. Deshalb monatlich die eigenen Prompts testen (siehe KPIs) und Screenshots der KI-Empfehlungen als Social Proof auf der /ki-sichtbarkeit-Seite zeigen.</p>
+</div>
+
+<h2 id="s7"><span class="no">07</span>YouTube-Strategie: Format, Titel, Positionierung</h2>
+<h3>Marktlage 2026</h3>
+<ul>
+    <li>YouTube-Nutzung der 30–49-Jährigen (= Entscheider) +9 Punkte auf 60 % wöchentlich — der B2B-Kanal schlechthin.</li>
+    <li>YouTube kennzeichnet ab Mai 2026 KI-Videos automatisch („AI Slop"-Offensive) → <strong>echte Gesichter und echte Praxis sind das Anti-Slop-Asset.</strong></li>
+    <li>Beweis-Kanäle: Philip Semmelroth +414 % Abos/Jahr mit spitzem Talking-Head; „Erfolg mit Reinigung" zeigt, dass ultra-spitze B2B-Nischen als Lead-Kanal funktionieren; OMR trägt mit Interviews ~500k Long-Views/Monat.</li>
+</ul>
+<h3>Empfehlung: das 3-Säulen-Format (statt „noch ein Tipps-Kanal")</h3>
+<table>
+    <tr><th>Säule</th><th>Format</th><th>Frequenz</th><th>Zweck</th></tr>
+    <tr><td><b>1. Case-Doku</b> (Herzstück)</td><td>10–15 Min Doku über echte Kundenkanäle: „Von 0 auf X Anfragen — die komplette Strategie hinter [Kunde]". Mit echten Analytics-Screens, Drehtag-Material, O-Tönen des Kunden.</td><td>1×/Monat</td><td>Nicht kopierbar, nicht KI-fakebar. Verkauft ohne zu verkaufen. = unser Beweis-Archiv</td></tr>
+    <tr><td><b>2. Videopodcast „Sichtbar."</b> <em class="hl">(Interview-Format: ja — aber so)</em></td><td>30–45 Min Gespräche mit Kunden &amp; Mittelstands-Unternehmern über Sichtbarkeit, KI, Kundengewinnung. Ein Dreh → Longform + 4–6 Shorts + Audio + Website-Transkript (GEO!).</td><td>2×/Monat</td><td>Reichweite bei Entscheidern, Beziehungsaufbau (jeder Gast = potenzieller Kunde/Multiplikator), Content-Recycling</td></tr>
+    <tr><td><b>3. KI-Sichtbarkeits-Serie</b></td><td>8–12 Min Talking-Head: die Kategorie-Themen („Wie ChatGPT entscheidet, wen es empfiehlt", Live-Checks von Zuschauer-Branchen).</td><td>2×/Monat</td><td>Besetzt die neue Kategorie, zieht das KI-neugierige Publikum, füttert AI Overviews</td></tr>
+</table>
+<p><strong>Warum kein reiner Interview-Kanal:</strong> Interviews allein bauen Reichweite für den Gast. Die Case-Doku bleibt das Herzstück, der Podcast ist Beziehungs- und Recycling-Maschine.</p>
+<h3>15 Titel-Ideen zum Start</h3>
+<ol>
+    <li>Wie ein Schreiner aus dem Schwarzwald 1 Mio. Menschen erreichte (Case-Doku)</li>
+    <li>Zahnarzt-Praxis voll durch YouTube: die komplette Strategie (Case-Doku)</li>
+    <li>ChatGPT empfiehlt deine Konkurrenz — so änderst du das in 90 Tagen</li>
+    <li>Ich habe ChatGPT gefragt, wer der beste Handwerker der Region ist. Das kam raus.</li>
+    <li>Warum 2026 jeder Mittelständler einen YouTube-Kanal braucht (und 90 % es falsch angehen)</li>
+    <li>60 Minuten pro Woche: So viel YouTube braucht ein Unternehmer wirklich</li>
+    <li>YouTube-Kanal aufbauen lassen: Was seriöse Agenturen anders machen</li>
+    <li>Die KI-Content-Schwemme ist deine größte Chance (wenn du DAS verstehst)</li>
+    <li>Anfragen ohne Werbebudget: Das System hinter 100+ Kundenkanälen</li>
+    <li>„Lohnt sich YouTube noch?" — die ehrliche Antwort einer Agentur</li>
+    <li>Google stirbt langsam. Hier suchen deine Kunden 2026 wirklich.</li>
+    <li>Was kostet ein professioneller YouTube-Kanal? (ehrliche Marktübersicht)</li>
+    <li>Wir analysieren live: Ist deine Branche schon in ChatGPT sichtbar?</li>
+    <li>Selbst drehen vs. Agentur: Der ehrliche Vergleich (mit echten Zahlen)</li>
+    <li>Ein Drehtag, 40 Content-Pieces: So arbeitet ein YouTube-System</li>
+</ol>
+<p><strong>Titel-/Thumbnail-Prinzipien:</strong> konkrete Zahlen &amp; Ergebnisse, „ohne"-Konstruktionen, Fehler-Framing, Branchen-Ansprache im Thumbnail (3–5 Wörter + Gesicht mit Emotion), Duotone-Navy/Rot als wiedererkennbare Thumbnail-CI (Duotone-Assets haben wir bereits).</p>
+
+<h2 id="s8"><span class="no">08</span>90-Tage-Roadmap</h2>
+<h3>Woche 1–2 · Fundament (Quick Wins)</h3>
+<ul>
+    <li>Launch V4 auf Netlify mit sauberen URLs, Redirects, robots.txt (inkl. KI-Crawler), sitemap, _headers</li>
+    <li>Schema.org-Paket auf alle Seiten (LocalBusiness, Service, FAQPage, JobPosting)</li>
+    <li>Bilder → WebP, Titles/Descriptions aller Seiten finalisieren</li>
+    <li>Google Business Profile ausbauen + erste 10 Bewertungs-Anfragen an Bestandskunden</li>
+    <li>llms.txt + Wikidata (je 15 Minuten)</li>
+</ul>
+<h3>Monat 1 · Money-Pages</h3>
+<ul>
+    <li>/youtube-kanal-aufbauen-lassen, /ki-sichtbarkeit, /youtube-agentur als eigenständige Seiten</li>
+    <li>2 Branchen-Pages (Handwerk mit Barwig, Praxen mit Zotzmann)</li>
+    <li>3 Verzeichnis-Einträge + Outreach an 2 „beste YouTube-Agenturen"-Listen</li>
+    <li>YouTube: erste Case-Doku + erste 2 Folgen KI-Serie</li>
+</ul>
+<h3>Monat 2–3 · Content-Maschine</h3>
+<ul>
+    <li>Wissens-Hub mit den 6 Kern-Artikeln (je mit Direktantwort-Kopf, FAQ-Schema, Datum)</li>
+    <li>Videopodcast „Sichtbar." Folge 1–4 (Gäste: eigene Kunden) + Transkripte auf die Website</li>
+    <li>1 Pressestory mit Datenaufhänger an Regionalpresse + 1 Fachmedium</li>
+    <li>Reddit-Routine starten (2 hilfreiche Antworten/Woche)</li>
+    <li>Erster Mini-„Mittelstands-Report" aus eigenen Kanal-Daten als zitierfähige Seite</li>
+</ul>
+
+<h2 id="s9"><span class="no">09</span>KPIs &amp; Monitoring</h2>
+<table>
+    <tr><th>KPI</th><th>Werkzeug</th><th>Rhythmus</th><th>Ziel nach 6 Monaten</th></tr>
+    <tr><td><b>KI-Nennungen:</b> 10 Standard-Prompts („beste YouTube-Agentur für Mittelstand", „wer baut YouTube-Kanäle auf", „Marketing Agentur Rottweil"…) in ChatGPT, Perplexity, Gemini</td><td>manuell/Screenshot-Log</td><td>monatlich</td><td>in ≥5 von 10 Prompts genannt</td></tr>
+    <tr><td>Rankings der Money-Keywords</td><td>Search Console + Ahrefs/Semrush (empfohlen zu verbinden)</td><td>wöchentlich</td><td>Top 3: „kanal aufbauen lassen", „done for you", „marketing agentur rottweil"; Top 10: „youtube agentur"</td></tr>
+    <tr><td>Organische Anfragen (Formular mit Quelle „Google/KI")</td><td>Formular-Tracking (UTM + „Wie hast du uns gefunden?")</td><td>laufend</td><td>≥30 % der Anfragen organisch</td></tr>
+    <tr><td>Google-Bewertungen</td><td>GBP</td><td>monatlich</td><td>25+ à ⌀4,9</td></tr>
+    <tr><td>Kanal: Abos/Long-Views/Anfragen pro Video</td><td>YouTube Studio + Dashboard</td><td>wöchentlich</td><td>messbare Anfrage-Zuordnung pro Case-Doku</td></tr>
+    <tr><td>Core Web Vitals</td><td>PageSpeed Insights/CrUX</td><td>monatlich</td><td>alle „grün", LCP &lt; 2,0 s</td></tr>
+</table>
+
+<p style="margin-top:50px; padding-top:24px; border-top:1px solid var(--hairline); color:var(--faint); font-size:12.5px;">Internes Strategiepapier · Schmidtke GmbH · erstellt 05.07.2026 · Quellen: Wettbewerbs-/Keyword-/GEO-Recherche mit Belegen in der Projekt-Session (u.a. Princeton-GEO-Studie via HubSpot/Search Engine Land, Ahrefs-Zitationsanalyse, vidIQ-Kanaldaten Juli 2026, evergreen.media, winlocal, the-decoder).</p>
+</div>
+</body>
+</html>
