@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <title>Danke für deine Anfrage | Schmidtke GmbH</title>
-    <meta name="description" content="Deine KI-Sichtbarkeitsanalyse ist unterwegs. Wir melden uns innerhalb von 24 Stunden.">
+    <title>Danke! Jetzt Erstgespräch wählen | Schmidtke GmbH</title>
+    <meta name="description" content="Deine Anfrage ist angekommen. Wähle jetzt deinen Termin für ein kostenloses Erstgespräch mit der Schmidtke GmbH.">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- ═══ Tracking & Cookie-Banner ═══ -->
@@ -250,7 +250,7 @@
             padding: 4px;
             overflow: hidden;
         }
-        .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon {
+        .booking-card #my-cal-inline-erstgespraech {
             width: 100%;
             min-height: 580px;
             overflow: auto;
@@ -403,7 +403,7 @@
             .booking-benefits { gap: 12px; }
             .booking-benefit-item { font-size: 12px; }
             .booking-card { padding: 2px; border-radius: 16px; }
-            .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon { min-height: 500px; }
+            .booking-card #my-cal-inline-erstgespraech { min-height: 500px; }
             .steps-card { padding: 24px 18px; margin-bottom: 24px; }
             .steps-card h3 { font-size: 14px; margin-bottom: 16px; }
             .step-item { gap: 12px; padding: 10px 0; }
@@ -429,7 +429,7 @@
             .booking-section { margin-top: 0; margin-bottom: 24px; }
             .booking-benefits { flex-direction: column; align-items: center; gap: 8px; }
             .booking-card { border-radius: 14px; border-width: 1px; }
-            .booking-card #my-cal-inline-20-min-forderanfrage-gesprach-am-telefon { min-height: 460px; border-radius: 12px; }
+            .booking-card #my-cal-inline-erstgespraech { min-height: 460px; border-radius: 12px; }
             .steps-card { padding: 20px 16px; border-radius: 14px; }
             .step-item { gap: 10px; }
             .btn-home { padding: 14px 24px; font-size: 14px; width: 100%; text-align: center; display: block; border-radius: 12px; }
@@ -451,11 +451,12 @@
 
 <div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
     <a href="index.html">Startseite</a>
-    <a href="index.html#analyse">KI-Analyse</a>
-    <a href="index.html#leistungen">Leistungen</a>
-    <a href="index.html#warum">Warum wir</a>
-    <a href="index.html#foerderung">Förderung</a>
-    <a href="formular.html" class="mobile-cta">Erstgespräch sichern &#8594;</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="index.html#growth-system">Leistungen</a>
+    <a href="done4you.html">Done4You</a>
+    <a href="fallstudien.html">Referenzen</a>
+    <a href="karriere.html">Karriere</a>
+    <a href="#termin" class="mobile-cta">Termin auswählen &#8594;</a>
     <div class="mobile-legal">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
@@ -477,9 +478,9 @@
         <!-- ══════════════════════════════════════
              TEXTE ANPASSEN – Headline & Beschreibung
              ══════════════════════════════════════ -->
-        <h1><span class="name" id="userName">Fabian</span>, jetzt nur noch ein wichtiger Schritt!</h1>
+        <h1><span class="name" id="userName">Danke</span>, deine Anfrage ist angekommen.</h1>
         <p class="lead-text">
-            Buche dir jetzt ein kurzes 20-Minuten-Telefonat, damit wir gemeinsam schauen können: Gibt es Fördermöglichkeiten? Ist der Workshop das Richtige für dich?. Kostenlos und unverbindlich<span id="emailDisplay"></span>.
+            Wähle jetzt im Kalender deinen Termin für ein kostenloses 20-minütiges Erstgespräch. Gemeinsam klären wir deine Ausgangslage, deine Ziele und ob unser YouTube- und Marketing-System zu deinem Unternehmen passt.
         </p>
 
         <!-- ══════════════════════════════════════
@@ -488,23 +489,23 @@
         <div class="urgency-banner">
             <div class="urgency-icon">&#9888;</div>
             <div class="urgency-text">
-                <strong>Ohne Termin können wir deine Analyse nicht besprechen.</strong><br>
-                Sichere dir jetzt einen Platz, die Slots sind begrenzt.
+                <strong>Reserviere jetzt direkt deinen Wunschtermin.</strong><br>
+                So kann Fabian sich auf dein Unternehmen vorbereiten und dir im Gespräch eine klare erste Einschätzung geben.
             </div>
         </div>
 
         <!-- ══════════════════════════════════════
              CAL.COM BOOKING WIDGET
              ══════════════════════════════════════ -->
-        <div class="booking-section">
-            <div class="booking-arrow"><span>&#8595;</span> Wähle deinen Wunschtermin</div>
+        <div class="booking-section" id="termin">
+            <div class="booking-arrow"><span>&#8595;</span> Wähle jetzt deinen Wunschtermin</div>
             <div class="booking-card">
-                <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-20-min-forderanfrage-gesprach-am-telefon"></div>
+                <div style="width:100%;height:100%;overflow:auto" id="my-cal-inline-erstgespraech"></div>
             </div>
             <div class="booking-benefits">
                 <div class="booking-benefit-item"><span class="ico">&#10003;</span> 100 % kostenlos &amp; unverbindlich</div>
-                <div class="booking-benefit-item"><span class="ico">&#10003;</span> 20 Min. telefonisches Kennenlernen</div>
-                <div class="booking-benefit-item"><span class="ico">&#10003;</span> Fördermöglichkeiten direkt klären</div>
+                <div class="booking-benefit-item"><span class="ico">&#10003;</span> 20 Minuten direkt mit Fabian</div>
+                <div class="booking-benefit-item"><span class="ico">&#10003;</span> Klare Einschätzung und nächste Schritte</div>
             </div>
         </div>
 
@@ -517,37 +518,33 @@
             <div class="step-item">
                 <div class="step-num">1</div>
                 <div class="step-text">
-                    <h4>Telefonisches Erstgespräch (20 Min.)</h4>
-                    <p>Wir lernen uns kurz kennen, schauen uns deine aktuelle Situation an und prüfen gemeinsam: Gibt es Fördermöglichkeiten für dich? Ist ein Workshop sinnvoll? Wie sieht es konkret bei dir aus?. Kostenlos und unverbindlich.</p>
+                    <h4>Erstgespräch mit Fabian (20 Min.)</h4>
+                    <p>Ihr lernt euch kennen und sprecht über deine Ausgangslage, deine Ziele und darüber, wo YouTube, Content oder Performance-Marketing aktuell den größten Hebel haben.</p>
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-num">2</div>
                 <div class="step-text">
-                    <h4>Strategiegespräch per Zoom (60–90 Min.)</h4>
-                    <p>Wenn alles passt, folgt ein intensives Zoom-Gespräch. Hier gehen wir in die Tiefe: Dein KI-Status, deine Branche, konkrete Maßnahmen und ein klarer Fahrplan für deine KI-Sichtbarkeit.. Auch das ist komplett unverbindlich.</p>
+                    <h4>Strategiegespräch mit Fabian</h4>
+                    <p>Wenn die Zusammenarbeit grundsätzlich passt, geht ihr im zweiten Gespräch tiefer. Ihr besprecht Zielgruppe, Positionierung, bestehende Kanäle und den passenden Projektumfang. Du bekommst eine klare Empfehlung statt eines Standardpakets.</p>
                 </div>
             </div>
 
             <div class="step-item">
                 <div class="step-num">3</div>
                 <div class="step-text">
-                    <h4>Workshop &amp; Umsetzung</h4>
-                    <p>Erst wenn du überzeugt bist, starten wir den Workshop, 50–80 % staatlich gefördert*. Du entscheidest, kein Druck.</p>
+                    <h4>Onboarding und gemeinsamer Start</h4>
+                    <p>Wenn beide Seiten überzeugt sind, planen wir Setup, Strategie und die ersten Produktionsschritte. Ziele, Zuständigkeiten und Ablauf sind klar, bevor die Umsetzung beginnt.</p>
                 </div>
             </div>
         </div>
-
-        <p style="font-size: 12px; color: var(--text-muted); text-align: left; max-width: 900px; margin: -20px auto 36px; padding: 0 32px; line-height: 1.6;">
-            *Die staatliche Förderung von 50–80 % ist an bestimmte Voraussetzungen geknüpft und nicht garantiert. Im Erstgespräch prüfen wir gemeinsam, ob dein Unternehmen förderfähig ist.
-        </p>
 
         <a href="index.html" class="btn-home">&#8592; Zurück zur Startseite</a>
 
         <p class="social-hint">
             Folge uns auf <a href="https://www.youtube.com/@fabian-schmidtke" target="_blank" rel="noopener">YouTube</a>
-            für mehr Tipps rund um KI-Sichtbarkeit.
+            für mehr Tipps rund um YouTube und Video-Marketing.
         </p>
     </div>
 </main>
@@ -562,26 +559,14 @@
     </p>
 </footer>
 
-<!-- ═══ CONVERSION TRACKING ═══ -->
-<script type="text/plain" data-cookieconsent="marketing">
-  // Meta Pixel: Lead-Event (feuert nur nach Cookie-Consent)
-  if (typeof fbq === 'function') {
-    fbq('track', 'Lead');
-  }
-</script>
+<!-- Lead- und Termin-Events werden zentral in VibeTrack konfiguriert. -->
 
 <script>
     // Personalisierung mit Vorname aus dem Formular
     (function() {
         const name = sessionStorage.getItem('lead_vorname');
-        const email = sessionStorage.getItem('lead_email');
-
         if (name) {
             document.getElementById('userName').textContent = name;
-        }
-
-        if (email) {
-            document.getElementById('emailDisplay').innerHTML = ' an <strong>' + email + '</strong>';
         }
 
         // Tipp: Prüfe den Spam-Ordner-Hinweis
@@ -622,13 +607,13 @@
 <!-- ═══ CAL.COM EMBED ═══ -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "20-min-forderanfrage-gesprach-am-telefon", {origin:"https://app.cal.com"});
-  Cal.ns["20-min-forderanfrage-gesprach-am-telefon"]("inline", {
-    elementOrSelector:"#my-cal-inline-20-min-forderanfrage-gesprach-am-telefon",
+  Cal("init", "erstgespraech", {origin:"https://app.cal.com"});
+  Cal.ns["erstgespraech"]("inline", {
+    elementOrSelector:"#my-cal-inline-erstgespraech",
     config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
     calLink: "schmidtke-gmbh/20-min-forderanfrage-gesprach-am-telefon",
   });
-  Cal.ns["20-min-forderanfrage-gesprach-am-telefon"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  Cal.ns["erstgespraech"]("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
 </script>
 
 <!-- ═══ Vibetrack Cookie-Banner ═══ -->
