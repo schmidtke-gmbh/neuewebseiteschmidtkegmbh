@@ -1,0 +1,69 @@
+/* Einheitliche Trust-Badges im Cinematic Footer */
+.cine-footer .cine-trust {
+    align-items: center;
+    gap: 24px;
+    overflow: visible;
+}
+
+.cine-footer .cine-trust-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.cine-footer .cine-trust-badge img {
+    width: auto;
+    height: 72px;
+    max-width: none;
+    object-fit: contain;
+}
+
+.cine-footer .cine-trust-widget {
+    width: 280px;
+    max-width: min(280px, calc(100vw - 48px));
+    height: 115px;
+    min-height: 115px;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.cine-footer .cine-trust-widget .trustmarkt-widget,
+.cine-footer .cine-trust-widget .trustmarkt-widget iframe {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    min-height: 115px !important;
+    border: 0 !important;
+}
+
+@media (min-width: 769px) and (max-height: 1020px) {
+    .cine-footer .cine-trust-badge img {
+        height: 64px;
+    }
+
+    .cine-footer .cine-trust-widget {
+        width: 280px;
+        height: 115px;
+        min-height: 115px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cine-footer .cine-trust {
+        gap: 14px;
+        padding-inline: 0;
+    }
+
+    .cine-footer .cine-trust-badge img {
+        height: 58px;
+    }
+
+    .cine-footer .cine-trust-widget {
+        width: 280px;
+        max-width: calc(100vw - 40px);
+        height: 115px;
+        min-height: 115px;
+    }
+}

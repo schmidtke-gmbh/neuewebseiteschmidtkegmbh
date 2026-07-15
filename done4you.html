@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>Done4You YouTube-System | Schmidtke GmbH – Dein Kanal, komplett gemacht</title>
     <meta name="description" content="YouTube-Kanal aufbauen, Shorts produzieren, Instagram bespielen, Landing Page & Personal Brand entwickeln. Done-for-You aus Rottweil. Dein YouTube-Kanal als Content-Maschine, die dauerhaft Anfragen, Sichtbarkeit und Vertrauen bringt.">
     <meta name="keywords" content="YouTube Agentur, YouTube Marketing Agentur, YouTube Kanal aufbauen, Video Marketing Rottweil, KI-Sichtbarkeit, ChatGPT Empfehlung, Done4You YouTube, Schmidtke GmbH, Fabian Schmidtke">
@@ -3703,7 +3704,7 @@
 
 
         
-        .services { padding: 100px 0 60px; background: #f8fafc; }
+        .services { padding: 100px 0 60px; background: #f8fafc; scroll-margin-top: 96px; }
 
 
         .services-header { text-align: center; margin-bottom: 72px; }
@@ -3856,13 +3857,36 @@
         .services-img-wrap {
             width: 100%;
             aspect-ratio: 4/3;
-            border-radius: 20px;
+            border-radius: 28px;
             overflow: hidden;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 20px 60px rgba(7, 22, 42, 0.08);
+            background:
+                radial-gradient(circle at 82% 18%, rgba(58,145,225,.32), transparent 30%),
+                radial-gradient(circle at 16% 88%, rgba(230,47,31,.22), transparent 29%),
+                linear-gradient(145deg, #0d2442, #061326 72%);
+            border: 1px solid rgba(7,22,42,.16);
+            box-shadow: 0 32px 75px -32px rgba(7, 22, 42, 0.48);
             position: relative;
         }
+
+        .services-img-wrap::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, #000, transparent 88%);
+            pointer-events: none;
+        }
+
+        .services-img-wrap::after {
+            content: '';
+            position: absolute; width: 220px; height: 220px; right: -95px; bottom: -105px;
+            border: 1px solid rgba(255,255,255,.14); border-radius: 50%;
+            box-shadow: 0 0 0 42px rgba(255,255,255,.035), 0 0 0 84px rgba(255,255,255,.025);
+            animation: svc-orbit 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes svc-orbit { to { transform: translate(-24px,-18px) scale(1.06); } }
 
 
         .services-img-slide {
@@ -3872,15 +3896,18 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            padding: 32px;
+            transform: translateY(18px) scale(.975);
+            transition: opacity 0.52s ease, transform 0.62s cubic-bezier(.2,.8,.2,1);
+            padding: 24px;
+            z-index: 1;
+            pointer-events: none;
         }
 
 
         .services-img-slide.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
         }
 
 
@@ -3890,7 +3917,13 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.94);
+            border: 1px solid rgba(255,255,255,.64);
+            box-shadow: 0 24px 54px -28px rgba(0,0,0,.7);
+            overflow: hidden;
         }
 
 
@@ -3900,7 +3933,7 @@
             gap: 8px;
             padding: 14px 18px;
             background: var(--navy);
-            border-radius: 12px;
+            border-radius: 13px;
             font-size: 13px;
             font-weight: 600;
             color: rgba(255,255,255,0.7);
@@ -3927,11 +3960,39 @@
 
 
         .svc-mock-card {
-            background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+            background: linear-gradient(145deg, #f8fafc, #e8eef5);
+            border: 1px solid rgba(7,22,42,.07);
             border-radius: 12px;
             padding: 20px 16px;
             text-align: center;
+            transition: transform .35s ease, box-shadow .35s ease;
         }
+
+        .services-img-slide.active .svc-mock-card { animation: svc-rise .62s both; }
+        .services-img-slide.active .svc-mock-card:nth-child(2) { animation-delay: .08s; }
+        .services-img-slide.active .svc-mock-card:nth-child(3) { animation-delay: .16s; }
+        @keyframes svc-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        .svc-photo {
+            position: relative;
+            margin: 0;
+            min-height: 0;
+            flex: 1 1 auto;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #dbe5ef;
+        }
+
+        .svc-photo img { width: 100%; height: 100%; min-height: 155px; object-fit: cover; display: block; transform: scale(1.03); transition: transform 4s cubic-bezier(.2,.8,.2,1); }
+        .services-img-slide.active .svc-photo img { transform: scale(1.1); }
+        .svc-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, rgba(7,22,42,.72)); }
+        .svc-photo-label { position: absolute; left: 14px; bottom: 12px; z-index: 1; display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 12px; font-weight: 700; }
+        .svc-photo-label i { width: 8px; height: 8px; border-radius: 50%; background: #35d27d; box-shadow: 0 0 0 5px rgba(53,210,125,.16); }
+
+        .services-img-slide.active .svc-mock-list-item { animation: svc-rise .55s both; }
+        .services-img-slide.active .svc-mock-list-item:nth-child(2) { animation-delay: .06s; }
+        .services-img-slide.active .svc-mock-list-item:nth-child(3) { animation-delay: .12s; }
+        .services-img-slide.active .svc-mock-list-item:nth-child(4) { animation-delay: .18s; }
 
 
         .svc-mock-card .val {
@@ -6428,7 +6489,7 @@
             .container { padding: 0 24px; }
 
 
-            .solution-grid { grid-template-columns: 1fr 1fr; }
+            .solution-grid { grid-template-columns: 1fr 1fr !important; }
 
 
             .services-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -6751,7 +6812,7 @@
 
 
             
-            .solution-grid { grid-template-columns: 1fr; gap: 16px; }
+            .solution-grid { grid-template-columns: 1fr !important; gap: 16px; }
 
 
             .solution-card { padding: 32px 24px; }
@@ -10774,7 +10835,8 @@ body {
   background: #ffffff;
   border: 1px solid #E5E7EB;
   border-radius: 12px;
-  max-width: 320px;
+  width: min(100%, 430px);
+  min-height: 115px;
   overflow: hidden;
   box-shadow: 0 10px 32px rgba(0,0,0,0.30), 0 2px 6px rgba(0,0,0,0.18);
   position: relative;
@@ -10788,6 +10850,74 @@ body {
   height: 4px;
   background: #00B67A;
   z-index: 1;
+}
+
+.hero-trust-bottom .trustmarkt-widget {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 115px !important;
+  min-height: 115px !important;
+}
+
+.hero-trust-bottom .trustmarkt-widget iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 115px !important;
+  border: 0;
+}
+
+.agency-score-fallback {
+  display: none;
+  min-height: 115px;
+  padding: 17px 22px 14px;
+  color: #0b1d37;
+  text-decoration: none;
+  align-items: center;
+  gap: 17px;
+}
+
+.hero-trust-bottom.use-score-fallback .trustmarkt-widget { display: none !important; }
+.hero-trust-bottom.use-score-fallback .agency-score-fallback { display: flex; }
+
+.agency-score-star {
+  flex: 0 0 auto;
+  color: #12b981;
+  font-size: 48px;
+  line-height: 1;
+  filter: drop-shadow(0 5px 9px rgba(18, 185, 129, 0.18));
+}
+
+.agency-score-copy { min-width: 0; }
+.agency-score-title {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.agency-score-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: #12a873;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+}
+.agency-score-rating small {
+  color: #12b981;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.agency-score-meta {
+  display: block;
+  margin-top: 6px;
+  color: #5b6574;
+  font-size: 11px;
+  line-height: 1.25;
 }
 
 
@@ -15175,6 +15305,7 @@ body {
     }
     wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; overflow: hidden; }
 </style>
+<link rel="stylesheet" href="footer-trust.css">
 </head>
 <body>
 
@@ -15232,7 +15363,7 @@ body {
                             <span class="nav-dd-desc">Messbare Werbung mit Google &amp; Meta Ads</span>
                         </span>
                     </a>
-                    <a href="done4you.html" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-skalierung" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.3" cy="14.8" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="14.7" cy="14.8" r="5" stroke="#D4A574" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1.5"><path d="M12 6.8V2.6"/><path d="M9.9 4.7 12 2.6l2.1 2.1"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Skalierung als Wachstumspartner</span>
@@ -15272,7 +15403,7 @@ body {
             <a href="#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
             <a href="#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
             <a href="#leistung-ads" class="mobile-link">Performance Marketing</a>
-            <a href="done4you.html" class="mobile-link">Skalierung als Wachstumspartner</a>
+            <a href="index.html#leistung-skalierung" class="mobile-link">Skalierung als Wachstumspartner</a>
         </div>
     </div>
     <a href="done4you.html" class="mobile-link">Done4You</a>
@@ -15318,43 +15449,23 @@ body {
 
                 <ul class="hero-bullets-split reveal reveal-delay-2">
                     <li><span class="hb-check" aria-hidden="true">&#10003;</span><strong>Done4You:</strong> 60&nbsp;Min/Woche vor der Kamera, wir erledigen den Rest</li>
-                    <li><span class="hb-check" aria-hidden="true">&#10003;</span><strong>Planbare Anfragen</strong> über YouTube, Google &amp; Performance-Marketing</li>
-                    <li><span class="hb-check" aria-hidden="true">&#10003;</span><strong>Bonus:</strong> Sichtbar in ChatGPT, Gemini &amp; Perplexity</li>
+                    <li><span class="hb-check" aria-hidden="true">&#10003;</span><strong>Studio bei dir vor Ort:</strong> Kamera, Licht, Ton und Team-Schulung</li>
+                    <li><span class="hb-check" aria-hidden="true">&#10003;</span><strong>Strategie nach Maß:</strong> YouTube-Shows, Lernformate, Skripte und Titelideen für Shorts &amp; Instagram</li>
                 </ul>
 
-                <!-- AgenturMarkt Trust-Widget unten links -->
+                <!-- Offizielles Agenturmarkt Trust-Widget -->
                 <div class="hero-trust-bottom reveal reveal-delay-3" role="complementary" aria-label="Agentur-Score bei AgenturMarkt.de">
-                    <div class="am-body">
-                        <div class="am-star-badge" aria-hidden="true">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="amStarGradV2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#00C988"/>
-                                        <stop offset="100%" stop-color="#00B67A"/>
-                                    </linearGradient>
-                                </defs>
-                                <path d="M50 6 L62 38 L96 38 L68 58 L78 92 L50 72 L22 92 L32 58 L4 38 L38 38 Z" fill="url(#amStarGradV2)"/>
-                                <circle cx="50" cy="56" r="14" fill="#ffffff"/>
-                                <path d="M43 56 L48 61 L58 51" stroke="#00B67A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            </svg>
-                        </div>
-                        <div class="am-content">
-                            <div class="am-top-row">
-                                <span class="am-label">Agentur-Score</span>
-                                <a href="https://www.agenturmarkt.de" target="_blank" rel="noopener" class="am-more">Mehr erfahren</a>
-                            </div>
-                            <div class="am-score-row">
-                                <span class="am-score">4,9</span>
-                                <span class="am-stars" aria-hidden="true">
-                                    <span class="am-star-box"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                                    <span class="am-star-box"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                                    <span class="am-star-box"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                                    <span class="am-star-box"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                                    <span class="am-star-box"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-                                </span>
-                            </div>
-                        </div>
+                    <div class="trustmarkt-widget" data-company-id="K4QBMeN0lxDb0xdXP9GL" data-widget-id="GznZLpPKvjXZ20R7EBO4" style="height:115px;">
+                        <a rel="dofollow" href="https://agenturmarkt.de/agentur/schmidtke-gmbh-rottweil" aria-label="Agenturmarkt Profil von Schmidtke GmbH"></a>
                     </div>
+                    <a class="agency-score-fallback" href="https://agenturmarkt.de/agentur/schmidtke-gmbh-rottweil" target="_blank" rel="noopener noreferrer" aria-label="Schmidtke GmbH bei Agenturmarkt: Agentur-Score 4,9 bei 76 Bewertungen">
+                        <span class="agency-score-star" aria-hidden="true">★</span>
+                        <span class="agency-score-copy">
+                            <span class="agency-score-title">Agentur-Score</span>
+                            <span class="agency-score-rating">4,9 <small aria-hidden="true">★★★★★</small></span>
+                            <span class="agency-score-meta">Hervorragend · 76 Bewertungen · Agenturmarkt.de</span>
+                        </span>
+                    </a>
                 </div>
             </div>
 
@@ -15451,13 +15562,13 @@ body {
                 <span class="hero-card-check" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 </span>
-                <p><strong>Planbare Anfragen</strong> jeden Monat. Sichtbar &amp; messbar.</p>
+                <p><strong>Studio bei dir vor Ort:</strong> Kamera, Licht, Ton und Schulung für dein Team.</p>
             </div>
             <div class="hero-card">
                 <span class="hero-card-check" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                 </span>
-                <p>YouTube, Shorts, Instagram, Landing Page und Personal Brand. <strong>Alles aus einer Hand.</strong></p>
+                <p><strong>YouTube-Strategie nach Maß:</strong> Shows, Lernformate, Skripte und Titelideen für Shorts &amp; Instagram.</p>
             </div>
         </div>
 
@@ -16174,13 +16285,14 @@ body {
                                 <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
                                 <span style="margin-left:8px;">Studio-Setup bei dir vor Ort</span>
                             </div>
+                            <figure class="svc-photo">
+                                <img src="assets/studiosetup.jpg" alt="YouTube-Studio-Setup beim Kunden" loading="lazy">
+                                <figcaption class="svc-photo-label"><i></i>Aufgebaut und einsatzbereit</figcaption>
+                            </figure>
                             <div class="svc-mock-row">
                                 <div class="svc-mock-card"><div class="val blue">4K</div><div class="lbl">Kamera-Setup</div></div>
                                 <div class="svc-mock-card"><div class="val gold">Pro</div><div class="lbl">Licht & Ton</div></div>
                                 <div class="svc-mock-card"><div class="val green">∞</div><div class="lbl">Filming jederzeit</div></div>
-                            </div>
-                            <div class="svc-mock-text">
-                                <strong>Komplettpaket:</strong> Wir liefern, installieren und schulen dein Team vor Ort. Du musst nirgends hinfahren, dein Studio steht bei dir im Büro.
                             </div>
                         </div>
                     </div>
@@ -16192,11 +16304,14 @@ body {
                                 <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
                                 <span style="margin-left:8px;">Produktions-Pipeline</span>
                             </div>
+                            <figure class="svc-photo">
+                                <img src="assets/videoschnitt.jpg" alt="Videoschnitt und Postproduktion bei der Schmidtke GmbH" loading="lazy">
+                                <figcaption class="svc-photo-label"><i></i>Vom Drehtag bis zum Upload</figcaption>
+                            </figure>
                             <div class="svc-mock-list">
                                 <div class="svc-mock-list-item"><span class="check">&#10003;</span> Skripte &amp; Drehplan vor dem Drehtag</div>
                                 <div class="svc-mock-list-item"><span class="check">&#10003;</span> Schnitt mit Hooks, Bauchbinden &amp; B-Roll</div>
-                                <div class="svc-mock-list-item"><span class="check">&#10003;</span> Custom Thumbnails (CTR-optimiert)</div>
-                                <div class="svc-mock-list-item"><span class="check">&#10003;</span> Upload, SEO-Optimierung &amp; Veröffentlichung</div>
+                                <div class="svc-mock-list-item"><span class="check">&#10003;</span> Thumbnail, SEO-Upload &amp; Veröffentlichung</div>
                             </div>
                         </div>
                     </div>
@@ -16615,6 +16730,18 @@ body {
 </section>
 
 <!-- ═══ AGENTURMARKT WIDGET ═══ -->
+<script>
+    // Das offizielle Widget ist auf schmidtke-gmbh.de freigeschaltet.
+    // Auf lokalen/temporären Deploy-URLs bleibt stattdessen der verlinkte Score sichtbar.
+    (function() {
+        var host = window.location.hostname.replace(/^www\./, '');
+        if (host !== 'schmidtke-gmbh.de') {
+            document.querySelectorAll('.hero-trust-bottom').forEach(function(widget) {
+                widget.classList.add('use-score-fallback');
+            });
+        }
+    })();
+</script>
 <script src="https://widget.trustmarkt.de/embed/v1/embed.js" async defer></script>
 
 <!-- ═══ SCRIPTS ═══ -->

@@ -1,0 +1,269 @@
+.sys-orbit.case-scope {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 0;
+  aspect-ratio: 1 / .96;
+  display: block;
+  justify-self: center;
+  overflow: visible;
+  background: transparent;
+}
+
+.sys-orbit.case-scope::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: 92%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: .95;
+  background:
+    radial-gradient(circle, transparent 0 25%, rgba(255,255,255,.11) 25.3% 25.7%, transparent 26% 42%, rgba(255,255,255,.09) 42.3% 42.7%, transparent 43%),
+    conic-gradient(from 20deg, transparent 0 22%, rgba(230,47,31,.13) 30%, transparent 39% 68%, rgba(212,165,116,.10) 75%, transparent 84%),
+    radial-gradient(circle, rgba(230,47,31,.16) 0, rgba(230,47,31,.06) 24%, transparent 58%);
+  animation: caseScopeSpin 20s linear infinite;
+  pointer-events: none;
+}
+
+.sys-orbit.case-scope::after {
+  content: "▶";
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  z-index: 2;
+  width: 94px;
+  height: 94px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  padding-left: 5px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #ff594c, var(--red));
+  box-shadow: 0 0 0 10px rgba(230,47,31,.10), 0 0 70px rgba(230,47,31,.42), 0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25);
+  font-size: 29px;
+  animation: caseScopePulse 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.case-scope-label {
+  position: absolute;
+  left: 0;
+  top: 27%;
+  z-index: 4;
+  transform: none;
+  padding: 6px 11px;
+  border: 1px solid rgba(212,165,116,.25);
+  border-radius: 999px;
+  background: rgba(7,22,42,.78);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(0,0,0,.24);
+}
+
+.case-scope .sys-ring,
+.case-scope .sys-core { display: none; }
+
+.case-scope .sys-chip,
+.case-scope .sys-chip.c1,
+.case-scope .sys-chip.c2,
+.case-scope .sys-chip.c3,
+.case-scope .sys-chip.c4,
+.case-scope .sys-chip.c5,
+.case-scope .sys-chip.c6 {
+  position: absolute;
+  inset: auto;
+  z-index: 5;
+  width: auto;
+  max-width: 82%;
+  min-height: 48px;
+  display: inline-flex;
+  justify-content: flex-start;
+  padding: 9px 15px 9px 10px;
+  white-space: normal;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.25;
+  transform: none;
+  animation: caseScopeFloat 5.8s ease-in-out infinite;
+}
+
+.case-scope .sys-plus {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+}
+
+.case-scope[data-count="1"] .sys-chip.c1,
+.case-scope[data-count="2"] .sys-chip.c1,
+.case-scope[data-count="3"] .sys-chip.c1,
+.case-scope[data-count="4"] .sys-chip.c1 {
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: caseScopeFloatCenter;
+}
+
+.case-scope[data-count="2"] .sys-chip.c2 {
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: caseScopeFloatCenter;
+  animation-delay: -2.7s;
+}
+
+.case-scope[data-count="3"] .sys-chip.c2 {
+  top: 49%;
+  left: -3%;
+  animation-delay: -1.8s;
+}
+
+.case-scope[data-count="3"] .sys-chip.c3 {
+  top: 49%;
+  right: -3%;
+  animation-delay: -3.6s;
+}
+
+.case-scope[data-count="4"] .sys-chip.c2 {
+  top: 31%;
+  right: -5%;
+  animation-delay: -1.4s;
+}
+
+.case-scope[data-count="4"] .sys-chip.c3 {
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: caseScopeFloatCenter;
+  animation-delay: -2.8s;
+}
+
+.case-scope[data-count="4"] .sys-chip.c4 {
+  top: 58%;
+  left: -5%;
+  animation-delay: -4.2s;
+}
+
+.case-scope[data-count="5"] .sys-chip.c1 {
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: caseScopeFloatCenter;
+}
+
+.case-scope[data-count="5"] .sys-chip.c2 {
+  top: 28%;
+  right: -5%;
+  animation-delay: -1.2s;
+}
+
+.case-scope[data-count="5"] .sys-chip.c3 {
+  right: 4%;
+  bottom: 3%;
+  animation-delay: -2.4s;
+}
+
+.case-scope[data-count="5"] .sys-chip.c4 {
+  left: 4%;
+  bottom: 3%;
+  animation-delay: -3.6s;
+}
+
+.case-scope[data-count="5"] .sys-chip.c5 {
+  top: 28%;
+  left: -5%;
+  animation-delay: -4.8s;
+}
+
+.case-scope[data-count="5"] .case-scope-label {
+  left: 50%;
+  top: 43%;
+  transform: translateX(-50%);
+}
+
+@keyframes caseScopeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes caseScopeFloatCenter {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+@keyframes caseScopePulse {
+  0%, 100% { box-shadow: 0 0 0 10px rgba(230,47,31,.10), 0 0 70px rgba(230,47,31,.42), 0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25); }
+  50% { box-shadow: 0 0 0 17px rgba(230,47,31,.06), 0 0 95px rgba(230,47,31,.58), 0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25); }
+}
+
+@keyframes caseScopeSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sys-orbit.case-scope::before,
+  .sys-orbit.case-scope::after,
+  .case-scope .sys-chip { animation: none !important; }
+}
+
+@media (max-width: 860px) {
+  .sys-orbit.case-scope {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .sys-orbit.case-scope {
+    max-width: 360px;
+    aspect-ratio: 1 / 1.08;
+  }
+
+  .sys-orbit.case-scope::after {
+    width: 74px;
+    height: 74px;
+    font-size: 23px;
+  }
+
+  .case-scope .sys-chip,
+  .case-scope .sys-chip.c1,
+  .case-scope .sys-chip.c2,
+  .case-scope .sys-chip.c3,
+  .case-scope .sys-chip.c4,
+  .case-scope .sys-chip.c5,
+  .case-scope .sys-chip.c6 {
+    min-height: 42px;
+    max-width: 88%;
+    padding: 7px 11px 7px 8px;
+    font-size: 11px;
+  }
+
+  .case-scope .sys-plus {
+    width: 23px;
+    height: 23px;
+  }
+
+  .case-scope-label {
+    left: 2%;
+    top: 26%;
+    font-size: 9px;
+  }
+
+  .case-scope[data-count="4"] .sys-chip.c2 { right: -2%; }
+  .case-scope[data-count="4"] .sys-chip.c4 { left: -2%; }
+  .case-scope[data-count="5"] .sys-chip.c2 { right: 0; }
+  .case-scope[data-count="5"] .sys-chip.c5 { left: 0; }
+  .case-scope[data-count="5"] .sys-chip.c2,
+  .case-scope[data-count="5"] .sys-chip.c5 {
+    max-width: 47%;
+    line-height: 1.15;
+  }
+}

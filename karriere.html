@@ -57,8 +57,12 @@
     ::selection { background: var(--red); color: #fff; }
 
     .container {
-      width: min(1220px, calc(100% - 48px));
+      width: min(1140px, calc(100% - 56px));
       margin-inline: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: "SK Modernist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .eyebrow {
@@ -68,12 +72,11 @@
       color: var(--red);
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: .13em;
-      text-transform: uppercase;
+      letter-spacing: .04em;
     }
     .eyebrow::before {
       content: "";
-      width: 28px;
+      width: 20px;
       height: 2px;
       background: currentColor;
     }
@@ -81,22 +84,24 @@
 
     .display {
       margin: 18px 0 24px;
-      font-size: clamp(44px, 6vw, 84px);
-      line-height: .98;
-      letter-spacing: -.055em;
+      font-size: clamp(40px, 5.2vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
       font-weight: 700;
     }
     .section-title {
       margin: 16px 0 18px;
-      font-size: clamp(38px, 4.3vw, 66px);
-      line-height: 1.02;
-      letter-spacing: -.045em;
+      max-width: 760px;
+      font-size: clamp(30px, 3.8vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -.6px;
     }
     .section-copy {
       margin: 0;
-      max-width: 650px;
+      max-width: 620px;
       color: var(--muted);
-      font-size: clamp(17px, 1.45vw, 21px);
+      font-size: clamp(16px, 1.25vw, 18px);
+      line-height: 1.65;
     }
     .red { color: var(--red); }
     .gold { color: var(--gold); }
@@ -137,47 +142,53 @@
       position: fixed;
       inset: 0 0 auto;
       z-index: 100;
-      padding: 18px 0;
+      padding: 14px 16px 0;
       pointer-events: none;
     }
     .nav-shell {
-      min-height: 76px;
-      padding: 10px 14px 10px 25px;
+      width: min(1180px, calc(100% - 32px));
+      min-height: 0;
+      padding: 8px 10px 8px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
       color: #fff;
-      background: rgba(7, 22, 42, .99);
-      border: 1px solid rgba(212, 165, 116, .17);
+      background: rgba(7, 22, 42, .96);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255,255,255,.09);
       border-radius: 999px;
-      box-shadow: 0 22px 55px rgba(5, 15, 29, .22);
+      box-shadow: 0 14px 44px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.07);
       pointer-events: auto;
-      transition: min-height .25s ease, box-shadow .25s ease;
+      transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
     }
-    .site-nav.is-scrolled .nav-shell { min-height: 66px; box-shadow: 0 16px 38px rgba(5, 15, 29, .28); }
+    .site-nav.is-scrolled .nav-shell {
+      background: rgba(7,22,42,.98);
+      box-shadow: 0 18px 56px rgba(0,0,0,.5), 0 4px 12px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.09);
+    }
     .logo {
       color: #fff;
       text-decoration: none;
-      font-size: 31px;
+      font-size: 24px;
       font-weight: 700;
-      letter-spacing: -.055em;
+      letter-spacing: -.5px;
       line-height: 1;
     }
     .logo span { color: var(--gold); }
-    .desktop-nav { display: flex; align-items: center; gap: clamp(18px, 2vw, 32px); }
+    .desktop-nav { display: flex; align-items: center; gap: 28px; }
     .desktop-nav > a:not(.nav-cta) {
       color: rgba(255,255,255,.76);
       text-decoration: none;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 600;
       transition: color .2s ease;
     }
     .desktop-nav > a:not(.nav-cta):hover,
     .desktop-nav > a.active { color: #fff; }
     .nav-cta {
-      min-height: 52px;
-      padding: 0 25px;
+      min-height: 44px;
+      padding: 12px 28px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -185,12 +196,14 @@
       background: var(--red);
       text-decoration: none;
       font-weight: 700;
+      font-size: 14.5px;
     }
     .burger {
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 0;
+      border-radius: 0;
       display: none;
       place-items: center;
       background: transparent;
@@ -238,8 +251,8 @@
 
     /* Hero */
     .career-hero {
-      min-height: 900px;
-      padding: 140px 0 90px;
+      min-height: 820px;
+      padding: 140px 0 80px;
       position: relative;
       overflow: hidden;
       background:
@@ -261,18 +274,20 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: minmax(0, .94fr) minmax(480px, 1.06fr);
+      grid-template-columns: minmax(0, .98fr) minmax(0, 1.02fr);
       align-items: center;
-      gap: clamp(60px, 7vw, 110px);
+      gap: clamp(48px, 5vw, 72px);
     }
     .hero-copy { padding-top: 20px; }
-    .hero-copy .display { max-width: 680px; font-size: clamp(44px, 5.6vw, 75px); }
+    .hero-copy .display { max-width: 610px; }
     .hero-copy .lead {
-      max-width: 650px;
+      max-width: 590px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(18px, 1.55vw, 22px);
+      font-size: clamp(17px, 1.35vw, 19px);
+      line-height: 1.65;
     }
+    .hero-copy .lead + .lead { margin-top: 13px; }
     .hero-actions { margin-top: 35px; display: flex; flex-wrap: wrap; gap: 12px; }
     .hero-facts {
       margin-top: 48px;
@@ -285,7 +300,7 @@
     .hero-fact b { display: block; color: var(--navy); font-size: 18px; }
     .hero-fact span { color: var(--muted); font-size: 13px; }
     .hero-media {
-      min-height: 610px;
+      min-height: 560px;
       position: relative;
     }
     .hero-photo {
@@ -389,7 +404,7 @@
     @keyframes marquee { to { transform: translateX(calc(-50% - 8px)); } }
 
     /* Employer promise */
-    .promise { padding: 130px 0; background: #fff; }
+    .promise { padding: 130px 0; background: var(--cloud); }
     .promise-head {
       margin-bottom: 64px;
       display: grid;
@@ -406,7 +421,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 28px;
-      background: var(--cloud);
+      background: #fff;
       transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s ease;
     }
     .promise-card:hover { transform: translateY(-8px); background: #fff; box-shadow: var(--shadow); }
@@ -430,7 +445,7 @@
     .identity { padding: 130px 0; background: var(--cloud); }
     .identity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 74px; align-items: center; }
     .identity-photo {
-      min-height: 620px;
+      height: 620px;
       overflow: hidden;
       position: relative;
       border-radius: 30px;
@@ -461,6 +476,38 @@
     .mission-panel span { color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
     .mission-panel h3 { margin: 10px 0 11px; font-size: 25px; line-height: 1.1; letter-spacing: -.03em; }
     .mission-panel p { margin: 0; color: rgba(255,255,255,.67); }
+
+    /* What we create for clients */
+    .client-work { padding: 130px 0; background: #fff; }
+    .client-work-head {
+      margin-bottom: 54px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .client-work-head .section-title { margin-bottom: 0; }
+    .client-work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .client-work-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 27px;
+      background: var(--cloud);
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .client-work-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .client-work-media { aspect-ratio: 16 / 11; overflow: hidden; }
+    .client-work-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease);
+    }
+    .client-work-card:hover .client-work-media img { transform: scale(1.045); }
+    .client-work-body { min-height: 230px; padding: 27px; }
+    .client-work-no { color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+    .client-work-card h3 { margin: 17px 0 10px; font-size: 25px; line-height: 1.12; letter-spacing: -.03em; }
+    .client-work-card p { margin: 0; color: var(--muted); font-size: 15px; }
 
     /* Digital training */
     .training { padding: 130px 0; background: #fff; }
@@ -572,14 +619,14 @@
       transition: color .2s ease, background .2s ease, border-color .2s ease;
     }
     .filter-btn:hover, .filter-btn.active { color: #fff; background: var(--navy); border-color: var(--navy); }
-    .job-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .job-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .job-card {
-      min-height: 390px;
-      padding: 31px;
+      min-height: 0;
+      padding: 25px;
       display: flex;
       flex-direction: column;
       border: 1px solid var(--line);
-      border-radius: 27px;
+      border-radius: 22px;
       background: #fff;
       box-shadow: 0 10px 35px rgba(7,22,42,.05);
       transition: transform .35s var(--ease), box-shadow .35s var(--ease), opacity .3s ease;
@@ -600,11 +647,11 @@
       font-weight: 700;
     }
     .job-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #27b566; }
-    .job-card h3 { margin: 54px 0 13px; max-width: 480px; font-size: clamp(27px, 2.5vw, 37px); line-height: 1.04; letter-spacing: -.04em; }
-    .job-card > p { margin: 0 0 25px; color: var(--muted); font-size: 16px; }
+    .job-card h3 { margin: 30px 0 9px; max-width: 480px; font-size: clamp(24px, 2.1vw, 31px); line-height: 1.08; letter-spacing: -.035em; }
+    .job-card > p { margin: 0 0 20px; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
     .job-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
-    .job-tags span { padding: 7px 11px; color: #53637b; border-radius: 999px; background: var(--cloud); font-size: 12px; font-weight: 700; }
-    .job-actions { margin-top: 25px; padding-top: 21px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-top: 1px solid var(--line); }
+    .job-tags span { padding: 6px 10px; color: #53637b; border-radius: 999px; background: var(--cloud); font-size: 11.5px; font-weight: 700; }
+    .job-actions { margin-top: 18px; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-top: 1px solid var(--line); }
     .job-details {
       padding: 0;
       color: var(--navy);
@@ -673,12 +720,12 @@
 
     /* Team quote */
     .team-proof { padding: 120px 0; color: #fff; background: var(--navy); }
-    .proof-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 30px; align-items: center; }
-    .proof-photo { min-height: 0; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 30px; }
+    .proof-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: center; }
+    .proof-photo { min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 30px; }
     .proof-photo img { width: 100%; height: 100%; object-fit: cover; }
     .proof-copy {
-      min-height: 520px;
-      padding: clamp(40px, 5vw, 70px);
+      min-height: 430px;
+      padding: clamp(38px, 4vw, 52px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -688,8 +735,8 @@
     }
     .proof-copy blockquote {
       margin: 24px 0 35px;
-      font-size: clamp(27px, 3vw, 43px);
-      line-height: 1.15;
+      font-size: clamp(25px, 2.6vw, 36px);
+      line-height: 1.2;
       letter-spacing: -.04em;
     }
     .proof-person { display: flex; align-items: center; gap: 14px; }
@@ -743,24 +790,25 @@
     .process-step p { margin: 0; color: var(--muted); font-size: 14px; }
 
     /* FAQ */
-    .faq { padding: 120px 0; background: var(--cloud); }
+    .faq { padding: 100px 0; background: var(--cloud); }
     .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
     .faq-list { display: grid; gap: 10px; }
-    .faq details { overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
+    .faq details { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
     .faq summary {
-      padding: 22px 24px;
+      padding: 17px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
       list-style: none;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
     }
     .faq summary::-webkit-details-marker { display: none; }
     .faq summary::after { content: "+"; color: var(--red); font-size: 26px; font-weight: 400; transition: transform .25s ease; }
     .faq details[open] summary::after { transform: rotate(45deg); }
-    .faq details p { margin: 0; padding: 0 24px 23px; color: var(--muted); }
+    .faq details p { margin: 0; padding: 0 20px 19px; color: var(--muted); font-size: 14.5px; }
 
     /* CTA + footer */
     .final-cta {
@@ -833,20 +881,24 @@
       .container { width: min(100% - 36px, 760px); }
       .desktop-nav { display: none; }
       .burger { display: grid; }
-      .site-nav { padding: 12px 0; }
-      .nav-shell { min-height: 66px; padding-left: 21px; }
+      .site-nav { padding: 10px 12px 0; }
+      .nav-shell { width: 100%; min-height: 0; padding: 6px 6px 6px 16px; }
       .career-hero { min-height: auto; padding: 150px 0 80px; background: linear-gradient(180deg, #fff 0%, #fff 68%, var(--cream) 68%); }
-      .hero-grid, .promise-head, .identity-grid, .training-grid, .benefits-layout, .work-grid, .proof-grid, .faq-grid { grid-template-columns: 1fr; }
+      .hero-grid, .promise-head, .identity-grid, .client-work-head, .training-grid, .benefits-layout, .work-grid, .proof-grid, .faq-grid { grid-template-columns: 1fr; }
       .hero-grid { gap: 45px; }
       .hero-media { min-height: 620px; max-width: 650px; width: 100%; margin-inline: auto; }
       .hero-facts { max-width: 600px; }
-      .promise, .identity, .training, .benefits, .jobs, .workplace, .team-proof, .process, .faq { padding: 90px 0; }
+      .promise, .identity, .client-work, .training, .benefits, .jobs, .workplace, .team-proof, .process, .faq { padding: 90px 0; }
       .promise-head, .jobs-head { gap: 25px; }
       .promise-head { margin-bottom: 42px; }
       .promise-grid { grid-template-columns: 1fr; }
+      .client-work-head { margin-bottom: 40px; gap: 22px; }
+      .client-work-grid { grid-template-columns: 1fr; }
+      .client-work-card { display: grid; grid-template-columns: .9fr 1.1fr; }
+      .client-work-body { min-height: 0; }
       .promise-card { min-height: 250px; }
       .promise-card .bar { margin-bottom: 65px; }
-      .identity-photo { min-height: 520px; }
+      .identity-photo { height: 520px; }
       .training-grid { gap: 45px; }
       .benefits-intro { position: static; }
       .job-grid { grid-template-columns: 1fr; }
@@ -860,11 +912,11 @@
 
     @media (max-width: 620px) {
       .container { width: min(100% - 28px, 520px); }
-      .logo { font-size: 27px; }
-      .nav-shell { padding: 8px 9px 8px 18px; }
+      .logo { font-size: 18px; }
+      .nav-shell { padding: 6px 6px 6px 16px; }
       .career-hero { padding-top: 125px; }
-      .display { font-size: clamp(42px, 13vw, 61px); }
-      .section-title { font-size: clamp(35px, 10.5vw, 49px); }
+      .display { font-size: clamp(38px, 11vw, 48px); }
+      .section-title { font-size: clamp(30px, 8.8vw, 40px); }
       .hero-actions { align-items: stretch; flex-direction: column; }
       .hero-actions .btn { width: 100%; }
       .hero-facts { grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -878,15 +930,17 @@
       .hero-open { left: 0; bottom: 76px; }
       .flow-head { align-items: flex-start; flex-direction: column; }
       .promise-card, .job-card { padding: 25px; }
-      .identity-photo { min-height: 390px; }
+      .client-work-card { grid-template-columns: 1fr; }
+      .client-work-body { padding: 23px; }
+      .identity-photo { height: 390px; }
       .training-points { grid-template-columns: 1fr; }
       .training-points span { min-height: 58px; }
       .training-media { min-height: 390px; padding: 24px; }
       .promise-card .no { font-size: 72px; }
       .benefit { grid-template-columns: 50px 1fr; padding: 22px 20px; gap: 15px; }
       .benefit-no { width: 46px; height: 46px; border-radius: 14px; }
-      .job-card { min-height: 360px; }
-      .job-card h3 { margin-top: 42px; }
+      .job-card { min-height: 0; }
+      .job-card h3 { margin-top: 27px; }
       .job-actions { align-items: flex-start; flex-direction: column; }
       .initiative { align-items: flex-start; flex-direction: column; }
       .work-collage { min-height: 440px; }
@@ -944,8 +998,9 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow reveal">Karriere bei Schmidtke</span>
-          <h1 class="display reveal delay-1">Mach Arbeit, die online geht – <span class="red">und werde richtig gut darin.</span></h1>
-          <p class="lead reveal delay-2">Bei uns bekommst du klare Aufgaben, saubere Prozesse, direktes Feedback und Projekte, deren Ergebnis du am Ende wirklich ansehen kannst.</p>
+          <h1 class="display reveal delay-1">Starte deine <span class="red">Karriere bei uns.</span></h1>
+          <p class="lead reveal delay-2">Werde Teil unseres Teams und arbeite in einem leistungsorientierten Umfeld mit klaren Strukturen, fairer Vergütung über dem marktüblichen Niveau und echten Entwicklungsmöglichkeiten auf fachlicher und persönlicher Ebene.</p>
+          <p class="lead reveal delay-2">Wir sind eine spezialisierte YouTube- und Marketing-Agentur für anspruchsvolle Content-, Web- und Werbeprojekte. Unser Fokus liegt auf Strategie, Präzision und verlässlichen Ergebnissen.</p>
           <div class="hero-actions reveal delay-3">
             <a class="btn btn-red" href="#stellen">Offene Stellen ansehen</a>
             <a class="btn btn-light" href="#arbeitsplatz">Unser Büro kennenlernen</a>
@@ -953,7 +1008,7 @@
           <div class="hero-facts reveal delay-3" aria-label="Wichtige Fakten">
             <div class="hero-fact"><b>Kleines Team</b><span>Kurze Abstimmungswege</span></div>
             <div class="hero-fact"><b>Rottweil</b><span>Fester Arbeitsplatz</span></div>
-            <div class="hero-fact"><b>Seit 2016</b><span>Erfahrung statt Chaos</span></div>
+            <div class="hero-fact"><b>Seit 2020</b><span>Agentur mit festem Team</span></div>
           </div>
         </div>
 
@@ -987,20 +1042,65 @@
       </div>
     </section>
 
-    <section class="promise" id="ueber-uns">
+    <section class="identity" id="ueber-uns" aria-labelledby="identity-title">
+      <div class="container identity-grid">
+        <figure class="identity-photo reveal">
+          <img src="assets/karriere-altbild-03.jpg" alt="Gemeinsame Projektbesprechung im Büro der Schmidtke GmbH">
+        </figure>
+        <div class="identity-copy">
+          <span class="eyebrow reveal">Über uns</span>
+          <h2 class="section-title reveal delay-1" id="identity-title">Wir machen Unternehmen mit Content <span class="red">sichtbar und anfragbar.</span></h2>
+          <p class="section-copy reveal delay-2">Die Schmidtke GmbH ist eine spezialisierte YouTube- und Marketing-Agentur mit festem Team in Rottweil. Wir entwickeln YouTube-Kanäle, Videos, Webseiten und Kampagnen, die Unternehmen sichtbar machen und neue Kundenanfragen erzeugen.</p>
+          <p class="section-copy reveal delay-2">Strategie, Produktion, Postproduktion, Design und Vermarktung greifen bei uns direkt ineinander. Deshalb arbeitest du nicht an isolierten Aufgaben, sondern siehst, wie dein Beitrag zu einem veröffentlichten Kundenprojekt wird.</p>
+          <div class="mission-panel reveal delay-3">
+            <span>Unsere Mission</span>
+            <h3>Marketing umsetzen, das nicht nur gut aussieht, sondern Wirkung erzielt.</h3>
+            <p>Wir wollen für unsere Kunden messbare Ergebnisse schaffen und als Team jeden Monat besser werden. Dafür verbinden wir hohe Qualitätsstandards mit klaren Prozessen und echtem Verantwortungsbewusstsein.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="client-work" id="kundenarbeit" aria-labelledby="client-work-title">
+      <div class="container">
+        <div class="client-work-head">
+          <div>
+            <span class="eyebrow reveal">Unsere Kundenarbeit</span>
+            <h2 class="section-title reveal delay-1" id="client-work-title">Was wir für unsere Kunden <span class="red">umsetzen.</span></h2>
+          </div>
+          <p class="section-copy reveal delay-2">Vom ersten Thema bis zur veröffentlichten Kampagne entsteht alles in einem eingespielten Team. Du siehst, wie Strategie, Kreativität und saubere Umsetzung gemeinsam ein Ergebnis schaffen.</p>
+        </div>
+        <div class="client-work-grid">
+          <article class="client-work-card reveal">
+            <figure class="client-work-media"><img src="assets/studio-podcast.jpg" alt="YouTube- und Podcast-Produktion im Studio der Schmidtke GmbH"></figure>
+            <div class="client-work-body"><span class="client-work-no">01 · STRATEGIE &amp; YOUTUBE</span><h3>Kanäle mit einem klaren Plan</h3><p>Wir entwickeln Positionierung, Themen, Formate und Abläufe, damit aus einzelnen Videos ein verlässliches Content-System wird.</p></div>
+          </article>
+          <article class="client-work-card reveal delay-1">
+            <figure class="client-work-media"><img src="assets/dreh-kunde.jpg" alt="Professioneller Videodreh bei einem Kunden"></figure>
+            <div class="client-work-body"><span class="client-work-no">02 · VIDEO &amp; SHORTS</span><h3>Produktionen, die veröffentlicht werden</h3><p>Wir planen Drehtage, produzieren vor Ort und verwandeln das Material in YouTube-Videos, Reels und Werbeanzeigen.</p></div>
+          </article>
+          <article class="client-work-card reveal delay-2">
+            <figure class="client-work-media"><img src="assets/fabian-screen-studio.jpg" alt="Fabian Schmidtke vor einer YouTube-Analyse im Studio"></figure>
+            <div class="client-work-body"><span class="client-work-no">03 · WEB &amp; PERFORMANCE</span><h3>Sichtbarkeit, die Anfragen bringt</h3><p>Webseiten, Landingpages und Kampagnen sorgen dafür, dass Reichweite nicht verpufft, sondern zu messbaren Ergebnissen führt.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="promise" id="arbeitgeber">
       <div class="container">
         <div class="promise-head">
           <div>
             <span class="eyebrow reveal">Was du hier bekommst</span>
             <h2 class="section-title reveal delay-1">Ein Umfeld, in dem du <span class="red">gute Arbeit</span> machen kannst.</h2>
           </div>
-          <p class="section-copy reveal delay-2">Du sollst nicht erraten müssen, was erwartet wird. Wir schaffen klare Verantwortlichkeiten, geben dir Feedback und sorgen dafür, dass du die Werkzeuge und den Kontext für deine Arbeit hast.</p>
+          <p class="section-copy reveal delay-2">Du sollst nicht erraten müssen, was erwartet wird. Klare Verantwortlichkeiten, direktes Feedback und die richtigen Werkzeuge geben dir den Rahmen, um verlässlich gute Ergebnisse zu liefern.</p>
         </div>
         <div class="promise-grid">
           <article class="promise-card reveal">
             <span class="no">01</span><span class="bar"></span>
-            <h3>Klare Aufgaben statt Dauerchaos</h3>
-            <p>Du weißt, was zu tun ist, wer entscheidet und wann ein Ergebnis wirklich fertig ist.</p>
+            <h3>Klare Aufgaben und Verantwortung</h3>
+            <p>Du weißt, was zu tun ist, wer entscheidet und woran ein gutes Ergebnis gemessen wird.</p>
           </article>
           <article class="promise-card reveal delay-1">
             <span class="no">02</span><span class="bar"></span>
@@ -1009,28 +1109,9 @@
           </article>
           <article class="promise-card reveal delay-2">
             <span class="no">03</span><span class="bar"></span>
-            <h3>Arbeit mit sichtbarem Ergebnis</h3>
-            <p>Aus deiner Idee wird ein Video, eine Kampagne oder ein Projekt, das veröffentlicht und genutzt wird.</p>
+            <h3>Entwicklung, die du spürst</h3>
+            <p>Regelmäßiges Feedback, Weiterbildungen und anspruchsvollere Projekte bringen dich fachlich und persönlich weiter.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="identity" id="wer-wir-sind" aria-labelledby="identity-title">
-      <div class="container identity-grid">
-        <figure class="identity-photo reveal">
-          <img src="assets/karriere-altbild-03.jpg" alt="Gemeinsame Projektbesprechung im Büro der Schmidtke GmbH">
-        </figure>
-        <div class="identity-copy">
-          <span class="eyebrow reveal">Wer wir sind</span>
-          <h2 class="section-title reveal delay-1" id="identity-title">Eine Video-Marketing-Agentur mit <span class="red">einem festen Team.</span></h2>
-          <p class="section-copy reveal delay-2">Die Schmidtke GmbH sitzt in Rottweil und unterstützt Unternehmen dabei, mit Videos, YouTube, Webseiten und Performance-Marketing sichtbar zu werden und Anfragen zu gewinnen.</p>
-          <p class="section-copy reveal delay-2">Bei uns arbeiten Strategie, Produktion, Schnitt und Projektmanagement direkt zusammen. So siehst du nicht nur deinen einzelnen Arbeitsschritt, sondern verstehst das gesamte Kundenprojekt.</p>
-          <div class="mission-panel reveal delay-3">
-            <span>Unsere Mission</span>
-            <h3>Gemeinsam besser werden – für Kunden und für uns selbst.</h3>
-            <p>Wir gehen für gute Ergebnisse die Extrameile, investieren regelmäßig in Weiterbildung und geben jedem im Team die Möglichkeit, fachlich und persönlich mit dem Unternehmen zu wachsen.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1049,7 +1130,7 @@
           </div>
         </div>
         <div class="training-media reveal delay-1">
-          <span class="training-badge">Dein Onboarding – jederzeit abrufbar</span>
+          <span class="training-badge">Dein Onboarding: jederzeit abrufbar</span>
           <img src="assets/karriere-schulungssystem.jpg" alt="Digitales Schulungssystem der Schmidtke GmbH auf einem MacBook">
         </div>
       </div>
@@ -1077,10 +1158,10 @@
       <div class="container">
         <div class="jobs-head">
           <div>
-            <span class="eyebrow reveal">Offene Stellen</span>
-            <h2 class="section-title reveal delay-1" id="jobs-title">Welche Rolle passt <span class="red">zu dir?</span></h2>
+            <span class="eyebrow reveal">Unsere offenen Stellen</span>
+            <h2 class="section-title reveal delay-1" id="jobs-title">Finde eine Rolle, die <span class="red">zu deinen Stärken passt.</span></h2>
           </div>
-          <p class="section-copy reveal delay-2">Jede Stelle zeigt dir direkt, woran du arbeitest, was du mitbringen solltest und wie du dich bewirbst.</p>
+          <p class="section-copy reveal delay-2">Klare Aufgaben, ein fester Arbeitsort und ein strukturierter Einstieg. Öffne die Stelle, die zu dir passt, und sieh dir alle Details an.</p>
         </div>
 
         <div class="job-filters reveal" aria-label="Stellen filtern">
@@ -1136,7 +1217,7 @@
         <div class="work-copy">
           <span class="eyebrow reveal">Dein Arbeitsplatz</span>
           <h2 class="section-title reveal delay-1">Helles Büro. Gute Technik. <span class="red">Kurze Wege.</span></h2>
-          <p class="section-copy reveal delay-2">Unser markantes gelbes Bürogebäude im Neckartal in Rottweil bietet helle Räume für konzentrierte Arbeit und gemeinsame Produktionen – mit kurzen Wegen zwischen Team, Schnitt und Studio.</p>
+          <p class="section-copy reveal delay-2">Unser markantes gelbes Bürogebäude im Neckartal in Rottweil bietet helle Räume für konzentrierte Arbeit und gemeinsame Produktionen. Die Wege zwischen Team, Schnitt und Studio sind kurz.</p>
           <div class="work-list reveal delay-3">
             <span>Höhenverstellbare Arbeitsplätze</span>
             <span>Eigene Bereiche für Schnitt und Aufnahmen</span>
@@ -1155,12 +1236,12 @@
 
     <section class="team-proof" id="teamarbeit" aria-label="Arbeiten im direkten Team">
       <div class="container proof-grid">
-        <figure class="proof-photo reveal"><img src="assets/karriere-altbild-02.jpg" alt="Drei Menschen arbeiten gemeinsam an einer Videoaufnahme"></figure>
+        <figure class="proof-photo reveal"><img src="assets/fabian-screen-studio.jpg" alt="Fabian Schmidtke im YouTube-Studio der Schmidtke GmbH"></figure>
         <div class="proof-copy reveal delay-1">
           <span class="eyebrow gold">Direkte Zusammenarbeit</span>
-          <blockquote>„Du arbeitest hier nicht für irgendeine Abteilung. Du siehst, wie dein Beitrag ein echtes Kundenprojekt voranbringt.“</blockquote>
+          <blockquote>„Du arbeitest bei uns nicht einfach Aufgaben ab. Du verstehst, warum wir etwas tun, übernimmst Verantwortung und siehst, wie dein Beitrag bei unseren Kunden Wirkung erzielt.“</blockquote>
           <div class="proof-person">
-            <img src="assets/fabian-portrait.jpg" alt="Fabian Schmidtke">
+            <img src="assets/fabian-podcast-neu.jpg" alt="Fabian Schmidtke">
             <div><b>Fabian Schmidtke</b><span>Gründer &amp; Geschäftsführer</span></div>
           </div>
         </div>
@@ -1170,7 +1251,7 @@
     <section class="process" aria-labelledby="process-title">
       <div class="container">
         <div class="process-head">
-          <span class="eyebrow reveal">So läuft es ab</span>
+          <span class="eyebrow reveal">So läuft unser Bewerbungsprozess ab</span>
           <h2 class="section-title reveal delay-1" id="process-title">In vier Schritten zu deinem <span class="red">neuen Job.</span></h2>
           <p class="section-copy reveal delay-2">Du weißt jederzeit, was als Nächstes passiert. Keine unnötigen Runden und kein wochenlanges Rätselraten.</p>
         </div>
@@ -1192,7 +1273,7 @@
         </div>
         <div class="faq-list reveal delay-1">
           <details><summary>Wie läuft die Einarbeitung ab?</summary><p>Du startest mit einem klaren Plan, lernst die wichtigsten Abläufe und Werkzeuge kennen und hast einen festen Ansprechpartner für Rückfragen.</p></details>
-          <details><summary>Kann ich teilweise im Homeoffice arbeiten?</summary><p>Je nach Rolle ist hybrides Arbeiten möglich. Produktion, Teamabstimmung und Teile der Einarbeitung finden jedoch bewusst vor Ort in Rottweil statt.</p></details>
+          <details><summary>Kann ich teilweise im Homeoffice arbeiten?</summary><p>Ja, teilweise. Uns ist wichtig, dass du den größten Teil deiner Arbeitszeit im Büro in Rottweil verbringst. So bleiben Abstimmungen direkt und wir wachsen als Team.</p></details>
           <details><summary>Brauche ich zwingend Agenturerfahrung?</summary><p>Nicht für jede Stelle. Entscheidend sind saubere Grundlagen, Lernbereitschaft und Arbeitsproben, die zeigen, wie du an Aufgaben herangehst.</p></details>
           <details><summary>Wann bekomme ich eine Rückmeldung?</summary><p>Wir prüfen Bewerbungen persönlich und melden uns in der Regel innerhalb weniger Werktage mit einem nächsten Schritt oder einer ehrlichen Rückmeldung.</p></details>
         </div>
@@ -1210,7 +1291,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
-        <div class="footer-brand"><a class="logo" href="index.html">schmidtke<span>.</span></a><p>YouTube, Video, Web und Performance-Marketing aus Rottweil – umgesetzt von einem festen Team.</p></div>
+        <div class="footer-brand"><a class="logo" href="index.html">schmidtke<span>.</span></a><p>YouTube, Video, Web und Performance-Marketing aus Rottweil, umgesetzt von einem festen Team.</p></div>
         <div class="footer-links"><a href="ueber-uns.html">Über uns</a><a href="done4you.html">Leistungen</a><a href="fallstudien.html">Referenzen</a><a href="bewerbung.html">Bewerben</a></div>
       </div>
       <div class="footer-bottom"><span>© 2026 Schmidtke GmbH</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></span></div>

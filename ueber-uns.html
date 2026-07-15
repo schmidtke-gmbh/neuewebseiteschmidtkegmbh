@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
     <title>Über uns. Schmidtke GmbH | YouTube- & Video-Marketing-Agentur Rottweil</title>
     <meta name="description" content="Ein festes Team für Strategie, Dreh, Schnitt, Webseite und Anzeigen: Die Schmidtke GmbH baut seit 2016 YouTube-Systeme, die mittelständischen Unternehmen Arbeit abnehmen und planbar Anfragen bringen.">
     <link rel="canonical" href="https://schmidtke-gmbh.de/ueber-uns.html">
@@ -135,8 +138,11 @@
         /* ═══ HERO ═══ */
         .uu-hero {
             position: relative;
-            padding: 100px 0 80px;
-            background: radial-gradient(ellipse at 30% 30%, rgba(212,165,116,0.15) 0%, transparent 55%), linear-gradient(180deg, var(--navy) 0%, #0a1c32 100%);
+            padding: 92px 0 92px;
+            background:
+                radial-gradient(circle at 84% 24%, rgba(64, 152, 255, 0.18), transparent 30%),
+                radial-gradient(circle at 12% 8%, rgba(230, 47, 31, 0.08), transparent 27%),
+                linear-gradient(135deg, #ffffff 0%, #f5f8fc 58%, #eaf3fc 100%);
             overflow: hidden;
         }
 
@@ -144,8 +150,8 @@
             content: "";
             position: absolute; inset: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+                linear-gradient(rgba(7,22,42,0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(7,22,42,0.045) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
         }
@@ -155,17 +161,17 @@
         .uu-hero-eyebrow {
             display: inline-flex; align-items: center; gap: 10px;
             padding: 8px 14px; border-radius: 100px;
-            background: rgba(212,165,116,0.08);
-            border: 1px solid rgba(212,165,116,0.22);
-            color: var(--gold); font-size: 12.5px; font-weight: 700;
+            background: rgba(230,47,31,0.07);
+            border: 1px solid rgba(230,47,31,0.18);
+            color: var(--red); font-size: 12.5px; font-weight: 700;
             letter-spacing: 0.5px; 
             margin-bottom: 22px;
         }
 
         .uu-pulse-dot {
             width: 8px; height: 8px; border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 0 0 rgba(212,165,116,0.6);
+            background: var(--red);
+            box-shadow: 0 0 0 0 rgba(230,47,31,0.45);
             animation: uu-pulse 1.8s ease-out infinite;
         }
 
@@ -175,31 +181,155 @@
             100% { box-shadow: 0 0 0 0 rgba(212,165,116,0); }
         }
 
-        .uu-hero h1 { margin-bottom: 22px; }
+        .uu-hero h1 {
+            max-width: 620px;
+            margin-bottom: 22px;
+            font-size: clamp(38px, 4.5vw, 56px);
+            color: var(--navy);
+        }
+
+        .uu-hero h1 .italic {
+            font-family: 'SK Modernist', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: -1.2px;
+        }
 
         .uu-hero-sub {
-            font-size: 19px; color: var(--text-secondary);
+            font-size: 19px; color: #53657b;
             line-height: 1.55; max-width: 620px;
             margin: 0 auto 30px;
         }
 
         .uu-hero-meta {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 22px;
-            font-size: 14px; color: var(--text-muted);
+            font-size: 14px; color: #66778d;
         }
 
-        .uu-hero-meta strong { color: var(--white); font-weight: 700; }
+        .uu-hero-meta strong { color: var(--navy); font-weight: 700; }
 
         .uu-hero-meta svg { vertical-align: -2px; margin-right: 6px; color: var(--gold); }
         .uu-hero .container.uu-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; text-align: left; max-width: 1140px; }
         .uu-hero-grid .uu-hero-sub { margin-left: 0; }
         .uu-hero-grid .uu-hero-meta { justify-content: flex-start; }
-        .uu-hero-img { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 70px -30px rgba(0,0,0,0.6); aspect-ratio: 4/3.1; }
-        .uu-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .uu-hero-img { position: relative; border-radius: 26px; border: 8px solid #fff; box-shadow: 0 32px 75px -30px rgba(7,22,42,0.42); aspect-ratio: 4/3.15; background: #dfe8f2; }
+        .uu-hero-img > img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; border-radius: 18px; }
+        .uu-hero-inset { position: absolute; right: -28px; bottom: -28px; width: 42%; aspect-ratio: 16/10; padding: 5px; border-radius: 17px; background: #fff; box-shadow: 0 20px 44px -20px rgba(7,22,42,.55); transform: rotate(3deg); }
+        .uu-hero-inset img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block; }
+        .uu-hero-badge { position: absolute; left: 22px; bottom: 20px; display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border-radius: 999px; background: rgba(7,22,42,.92); color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 14px 30px rgba(7,22,42,.24); }
+        .uu-hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2bc66f; box-shadow: 0 0 0 5px rgba(43,198,111,.14); }
         @media (max-width: 900px) { .uu-hero .container.uu-hero-grid { grid-template-columns: 1fr; gap: 30px; max-width: 640px; } }
 @media (max-width: 600px) {
  .uu-hero { padding: 72px 0 56px; }
+ .uu-hero-img { border-width: 5px; border-radius: 20px; margin: 8px 14px 24px 0; }
+ .uu-hero-img > img { border-radius: 15px; }
+ .uu-hero-inset { right: -12px; bottom: -20px; width: 44%; }
+ .uu-hero-badge { left: 12px; bottom: 12px; padding: 9px 11px; font-size: 11px; }
 }
+
+
+        /* ═══ GRÜNDERGESCHICHTE ═══ */
+        .uu-profile {
+            padding: 110px 0;
+            background: linear-gradient(180deg, #0a1c32 0%, #07162a 100%);
+            border-top: 1px solid rgba(255,255,255,.06);
+            overflow: hidden;
+        }
+
+        .uu-profile-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: clamp(50px, 6vw, 84px);
+            align-items: center;
+        }
+
+        .uu-profile-visual {
+            position: relative;
+            min-height: 630px;
+        }
+
+        .uu-profile-main,
+        .uu-profile-inset {
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 28px 65px -30px rgba(0,0,0,.72);
+        }
+
+        .uu-profile-main {
+            inset: 0 54px 70px;
+            border-radius: 26px;
+            background: #0d213c;
+        }
+
+        .uu-profile-main img,
+        .uu-profile-inset img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .uu-profile-main img { object-position: center 30%; }
+
+        .uu-profile-inset {
+            bottom: 0;
+            width: 48%;
+            aspect-ratio: 16/10;
+            border: 6px solid #0a1c32;
+            border-radius: 18px;
+            background: #0d213c;
+        }
+
+        .uu-profile-inset-one { left: 0; transform: rotate(-3deg); }
+        .uu-profile-inset-two { right: 0; transform: rotate(3deg); }
+
+        .uu-profile-copy .section-tag { margin-bottom: 18px; }
+        .uu-profile-copy h2 { max-width: 650px; margin-bottom: 24px; font-size: clamp(34px, 4vw, 52px); }
+        .uu-profile-copy h3 { margin-bottom: 16px; font-size: 19px; color: var(--gold); }
+        .uu-profile-copy p { max-width: 680px; margin-bottom: 16px; color: var(--text-secondary); font-size: 16px; line-height: 1.7; }
+
+        .uu-profile-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .uu-profile-fact {
+            padding: 16px 18px;
+            border: 1px solid rgba(212,165,116,.18);
+            border-radius: 15px;
+            background: rgba(255,255,255,.035);
+        }
+
+        .uu-profile-fact b { display: block; margin-bottom: 4px; color: var(--white); font-size: 17px; }
+        .uu-profile-fact span { display: block; color: var(--text-muted); font-size: 12.5px; line-height: 1.4; }
+
+        .uu-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 14px 25px;
+            border-radius: 999px;
+            background: var(--red);
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 14px 34px rgba(230,47,31,.25);
+        }
+
+        .uu-profile-btn svg { width: 16px; height: 16px; }
+
+        @media (max-width: 900px) {
+            .uu-profile { padding: 82px 0; }
+            .uu-profile-grid { grid-template-columns: 1fr; }
+            .uu-profile-visual { min-height: 600px; max-width: 570px; width: 100%; margin: 0 auto; }
+        }
+
+        @media (max-width: 560px) {
+            .uu-profile-visual { min-height: 500px; }
+            .uu-profile-main { inset: 0 22px 76px; }
+            .uu-profile-inset { width: 52%; border-width: 4px; }
+            .uu-profile-facts { grid-template-columns: 1fr; }
+        }
 
 
         /* ═══ STORY ═══ */
@@ -270,19 +400,21 @@
         /* ═══ VALUES / PHILOSOPHIE ═══ */
         .uu-values {
             padding: 100px 0;
-            background: var(--navy);
-            border-top: 1px solid var(--border-subtle);
+            background:
+                radial-gradient(circle at 12% 20%, rgba(230,47,31,.07), transparent 26%),
+                linear-gradient(180deg, #f8fafc 0%, #eef4fa 100%);
+            border-top: 1px solid rgba(7,22,42,.08);
         }
 
         .uu-values-header {
             text-align: center;
-            max-width: 680px;
-            margin: 0 auto 56px;
+            max-width: 760px;
+            margin: 0 auto 44px;
         }
 
-        .uu-values-header h2 { margin-bottom: 14px; }
+        .uu-values-header h2 { margin-bottom: 14px; color: var(--navy); }
 
-        .uu-values-header p { color: var(--text-secondary); font-size: 17px; }
+        .uu-values-header p { color: #596b80; font-size: 17px; }
 
 
         .uu-values-grid {
@@ -293,15 +425,17 @@
 
         .uu-value-card {
             padding: 30px;
-            background: linear-gradient(180deg, #0d1e38 0%, #091526 100%);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,.9);
+            border: 1px solid rgba(7,22,42,.09);
             border-radius: 20px;
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 18px 50px -36px rgba(7,22,42,.42);
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow .3s ease;
         }
 
         .uu-value-card:hover {
             border-color: rgba(212,165,116,0.25);
             transform: translateY(-3px);
+            box-shadow: 0 24px 56px -34px rgba(7,22,42,.46);
         }
 
         .uu-value-icon {
@@ -317,20 +451,42 @@
             font-size: 19px; font-weight: 700;
             margin-bottom: 10px;
             letter-spacing: -0.2px;
+            color: var(--navy);
         }
 
         .uu-value-card p {
             font-size: 14.5px;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: #5b6c80;
         }
-        .uu-values-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 26px; align-items: stretch; }
-        .uu-values-img { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); position: relative; min-height: 340px; }
-        .uu-values-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-        .uu-values-wrap .uu-values-grid { grid-template-columns: 1fr 1fr; }
+        .uu-values-wrap { display: grid; gap: 20px; align-items: stretch; }
+        .uu-values-img {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 8px solid #fff;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/7.4;
+            box-shadow: 0 30px 70px -38px rgba(7,22,42,.42);
+        }
+        .uu-values-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 58%, rgba(7,22,42,.42));
+            pointer-events: none;
+        }
+        .uu-values-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 57%; display: block; }
+        .uu-values-wrap .uu-values-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+        .uu-values-wrap .uu-value-card { padding: 24px; }
+        .uu-values-wrap .uu-value-card h3 { font-size: 18px; }
+        .uu-values-wrap .uu-value-card p { font-size: 14px; }
         @media (max-width: 900px) {
-            .uu-values-wrap { grid-template-columns: 1fr; }
-            .uu-values-img { min-height: 0; width: 100%; aspect-ratio: 16/10; }
+            .uu-values-img { aspect-ratio: 16/9; }
+            .uu-values-wrap .uu-values-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .uu-values-img { aspect-ratio: 4/3; }
             .uu-values-wrap .uu-values-grid { grid-template-columns: 1fr; }
         }
 
@@ -458,9 +614,9 @@
         }
 
 
-        .bento-founder { grid-column: span 5; aspect-ratio: 4/5; max-height: 480px; }
+        .bento-founder { grid-column: span 7; aspect-ratio: 16/10; max-height: 480px; }
 
-        .bento-founder img { width: 100%; height: 100%; object-fit: cover; }
+        .bento-founder img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
         .bento-founder-overlay {
             position: absolute;
@@ -475,7 +631,7 @@
 
 
         .bento-quote {
-            grid-column: span 7;
+            grid-column: span 5;
             background: var(--navy-card);
             border: 1px solid var(--border-subtle);
             padding: 36px;
@@ -533,9 +689,9 @@
 
             .bento-map { grid-column: span 12; min-height: 280px; }
 
-            .bento-founder { grid-column: span 5; }
+            .bento-founder { grid-column: span 7; }
 
-            .bento-quote { grid-column: span 7; }
+            .bento-quote { grid-column: span 5; }
 }
 @media (max-width: 768px) {
 
@@ -547,7 +703,7 @@
 
             .bento-office, .bento-map, .bento-founder, .bento-quote { grid-column: span 1; }
 
-            .bento-founder { aspect-ratio: 3/4; max-height: 400px; }
+            .bento-founder { aspect-ratio: 16/10; max-height: none; }
 
             .bento-office h3 { font-size: 19px; }
 
@@ -2249,6 +2405,8 @@ html, body { background: var(--navy); }
             50% { opacity: 0.5; transform: scale(1.35); }
         }
 </style>
+<link rel="stylesheet" href="footer-trust.css">
+<script src="https://widget.trustmarkt.de/embed/v1/embed.js" async defer></script>
 </head>
 <body>
 
@@ -2265,42 +2423,42 @@ html, body { background: var(--navy); }
                     <svg class="nav-dd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
                 <div class="nav-dd-menu" role="menu" aria-label="Leistungen">
-                    <a href="done4you.html#leistung-coaching" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-coaching" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="19" r="1.8"/><path d="M6.8 19H13a4 4 0 0 0 4-4 4 4 0 0 0-4-4H9.5a3.5 3.5 0 0 1 0-7H13"/></g><g stroke="#D4A574" stroke-width="1.5"><circle cx="17.5" cy="4" r="2.3"/><circle cx="17.5" cy="4" r="0.3" fill="#D4A574"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Content-Strategie</span>
                             <span class="nav-dd-desc">Positionierung, Themenplan, Titel, Skripte</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-studio" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-studio" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="6" y="5.5" width="9.5" height="7" rx="1.6"/><path d="M15.5 8.2 20 6v6l-4.5-2.2"/><path d="M10.75 12.5 7 20.5M10.75 12.5l3.75 8M10.75 12.5v4.2"/></g><circle cx="8.6" cy="8" r="1" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Studio-Setup &amp; Dreh vor Ort</span>
                             <span class="nav-dd-desc">Kamera, Licht, Ton. Aufgebaut bei dir</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-video" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-video" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="4.2" rx="1.2"/><rect x="3" y="16" width="10.5" height="4.2" rx="1.2"/><path d="M3 4.8h4.5M10.5 4.8H15"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="M17.2 3.2v18"/><path d="m15.9 3.2h2.6"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Videoschnitt &amp; Upload</span>
                             <span class="nav-dd-desc">Schnitt, Thumbnails, SEO-Upload</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.4h18"/><path d="M6.2 12.5h6M6.2 15.3h4"/><circle cx="5.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/><circle cx="7.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/></g><rect x="14" y="13.2" width="4.6" height="3.2" rx="1.6" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Webdesign &amp; Landingpages</span>
                             <span class="nav-dd-desc">Webseiten, die aus Zuschauern Anfragen machen</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-ads" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-ads" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><path d="M3 20.5h18"/><path d="M6.5 20.5v-4.5M11 20.5v-7M15.5 20.5v-5.5"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="m4 12 5.5-4.5 3.5 2.8L19.5 4.5"/><path d="M16.2 4.2h3.3v3.3"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Performance Marketing</span>
                             <span class="nav-dd-desc">Messbare Werbung mit Google &amp; Meta Ads</span>
                         </span>
                     </a>
-                    <a href="done4you.html" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-skalierung" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.3" cy="14.8" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="14.7" cy="14.8" r="5" stroke="#D4A574" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1.5"><path d="M12 6.8V2.6"/><path d="M9.9 4.7 12 2.6l2.1 2.1"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Skalierung als Wachstumspartner</span>
@@ -2335,12 +2493,12 @@ html, body { background: var(--navy); }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="mobile-sub-list">
-            <a href="done4you.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
-            <a href="done4you.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
-            <a href="done4you.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
-            <a href="done4you.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
-            <a href="done4you.html#leistung-ads" class="mobile-link">Performance Marketing</a>
-            <a href="done4you.html" class="mobile-link">Skalierung als Wachstumspartner</a>
+            <a href="index.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
+            <a href="index.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
+            <a href="index.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
+            <a href="index.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
+            <a href="index.html#leistung-ads" class="mobile-link">Performance Marketing</a>
+            <a href="index.html#leistung-skalierung" class="mobile-link">Skalierung als Wachstumspartner</a>
         </div>
     </div>
     <a href="done4you.html" class="mobile-link">Done4You</a>
@@ -2359,17 +2517,56 @@ html, body { background: var(--navy); }
     <div class="container uu-hero-grid">
       <div class="uu-hero-copy">
         <span class="uu-hero-eyebrow reveal"><span class="uu-pulse-dot"></span>Über uns</span>
-        <h1 class="reveal">Dein festes Team.<br><span class="italic">Weniger Aufwand. Mehr Anfragen.</span></h1>
-        <p class="uu-hero-sub reveal reveal-delay-1">Du musst nicht fünf Dienstleister koordinieren. Wir übernehmen Strategie, Dreh, Schnitt, Veröffentlichung, Webseite und Anzeigen – mit festen Ansprechpartnern, die dein Unternehmen wirklich kennen.</p>
+        <h1 class="reveal">Dein YouTube- und<br>Marketing-Team.<br><span class="italic">Weniger Aufwand. Mehr Anfragen.</span></h1>
+        <p class="uu-hero-sub reveal reveal-delay-1">Ein festes Team übernimmt YouTube, Video, Webseite und Anzeigen für dich. Mit Ansprechpartnern, die dein Unternehmen kennen und alle Maßnahmen auf ein gemeinsames Ziel ausrichten.</p>
         <div class="uu-hero-meta reveal reveal-delay-2">
             <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><strong>Feste Ansprechpartner</strong></div>
-            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>60 Minuten</strong> pro Woche für dich</div>
-            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg><strong>Seit 2016</strong> auf YouTube</div>
+            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><strong>Alles aus einer Hand</strong></div>
+            <div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg><strong>Seit 2016</strong> Agenturerfahrung</div>
         </div>
       </div>
       <div class="uu-hero-img reveal reveal-delay-1">
         <img src="team-2.jpg" alt="Fabian Schmidtke und André Weichenhein arbeiten gemeinsam an einer YouTube-Produktion" loading="eager">
+        <span class="uu-hero-inset" aria-hidden="true"><img src="assets/elitewerk-dreh.jpg" alt=""></span>
+        <span class="uu-hero-badge">Direkt mit Fabian &amp; Team</span>
       </div>
+    </div>
+</section>
+
+<!-- ═══ FABIAN & DIE SCHMIDTKE GMBH ═══ -->
+<section class="uu-profile" aria-labelledby="uu-profile-title">
+    <div class="container uu-profile-grid">
+        <div class="uu-profile-visual reveal" aria-label="Fabian Schmidtke und Einblicke in die Agenturarbeit">
+            <figure class="uu-profile-main">
+                <img src="assets/fabian-profil.jpg" alt="Fabian Schmidtke am Podcast-Mikrofon" loading="lazy">
+            </figure>
+            <figure class="uu-profile-inset uu-profile-inset-one">
+                <img src="assets/fabian-screen-studio.jpg" alt="Fabian Schmidtke vor dem YouTube-Analyseboard" loading="lazy">
+            </figure>
+            <figure class="uu-profile-inset uu-profile-inset-two">
+                <img src="assets/fabian-julia-bts.jpg" alt="Fabian Schmidtke und das Team bei einer Videoproduktion" loading="lazy">
+            </figure>
+        </div>
+
+        <div class="uu-profile-copy">
+            <span class="section-tag reveal">Über Fabian und die Schmidtke GmbH</span>
+            <h2 class="reveal" id="uu-profile-title">Die Schmidtke GmbH.<br><span class="italic">Deine externe YouTube-Marketingabteilung.</span></h2>
+            <h3 class="reveal reveal-delay-1">Fabian Schmidtke · Gründer &amp; strategischer Kopf</h3>
+            <p class="reveal reveal-delay-1">Fabian lädt 2007 seine ersten YouTube-Videos hoch und erreicht bereits als Teenager mit eigenen Formaten die ersten Millionen Aufrufe. So lernt er früh, dass Reichweite nicht zufällig entsteht, sondern aus dem richtigen Thema, einer starken Verpackung und echtem Zuschauerverständnis.</p>
+            <p class="reveal reveal-delay-1">Ab 2014 arbeitet er mit Fitness-YouTubern, produziert immer mehr Videomarketing-Formate und verbindet Content mit Online-Marketing. In Kundenprojekten ist er derjenige, der herausfinden muss, welche Strategie wirklich funktioniert und nicht nur, wie ein Video gut aussieht.</p>
+            <p class="reveal reveal-delay-2">Seit 2020 setzt Fabian dieses Wissen gemeinsam mit dem Team der Schmidtke GmbH um. Strategie, Produktion, Vermarktung und Webseite greifen dabei wie eine externe Marketingabteilung ineinander. So haben wir für Kunden bereits mehrere Millionen Euro Umsatz erzielt.</p>
+
+            <div class="uu-profile-facts reveal reveal-delay-2">
+                <div class="uu-profile-fact"><b>2007</b><span>Erste Videos und erste Millionen Aufrufe</span></div>
+                <div class="uu-profile-fact"><b>2014</b><span>Zusammenarbeit mit Fitness-YouTubern</span></div>
+                <div class="uu-profile-fact"><b>Seit 2020</b><span>Umsetzung mit festem Agenturteam</span></div>
+                <div class="uu-profile-fact"><b>Mehrere Mio. €</b><span>Umsatz für Kunden erzielt</span></div>
+            </div>
+
+            <a class="uu-profile-btn reveal reveal-delay-2" href="#team">Fabian und das Team kennenlernen
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
     </div>
 </section>
 
@@ -2377,9 +2574,9 @@ html, body { background: var(--navy); }
 <section class="uu-story" id="geschichte" aria-label="Unsere Geschichte">
     <div class="container">
         <div class="uu-story-header">
-            <span class="section-tag reveal">Erfahrung, die dir Fehlversuche spart</span>
-            <h2 class="reveal">Seit 2007 auf YouTube.<br>Damit du <span class="italic">nicht bei null anfängst</span>.</h2>
-            <p class="reveal reveal-delay-1">Plattformen, Formate und Algorithmen ändern sich. Was Menschen zum Klicken, Zuschauen und Anfragen bewegt, haben wir über Jahre und mehr als 100 Kundenprojekte gelernt.</p>
+            <span class="section-tag reveal">Die Stationen hinter unserer Strategie</span>
+            <h2 class="reveal">Von ersten Millionen Aufrufen<br>zur <span class="italic">externen Marketingabteilung</span>.</h2>
+            <p class="reveal reveal-delay-1">Was heute als eingespieltes Agentursystem funktioniert, ist aus vielen Jahren eigener Videos, Kampagnen, Tests und Kundenprojekte entstanden.</p>
         </div>
 
         <div class="uu-tl">
@@ -2390,8 +2587,8 @@ html, body { background: var(--navy); }
                     <span class="uu-tl-year">2007</span>
                 </div>
                 <div class="uu-tl-content">
-                    <h3>Das erste Video</h3>
-                    <p>Fabian lädt mit 14 sein erstes Video hoch. Aus der frühen Neugier entsteht ein Verständnis für YouTube, das nicht aus einem Wochenendkurs stammt.</p>
+                    <h3>Erste Videos, erste Millionen Aufrufe</h3>
+                    <p>Fabian lädt mit 14 seine ersten Videos hoch und erreicht mit eigenen Formaten schon früh Millionen Aufrufe. Das Verständnis für YouTube entsteht dabei aus echter Praxis.</p>
                 </div>
             </article>
             <article class="uu-tl-row">
@@ -2400,8 +2597,8 @@ html, body { background: var(--navy); }
                     <span class="uu-tl-year">2014</span>
                 </div>
                 <div class="uu-tl-content">
-                    <h3>Start im Fitness-YouTube</h3>
-                    <p>Fabian arbeitet für Fitness-Kanäle und verantwortet später <b>über 500.000 € Ads-Budget</b>. Seitdem betrachten wir Content nicht nur kreativ, sondern immer auch mit Blick auf Nachfrage und Wirtschaftlichkeit.</p>
+                    <h3>Fitness-YouTube trifft Online-Marketing</h3>
+                    <p>Fabian arbeitet mit Fitness-YouTubern, produziert Videomarketing-Formate und verantwortet später <b>über 500.000 € Ads-Budget</b>. Content wird damit immer auch an Nachfrage und Wirtschaftlichkeit gemessen.</p>
                 </div>
             </article>
             <article class="uu-tl-row">
@@ -2417,11 +2614,11 @@ html, body { background: var(--navy); }
             <article class="uu-tl-row">
                 <div class="uu-tl-left">
                     <span class="uu-tl-dot" aria-hidden="true"></span>
-                    <span class="uu-tl-year">2019, 2023</span>
+                    <span class="uu-tl-year">2020</span>
                 </div>
                 <div class="uu-tl-content">
-                    <h3>Team, Studio &amp; Done4You</h3>
-                    <p>Jasmin übernimmt Werbetext und Strategie, André Video und Schnitt. Für dich wird aus mehreren Einzelleistungen ein abgestimmtes <b>Done4You-System</b> aus einer Hand.</p>
+                    <h3>Vom Einzelkämpfer zum Agenturteam</h3>
+                    <p>Aus Fabians Erfahrung entsteht ein festes Team für Strategie, Produktion, Schnitt und Vermarktung. Für Kunden wird daraus ein abgestimmtes <b>Done4You-System</b> aus einer Hand.</p>
                 </div>
             </article>
             <article class="uu-tl-row">
@@ -2430,8 +2627,8 @@ html, body { background: var(--navy); }
                     <span class="uu-tl-year">Heute</span>
                 </div>
                 <div class="uu-tl-content">
-                    <h3>100+ Kunden · 10 Mio+ Aufrufe</h3>
-                    <p>Über <b>100 Unternehmen</b> im DACH-Raum, mehr als <b>10 Millionen Aufrufe</b>. Du investierst 60 Minuten pro Woche, den Rest machen wir.</p>
+                    <h3>100+ Kunden · mehrere Millionen Euro Kundenumsatz</h3>
+                    <p>Heute verbinden wir YouTube, Video, Webseite und Ads zu einem System für Sichtbarkeit und qualifizierte Anfragen. Die entwickelten Strategien haben für Kunden bereits <b>mehrere Millionen Euro Umsatz</b> erzielt.</p>
                 </div>
             </article>
         </div>
@@ -2449,7 +2646,7 @@ html, body { background: var(--navy); }
 
         <div class="uu-values-wrap">
           <div class="uu-values-img reveal">
-            <img src="assets/team-kamera-check.jpg" alt="Das Schmidtke-Team prüft gemeinsam mit einem Kunden die Aufnahmen" loading="lazy">
+            <img src="assets/team-produktion-pana3565.jpg" alt="Das Schmidtke-Team bereitet gemeinsam eine Videoproduktion vor" loading="lazy">
           </div>
           <div class="uu-values-grid">
 
@@ -2457,16 +2654,16 @@ html, body { background: var(--navy); }
                 <div class="uu-value-icon" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
                 </div>
-                <h3>Ein Team, klare Verantwortung</h3>
-                <p>Du wirst nicht von Abteilung zu Abteilung gereicht. Strategie, Produktion und Vermarktung greifen ineinander, und du weißt jederzeit, wer dein Ansprechpartner ist.</p>
+                <h3>Ein festes Team</h3>
+                <p>Du kennst die Menschen, die Strategie, Dreh und Vermarktung verantworten. Das Wissen über dein Unternehmen bleibt im Projekt.</p>
             </div>
 
             <div class="uu-value-card reveal reveal-delay-1">
                 <div class="uu-value-icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
                 </div>
-                <h3>60 Minuten pro Woche</h3>
-                <p>Dein Tag ist voll. Deshalb investierst du pro Woche ungefähr <b>60 Minuten</b> vor der Kamera. Strategie, Skript, Dreh, Schnitt, Ads und Landingpage übernehmen wir.</p>
+                <h3>Alles aus einer Hand</h3>
+                <p>YouTube, Video, Webseite und Ads greifen ineinander. Du koordinierst nicht mehrere Dienstleister und bekommst ein abgestimmtes System.</p>
             </div>
 
             <div class="uu-value-card reveal reveal-delay-2">
@@ -2474,15 +2671,15 @@ html, body { background: var(--navy); }
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
                 <h3>Entscheidungen nach Wirkung</h3>
-                <p>Wir optimieren nicht für Applaus, sondern für qualifizierte Zuschauer, Anfragen und Umsatz. Themen und Formate werden anhand echter Signale weiterentwickelt.</p>
+                <p>Wir entwickeln Inhalte anhand von Zuschauerreaktionen, qualifizierten Anfragen und messbaren Ergebnissen weiter.</p>
             </div>
 
             <div class="uu-value-card reveal">
                 <div class="uu-value-icon" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
                 </div>
-                <h3>Ehrlich, auch wenn's unbequem ist</h3>
-                <p>Wenn YouTube für dein Unternehmen der falsche Hebel ist, sagen wir das vor dem Vertrag. Und wenn Positionierung oder Angebot Anfragen verhindern, sprechen wir es klar an.</p>
+                <h3>Klarheit vor Zustimmung</h3>
+                <p>Wir sagen offen, was funktioniert, was bremst und ob YouTube für dein Ziel wirklich der richtige Hebel ist.</p>
             </div>
 
           </div>
@@ -2530,7 +2727,7 @@ html, body { background: var(--navy); }
 
             <!-- KARTE 3: Gründer-Foto -->
             <div class="bento-card bento-founder reveal">
-                <img src="assets/fabian-portrait.jpg" alt="Fabian Schmidtke, Gründer der Schmidtke GmbH" loading="lazy">
+                <img src="assets/fabian-screen-studio.jpg" alt="Fabian Schmidtke vor dem YouTube-Analyseboard im Studio" loading="lazy">
                 <div class="bento-founder-overlay">
                     <h3>Fabian Schmidtke</h3>
                     <p>Gründer &amp; Geschäftsführer</p>

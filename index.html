@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>YouTube Agentur für Selbstständige & Unternehmen | Schmidtke GmbH Rottweil</title>
     <meta name="description" content="Deine YouTube Agentur aus Rottweil: Kanal aufbauen, Shorts produzieren, Landing Page & Personal Brand. Done-for-You, damit dein Content dauerhaft Anfragen, Sichtbarkeit und Vertrauen bringt.">
     <meta name="keywords" content="YouTube Agentur, YouTube Marketing Agentur, YouTube Kanal aufbauen, Video Marketing Rottweil, KI-Sichtbarkeit, ChatGPT Empfehlung, Done4You YouTube, Schmidtke GmbH, Fabian Schmidtke">
@@ -2097,6 +2098,10 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
+            transform: rotate(var(--line-rotation, 0deg));
+            transform-origin: 50% 50%;
+            will-change: transform;
+            backface-visibility: hidden;
         }
         .orbit-lines circle {
             fill: none;
@@ -2186,24 +2191,33 @@
             margin-left: calc(var(--spoke-size) / -2);
             margin-top: calc(var(--spoke-size) / -2);
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(15, 40, 71, 0.95) 0%, rgba(7, 22, 42, 0.95) 100%);
+            background: radial-gradient(circle at 30% 30%, #102b4b 0%, #07162a 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 12px 13px;
             text-align: center;
-            gap: 8px;
+            gap: 5px;
             z-index: 3;
             opacity: 0;
+            appearance: none;
+            font: inherit;
+            color: inherit;
+            cursor: pointer;
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+            contain: layout paint style;
+            overflow: hidden;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            --orbit-x: 0px;
+            --orbit-y: 0px;
+            --node-scale: 0.55;
             /* Startposition: im Zentrum, eingezogen */
-            transform:
-                rotate(var(--angle, 0deg))
-                translateY(0)
-                rotate(calc(var(--angle, 0deg) * -1))
-                scale(0.55);
+            transform: translate3d(0, 0, 0) scale(var(--node-scale));
             transition:
                 transform 0.95s cubic-bezier(0.22, 0.85, 0.25, 1),
                 opacity 0.6s ease,
@@ -2213,17 +2227,21 @@
         }
         .orbit-system.is-revealed .orbit-spoke {
             opacity: 1;
-            transform:
-                rotate(var(--angle, 0deg))
-                translateY(calc(var(--orbit-radius) * -1))
-                rotate(calc(var(--angle, 0deg) * -1))
-                scale(1);
+            --node-scale: 1;
+            transform: translate3d(var(--orbit-x), var(--orbit-y), 0) scale(var(--node-scale));
+        }
+        .orbit-system.is-orbiting .orbit-spoke {
+            transition: opacity 0.65s ease, border-color 0.55s ease, box-shadow 0.7s ease, filter 0.65s ease;
+            transition-delay: 0ms;
+        }
+        .orbit-system.is-focusing .orbit-spoke {
+            transition: transform 1.45s cubic-bezier(0.22, 0.85, 0.25, 1), opacity 0.65s ease, border-color 0.55s ease, box-shadow 0.7s ease, filter 0.65s ease;
         }
         /* Hub-Eintritt */
         .orbit-hub {
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.7);
-            transition: transform 0.7s cubic-bezier(0.22, 0.85, 0.25, 1), opacity 0.5s ease;
+            transition: transform 0.7s cubic-bezier(0.22, 0.85, 0.25, 1), opacity 0.5s ease, filter 0.7s ease;
         }
         .orbit-system.is-revealed .orbit-hub {
             opacity: 1;
@@ -2233,7 +2251,15 @@
         .orbit-lines {
             opacity: 0;
             transition: opacity 1s ease;
-            transition-delay: 0.5s;
+            transition-delay: 0.5s, 0s;
+        }
+        .orbit-system.is-orbiting .orbit-lines {
+            transition: opacity 1s ease;
+            transition-delay: 0s;
+        }
+        .orbit-system.is-focusing .orbit-lines {
+            transition: opacity 1s ease, transform 1.45s cubic-bezier(0.22, 0.85, 0.25, 1);
+            transition-delay: 0s;
         }
         .orbit-system.is-revealed .orbit-lines {
             opacity: 1;
@@ -2251,7 +2277,7 @@
             .orbit-spoke, .orbit-hub, .orbit-lines, .orbit-lines circle {
                 transition: none !important;
             }
-            .orbit-spoke { opacity: 1; transform: rotate(var(--angle, 0deg)) translateY(calc(var(--orbit-radius) * -1)) rotate(calc(var(--angle, 0deg) * -1)); }
+            .orbit-spoke { opacity: 1; --node-scale: 1; transform: translate3d(var(--orbit-x), var(--orbit-y), 0) scale(var(--node-scale)); }
             .orbit-hub { opacity: 1; transform: translate(-50%, -50%); }
             .orbit-lines { opacity: 1; }
             .orbit-lines circle { stroke-dashoffset: 0; }
@@ -2260,9 +2286,30 @@
             border-color: rgba(212, 165, 116, 0.45);
             box-shadow: 0 0 30px rgba(212, 165, 116, 0.18);
         }
+        .orbit-spoke:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 5px;
+            border-color: rgba(212, 165, 116, 0.72);
+        }
+        .orbit-system.has-active .orbit-spoke:not(.is-active) {
+            opacity: 0.28;
+            filter: saturate(0.65) brightness(0.78);
+        }
+        .orbit-system .orbit-spoke.is-active {
+            --node-scale: 1.08;
+            z-index: 14;
+            opacity: 1;
+            border-color: rgba(212, 165, 116, 0.9);
+            box-shadow: 0 0 0 6px rgba(212, 165, 116, 0.08), 0 0 42px rgba(212, 165, 116, 0.3);
+        }
+        .orbit-system.has-active .orbit-hub {
+            opacity: 0.12;
+            transform: translate(-50%, -50%) scale(0.86);
+            filter: blur(2px);
+        }
         .orbit-spoke-icon {
-            width: 38px;
-            height: 38px;
+            width: 34px;
+            height: 34px;
             color: var(--gold);
             display: flex;
             align-items: center;
@@ -2276,17 +2323,25 @@
         .orbit-spoke-logos svg { width: 18px; height: 18px; flex: 0 0 auto; }
         .orbit-spoke-title {
             font-family: 'SK Modernist', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--white);
             letter-spacing: -0.2px;
-            line-height: 1.2;
+            line-height: 1.14;
         }
+        .orbit-spoke-text { min-width: 0; }
         .orbit-spoke-sub {
-            font-size: 11px;
+            display: -webkit-box;
+            width: 100%;
+            max-width: 118px;
+            margin: 4px auto 0;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            font-size: 10px;
             color: var(--text-muted);
             font-style: italic;
-            line-height: 1.2;
+            line-height: 1.15;
         }
 
         /* Winkel + Index werden per inline-style je Spoke gesetzt */
@@ -2313,84 +2368,123 @@
             .orbit-hub-mark { font-size: 26px; }
         }
 
-        /* Mobile: Kompaktes Orbit-Layout mit Animation (statt vertikaler Liste) */
+        /* Mobile: eigenständige, gut lesbare Leistungsliste statt Mini-Orbit */
         @media (max-width: 700px) {
             .growth-system { padding: 80px 0 72px; }
             .growth-header { margin-bottom: 40px; }
             .orbit-system {
-                width: 388px;
-                max-width: calc(100vw - 24px);
-                height: 388px;
-                /* Skaliert proportional, falls Viewport < 392px */
-                aspect-ratio: 1 / 1;
-                --hub-size: 118px;
-                --spoke-size: 94px;
-                --orbit-radius: 142px;
+                width: 100%;
+                max-width: 540px;
+                height: auto;
+                aspect-ratio: auto;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
-            /* Orbitlinien bleiben sichtbar — SVG skaliert automatisch */
-            .orbit-lines { display: block; opacity: 0; }
-            .orbit-lines circle {
-                stroke: rgba(212, 165, 116, 0.16);
-                stroke-dasharray: 2 5;
-            }
-            .orbit-lines line {
-                stroke: rgba(212, 165, 116, 0.14);
-            }
-            /* Hub bleibt zentriert und animiert */
+            .orbit-lines { display: none !important; }
             .orbit-hub {
-                padding: 14px 10px;
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                height: auto;
+                display: grid;
+                grid-template-columns: 52px max-content;
+                grid-template-rows: auto auto;
+                column-gap: 12px;
+                justify-content: center;
+                padding: 13px 16px;
+                border-radius: 18px;
+                text-align: left;
+                transform: none !important;
+                opacity: 1 !important;
             }
-            .orbit-hub-yt { width: 62px; height: 43px; }
+            .orbit-hub-yt { grid-column: 1; grid-row: 1 / 3; width: 52px; height: 36px; }
             .orbit-hub-label {
-                font-size: 10px;
-                margin-top: 8px;
+                grid-column: 2;
+                grid-row: 1;
+                align-self: end;
+                margin: 0;
+                font-size: 12px;
                 letter-spacing: 0.6px;
             }
             .orbit-hub-sub {
-                font-size: 10px;
-                margin-top: 2px;
+                grid-column: 2;
+                grid-row: 2;
+                align-self: start;
+                margin: 1px 0 0;
+                font-size: 10.5px;
             }
-            /* Spokes — kompakt, nur Icon + Titel */
             .orbit-spoke {
-                padding: 8px 6px;
-                gap: 4px;
-                border-radius: 50%;
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                height: auto;
+                min-height: 88px;
+                margin: 0;
+                display: grid;
+                grid-template-columns: 38px max-content;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 44px;
+                border-radius: 18px;
+                text-align: left;
+                opacity: 1 !important;
+                transform: none !important;
+                overflow: visible;
+                contain: layout style;
             }
-            .orbit-spoke-icon {
-                width: 24px;
-                height: 24px;
+            .orbit-spoke::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 22px;
+                width: 8px;
+                height: 8px;
+                border-top: 1.5px solid rgba(255,255,255,0.62);
+                border-right: 1.5px solid rgba(255,255,255,0.62);
+                transform: translateY(-50%) rotate(45deg);
             }
-            .orbit-spoke-logos { height: 24px; gap: 3px; }
-            .orbit-spoke-logos svg { width: 15px; height: 15px; }
+            .orbit-spoke-text {
+                width: max-content;
+                max-width: min(200px, calc(100vw - 165px));
+            }
+            .orbit-spoke-icon { width: 32px; height: 32px; }
+            .orbit-spoke-logos { height: 32px; gap: 4px; }
+            .orbit-spoke-logos svg { width: 17px; height: 17px; }
             .orbit-spoke-title {
-                font-size: 11.5px;
-                letter-spacing: -0.1px;
-                line-height: 1.15;
+                font-size: 15px;
+                letter-spacing: -0.15px;
+                line-height: 1.18;
             }
-            /* Sub-Text aus Platzgründen ausblenden */
-            .orbit-spoke-sub { display: none; }
-            /* Legende kompakter */
+            .orbit-spoke-sub {
+                display: block;
+                max-width: none;
+                margin: 5px 0 0;
+                overflow: visible;
+                font-size: 11.5px;
+                line-height: 1.3;
+                -webkit-line-clamp: unset;
+            }
+            .orbit-system.has-active .orbit-spoke:not(.is-active) { opacity: 1 !important; filter: none; }
+            .orbit-system .orbit-spoke.is-active { --node-scale: 1; }
+            .orbit-system.has-active .orbit-hub { opacity: 1 !important; transform: none !important; filter: none; }
+            .orbit-system::after { display: none; }
             .growth-legend {
-                margin-top: 40px;
+                margin-top: 32px;
                 font-size: 13px;
                 padding: 0 8px;
             }
         }
 
-        /* Extra-kompakt für sehr schmale Geräte (< 380px) */
+        /* Extra-kompakt für sehr schmale Geräte */
         @media (max-width: 380px) {
-            .orbit-system {
-                width: 320px;
-                height: 320px;
-                --hub-size: 104px;
-                --spoke-size: 74px;
-                --orbit-radius: 119px;
-            }
-            .orbit-hub-yt { width: 54px; height: 38px; }
-            .orbit-hub-label { font-size: 9px; margin-top: 6px; }
-            .orbit-hub-sub { font-size: 9px; }
-            .orbit-spoke-icon { width: 22px; height: 22px; }
-            .orbit-spoke-title { font-size: 9.5px; }
+            .orbit-spoke { min-height: 82px; padding: 12px 40px; gap: 10px; }
+            .orbit-spoke::after { right: 17px; }
+            .orbit-spoke-title { font-size: 14px; }
+            .orbit-spoke-sub { font-size: 11px; }
         }
 
         /* ── halber Schriftzug unten in der System-Sektion ── */
@@ -4499,6 +4593,7 @@
                 linear-gradient(145deg, #0c1a2e 0%, #101f33 100%);
         }
         .cs-photo.fs2-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+        .cs-photo.fs2-media.fs2-media-boerner img { object-position: 78% center; }
         .cs-photo.fs2-media iframe { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; aspect-ratio: 1/1; border: 0; pointer-events: none; }
         .cs-photo.fs2-media iframe.fs2-yt { aspect-ratio: 16/9; min-width: 178%; width: auto; height: auto; }
         .fs2-media-label {
@@ -5128,7 +5223,18 @@
         .sysn-label.center { color: #fff; font-weight: 700; border-color: rgba(230,47,31,0.5); background: rgba(230,47,31,0.1); }
         .sysn-chips { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; max-width: 560px; }
         .sysn-chips span { font-size: 11.5px; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; padding: 6px 13px; }
-        .sysn-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 70px; border-top: 1px solid rgba(255,255,255,0.09); }
+        .sysn-process-heading {
+            position: relative; z-index: 2;
+            margin: 66px auto 0;
+            text-align: center;
+            font-size: clamp(18px, 2vw, 24px);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.015em;
+            color: #fff;
+        }
+        .sysn-process-heading::before { content: ''; display: inline-block; width: 28px; height: 2px; margin: 0 12px 5px 0; background: var(--gold, #D4A574); }
+        .sysn-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.09); }
         .sysn-step { display: flex; gap: 14px; align-items: baseline; padding: 22px 18px 0; border-left: 1px solid rgba(255,255,255,0.07); }
         .sysn-step:first-child { border-left: none; padding-left: 0; }
         .sysn-no { font-size: 24px; font-weight: 700; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.35); flex: 0 0 auto; }
@@ -5142,7 +5248,8 @@
             .sysn-hub { width: 116px; height: 116px; }
             .sysn-yt { width: 54px; height: 38px; }
             .sysn-label { font-size: 10.5px; padding: 6px 10px; }
-            .sysn-steps { grid-template-columns: 1fr; border-top: none; margin-top: 36px; }
+            .sysn-process-heading { margin-top: 44px; padding: 0 14px; }
+            .sysn-steps { grid-template-columns: 1fr; border-top: none; margin-top: 22px; }
             .sysn-step { flex-direction: column; align-items: center; text-align: center; gap: 6px; border-left: none; padding: 18px 12px 0; }
             .sysn-step { border-left: none; border-top: 1px solid rgba(255,255,255,0.07); padding: 16px 0 0; }
         }
@@ -5630,11 +5737,22 @@
         /* Standort-Block im Selbstverständnis */
         /* ── Partner: Text + Buttons + Bildleiste ── */
         .pt-wrap { position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
-        .pt-top { display: grid; grid-template-columns: 1.05fr 0.85fr; gap: 60px; align-items: center; }
-        .pt-copy { max-width: 620px; }
-        .pt-hero { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4/4.5; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 70px -28px rgba(0,0,0,0.65); }
+        .pt-top { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 64px; align-items: center; }
+        .pt-copy { max-width: 650px; }
+        .pt-founder-title { margin: 25px 0 11px; color: #fff; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+        .pt-story { display: grid; gap: 11px; }
+        .pt-story p { margin: 0; }
+        .pt-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+        .pt-fact { padding: 13px 14px; border: 1px solid rgba(212,165,116,.18); border-radius: 13px; background: rgba(255,255,255,.035); }
+        .pt-fact b { display: block; margin-bottom: 3px; color: var(--gold); font-size: 15px; }
+        .pt-fact span { display: block; color: rgba(255,255,255,.55); font-size: 11.5px; line-height: 1.35; }
+        .pt-hero { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 4/4.8; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 70px -28px rgba(0,0,0,0.65); }
         .pt-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .pt-hero-fabian img { object-position: center 38%; }
         .pt-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,13,28,0.05), rgba(4,13,28,0.25)); pointer-events: none; }
+        .pt-person-label { position: absolute; z-index: 2; left: 18px; right: 18px; bottom: 18px; padding: 14px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: rgba(7,22,42,.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .pt-person-label b { display: block; color: #fff; font-size: 15px; }
+        .pt-person-label span { display: block; margin-top: 2px; color: rgba(255,255,255,.62); font-size: 12px; }
         .pt-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
         .pt-btn {
             display: inline-flex; align-items: center; gap: 10px;
@@ -5656,6 +5774,10 @@
         @media (max-width: 860px) {
             .pt-strip { grid-template-columns: 1fr 1fr; margin-top: 40px; }
             .pt-tile { aspect-ratio: 4/4.2; }
+            .pt-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+            .pt-facts { grid-template-columns: 1fr; }
         }
 
         .uk-photos-bottom { margin-top: auto; padding-top: 22px; }
@@ -6604,6 +6726,21 @@
         .vst-media-tile i { position: absolute; right: 6px; bottom: 6px; width: 23px; height: 23px; border-radius: 7px; display: grid; place-items: center; background: #FF0000; }
         .vst-media-tile i.ig { background: linear-gradient(135deg,#833AB4,#E1306C,#FCAF45); }
         .vst-media-tile i img, .vst-media-tile i svg { width: 14px; height: 14px; object-fit: contain; filter: brightness(0) invert(1); }
+        .vst-media-tile i.yt {
+            width: 31px;
+            height: 24px;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 7px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, .24);
+        }
+        .vst-media-tile i.yt img {
+            width: 29px;
+            height: 21px;
+            object-fit: contain;
+            opacity: 1;
+            filter: none;
+        }
         .vst-media-tile.t1 { left: 5%; bottom: 7px; }
         .vst-media-tile.t2 { left: 38%; bottom: 42px; transition-delay: .12s; }
         .vst-media-tile.t3 { right: 4%; top: 8px; transition-delay: .24s; }
@@ -9301,11 +9438,14 @@ body {
   }
   /* Verbindungs-Pfeil zwischen den 2 Karten innerhalb eines Pairs */
   .pair-card-right { position: relative; margin-top: 30px; }
-  .pair-card-right::before {
+  .pair-card-right::before,
+  .pair-card-right.is-active::before {
     content: "↓";
     position: absolute;
     left: 50%;
+    right: auto;
     top: -15px;
+    bottom: auto;
     transform: translateX(-50%);
     width: 28px; height: 28px;
     border-radius: 50%;
@@ -9318,6 +9458,7 @@ body {
     font-size: 14px;
     font-weight: 800;
     z-index: 2;
+    transition: background-color 0.35s ease, border-color 0.35s ease;
   }
 
   /* MOBILE CRESCENDO — full-bleed, kein Card, fließend in Rot wie Desktop */
@@ -9420,7 +9561,8 @@ body {
   .pair-card { padding: 14px 16px; }
   .pair-text { font-size: 14px; }
   .pair-icon { width: 28px; height: 28px; }
-  .pair-card-right::before { width: 24px; height: 24px; font-size: 13px; top: -13px; }
+  .pair-card-right::before,
+  .pair-card-right.is-active::before { width: 24px; height: 24px; font-size: 13px; top: -13px; }
 }
 
 
@@ -11401,25 +11543,160 @@ body {
     
         /* ── Mobile-Runde 2 ── */
         .imp-red-m { display: none; }
-        .orbit-info { display: none; }
+        .orbit-info {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 12;
+            width: min(332px, calc(100% - 220px));
+            padding: 24px 26px 22px;
+            border: 1px solid rgba(212,165,116,0.38);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 18% 0%, rgba(212,165,116,0.13), transparent 42%),
+                linear-gradient(155deg, rgba(16,35,62,0.98), rgba(6,17,32,0.98));
+            box-shadow: 0 28px 80px rgba(0,0,0,0.52), 0 0 42px rgba(212,165,116,0.12);
+            backdrop-filter: blur(18px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translate(-50%, -45%) scale(0.92);
+            transition: opacity 0.5s ease, transform 0.75s cubic-bezier(0.22, 0.85, 0.25, 1), visibility 0s linear 0.75s;
+        }
+        .orbit-info.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, -45%) scale(1);
+            transition-delay: 0s;
+        }
+        .orbit-info-kicker {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .orbit-info h3 {
+            margin: 0 30px 10px 0;
+            color: var(--white);
+            font-size: 22px;
+            line-height: 1.1;
+            letter-spacing: -0.35px;
+        }
+        .orbit-info p {
+            margin: 0;
+            color: rgba(255,255,255,0.72);
+            font-size: 13.5px;
+            line-height: 1.55;
+        }
+        .orbit-info-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 16px;
+        }
+        .orbit-info-pills span {
+            padding: 6px 9px;
+            border: 1px solid rgba(212,165,116,0.22);
+            border-radius: 999px;
+            background: rgba(212,165,116,0.07);
+            color: rgba(255,255,255,0.82);
+            font-size: 10.5px;
+            line-height: 1;
+        }
+        .orbit-info-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            padding: 0;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.72);
+            cursor: pointer;
+        }
+        .orbit-info-close:hover,
+        .orbit-info-close:focus-visible { color: var(--white); border-color: rgba(212,165,116,0.55); }
+        .orbit-info-close svg { width: 13px; height: 13px; }
+        .orbit-system::after {
+            content: 'Leistung anklicken';
+            position: absolute;
+            left: 50%;
+            bottom: -34px;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.42);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: opacity 0.4s ease;
+        }
+        .orbit-system.has-active::after { opacity: 0; }
         @media (max-width: 700px) {
-            .orbit-info.open {
-                display: block; margin: 22px auto 0; max-width: 420px;
-                background: linear-gradient(160deg, #10233E, #0A1A30);
-                border: 1px solid rgba(212,165,116,0.3); border-radius: 16px;
-                padding: 18px 20px; animation: fiIn .35s ease both;
+            .orbit-info {
+                position: relative;
+                left: auto;
+                top: auto;
+                grid-column: 1 / -1;
+                display: none;
+                width: 100%;
+                margin: 0 0 2px;
+                padding: 19px 19px 18px;
+                border-radius: 17px;
+                opacity: 1;
+                visibility: visible;
+                transform: none !important;
+                transition: none;
             }
-            .orbit-info b { display: block; font-size: 15.5px; color: var(--gold, #D4A574); margin-bottom: 6px; }
-            .orbit-info p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0; }
+            .orbit-info.open { display: block; transform: none !important; }
+            .orbit-info h3 { margin-right: 27px; font-size: 18px; }
+            .orbit-info p { font-size: 12.5px; line-height: 1.48; }
+            .orbit-info-pills { gap: 5px; margin-top: 12px; }
+            .orbit-info-pills span { padding: 5px 7px; font-size: 9.5px; }
+            .orbit-info-close { top: 11px; right: 11px; width: 28px; height: 28px; }
+            .orbit-system::after { bottom: -28px; font-size: 9.5px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .orbit-info { transition-duration: 0.01ms !important; }
+        }
+        @media (max-width: 900px) {
+            /* Impact: der rote Verlauf gehört zur ganzen Sektion, nicht nur zum Intro */
+            .impact-wave, .impact-wave-shine { display: none; }
+            .impact-section { isolation: isolate; }
+            .imp-red-m {
+                display: block;
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background:
+                    linear-gradient(to bottom, transparent 0%, transparent 38%, rgba(154,25,21,0.42) 66%, rgba(103,13,18,0.94) 100%),
+                    radial-gradient(ellipse 105% 38% at 50% 90%, rgba(230,47,31,0.96) 0%, rgba(154,25,21,0.68) 48%, transparent 82%);
+                opacity: 0;
+                will-change: opacity;
+            }
+            .impact-section > .impact-stage,
+            .impact-section > .impact-pairs,
+            .impact-section > .impact-text { position: relative; z-index: 2; }
+            .pair-card-left.is-passed {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: none !important;
+            }
+            .pair-card-left.is-passed .pair-text {
+                color: var(--white) !important;
+                text-decoration: none !important;
+            }
+            .pair-card-left.is-passed .pair-eyebrow { color: var(--text-mut) !important; }
         }
         @media (max-width: 640px) {
-            /* Impact: roter Verlauf beim Scrollen */
-            .impact-wave, .impact-wave-shine { display: none; }
-            .imp-red-m {
-                display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-                background: radial-gradient(ellipse 70% 50% at 50% 50%, var(--red-bright) 0%, var(--red) 55%, var(--red-dark) 100%);
-                opacity: 0; will-change: opacity;
-            }
             /* Icons bewegen sich sanft */
             .cresc-logo { animation: crescFloat 4.5s ease-in-out infinite; }
             .cresc-logo:nth-child(2) { animation-delay: 1.1s; }
@@ -11449,8 +11726,10 @@ body {
 <style>wistia-player[media-id='yv7ne517ww']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/yv7ne517ww/swatch'); display: block; filter: blur(5px); padding-top:125.0%; }
 wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; overflow: hidden; }</style>
 <script src="https://widget.trustmarkt.de/embed/v1/embed.js" async defer></script>
+<link rel="stylesheet" href="footer-trust.css">
+<link rel="stylesheet" href="mobile-layout-fixes.css">
 </head>
-<body>
+<body class="page-home">
 
 <!-- ═══ BOTTOM BLUR FADE ═══ -->
 <div class="bottom-fade" aria-hidden="true"></div>
@@ -11471,42 +11750,42 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
                     <svg class="nav-dd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
                 <div class="nav-dd-menu" role="menu" aria-label="Leistungen">
-                    <a href="done4you.html#leistung-coaching" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-coaching" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="19" r="1.8"/><path d="M6.8 19H13a4 4 0 0 0 4-4 4 4 0 0 0-4-4H9.5a3.5 3.5 0 0 1 0-7H13"/></g><g stroke="#D4A574" stroke-width="1.5"><circle cx="17.5" cy="4" r="2.3"/><circle cx="17.5" cy="4" r="0.3" fill="#D4A574"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Content-Strategie</span>
                             <span class="nav-dd-desc">Positionierung, Themenplan, Titel, Skripte</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-studio" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-studio" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="6" y="5.5" width="9.5" height="7" rx="1.6"/><path d="M15.5 8.2 20 6v6l-4.5-2.2"/><path d="M10.75 12.5 7 20.5M10.75 12.5l3.75 8M10.75 12.5v4.2"/></g><circle cx="8.6" cy="8" r="1" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Studio-Setup &amp; Dreh vor Ort</span>
                             <span class="nav-dd-desc">Kamera, Licht, Ton. Aufgebaut bei dir</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-video" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-video" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="4.2" rx="1.2"/><rect x="3" y="16" width="10.5" height="4.2" rx="1.2"/><path d="M3 4.8h4.5M10.5 4.8H15"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="M17.2 3.2v18"/><path d="m15.9 3.2h2.6"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Videoschnitt &amp; Upload</span>
                             <span class="nav-dd-desc">Schnitt, Thumbnails, SEO-Upload</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.4h18"/><path d="M6.2 12.5h6M6.2 15.3h4"/><circle cx="5.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/><circle cx="7.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/></g><rect x="14" y="13.2" width="4.6" height="3.2" rx="1.6" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Webdesign &amp; Landingpages</span>
                             <span class="nav-dd-desc">Webseiten, die aus Zuschauern Anfragen machen</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-ads" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-ads" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><path d="M3 20.5h18"/><path d="M6.5 20.5v-4.5M11 20.5v-7M15.5 20.5v-5.5"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="m4 12 5.5-4.5 3.5 2.8L19.5 4.5"/><path d="M16.2 4.2h3.3v3.3"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Performance Marketing</span>
                             <span class="nav-dd-desc">Messbare Werbung mit Google &amp; Meta Ads</span>
                         </span>
                     </a>
-                    <a href="done4you.html" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-skalierung" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.3" cy="14.8" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="14.7" cy="14.8" r="5" stroke="#D4A574" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1.5"><path d="M12 6.8V2.6"/><path d="M9.9 4.7 12 2.6l2.1 2.1"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Skalierung als Wachstumspartner</span>
@@ -11541,12 +11820,12 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="mobile-sub-list">
-            <a href="done4you.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
-            <a href="done4you.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
-            <a href="done4you.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
-            <a href="done4you.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
-            <a href="done4you.html#leistung-ads" class="mobile-link">Performance Marketing</a>
-            <a href="done4you.html" class="mobile-link">Skalierung als Wachstumspartner</a>
+            <a href="index.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
+            <a href="index.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
+            <a href="index.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
+            <a href="index.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
+            <a href="index.html#leistung-ads" class="mobile-link">Performance Marketing</a>
+            <a href="index.html#leistung-skalierung" class="mobile-link">Skalierung als Wachstumspartner</a>
         </div>
     </div>
     <a href="done4you.html" class="mobile-link">Done4You</a>
@@ -11773,10 +12052,10 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
 
 <!-- ════════ IMPACT-SEKTION ════════ -->
 <section class="impact-section" id="impact">
+  <div class="imp-red-m" id="impRedM" aria-hidden="true"></div>
 
   <!-- STICKY STAGE: alles in einem -->
   <div class="impact-stage">
-    <div class="imp-red-m" id="impRedM" aria-hidden="true"></div>
     <div class="impact-wave" data-wave></div>
     <div class="impact-wave-shine" data-shine></div>
 
@@ -11946,10 +12225,10 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
                     </ul>
                     <a href="case-barwig.html" class="fs2-btn">Ganze Fallstudie ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
                 </div>
-                <a href="https://youtu.be/sfMi6RJMhgM" class="cs-photo fs2-media" data-yt-id="sfMi6RJMhgM" aria-label="Video-Statement von Tobias Barwig ansehen">
+                <a href="case-barwig.html#kundenfeedback" class="cs-photo fs2-media" aria-label="Feedback-Interview von Tobias Barwig ansehen">
                     <img src="case-barwig.jpg" alt="Tobias Barwig von der Barwig Group" loading="lazy">
                     <span class="cs-play fs2-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                    <span class="fs2-media-label">Video-Statement ansehen</span>
+                    <span class="fs2-media-label">Feedback-Interview ansehen</span>
                 </a>
             </article>
             <article class="cs-card fs2">
@@ -11981,7 +12260,7 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
                     </ul>
                     <a href="case-boerner.html" class="fs2-btn">Ganze Fallstudie ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
                 </div>
-                <a href="case-boerner.html" class="cs-photo fs2-media" data-yt-id="h4y7e-hiw2o" aria-label="Fallstudie Benjamin Börner ansehen">
+                <a href="case-boerner.html" class="cs-photo fs2-media fs2-media-boerner" data-yt-id="h4y7e-hiw2o" aria-label="Fallstudie Benjamin Börner ansehen">
                     <img src="case-b.jpg" alt="Benjamin Börner" loading="lazy" onerror="this.style.display='none'">
                     <span class="cs-play fs2-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
                 </a>
@@ -12156,7 +12435,7 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
             <p class="sub reveal">Dein Kanal steht im Zentrum. Wir übernehmen <strong>das ganze Marketing drumherum</strong>. Ein Team, ein Ansprechpartner.</p>
         </div>
 
-        <div class="orbit-system reveal" role="img" aria-label="YouTube-Marketing-System mit 6 Service-Bereichen rund um das zentrale System">
+        <div class="orbit-system reveal" role="group" aria-label="Sechs Leistungen unseres YouTube-Marketing-Systems. Wähle eine Leistung für weitere Informationen.">
             <!-- Verbindungslinien (nur Desktop) -->
             <svg class="orbit-lines" viewBox="0 0 640 640" aria-hidden="true">
                 <circle cx="320" cy="320" r="240"/>
@@ -12182,87 +12461,91 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
                 <div class="orbit-hub-sub">by <strong>schmidtke.</strong></div>
             </div>
 
-            <!-- 6 Service-Spokes (Position via inline --angle, Stagger via --i) -->
-            <!-- 1. oben: Strategie & Personal Brand -->
-            <div class="orbit-spoke" style="--angle: 0deg; --i: 1;" aria-label="Strategie und Personal Brand" data-info="Positionierung, Themenplan und deine Marke: Wir machen dich zum Gesicht deiner Branche.">
+            <!-- 6 Leistungen: Bezeichnungen entsprechen exakt dem Leistungsmenü -->
+            <!-- 1. oben: Content-Strategie -->
+            <button type="button" class="orbit-spoke" id="leistung-coaching" style="--angle: 0deg; --i: 1; scroll-margin-top: 140px;" aria-label="Content-Strategie: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir schärfen deine Positionierung, Zielgruppe und Formate. Daraus entstehen Themenpläne, klickstarke Titelideen und klare Skripte, die zu deinem Angebot führen." data-details="Positionierung|Themenplan|Titel &amp; Skripte">
                 <div class="orbit-spoke-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">Strategie &amp;<br>Personal Brand</div>
-                    <div class="orbit-spoke-sub">Titel · Themen · CI</div>
+                    <div class="orbit-spoke-title">Content-Strategie</div>
+                    <div class="orbit-spoke-sub">Positionierung · Skripte</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 2. rechts oben: Videoproduktion -->
-            <div class="orbit-spoke" style="--angle: 60deg; --i: 2;" aria-label="Videoproduktion" data-info="Dreh, Schnitt und Studio: professionelle YouTube-Videos, ohne dass du dich um Technik kümmerst.">
+            <!-- 2. rechts oben: Studio-Setup & Dreh vor Ort -->
+            <button type="button" class="orbit-spoke" id="leistung-studio" style="--angle: 60deg; --i: 2; scroll-margin-top: 140px;" aria-label="Studio-Setup und Dreh vor Ort: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir richten Kamera, Licht und Ton direkt bei dir ein oder kommen für planbare Drehtage zu dir. So entsteht konstant hochwertiger Content ohne Technikstress." data-details="Kamera, Licht &amp; Ton|Setup bei dir|Drehtag vor Ort">
                 <div class="orbit-spoke-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8l4-3h5l4 3v8l-4 3H6l-4-3z"/><path d="M15 10l7-3v10l-7-3"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">Videoproduktion</div>
-                    <div class="orbit-spoke-sub">Dreh · Schnitt · Studio</div>
+                    <div class="orbit-spoke-title">Studio-Setup<br>&amp; Dreh vor Ort</div>
+                    <div class="orbit-spoke-sub">Kamera · Licht · Ton</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 3. rechts unten: Shorts & Reels (Plattform-Logos in Gold) -->
-            <div class="orbit-spoke" style="--angle: 120deg; --i: 3;" aria-label="Shorts und Reels auf YouTube, Facebook und Instagram" data-info="Aus jedem Video werden Kurzclips für YouTube, Facebook und Instagram.">
-                <div class="orbit-spoke-logos" aria-hidden="true">
-                    <svg viewBox="0 0 28.57 20" fill="currentColor"><path d="M27.97 3.12A3.58 3.58 0 0 0 25.45.6C23.22 0 14.29 0 14.29 0S5.35 0 3.12.6A3.58 3.58 0 0 0 .6 3.12C0 5.35 0 10 0 10s0 4.65.6 6.88a3.58 3.58 0 0 0 2.52 2.52c2.23.6 11.17.6 11.17.6s8.93 0 11.16-.6a3.58 3.58 0 0 0 2.52-2.52c.6-2.23.6-6.88.6-6.88s0-4.65-.6-6.88zM11.43 14.29V5.72L18.85 10l-7.42 4.29z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3.2h2.7V.2C18.7.13 17.1 0 15.9 0c-2.6 0-4.4 1.6-4.4 4.6V7H8.1v3.2h3.4V21h4V10.2h3.3l.5-3.2h-3.8V4.9c0-1 .3-1.7 1.5-1.7z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor" stroke="none"/></svg>
+            <!-- 3. rechts unten: Videoschnitt & Upload -->
+            <button type="button" class="orbit-spoke" id="leistung-video" style="--angle: 120deg; --i: 3; scroll-margin-top: 140px;" aria-label="Videoschnitt und Upload: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir schneiden Longform-Videos und Shorts, gestalten Thumbnails und übernehmen Titel, Beschreibung sowie SEO-Upload. Du prüfst nur noch das fertige Ergebnis." data-details="Videoschnitt|Thumbnails|SEO-Upload">
+                <div class="orbit-spoke-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="4" rx="1"/><rect x="3" y="12" width="11" height="4" rx="1"/><path d="M17 11v9"/><path d="m14.5 17.5 2.5 2.5 2.5-2.5"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">Shorts &amp; Reels</div>
-                    <div class="orbit-spoke-sub">YouTube · Facebook · Instagram</div>
+                    <div class="orbit-spoke-title">Videoschnitt<br>&amp; Upload</div>
+                    <div class="orbit-spoke-sub">Schnitt · Thumbnail · SEO</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 4. unten: Webdesign & Landing Pages -->
-            <div class="orbit-spoke" style="--angle: 180deg; --i: 4;" aria-label="Webdesign und Landing Pages" data-info="Landingpages und Webseiten, die aus Zuschauern Anfragen machen.">
+            <!-- 4. unten: Webdesign & Landingpages -->
+            <button type="button" class="orbit-spoke" id="leistung-landingpage" style="--angle: 180deg; --i: 4; scroll-margin-top: 140px;" aria-label="Webdesign und Landingpages: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir verbinden deine Videos mit einer Website oder Landingpage, die Vertrauen aufbaut und Interessenten gezielt zur Anfrage führt." data-details="Webdesign|Landingpages|Anfrage-Optimierung">
                 <div class="orbit-spoke-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 8h20"/><circle cx="5" cy="6" r="0.6" fill="currentColor"/><circle cx="7" cy="6" r="0.6" fill="currentColor"/><circle cx="9" cy="6" r="0.6" fill="currentColor"/><path d="M7 22h10"/><path d="M12 18v4"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">Webdesign &amp; Landing</div>
-                    <div class="orbit-spoke-sub">Webseite · Landingpage · Anfragen</div>
+                    <div class="orbit-spoke-title">Webdesign<br>&amp; Landingpages</div>
+                    <div class="orbit-spoke-sub">Webseite · Landingpages</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 5. links unten: Ads & Reichweite (eigenes Ads-Icon) -->
-            <div class="orbit-spoke" style="--angle: 240deg; --i: 5;" aria-label="Ads schalten auf Facebook, Instagram und Google" data-info="Google und Meta Ads skalieren deine besten Inhalte und holen mehr aus deinem Angebot heraus.">
+            <!-- 5. links unten: Performance Marketing -->
+            <button type="button" class="orbit-spoke" id="leistung-ads" style="--angle: 240deg; --i: 5; scroll-margin-top: 140px;" aria-label="Performance Marketing: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir verstärken erfolgreiche Inhalte mit Google- und Meta-Ads, messen die Kosten pro Anfrage und optimieren die Kampagnen laufend." data-details="Google Ads|Meta Ads|Messbare Optimierung">
                 <div class="orbit-spoke-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l14-6v14L3 13v-2z"/><path d="M7.5 13.5V17a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-2.2"/><path d="M20.5 8.5l1.8-1"/><path d="M20.5 15.5l1.8 1"/><path d="M21 12h2"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">Ads &amp; Reichweite</div>
-                    <div class="orbit-spoke-sub">Facebook · Instagram · Google</div>
+                    <div class="orbit-spoke-title">Performance<br>Marketing</div>
+                    <div class="orbit-spoke-sub">Google · Meta · Reporting</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 6. links oben: KI-Sichtbarkeit & SEO -->
-            <div class="orbit-spoke" style="--angle: 300deg; --i: 6;" aria-label="KI-Sichtbarkeit und SEO" data-info="Sichtbar in Google, ChatGPT und Perplexity, wenn Kunden nach dem Besten fragen.">
+            <!-- 6. links oben: Skalierung als Wachstumspartner -->
+            <button type="button" class="orbit-spoke" id="leistung-skalierung" style="--angle: 300deg; --i: 6; scroll-margin-top: 140px;" aria-label="Skalierung als Wachstumspartner: weitere Informationen" aria-expanded="false" aria-controls="orbitInfo" data-info="Wir verbinden Content, Website, Werbung und Reporting zu einem System und entwickeln es Monat für Monat anhand echter Daten weiter." data-details="Auswertung|Optimierung|Laufende Begleitung">
                 <div class="orbit-spoke-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M21 21l-6.3-6.3"/><path d="M10.5 7v7"/><path d="M7 10.5h7"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5h18"/><path d="M5.5 17v-3.5"/><path d="M10 17v-6"/><path d="M14.5 17V9"/><path d="m4 10.5 5-4 4 3 7-6"/><path d="M16.5 3.5H20V7"/></svg>
                 </div>
                 <div class="orbit-spoke-text">
-                    <div class="orbit-spoke-title">KI-Sichtbarkeit<br>&amp; SEO</div>
-                    <div class="orbit-spoke-sub">Google · ChatGPT · Perplexity</div>
+                    <div class="orbit-spoke-title">Skalierung als<br>Wachstumspartner</div>
+                    <div class="orbit-spoke-sub">Auswertung · Wachstum</div>
                 </div>
-            </div>
-        </div>
+            </button>
 
-        <div class="orbit-info" id="orbitInfo" hidden>
-            <b id="orbitInfoTitle"></b>
-            <p id="orbitInfoText"></p>
+            <div class="orbit-info" id="orbitInfo" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="orbitInfoTitle">
+                <button type="button" class="orbit-info-close" id="orbitInfoClose" aria-label="Informationen schließen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+                <span class="orbit-info-kicker" id="orbitInfoKicker">Leistung 01 von 06</span>
+                <h3 id="orbitInfoTitle"></h3>
+                <p id="orbitInfoText"></p>
+                <div class="orbit-info-pills" id="orbitInfoPills" aria-label="Enthaltene Bausteine"></div>
+            </div>
         </div>
 
         <p class="growth-legend reveal">Sechs Disziplinen, <strong>ein Team</strong>, ein Ansprechpartner. Mit wenig Zeitaufwand für dich. <strong>Wir übernehmen den lästigen Aufwand.</strong></p>
 
         <!-- Ablauf: 4 Schritte als schmale Zeile -->
+        <h2 class="sysn-process-heading reveal">So kannst du mit uns zusammenarbeiten.</h2>
         <div class="sysn-steps reveal" aria-label="So läuft es ab">
             <div class="sysn-step"><span class="sysn-no">01</span><div><h3>Erstgespräch</h3><p>20 Min. Klarheit, ob es passt.</p></div></div>
-            <div class="sysn-step"><span class="sysn-no">02</span><div><h3>Strategie &amp; Setup</h3><p>Positionierung, Themenplan, Studio.</p></div></div>
+            <div class="sysn-step"><span class="sysn-no">02</span><div><h3>Strategiegespräch mit Fabian</h3><p>Positionierung, Themenplan, Studio.</p></div></div>
             <div class="sysn-step"><span class="sysn-no">03</span><div><h3>Produktion &amp; Content</h3><p>Ein Drehtag, wir machen den Rest.</p></div></div>
             <div class="sysn-step"><span class="sysn-no">04</span><div><h3>Wachstum &amp; Skalierung</h3><p>Messbar im Dashboard, Monat für Monat.</p></div></div>
         </div>
@@ -12300,9 +12583,9 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
                             <polyline class="vst-line" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" points="0,112 30,104 55,110 80,96 105,101 130,86 155,92 180,72 210,78 240,58 270,64 300,44 330,50 360,30 390,34 420,16"/>
                         </svg>
                         <div class="vst-content-media" aria-hidden="true">
-                            <span class="vst-media-tile t1"><img src="assets/dreh-podcast.jpg" alt=""><i><img src="assets/icons/youtube.svg" alt=""></i></span>
+                            <span class="vst-media-tile t1"><img src="assets/dreh-podcast.jpg" alt=""><i class="yt"><img src="assets/icons/youtube.svg" alt="YouTube"></i></span>
                             <span class="vst-media-tile t2"><img src="assets/kunde-interview.jpg" alt=""><i class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></i></span>
-                            <span class="vst-media-tile t3"><img src="assets/videoschnitt.jpg" alt=""><i><img src="assets/icons/youtube.svg" alt=""></i></span>
+                            <span class="vst-media-tile t3"><img src="assets/videoschnitt.jpg" alt=""><i class="yt"><img src="assets/icons/youtube.svg" alt="YouTube"></i></span>
                         </div>
                     </div>
                     <h3>Content, der für dich arbeitet</h3>
@@ -12404,33 +12687,6 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
 </section>
 
 
-<!-- ═══ LEISTUNGEN: Orbit-Ueberblick ═══ -->
-<section class="lorb" id="leistungen-detail" aria-label="Unsere Leistungen">
-    <div class="container">
-        <div class="lorb-grid">
-            <div class="reveal">
-                <span class="lorb-eyebrow"><i></i>Unsere Leistungen</span>
-                <h2 class="lorb-h2">Sechs Leistungen. <span>Ein System.</span></h2>
-                <p class="lorb-sub">Dein YouTube-Kanal steht im Zentrum, wir bauen das ganze Marketing drumherum: Strategie, Videoproduktion, Shorts, Webdesign, messbare Werbung und KI-Sichtbarkeit. Ein Team, ein Ansprechpartner.</p>
-                <a href="done4you.html" class="lorb-btn">So läuft die Zusammenarbeit ab
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-            </div>
-            <div class="lorb-orbit reveal rd1" aria-hidden="true">
-                <span class="lorb-ring r1"></span>
-                <span class="lorb-ring r2"></span>
-                <span class="lorb-core"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                <span class="lorb-chip c1"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Strategie &amp; Personal Brand</span>
-                <span class="lorb-chip c2"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Videoproduktion</span>
-                <span class="lorb-chip c3"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Shorts &amp; Reels</span>
-                <span class="lorb-chip c4"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Webdesign &amp; Landingpages</span>
-                <span class="lorb-chip c5"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Ads &amp; Reichweite</span>
-                <span class="lorb-chip c6"><span class="lorb-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>KI-Sichtbarkeit &amp; SEO</span>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ═══ STRATEGIEPARTNER-STATEMENT ═══ -->
 <section class="analyse" id="ki-bonus" aria-label="YouTube + KI-Sichtbarkeit">
     <canvas id="matrixRain" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.45;z-index:0;mask-image:linear-gradient(to bottom, black 0%, black 75%, transparent 100%);-webkit-mask-image:linear-gradient(to bottom, black 0%, black 75%, transparent 100%);"></canvas>
@@ -12440,7 +12696,7 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
             <!-- LINKS: kurzer Text -->
             <div class="kib-copy">
                 <div class="found-in reveal" id="foundIn"><span class="found-in-label">Werde gefunden in</span><span class="found-in-item active"><svg class="fi-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.76h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><span class="fi-name">Google AI</span></span><span class="found-in-item"><svg class="fi-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.142-.08 4.778-2.758a.795.795 0 0 0 .393-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.495 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.677l5.815 3.355-2.02 1.168a.077.077 0 0 1-.071 0l-4.83-2.787A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08-4.78 2.758a.795.795 0 0 0-.39.68z"/></svg><span class="fi-name">ChatGPT</span></span><span class="found-in-item"><svg class="fi-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L0 7.054v9.892L12 24l12-7.054V7.054L12 0zm0 1.578l10.191 5.993L12 13.563 1.809 7.571 12 1.578zM1.191 8.577L11.4 14.58v8.828L1.191 17.4V8.577zm12.018 6.003l10.2-5.996v8.815l-10.2 6.009V14.58z" fill="#20808D"/></svg><span class="fi-name">Perplexity</span></span><span class="found-in-item"><svg class="fi-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fiGemGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#9B72CB"/><stop offset="100%" stop-color="#D96570"/></linearGradient></defs><path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="url(#fiGemGrad)"/></svg><span class="fi-name">Gemini</span></span><span class="found-in-item"><svg class="fi-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 2C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2z" fill="#D4A27F"/><path d="M24.5 13.8c-.5-.2-1.1 0-1.3.5l-6.4 14.1c-.2.5 0 1.1.5 1.3.1.1.3.1.4.1.4 0 .7-.2.9-.6l6.4-14.1c.2-.5 0-1-.5-1.3zm4.3 1.9c-.5-.2-1.1 0-1.3.5l-4.5 9.9c-.2.5 0 1.1.5 1.3.1.1.3.1.4.1.4 0 .7-.2.9-.6l4.5-9.9c.2-.5 0-1.1-.5-1.3zm-9.6 1.1c-.5-.2-1.1 0-1.3.5l-4.5 9.9c-.2.5 0 1.1.5 1.3.1.1.3.1.4.1.4 0 .7-.2.9-.6l4.5-9.9c.2-.5 0-1-.5-1.3zm13.9 1c-.5-.2-1.1 0-1.3.5l-2.6 5.7c-.2.5 0 1.1.5 1.3.1.1.3.1.4.1.4 0 .7-.2.9-.6l2.6-5.7c.2-.5 0-1.1-.5-1.3zm-18.3 2c-.5-.2-1.1 0-1.3.5L11 26c-.2.5 0 1.1.5 1.3.1.1.3.1.4.1.4 0 .7-.2.9-.6l2.5-5.7c.2-.5 0-1-.5-1.3z" fill="#fff"/></svg><span class="fi-name">Claude</span></span></div>
-                <h2 class="reveal">YouTube macht dich sichtbar. <span style="color: var(--blue);">Doppelt.</span></h2>
+                <h2 class="reveal">YouTube macht dich in der <span style="color: var(--blue);">KI-Suche sichtbar.</span></h2>
                 <p class="kib-sub reveal"><strong>Jeder</strong> deiner Kunden fragt ChatGPT, Gemini und Perplexity um Rat: „Wer ist der beste Anbieter?" KI liefert immer eine Antwort. Aktuell ohne dich? <strong>Wir ändern das.</strong></p>
                 <a href="formular.html" class="btn-primary reveal reveal-delay-1" style="display:inline-flex;margin-top:26px;">Kostenloses Erstgespräch sichern &#8594;</a>
             </div>
@@ -12700,20 +12956,29 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
     <div class="pt-wrap">
         <div class="pt-top">
             <div class="pt-copy">
-                <span class="sb-eyebrow reveal">Über die Schmidtke GmbH</span>
+                <span class="sb-eyebrow reveal">Über uns</span>
                 <h2 class="ps-h2 reveal">Deine externe <span>YouTube&#8209;Marketing&shy;abteilung</span>.</h2>
-                <p class="ps-lede reveal rd1">Strategie, Dreh, Schnitt und Vermarktung aus einem eingespielten Team, ohne dass du selbst eine Abteilung aufbauen musst. Du arbeitest direkt mit den Menschen, die deinen Kanal betreuen, vom ersten Gespräch bis zum fertigen Video.</p>
+                <h3 class="pt-founder-title reveal rd1">Fabian Schmidtke · Gründer &amp; strategischer Kopf</h3>
+                <div class="pt-story ps-lede reveal rd1">
+                    <p>Fabian lädt 2007 seine ersten YouTube-Videos hoch und erreicht noch als Teenager die ersten Millionen Aufrufe.</p>
+                    <p>Ab 2014 arbeitet er mit Fitness-YouTubern und verbindet Videoproduktion mit Online-Marketing.</p>
+                    <p>Seit 2020 setzt er dieses Wissen mit dem Team der Schmidtke GmbH für Unternehmen ein.</p>
+                    <p>Für jedes Kundenmodell entwickelt Fabian die passende Strategie, Themen und Vermarktung. So haben wir bereits mehrere Millionen Euro Umsatz für Kunden erzielt.</p>
+                </div>
+                <div class="pt-facts reveal rd2" aria-label="Erfahrung von Fabian Schmidtke und der Schmidtke GmbH">
+                    <div class="pt-fact"><b>2007</b><span>Erste YouTube-Videos</span></div>
+                    <div class="pt-fact"><b>2020</b><span>Agentur gegründet</span></div>
+                    <div class="pt-fact"><b>Mehrere Mio. €</b><span>Kundenumsatz</span></div>
+                </div>
                 <div class="pt-ctas reveal rd2">
                     <a href="ueber-uns.html" class="pt-btn">Mehr über uns
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="ueber-uns.html#team" class="pt-btn pt-btn-ghost">Das Team kennenlernen
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
                 </div>
             </div>
-            <div class="pt-hero reveal rd1">
-                <img src="assets/jasmin-play.jpg" alt="Jasmin Schmidtke mit YouTube-Play-Button" loading="lazy">
+            <div class="pt-hero pt-hero-fabian reveal rd1">
+                <img src="assets/fabian-podcast-neu.jpg" alt="Fabian Schmidtke am Podcast-Mikrofon" loading="lazy">
+                <div class="pt-person-label"><b>Fabian Schmidtke</b><span>Gründer &amp; Geschäftsführer · YouTube seit 2007</span></div>
             </div>
         </div>
     </div>
@@ -12737,27 +13002,8 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
             </div>
         </div>
 
-        <div class="uk-grid uk-grid-2">
-            <div class="uk-card uk-founder reveal">
-                <img src="assets/fabian-portrait.jpg" alt="Fabian Schmidtke, Gründer der Schmidtke GmbH" loading="lazy">
-                <div class="uk-founder-overlay">
-                    <h3>Fabian Schmidtke</h3>
-                    <p>Gründer &amp; Geschäftsführer</p>
-                </div>
-            </div>
-            <div class="uk-card uk-quote reveal reveal-delay-1">
-                <blockquote>„Wer heute nicht auf YouTube sichtbar ist, verliert morgen seine Kunden an die, die es sind.“</blockquote>
-                <div class="uk-quote-sig">Fabian Schmidtke</div>
-                <div class="uk-stats">
-                    <div class="uk-stat uk-s-gold"><b>2016</b><span>Gegründet in<br>Rottweil</span></div>
-                    <div class="uk-stat uk-s-blue"><b>100+</b><span>Kunden im<br>DACH-Raum</span></div>
-                    <div class="uk-stat uk-s-green"><b>2.500+</b><span>Produzierte<br>Videos</span></div>
-                </div>
-            </div>
-        </div>
-
         <div class="uk-impress">
-            <div class="uk-impress-ph reveal"><img src="assets/team-kamera-check.jpg" alt="Team der Schmidtke GmbH prüft Aufnahmen mit dem Kunden" loading="lazy"></div>
+            <div class="uk-impress-ph reveal"><img src="assets/elitewerk-dreh.jpg" alt="Fabian Schmidtke bei einer Videoproduktion mit dem EliteWerk-Team" loading="lazy"></div>
             <div class="uk-impress-ph reveal reveal-delay-1"><img src="assets/dreh-interview.jpg" alt="Videodreh beim Kunden vor Ort" loading="lazy"></div>
             <div class="uk-impress-ph reveal reveal-delay-2"><img src="assets/fabian-julia-bts.jpg" alt="Fabian Schmidtke und Team hinter der Kamera" loading="lazy"></div>
         </div>
@@ -14369,6 +14615,18 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
         if (impactText)  impactText.style.opacity = '';
         if (impactIntro) { impactIntro.style.opacity = ''; impactIntro.style.transform = ''; }
         if (impactHint)  { impactHint.style.opacity = ''; impactHint.style.transform = ''; }
+        var mobileCenter = window.innerHeight * 0.54;
+        var mobileRange = window.innerHeight * 0.34;
+        impactPairs.forEach(function(pair) {
+          var mobileLeft = pair.querySelector('.pair-card-left');
+          var mobileRight = pair.querySelector('.pair-card-right');
+          if (mobileLeft) mobileLeft.classList.remove('is-passed');
+          if (mobileRight) {
+            var mobileRect = mobileRight.getBoundingClientRect();
+            var mobileCardCenter = mobileRect.top + mobileRect.height / 2;
+            mobileRight.classList.toggle('is-active', Math.abs(mobileCardCenter - mobileCenter) < mobileRange);
+          }
+        });
         return;
       }
       var p = impactProgress();
@@ -14668,23 +14926,193 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
 </script>
 <script>
 (function () {
-    /* Orbit: Klick öffnet Infofeld (mobil) */
+    /* Orbit: sehr langsame Bewegung, Fokusfahrt und Leistungs-Infofenster */
+    var orbit = document.querySelector('.orbit-system');
     var spokes = [].slice.call(document.querySelectorAll('.orbit-spoke'));
     var panel = document.getElementById('orbitInfo');
-    var pT = document.getElementById('orbitInfoTitle');
-    var pX = document.getElementById('orbitInfoText');
-    var curSpoke = null;
-    spokes.forEach(function (s) {
-        s.addEventListener('click', function () {
-            if (!panel) return;
-            if (curSpoke === s) { panel.hidden = true; panel.classList.remove('open'); curSpoke = null; return; }
-            curSpoke = s;
-            var t = s.querySelector('.orbit-spoke-title');
-            pT.textContent = t ? t.textContent.replace(/\s+/g, ' ').trim() : '';
-            pX.textContent = s.getAttribute('data-info') || '';
-            panel.hidden = false; panel.classList.add('open');
+    var panelTitle = document.getElementById('orbitInfoTitle');
+    var panelText = document.getElementById('orbitInfoText');
+    var panelKicker = document.getElementById('orbitInfoKicker');
+    var panelPills = document.getElementById('orbitInfoPills');
+    var panelClose = document.getElementById('orbitInfoClose');
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobileOrbit = window.matchMedia('(max-width: 700px)');
+    var activeSpoke = null;
+    var rotation = 0;
+    var autoRotate = true;
+    var motionReady = false;
+    var focusTimer = null;
+    var animationFrame = null;
+    var lastFrame = performance.now();
+    var orbitInView = true;
+    var rotationSpeed = 360 / 240000; /* eine ruhige Umdrehung in vier Minuten */
+
+    function baseAngle(spoke) {
+        return parseFloat(spoke.style.getPropertyValue('--angle')) || 0;
+    }
+
+    function renderOrbit() {
+        if (!orbit || mobileOrbit.matches) return;
+        var radius = parseFloat(getComputedStyle(orbit).getPropertyValue('--orbit-radius')) || 240;
+        var snapFactor = Math.max(4, (window.devicePixelRatio || 1) * 4);
+        orbit.style.setProperty('--line-rotation', rotation.toFixed(3) + 'deg');
+        spokes.forEach(function (spoke) {
+            var radians = (baseAngle(spoke) + rotation) * Math.PI / 180;
+            var x = Math.round(Math.sin(radians) * radius * snapFactor) / snapFactor;
+            var y = Math.round(-Math.cos(radians) * radius * snapFactor) / snapFactor;
+            spoke.style.setProperty('--orbit-x', x.toFixed(3) + 'px');
+            spoke.style.setProperty('--orbit-y', y.toFixed(3) + 'px');
         });
-    });
+    }
+
+    function nearestFocusRotation(spoke) {
+        var rawTarget = -baseAngle(spoke);
+        return rawTarget + Math.round((rotation - rawTarget) / 360) * 360;
+    }
+
+    function focusSpoke(spoke) {
+        if (mobileOrbit.matches) return;
+        var target = nearestFocusRotation(spoke);
+        if (reducedMotion) {
+            rotation = target;
+            renderOrbit();
+            return;
+        }
+        window.clearTimeout(focusTimer);
+        orbit.classList.add('is-focusing');
+        window.requestAnimationFrame(function () {
+            rotation = target;
+            renderOrbit();
+        });
+        focusTimer = window.setTimeout(function () {
+            orbit.classList.remove('is-focusing');
+        }, 1500);
+    }
+
+    function frame(now) {
+        var delta = Math.min(64, now - lastFrame);
+        lastFrame = now;
+        if (motionReady && orbitInView && autoRotate && !reducedMotion && !mobileOrbit.matches && !document.hidden && !orbit.classList.contains('is-focusing')) {
+            rotation += delta * rotationSpeed;
+            renderOrbit();
+        }
+        animationFrame = window.requestAnimationFrame(frame);
+    }
+
+    function startOrbitMotion() {
+        if (motionReady || !orbit) return;
+        window.setTimeout(function () {
+            motionReady = true;
+            orbit.classList.add('is-orbiting');
+            lastFrame = performance.now();
+            renderOrbit();
+            if (!animationFrame && !reducedMotion) animationFrame = window.requestAnimationFrame(frame);
+        }, reducedMotion ? 0 : 1650);
+    }
+
+    function closeOrbitInfo(restoreFocus) {
+        if (!activeSpoke || !orbit || !panel) return;
+        var previous = activeSpoke;
+        activeSpoke = null;
+        previous.classList.remove('is-active');
+        previous.setAttribute('aria-expanded', 'false');
+        orbit.classList.remove('has-active');
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+        autoRotate = true;
+        window.clearTimeout(focusTimer);
+        orbit.classList.remove('is-focusing');
+        if (mobileOrbit.matches && panel.parentNode !== orbit) orbit.appendChild(panel);
+        if (restoreFocus) previous.focus({ preventScroll: true });
+    }
+
+    function openOrbitInfo(spoke) {
+        if (!orbit || !panel || !spoke) return;
+        if (activeSpoke === spoke) {
+            closeOrbitInfo(false);
+            return;
+        }
+        if (activeSpoke) {
+            activeSpoke.classList.remove('is-active');
+            activeSpoke.setAttribute('aria-expanded', 'false');
+        }
+        activeSpoke = spoke;
+        spokes.forEach(function (node) {
+            node.classList.toggle('is-active', node === spoke);
+            node.setAttribute('aria-expanded', node === spoke ? 'true' : 'false');
+        });
+        var title = spoke.querySelector('.orbit-spoke-title');
+        var index = spokes.indexOf(spoke) + 1;
+        panelTitle.textContent = title ? title.innerText.replace(/\s+/g, ' ').trim() : '';
+        panelText.textContent = spoke.getAttribute('data-info') || '';
+        panelKicker.textContent = 'Leistung ' + String(index).padStart(2, '0') + ' von 06';
+        panelPills.textContent = '';
+        (spoke.getAttribute('data-details') || '').split('|').filter(Boolean).forEach(function (label) {
+            var pill = document.createElement('span');
+            pill.textContent = label;
+            panelPills.appendChild(pill);
+        });
+        if (mobileOrbit.matches) {
+            spoke.insertAdjacentElement('afterend', panel);
+        } else if (panel.parentNode !== orbit) {
+            orbit.appendChild(panel);
+        }
+        orbit.classList.add('has-active');
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+        autoRotate = false;
+        focusSpoke(spoke);
+    }
+
+    if (orbit && spokes.length && panel) {
+        renderOrbit();
+        if ('IntersectionObserver' in window) {
+            var orbitVisibility = new IntersectionObserver(function (entries) {
+                orbitInView = entries[0] ? entries[0].isIntersecting : true;
+                lastFrame = performance.now();
+            }, { rootMargin: '160px 0px' });
+            orbitVisibility.observe(orbit);
+        }
+        if (orbit.classList.contains('is-revealed')) {
+            startOrbitMotion();
+        } else {
+            var revealWatcher = new MutationObserver(function () {
+                if (orbit.classList.contains('is-revealed')) {
+                    revealWatcher.disconnect();
+                    startOrbitMotion();
+                }
+            });
+            revealWatcher.observe(orbit, { attributes: true, attributeFilter: ['class'] });
+        }
+        spokes.forEach(function (spoke) {
+            spoke.addEventListener('click', function (event) {
+                event.stopPropagation();
+                openOrbitInfo(spoke);
+            });
+        });
+        panelClose.addEventListener('click', function () { closeOrbitInfo(true); });
+        orbit.addEventListener('click', function (event) {
+            if (!event.target.closest('.orbit-spoke') && !event.target.closest('.orbit-info')) closeOrbitInfo(false);
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && activeSpoke) closeOrbitInfo(true);
+        });
+
+        function openOrbitFromHash() {
+            if (!location.hash) return;
+            var target = document.querySelector(location.hash);
+            if (target && target.classList.contains('orbit-spoke')) openOrbitInfo(target);
+        }
+        window.addEventListener('hashchange', openOrbitFromHash);
+        if (location.hash) window.setTimeout(openOrbitFromHash, 350);
+        var syncOrbitMode = function () {
+            if (activeSpoke) closeOrbitInfo(false);
+            if (panel.parentNode !== orbit) orbit.appendChild(panel);
+            renderOrbit();
+        };
+        if (mobileOrbit.addEventListener) mobileOrbit.addEventListener('change', syncOrbitMode);
+        else mobileOrbit.addListener(syncOrbitMode);
+    }
     /* Fallstudien: Zitat auf-/zuklappen (mobil) */
     [].slice.call(document.querySelectorAll('.cs-quotebar')).forEach(function (q) {
         q.addEventListener('click', function () {
@@ -14711,12 +15139,13 @@ wistia-player[media-id='yv7ne517ww'] { display: block; border-radius: 18px; over
         var tick = false;
         function updRed() {
             tick = false;
-            if (window.innerWidth > 640) { red.style.opacity = '0'; return; }
+            if (window.innerWidth > 900) { red.style.opacity = '0'; return; }
             var r = sec.getBoundingClientRect();
             var total = r.height - window.innerHeight;
             if (total <= 0) { red.style.opacity = '0'; return; }
             var p = Math.max(0, Math.min(1, -r.top / total));
-            var e = Math.min(1, p / 0.6); red.style.opacity = String(e * e * (3 - 2 * e));
+            var e = Math.max(0, Math.min(1, (p - 0.46) / 0.38));
+            red.style.opacity = String((e * e * (3 - 2 * e)) * 0.96);
         }
         window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(updRed); } }, { passive: true });
         updRed();

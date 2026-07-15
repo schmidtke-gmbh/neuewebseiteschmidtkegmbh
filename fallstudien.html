@@ -145,6 +145,23 @@
     margin: 0 auto 36px;
   }
 
+  .hero .hero-filter-cta {
+    justify-content: center;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-filter-cta span { min-width: 0; }
+
+  @media (max-width: 480px) {
+    .hero .hero-filter-cta {
+      width: 100%;
+      padding: 15px 18px;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+  }
+
 
   
   .stats-bar {
@@ -381,6 +398,8 @@
 
   .case-thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; z-index: 1; }
 
+  .case-card[data-href="case-boerner.html"] .case-thumb-img { object-position: 78% center; }
+
   .case-thumb-mark { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; text-align: center; font-size: 19px; font-weight: 700; letter-spacing: 0.12em;  color: rgba(255,255,255,0.8); line-height: 1.4; padding: 0 16px; }
 
   .case-branche-tag, .case-play { z-index: 2; }
@@ -451,6 +470,35 @@
   .case-quote::before { content: "\201E"; color: var(--red); font-weight: 800; }
 
   .case-quote::after { content: "\201C"; color: var(--red); font-weight: 800; }
+
+  .case-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1px;
+  }
+
+  .case-services span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 6px 11px;
+    border: 1px solid rgba(230, 47, 31, 0.18);
+    border-radius: 9999px;
+    background: rgba(230, 47, 31, 0.07);
+    color: #9f291f;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .case-summary {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--card-text-soft);
+    border-left: 3px solid var(--red);
+    padding: 4px 0 4px 12px;
+  }
 
   .case-kpis {
     display: flex;
@@ -1105,9 +1153,11 @@
 
         .mobile-close svg { width: 20px; height: 20px; }
 </style>
+<link rel="stylesheet" href="mobile-layout-fixes.css">
+<link rel="stylesheet" href="kundenstimmen-video.css">
   <script src="https://elfsightcdn.com/platform.js" async></script>
 </head>
-<body>
+<body class="page-cases">
 
 <nav aria-label="Hauptnavigation">
     <div class="container">
@@ -1120,42 +1170,42 @@
                     <svg class="nav-dd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </button>
                 <div class="nav-dd-menu" role="menu" aria-label="Leistungen">
-                    <a href="done4you.html#leistung-coaching" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-coaching" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="19" r="1.8"/><path d="M6.8 19H13a4 4 0 0 0 4-4 4 4 0 0 0-4-4H9.5a3.5 3.5 0 0 1 0-7H13"/></g><g stroke="#D4A574" stroke-width="1.5"><circle cx="17.5" cy="4" r="2.3"/><circle cx="17.5" cy="4" r="0.3" fill="#D4A574"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Content-Strategie</span>
                             <span class="nav-dd-desc">Positionierung, Themenplan, Titel, Skripte</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-studio" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-studio" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="6" y="5.5" width="9.5" height="7" rx="1.6"/><path d="M15.5 8.2 20 6v6l-4.5-2.2"/><path d="M10.75 12.5 7 20.5M10.75 12.5l3.75 8M10.75 12.5v4.2"/></g><circle cx="8.6" cy="8" r="1" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Studio-Setup &amp; Dreh vor Ort</span>
                             <span class="nav-dd-desc">Kamera, Licht, Ton. Aufgebaut bei dir</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-video" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-video" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="4.2" rx="1.2"/><rect x="3" y="16" width="10.5" height="4.2" rx="1.2"/><path d="M3 4.8h4.5M10.5 4.8H15"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="M17.2 3.2v18"/><path d="m15.9 3.2h2.6"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Videoschnitt &amp; Upload</span>
                             <span class="nav-dd-desc">Schnitt, Thumbnails, SEO-Upload</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-landingpage" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8.4h18"/><path d="M6.2 12.5h6M6.2 15.3h4"/><circle cx="5.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/><circle cx="7.7" cy="6.2" r="0.4" fill="currentColor" stroke="none"/></g><rect x="14" y="13.2" width="4.6" height="3.2" rx="1.6" stroke="#D4A574" stroke-width="1.5"/></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Webdesign &amp; Landingpages</span>
                             <span class="nav-dd-desc">Webseiten, die aus Zuschauern Anfragen machen</span>
                         </span>
                     </a>
-                    <a href="done4you.html#leistung-ads" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-ads" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="currentColor" stroke-width="1.5"><path d="M3 20.5h18"/><path d="M6.5 20.5v-4.5M11 20.5v-7M15.5 20.5v-5.5"/></g><g stroke="#D4A574" stroke-width="1.5"><path d="m4 12 5.5-4.5 3.5 2.8L19.5 4.5"/><path d="M16.2 4.2h3.3v3.3"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Performance Marketing</span>
                             <span class="nav-dd-desc">Messbare Werbung mit Google &amp; Meta Ads</span>
                         </span>
                     </a>
-                    <a href="done4you.html" class="nav-dd-item" role="menuitem">
+                    <a href="index.html#leistung-skalierung" class="nav-dd-item" role="menuitem">
                         <span class="nav-dd-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9.3" cy="14.8" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="14.7" cy="14.8" r="5" stroke="#D4A574" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1.5"><path d="M12 6.8V2.6"/><path d="M9.9 4.7 12 2.6l2.1 2.1"/></g></svg></span>
                         <span class="nav-dd-text">
                             <span class="nav-dd-title">Skalierung als Wachstumspartner</span>
@@ -1190,12 +1240,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="mobile-sub-list">
-            <a href="done4you.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
-            <a href="done4you.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
-            <a href="done4you.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
-            <a href="done4you.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
-            <a href="done4you.html#leistung-ads" class="mobile-link">Performance Marketing</a>
-            <a href="done4you.html" class="mobile-link">Skalierung als Wachstumspartner</a>
+            <a href="index.html#leistung-coaching" class="mobile-link">Content-Strategie</a>
+            <a href="index.html#leistung-studio" class="mobile-link">Studio-Setup &amp; Dreh vor Ort</a>
+            <a href="index.html#leistung-video" class="mobile-link">Videoschnitt &amp; Upload</a>
+            <a href="index.html#leistung-landingpage" class="mobile-link">Webdesign &amp; Landingpages</a>
+            <a href="index.html#leistung-ads" class="mobile-link">Performance Marketing</a>
+            <a href="index.html#leistung-skalierung" class="mobile-link">Skalierung als Wachstumspartner</a>
         </div>
     </div>
     <a href="done4you.html" class="mobile-link">Done4You</a>
@@ -1217,7 +1267,11 @@
       Fallstudien
     </span>
     <h1>Echte Ergebnisse von<br><span class="hi">echten Kunden.</span></h1>
-    <p class="sub">Über 100 Unternehmen im DACH-Raum vertrauen uns ihre YouTube-Kanäle, Webseiten und Performance-Kampagnen an. Hier siehst du, was wir für sie gebaut haben, und welche Anfragen, Umsätze und KI-Sichtbarkeit daraus entstanden sind.</p>
+    <p class="sub">Über 100 Unternehmen im DACH-Raum vertrauen uns ihre YouTube-Kanäle an. Hier siehst du, was wir für sie gebaut haben und welche Anfragen, Umsätze und KI-Sichtbarkeit daraus entstanden sind.</p>
+    <a class="btn-red hero-filter-cta" href="#filter">
+      <span>Fallstudien nach Branche und Leistung ansehen</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </a>
   </div>
 </section>
 
@@ -1229,8 +1283,26 @@
   <div><div class="v">4,9 <span class="hi">★</span></div><div class="l">Agentur-Score</div></div>
 </div>
 
+<section class="customer-voices" id="kundenstimmen-video" aria-labelledby="kundenstimmen-video-title">
+  <div class="container">
+    <div class="customer-voices-card">
+      <div class="customer-voices-copy">
+        <span class="customer-voices-kicker">Direkt von unseren Kunden</span>
+        <h2 id="kundenstimmen-video-title">So erleben Kunden die <span>Zusammenarbeit mit uns.</span></h2>
+        <p>Drei Kunden berichten offen, wie sie Strategie, Produktion und die Zusammenarbeit mit unserem Team erleben.</p>
+      </div>
+      <div class="customer-voices-player">
+        <video controls playsinline preload="metadata" poster="assets/kundenfeedback-3-kunden-poster.jpg" aria-label="Drei Kunden berichten über die Zusammenarbeit mit der Schmidtke GmbH">
+          <source src="assets/kundenfeedback-3-kunden.mp4" type="video/mp4">
+          Dein Browser unterstützt dieses Video nicht.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ FILTER + GRID ═══ -->
-<section class="filter-section">
+<section class="filter-section" id="filter">
   <div class="container">
     <div class="filter-panel" aria-label="Fallstudien filtern">
       <div class="filter-group filter-group-branche">
@@ -1239,15 +1311,15 @@
           <span><strong class="filter-heading">Branche</strong><small class="filter-hint">Wähle deinen Markt</small></span>
         </div>
         <div class="filter-bar" role="tablist" aria-label="Branchen-Filter">
-          <button class="filter-pill is-active" type="button" data-filter="all">Alle <span class="count">(11)</span></button>
+          <button class="filter-pill is-active" type="button" data-filter="all">Alle <span class="count">(15)</span></button>
           <button class="filter-pill" type="button" data-filter="handwerk">Handwerk <span class="count">(1)</span></button>
           <button class="filter-pill" type="button" data-filter="zahnmedizin">Zahnmedizin <span class="count">(2)</span></button>
           <button class="filter-pill" type="button" data-filter="medizin">Medizin &amp; Gesundheit <span class="count">(2)</span></button>
           <button class="filter-pill" type="button" data-filter="immobilien">Immobilien <span class="count">(1)</span></button>
           <button class="filter-pill" type="button" data-filter="marketing">Marketing <span class="count">(1)</span></button>
-          <button class="filter-pill" type="button" data-filter="coaching">Coaching <span class="count">(1)</span></button>
-          <button class="filter-pill" type="button" data-filter="finanz">Finanz &amp; Steuern <span class="count">(1)</span></button>
-          <button class="filter-pill" type="button" data-filter="sport">Kampfsport <span class="count">(1)</span></button>
+          <button class="filter-pill" type="button" data-filter="coaching">Coaching <span class="count">(2)</span></button>
+          <button class="filter-pill" type="button" data-filter="finanz">Finanz &amp; Steuern <span class="count">(2)</span></button>
+          <button class="filter-pill" type="button" data-filter="sport">Sport &amp; Fitness <span class="count">(3)</span></button>
         </div>
       </div>
       <div class="filter-group filter-group-leistung">
@@ -1279,7 +1351,7 @@
         <div class="case-body">
           <div class="case-name">Christian Zotzmann<span class="role">Zentrum für biologische Zahnmedizin</span></div>
           <blockquote class="case-quote">Wir gewinnen Patienten-Anfragen und Vertrauen über unseren YouTube-Kanal, ohne selber viel Zeit dafür einzusetzen.</blockquote>
-          <div class="case-kpis"><div class="case-kpi"><div class="v"><span class="hi">880k+</span></div><div class="l">Aufrufe</div></div><div class="case-kpi"><div class="v"><span class="hi">40.000</span></div><div class="l">Abonnenten</div></div><div class="case-kpi"><div class="v"><span class="hi">500+</span></div><div class="l">Anfragen von Privatzahlern</div></div></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Webdesign</span><span>Anzeigen</span></div>
           <a href="case-zotzmann.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1294,22 +1366,22 @@
         <div class="case-body">
           <div class="case-name">Tobias Barwig<span class="role">Geschäftsführer, BARWIG Group GmbH</span></div>
           <blockquote class="case-quote">Unsere YouTube-Videos kommen richtig gut an und wir bekommen dadurch auch Anfragen im Bereich Heizung, Sanitär, &amp; Photovoltaik</blockquote>
-          <div class="case-kpis"><div class="case-kpi"><div class="v"><span class="hi">300k+</span></div><div class="l">Aufrufe</div></div><div class="case-kpi"><div class="v"><span class="hi">1 Std.</span></div><div class="l">Aufwand / Woche</div></div><div class="case-kpi"><div class="v"><span class="hi">#1</span></div><div class="l">KI-Empfehlung</div></div></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>KI-Sichtbarkeit</span></div>
           <a href="case-barwig.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </article>
-      <article class="case-card" data-branche="medizin" data-leistung="youtube" data-href="case-boerner.html">
+      <article class="case-card" data-branche="medizin" data-leistung="youtube ads webdesign" data-href="case-boerner.html">
         <div class="case-thumb">
           <span class="case-thumb-mark" aria-hidden="true">Börner<br>Lebenswerk</span>
           <img class="case-thumb-img" src="case-b.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
           <span class="case-branche-tag">Integrative Medizin</span>
         </div>
         <div class="case-body">
-          <div class="case-name">Benjamin Börner<span class="role">Geschäftsführer, Börner Lebenswerk GmbH</span></div>
+          <div class="case-name">Benjamin Börner<span class="role">Börner Lebenswerk · Kunde seit 2019</span></div>
           <blockquote class="case-quote">Für YouTube, Video Marketing und Strategie ist die Schmidtke GmbH DER Ansprechpartner.</blockquote>
-          <div class="case-kpis"><div class="case-kpi"><div class="v"><span class="hi">1 Mio+ €</span></div><div class="l">Umsatz über YouTube</div></div><div class="case-kpi"><div class="v"><span class="hi">4 Mio+</span></div><div class="l">Aufrufe</div></div><div class="case-kpi"><div class="v"><span class="hi">48.000</span></div><div class="l">Abonnenten</div></div></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Webdesign</span><span>Google Ads</span><span>Vertriebsunterstützung</span></div>
           <a href="case-boerner.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1324,7 +1396,7 @@
         <div class="case-body">
           <div class="case-name">Jürgen Rossegger<span class="role">Geschäftsführer, rossegger-gmbh.de</span></div>
           <blockquote class="case-quote">Ich veröffentliche jede Woche 2x ein Video. Dabei drücken wir nur auf Aufnahme und investieren 60min pro Woche. Fabian und sein Team kümmern sich um den Rest bei YouTube.</blockquote>
-          <div class="case-kpis"><div class="case-kpi"><div class="v"><span class="hi">2</span></div><div class="l">Videos / Woche</div></div><div class="case-kpi"><div class="v"><span class="hi">60 Min.</span></div><div class="l">Aufwand / Woche</div></div></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Studio &amp; Schulung</span></div>
           <a href="case-rossegger.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1338,7 +1410,8 @@
         </div>
         <div class="case-body">
           <div class="case-name">Peter Michel<span class="role">Geschäftsführer, justbrides.de</span></div>
-          <blockquote class="case-quote">Besonders beeindruckt hat uns die Geduld und das Engagement von Fabian und seinem Team, die auf jede unserer Fragen ausführlich eingegangen sind und wertvolle Tipps gegeben haben.</blockquote>
+          <blockquote class="case-quote">Das Team produziert die Videos heute selbst. Obwohl der Kanal noch neu ist, kommen bereits warme Anfragen von Brautmodengeschäften direkt ins E-Mail-Postfach.</blockquote>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-Beratung</span><span>Studio-Setup</span><span>Team-Schulung</span></div>
           <a href="case-michel.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1353,7 +1426,23 @@
         <div class="case-body">
           <div class="case-name">Gabriele Buck<span class="role">Inhaberin, gabrielebuck.de</span></div>
           <blockquote class="case-quote">Mit Hilfe der Schmidtke GmbH konnte ich meinen YouTube-Kanal optimieren, neue Abonnenten gewinnen und neue Kunden wurden auf meine spirituellen Mentorings und Gemälde aufmerksam.</blockquote>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-Coaching</span></div>
           <a href="case-buck.html" class="case-btn">Ganze Fallstudie ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="case-card" data-branche="coaching" data-leistung="coaching" data-href="case-lorino.html">
+        <div class="case-thumb">
+          <span class="case-thumb-mark" aria-hidden="true">Dein<br>Naturgefährte</span>
+          <img class="case-thumb-img" src="assets/kunden/lorino-thumbnail.jpg" alt="YouTube-Thumbnail von André Lorino" loading="lazy">
+          <span class="case-branche-tag">Naturcoaching &amp; Ausbildung</span>
+        </div>
+        <div class="case-body">
+          <div class="case-name">André Lorino<span class="role">Naturgefährten · Campus für Naturberufe</span></div>
+          <blockquote class="case-quote">Fabians Fähigkeit, sich in meine Rolle und die meiner Zielgruppe zu versetzen, ist einmalig. Nach wenigen Tagen starten Videos mit 4.000 Klicks.</blockquote>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-Coaching</span><span>Thumbnail-Strategie</span></div>
+          <a href="case-lorino.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
@@ -1366,6 +1455,7 @@
         </div>
         <div class="case-body">
           <div class="case-name">Tobias Emrich<span class="role">Inhaber, gesundheitspraxis-emrich.de</span></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Webdesign</span><span>Facebook Ads</span><span>Mitarbeitergewinnung</span></div>
           <a href="case-emrich.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1379,6 +1469,7 @@
         </div>
         <div class="case-body">
           <div class="case-name">Hauke Hellriegel<span class="role">Inhaber, hellriegel-zahnmedizin.de</span></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Webdesign</span></div>
           <a href="case-hellriegel.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1392,19 +1483,67 @@
         </div>
         <div class="case-body">
           <div class="case-name">Domenico Bentivegna<span class="role">Inhaber, steuergestaltung-bodensee.de</span></div>
+          <blockquote class="case-quote">Die Schmidtke GmbH kümmert sich um den kompletten Rest: vom Schnitt über das Thumbnail bis hin zum Posten der Videos. Absolut easy für uns.</blockquote>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-System</span><span>Webdesign</span><span>Mitarbeitergewinnung</span></div>
           <a href="case-bentivegna.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
       </article>
-      <article class="case-card" data-branche="weitere" data-leistung="videoproduktion" data-href="case-tabman.html">
+      <article class="case-card" data-branche="finanz" data-leistung="videoproduktion recruiting" data-href="case-ege.html">
+        <div class="case-thumb">
+          <span class="case-thumb-mark" aria-hidden="true">Kiener · Ege<br>&amp; Schirling</span>
+          <img class="case-thumb-img" src="assets/kunden/kunde-ege.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          <img class="case-logo" src="assets/logos/kes.jpg" alt="Kiener, Ege und Schirling" loading="lazy" style="max-height:48px;border-radius:8px">
+          <span class="case-branche-tag">Steuerberatung</span>
+        </div>
+        <div class="case-body">
+          <div class="case-name">Rainer Ege<span class="role">Steuerberater &amp; Partner, KES</span></div>
+          <blockquote class="case-quote">Die Zusammenarbeit mit der Schmidtke GmbH kann ich jedem Unternehmen und auch Steuerberatern empfehlen.</blockquote>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>Videoproduktion</span><span>Mitarbeitergewinnung</span></div>
+          <a href="case-ege.html" class="case-btn">Ganze Fallstudie ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="case-card" data-branche="weitere" data-leistung="youtube videoproduktion" data-href="case-tabman.html">
         <div class="case-thumb">
           <span class="case-thumb-mark" aria-hidden="true">TABMAN</span>
+          <img class="case-thumb-img" src="assets/kunden/tabman-thumbnail.jpg" alt="TABMAN YouTube-Thumbnail: Top 5 E-Autos für Wohnwagen" loading="lazy" onerror="this.style.display='none'">
           <span class="case-branche-tag">Camper-Verleih</span>
         </div>
         <div class="case-body">
-          <div class="case-name">Familie Benner<span class="role">TABMAN · tabman.de</span></div>
+          <div class="case-name">Andreas Benner<span class="role">TABMAN · T@B Verleih &amp; Verkauf</span></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>YouTube-Kanalaufbau</span><span>12 Done4You-Videos</span><span>Videoproduktion</span></div>
           <a href="case-tabman.html" class="case-btn">Ganze Fallstudie ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="case-card" data-branche="sport" data-leistung="webdesign videoproduktion ads" data-href="case-vogt.html">
+        <div class="case-thumb">
+          <span class="case-thumb-mark" aria-hidden="true">PUNCH<br>ROCKS</span>
+          <img class="case-thumb-img" src="assets/kunden/vogt-training.jpg" alt="Bernfried Vogt in der Sportakademie Vogt" loading="lazy">
+          <span class="case-branche-tag">Kampfsport &amp; Fitness</span>
+        </div>
+        <div class="case-body">
+          <div class="case-name">Bernfried Vogt<span class="role">Gründer, Sportakademie Vogt</span></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>Rebranding</span><span>Webdesign</span><span>Videoproduktion</span><span>Facebook Ads</span></div>
+          <a href="case-vogt.html" class="case-btn">Ganze Fallstudie ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="case-card" data-branche="sport" data-leistung="webdesign videoproduktion ads" data-href="case-detta.html">
+        <div class="case-thumb">
+          <span class="case-thumb-mark" aria-hidden="true">Patrick<br>Detta</span>
+          <img class="case-thumb-img" src="assets/kunden/kunde-detta.jpg" alt="Patrick Detta, Personal Trainer und Fitness Coach" loading="lazy">
+          <span class="case-branche-tag">Personal Training</span>
+        </div>
+        <div class="case-body">
+          <div class="case-name">Patrick Detta<span class="role">Personal Trainer &amp; Fitness Coach, Freiburg</span></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>Positionierung</span><span>Webdesign</span><span>Videoproduktion</span><span>Facebook Ads</span><span>SEO</span></div>
+          <a href="case-detta.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         </div>
@@ -1418,7 +1557,7 @@
         <div class="case-body">
           <div class="case-name">Thorsten Fischer<span class="role">Inhaber, Sportakademie Chemnitz</span></div>
           <blockquote class="case-quote">Videoproduktion und Facebook-Anzeigen aus einer Hand: seit Jahren ein konstanter Strom an neuen Mitgliedern.</blockquote>
-          <div class="case-kpis"><div class="case-kpi"><div class="v"><span class="hi">1.000+</span></div><div class="l">Leads über Anzeigen</div></div><div class="case-kpi"><div class="v"><span class="hi">Video</span></div><div class="l">Produktion vor Ort</div></div><div class="case-kpi"><div class="v"><span class="hi">Jahre</span></div><div class="l">laufende Betreuung</div></div></div>
+          <div class="case-services" aria-label="Umgesetzte Leistungen"><span>Videoproduktion</span><span>Facebook Ads</span></div>
           <a href="case-fischer.html" class="case-btn">Ganze Fallstudie ansehen
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -1432,7 +1571,7 @@
 <!-- ═══ CTA ═══ -->
 
 <!-- ═══ Google-Bewertungen (Elfsight) ═══ -->
-<section class="grevs" aria-label="Google-Bewertungen">
+<section class="grevs" id="bewertungen" aria-label="Google-Bewertungen">
   <div class="container">
     <div class="grevs-head reveal">
       <h2>Das sagen Unternehmer über uns</h2>
@@ -1442,7 +1581,7 @@
   </div>
 </section>
 
-<section class="seo-text" aria-label="Über unsere Fallstudien">
+<section class="seo-text" id="fallstudien-system" aria-label="Über unsere Fallstudien">
   <div class="container">
     <div class="seo-panel">
       <div>
@@ -1451,7 +1590,7 @@
       </div>
       <div class="seo-copy">
         <p>Die Schmidtke GmbH ist eine YouTube Agentur aus Rottweil. Seit 2016 entwickeln wir für Unternehmen im DACH-Raum Kanäle und Kampagnen, die aus Expertise Sichtbarkeit und aus Sichtbarkeit messbare Anfragen machen.</p>
-        <p>Unsere Fallstudien zeigen nicht nur Reichweite, sondern die komplette Wirkung dahinter: Strategie, Videoproduktion, Webseite, Anzeigen und KI-Sichtbarkeit – abgestimmt auf ein gemeinsames Wachstumsziel.</p>
+        <p>Unsere Fallstudien zeigen nicht nur Reichweite, sondern die komplette Wirkung dahinter: Strategie, Videoproduktion, Webseite, Anzeigen und KI-Sichtbarkeit. Alles ist auf ein gemeinsames Wachstumsziel abgestimmt.</p>
         <div class="seo-points" aria-label="Unsere Leistungen">
           <span>Strategie</span>
           <span>Produktion</span>
@@ -1463,7 +1602,7 @@
   </div>
 </section>
 
-<section class="cta-block">
+<section class="cta-block" id="fallstudien-cta">
   <div class="container">
     <span class="eyebrow">Dein nächster Schritt</span>
     <h2>Was könnte YouTube für<br><span class="hi">dein Unternehmen</span> erreichen?</h2>
