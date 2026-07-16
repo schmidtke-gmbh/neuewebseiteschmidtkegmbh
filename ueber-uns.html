@@ -213,18 +213,15 @@
         .uu-hero-grid .uu-hero-sub { margin-left: 0; }
         .uu-hero-grid .uu-hero-meta { justify-content: flex-start; }
         .uu-hero-img { position: relative; border-radius: 26px; border: 8px solid #fff; box-shadow: 0 32px 75px -30px rgba(7,22,42,0.42); aspect-ratio: 4/3.15; background: #dfe8f2; }
-        .uu-hero-img > img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; border-radius: 18px; }
-        .uu-hero-inset { position: absolute; right: -28px; bottom: -28px; width: 42%; aspect-ratio: 16/10; padding: 5px; border-radius: 17px; background: #fff; box-shadow: 0 20px 44px -20px rgba(7,22,42,.55); transform: rotate(3deg); }
-        .uu-hero-inset img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; display: block; }
-        .uu-hero-badge { position: absolute; left: 22px; bottom: 20px; display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border-radius: 999px; background: rgba(7,22,42,.92); color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 14px 30px rgba(7,22,42,.24); }
+        .uu-hero-img > img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; border-radius: 18px; }
+        .uu-hero-badge { position: absolute; top: 18px; right: 18px; display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px; border-radius: 999px; background: rgba(7,22,42,.92); color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 14px 30px rgba(7,22,42,.24); }
         .uu-hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #2bc66f; box-shadow: 0 0 0 5px rgba(43,198,111,.14); }
         @media (max-width: 900px) { .uu-hero .container.uu-hero-grid { grid-template-columns: 1fr; gap: 30px; max-width: 640px; } }
 @media (max-width: 600px) {
  .uu-hero { padding: 72px 0 56px; }
  .uu-hero-img { border-width: 5px; border-radius: 20px; margin: 8px 14px 24px 0; }
  .uu-hero-img > img { border-radius: 15px; }
- .uu-hero-inset { right: -12px; bottom: -20px; width: 44%; }
- .uu-hero-badge { left: 12px; bottom: 12px; padding: 9px 11px; font-size: 11px; }
+ .uu-hero-badge { top: 10px; right: 10px; padding: 9px 11px; font-size: 11px; }
 }
 
 
@@ -414,6 +411,14 @@
 
         .uu-values-header h2 { margin-bottom: 14px; color: var(--navy); }
 
+        .uu-values-header h2 .italic {
+            font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            letter-spacing: inherit;
+            color: var(--red);
+        }
+
         .uu-values-header p { color: #596b80; font-size: 17px; }
 
 
@@ -460,35 +465,44 @@
             color: #5b6c80;
         }
         .uu-values-wrap { display: grid; gap: 20px; align-items: stretch; }
-        .uu-values-img {
-            border-radius: 24px;
-            overflow: hidden;
-            border: 8px solid #fff;
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/7.4;
-            box-shadow: 0 30px 70px -38px rgba(7,22,42,.42);
+        .uu-values-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
         }
-        .uu-values-img::after {
+        .uu-values-shot {
+            margin: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 6px solid #fff;
+            position: relative;
+            aspect-ratio: 3/2;
+            background: #dfe8f2;
+            box-shadow: 0 24px 56px -36px rgba(7,22,42,.42);
+        }
+        .uu-values-shot::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 58%, rgba(7,22,42,.42));
+            background: linear-gradient(180deg, transparent 68%, rgba(7,22,42,.2));
             pointer-events: none;
         }
-        .uu-values-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 57%; display: block; }
+        .uu-values-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+        .uu-values-shot--jasmin img { object-position: 38% center; }
+        @media (hover: hover) { .uu-values-shot:hover img { transform: scale(1.025); } }
         .uu-values-wrap .uu-values-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
         .uu-values-wrap .uu-value-card { padding: 24px; }
         .uu-values-wrap .uu-value-card h3 { font-size: 18px; }
         .uu-values-wrap .uu-value-card p { font-size: 14px; }
         @media (max-width: 900px) {
-            .uu-values-img { aspect-ratio: 16/9; }
             .uu-values-wrap .uu-values-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 600px) {
-            .uu-values-img { aspect-ratio: 4/3; }
+        @media (max-width: 680px) {
+            .uu-values-gallery { grid-template-columns: 1fr; gap: 12px; }
+            .uu-values-shot { aspect-ratio: 16/10; border-width: 5px; border-radius: 17px; }
             .uu-values-wrap .uu-values-grid { grid-template-columns: 1fr; }
         }
+        @media (prefers-reduced-motion: reduce) { .uu-values-shot img { transition: none; } }
 
 
         /* ═══ FOUNDER / BENTO (aus Startseite übernommen) ═══ */
@@ -2528,8 +2542,7 @@ html, body { background: var(--navy); }
         </div>
       </div>
       <div class="uu-hero-img reveal reveal-delay-1">
-        <img src="team-2.jpg" alt="Fabian Schmidtke und André Weichenhein arbeiten gemeinsam an einer YouTube-Produktion" loading="eager">
-        <span class="uu-hero-inset" aria-hidden="true"><img src="assets/elitewerk-dreh.jpg" alt=""></span>
+        <img src="assets/fabian-header-neu.jpg" alt="Fabian Schmidtke im YouTube-Studio der Schmidtke GmbH" width="1800" height="1200" loading="eager" fetchpriority="high">
         <span class="uu-hero-badge">Direkt mit Fabian &amp; Team</span>
       </div>
     </div>
@@ -2540,7 +2553,7 @@ html, body { background: var(--navy); }
     <div class="container uu-profile-grid">
         <div class="uu-profile-visual reveal" aria-label="Fabian Schmidtke und Einblicke in die Agenturarbeit">
             <figure class="uu-profile-main">
-                <img src="assets/fabian-profil.jpg" alt="Fabian Schmidtke am Podcast-Mikrofon" loading="lazy">
+                <img src="assets/fabian-klappe-hochkant.jpg" alt="Fabian Schmidtke mit Filmklappe im YouTube-Studio" width="1066" height="1600" loading="lazy">
             </figure>
             <figure class="uu-profile-inset uu-profile-inset-one">
                 <img src="assets/fabian-screen-studio.jpg" alt="Fabian Schmidtke vor dem YouTube-Analyseboard" loading="lazy">
@@ -2647,8 +2660,16 @@ html, body { background: var(--navy); }
         </div>
 
         <div class="uu-values-wrap">
-          <div class="uu-values-img reveal">
-            <img src="assets/team-produktion-pana3565.jpg" alt="Das Schmidtke-Team bereitet gemeinsam eine Videoproduktion vor" loading="lazy">
+          <div class="uu-values-gallery reveal" aria-label="Einblicke in unser Team und unsere Produktionen">
+            <figure class="uu-values-shot">
+              <img src="team-2.jpg" alt="Fabian Schmidtke und das Team bei einer YouTube-Produktion" width="1600" height="1066" loading="lazy">
+            </figure>
+            <figure class="uu-values-shot uu-values-shot--jasmin">
+              <img src="assets/jasmin-studio-neu.jpg" alt="Jasmin Schmidtke im YouTube-Studio" width="1600" height="1066" loading="lazy">
+            </figure>
+            <figure class="uu-values-shot">
+              <img src="assets/team-produktion-pana3565.jpg" alt="Das Schmidtke-Team bereitet gemeinsam eine Videoproduktion vor" width="2000" height="1333" loading="lazy">
+            </figure>
           </div>
           <div class="uu-values-grid">
 

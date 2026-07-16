@@ -87,6 +87,39 @@
         transform: none !important;
     }
 
+    /* Die Verbindung sitzt bewusst auf der Kartenkante und darf nicht abgeschnitten werden. */
+    .page-home .pair-card-right {
+        overflow: visible !important;
+    }
+
+    .page-home .pair-card-right::before,
+    .page-home .pair-card-right.is-active::before {
+        top: -17px !important;
+        width: 32px !important;
+        height: 32px !important;
+        box-sizing: border-box;
+        z-index: 4;
+        line-height: 1;
+        background: #07162a !important;
+        border: 1.5px solid rgba(230, 47, 31, 0.78) !important;
+        box-shadow: 0 8px 22px rgba(230, 47, 31, 0.2);
+    }
+
+    /* Auf kleinen Displays bleiben die Ergebnis-Icons klar und gleich groß. */
+    .page-home .pair-icon,
+    .page-home .pair-card-right.is-active .pair-icon {
+        width: 36px !important;
+        height: 36px !important;
+        flex: 0 0 36px;
+        border-radius: 10px;
+        transform: none !important;
+    }
+
+    .page-home .pair-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
     .page-home .pair-card-left,
     .page-home .pair-card-left.is-passed {
         opacity: 1 !important;

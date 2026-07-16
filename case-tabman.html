@@ -13,9 +13,9 @@
 <meta property="og:title" content="Fallstudie TABMAN: YouTube-Kanal mit 12 Done4You-Videos | Schmidtke GmbH">
 <meta property="og:description" content="Für TABMAN haben wir den YouTube-Kanal mit aufgebaut und 12 Videos komplett Done4You produziert – von der Themenplanung bis zum fertigen Upload.">
 <meta property="og:url" content="https://schmidtke-gmbh.de/case-tabman.html">
-<meta property="og:image" content="https://schmidtke-gmbh.de/assets/kunden/tabman-thumbnail.jpg">
+<meta property="og:image" content="https://schmidtke-gmbh.de/assets/kunden/tabman-werbevideo-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"TABMAN: YouTube-Kanal mit 12 Done4You-Videos.","description":"Für TABMAN haben wir den YouTube-Kanal mit aufgebaut und 12 Videos komplett Done4You produziert – von der Themenplanung bis zum fertigen Upload.","image":"https://schmidtke-gmbh.de/assets/kunden/tabman-thumbnail.jpg","inLanguage":"de","mainEntityOfPage":"https://schmidtke-gmbh.de/case-tabman.html","about":{"@type":"Organization","name":"TABMAN"},"author":{"@type":"Organization","name":"Schmidtke GmbH","url":"https://schmidtke-gmbh.de"},"publisher":{"@type":"Organization","name":"Schmidtke GmbH","url":"https://schmidtke-gmbh.de","address":{"@type":"PostalAddress","streetAddress":"Neckartal 200","postalCode":"78628","addressLocality":"Rottweil","addressCountry":"DE"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"TABMAN: YouTube-Kanal mit 12 Done4You-Videos.","description":"Für TABMAN haben wir den YouTube-Kanal mit aufgebaut und 12 Videos komplett Done4You produziert – von der Themenplanung bis zum fertigen Upload.","image":"https://schmidtke-gmbh.de/assets/kunden/tabman-werbevideo-poster.jpg","inLanguage":"de","mainEntityOfPage":"https://schmidtke-gmbh.de/case-tabman.html","about":{"@type":"Organization","name":"TABMAN"},"author":{"@type":"Organization","name":"Schmidtke GmbH","url":"https://schmidtke-gmbh.de"},"publisher":{"@type":"Organization","name":"Schmidtke GmbH","url":"https://schmidtke-gmbh.de","address":{"@type":"PostalAddress","streetAddress":"Neckartal 200","postalCode":"78628","addressLocality":"Rottweil","addressCountry":"DE"}}}</script>
 <!-- /CMS:SEO -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://aosparadox.github.io" crossorigin>
@@ -127,9 +127,9 @@
 
     .cmodal-bg { position: absolute; inset: 0; background: rgba(2,6,12,0.86); backdrop-filter: blur(10px); }
 
-    .cmodal-dialog { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(80vh, 92vw, 560px); }
+    .cmodal-dialog { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(960px, 92vw); }
 
-    .cmodal-dialog iframe { display: block; width: 100%; aspect-ratio: 1/1; border: 0; border-radius: 18px; background: #000; box-shadow: 0 50px 120px -30px rgba(0,0,0,0.9); }
+    .cmodal-dialog iframe { display: block; width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 18px; background: #000; box-shadow: 0 50px 120px -30px rgba(0,0,0,0.9); }
 
     .cmodal-x {
         position: absolute; top: -46px; right: 0; width: 38px; height: 38px; border-radius: 50%;
@@ -1050,7 +1050,7 @@
                 <span class="hero-tag reveal">Fallstudie · Camper-Verleih</span>
                 <h1 class="reveal">TABMAN: ein YouTube-Kanal und <em>12 Videos – komplett Done4You.</em></h1>
                 <div class="hero-client reveal">
-                    <img class="hc-ava" src="assets/kunden/tabman-thumbnail.jpg" alt="" loading="lazy" style="object-position:36% 40%" onerror="this.style.display='none'">
+                    <img class="hc-ava" src="assets/kunden/andreas-benner-avatar.jpg" alt="Andreas Benner" loading="lazy" onerror="this.style.display='none'">
                     <div class="hero-client-name">
                         <b>Andreas Benner</b>
                         <span>TABMAN · tabman.de</span>
@@ -1058,9 +1058,10 @@
                 </div>
             </div>
             <!-- CMS:MEDIA -->
-            <div class="media-frame reveal" style="aspect-ratio:16/9;max-width:640px">
-                <img src="assets/kunden/tabman-thumbnail.jpg" alt="TABMAN YouTube-Thumbnail: Top 5 E-Autos für Wohnwagen" loading="lazy" style="object-position:center" onerror="this.parentElement.style.display='none'">
-            </div>
+            <button type="button" class="media-frame media-clickable reveal" id="caseVideoOpen" aria-label="TABMAN Werbevideo abspielen" aria-haspopup="dialog" style="aspect-ratio:16/9;max-width:640px">
+                <img src="assets/kunden/tabman-werbevideo-poster.jpg" alt="Andreas Benner vor TABMAN Wohnwagen" loading="eager" style="object-position:center">
+                <span class="media-playbtn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            </button>
             <!-- /CMS:MEDIA -->
         </div>
     </div>
@@ -1215,7 +1216,7 @@
     els.forEach(function (e) { io.observe(e); });
 })();
 </script>
-<div class="cmodal" id="caseModal" role="dialog" aria-modal="true" aria-label="Fallstudien-Video" aria-hidden="true">
+<div class="cmodal" id="caseModal" role="dialog" aria-modal="true" aria-label="TABMAN Werbevideo" aria-hidden="true">
     <div class="cmodal-bg" data-cm-close></div>
     <div class="cmodal-dialog">
         <button type="button" class="cmodal-x" data-cm-close aria-label="Video schließen">×</button>
@@ -1253,7 +1254,7 @@
     var body = document.getElementById('caseModalBody');
     function close() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); body.innerHTML = ''; document.documentElement.style.overflow = ''; }
     open_btn.addEventListener('click', function () {
-        body.innerHTML = '<iframe src="" allow="autoplay; fullscreen" allowfullscreen title="Fallstudien-Video"></iframe>';
+        body.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/4KbjIYYY94c?autoplay=1&rel=0" title="TABMAN Werbevideo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
         modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
         document.documentElement.style.overflow = 'hidden';
     });
