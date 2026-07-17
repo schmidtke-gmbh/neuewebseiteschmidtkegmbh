@@ -97,12 +97,23 @@
 
 @media (max-width: 820px) {
   .customer-voices { padding: 48px 14px 18px; }
+  .customer-voices .container { width: 100%; padding-inline: 0; }
   .customer-voices-card { grid-template-columns: 1fr; gap: 26px; }
 }
 
 @media (max-width: 560px) {
-  .customer-voices-card { padding: 20px; border-radius: 24px; }
-  .customer-voices-copy h2 { font-size: clamp(34px,11vw,48px); }
+  .customer-voices-card { padding: 18px 16px; border-radius: 24px; }
+  .customer-voices-copy { min-width: 0; text-align: center; }
+  .customer-voices-kicker { width: 100%; justify-content: center; gap: 7px; font-size: 10px; line-height: 1.4; letter-spacing: .1em; }
+  .customer-voices-copy h2 {
+    max-width: 100%;
+    margin-inline: auto;
+    font-size: clamp(29px,8.8vw,36px);
+    line-height: 1.06;
+    overflow-wrap: normal;
+  }
+  .customer-voices-copy h2 span { max-width: 100%; }
+  .customer-voices-copy p { max-width: 310px; margin-inline: auto; }
   .customer-voices-player { padding: 5px; border-radius: 18px; }
   .customer-voices-player video { border-radius: 13px; }
 }

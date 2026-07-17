@@ -153,6 +153,158 @@
         height: 0 !important;
     }
 
+    /*
+     * Startseite: Die drei grossen Fallstudien werden mobil bewusst als
+     * einspaltige Video-Karten aufgebaut. So kann keine Desktop-Spalte leer
+     * bleiben und Vorschau, Zitat, Kennzahlen sowie CTA sitzen mittig.
+     */
+    .page-home #cases .container {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 18px;
+    }
+
+    .page-home #cases .cases-header,
+    .page-home #cases .cstack {
+        width: 100%;
+        max-width: 600px;
+        margin-inline: auto;
+    }
+
+    .page-home #cases .cs-trust,
+    .page-home #cases .ch-widget {
+        width: 100%;
+        max-width: 320px;
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .page-home #cases .cs-card.fs2 {
+        position: relative !important;
+        top: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 auto 24px !important;
+        padding: 0 !important;
+        border-radius: 22px !important;
+        overflow: hidden !important;
+    }
+
+    .page-home #cases .cs-card.fs2 .fs2-media {
+        order: 1 !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 16 / 9 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        align-self: stretch !important;
+        justify-self: stretch !important;
+        overflow: hidden !important;
+    }
+
+    .page-home #cases .cs-card.fs2 .fs2-media img {
+        position: absolute !important;
+        inset: 0 !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center 28% !important;
+    }
+
+    .page-home #cases .cs-card.fs2 .fs2-media.fs2-media-boerner img {
+        object-position: center 24% !important;
+    }
+
+    .page-home #cases .cs-card.fs2 .fs2-media iframe,
+    .page-home #cases .cs-card.fs2 .fs2-media iframe.fs2-yt,
+    .page-home #cases .cs-card.fs2 .fs2-media .cs-wistia-bg {
+        position: absolute !important;
+        inset: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        aspect-ratio: 16 / 9 !important;
+        transform: none !important;
+        border: 0 !important;
+    }
+
+    .page-home #cases .cs-card.fs2 .fs2-info {
+        order: 2 !important;
+        box-sizing: border-box;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 26px 22px 28px !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 15px;
+    }
+
+    .page-home #cases .fs2-tag,
+    .page-home #cases .fs2-name,
+    .page-home #cases .fs2-quote {
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .page-home #cases .fs2-quote {
+        width: 100%;
+        max-width: 470px;
+        font-size: clamp(17px, 4.8vw, 20px) !important;
+        line-height: 1.46;
+    }
+
+    .page-home #cases .fs2-results {
+        width: min(100%, 280px);
+        margin: 4px auto 8px !important;
+        align-items: stretch;
+    }
+
+    .page-home #cases .fs2-results li {
+        width: 100%;
+        min-width: 0;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .page-home #cases .fs2-btn {
+        width: min(100%, 285px);
+        margin: 4px auto 0 !important;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .page-home #cases .fs2-media-label {
+        bottom: 16px;
+        width: auto;
+        max-width: calc(100% - 32px);
+        padding: 9px 14px;
+        line-height: 1.28;
+        white-space: normal;
+    }
+
+    .page-home #cases .fs2-play {
+        width: 64px;
+        height: 64px;
+    }
+
     /* Beide Menüs müssen auf kleinen/kurzen Displays vollständig scrollbar sein. */
     body.page-home .mobile-overlay,
     body.page-cases .mobile-overlay {
@@ -271,15 +423,66 @@
         border-radius: 18px;
     }
 
+    .page-cases .case-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+    }
+
+    .page-cases .case-thumb-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-position: center 24% !important;
+    }
+
+    .page-cases .case-card[data-href="case-boerner.html"] .case-thumb-img {
+        object-position: center 24% !important;
+    }
+
+    .page-cases .case-branche-tag {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        max-width: calc(100% - 28px);
+        text-align: center;
+        white-space: nowrap;
+    }
+
     .page-cases .case-body {
         min-width: 0;
         padding: 20px 18px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .page-cases .case-name,
+    .page-cases .case-quote,
+    .page-cases .case-summary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .page-cases .case-quote,
+    .page-cases .case-summary {
+        border-left: 0;
+        border-top: 3px solid var(--red);
+        padding: 12px 2px 2px;
+    }
+
+    .page-cases .case-services {
+        width: 100%;
+        justify-content: center;
     }
 
     .page-cases .case-kpis {
         display: grid;
+        width: 100%;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 8px;
+    }
+
+    .page-cases .case-kpi {
+        text-align: center;
     }
 
     .page-cases .case-kpi,
@@ -302,6 +505,7 @@
     .page-cases .case-btn {
         width: 100%;
         max-width: 100%;
+        align-self: center;
         justify-content: center;
         text-align: center;
         line-height: 1.3;

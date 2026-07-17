@@ -383,7 +383,7 @@
         next();
     });
 
-    // ═══ 3. SUBMIT: Netlify + Zapier → danke.html ═══
+    // ═══ 3. SUBMIT: Netlify + Zapier → /danke/ ═══
     var WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/9574685/upqb4lt/';
     function submit() {
         var btn = btnNext;
@@ -399,7 +399,7 @@
         data.forEach(function (v, k) { payload[k] = v; });
         try { sessionStorage.setItem('lead_vorname', payload.vorname || ''); } catch (err) {}
 
-        var done = function () { window.location.href = 'danke.html'; };
+        var done = function () { window.location.href = '/danke/'; };
         var netlify = fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
