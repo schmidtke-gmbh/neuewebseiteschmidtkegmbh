@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>Jetzt bewerben | Karriere bei Schmidtke GmbH – YouTube-Agentur Rottweil</title>
-    <meta name="description" content="Bewirb dich jetzt bei der Schmidtke GmbH in Rottweil. Schnelles Online-Formular, persönliche Antwort innerhalb von 48 Stunden. Werde Teil unserer YouTube-Agentur.">
+    <meta name="description" content="Bewirb dich jetzt bei der Schmidtke GmbH in Rottweil. Schnelles Online-Formular und persönliche Rückmeldung innerhalb weniger Werktage.">
     <meta name="robots" content="noindex, follow">
 
     <link rel="preconnect" href="https://aosparadox.github.io" crossorigin>
@@ -402,6 +402,29 @@
         .b-upload.has-file .b-upload-icon {
             background: rgba(52,211,153,0.15);
             color: var(--green);
+        }
+
+        .b-upload.has-error {
+            border-style: solid;
+            border-color: var(--red);
+            background: rgba(230,47,31,0.06);
+        }
+
+        .b-upload.has-error .b-upload-icon,
+        .b-upload.has-error .b-upload-title {
+            color: var(--red);
+        }
+
+        .b-honeypot {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
         }
 
 
@@ -1999,11 +2022,11 @@ html, body { background: var(--navy, #07162A); }
         <div class="b-hero-inner reveal">
             <span class="section-tag">Bewerbung</span>
             <h1>Schön, dass du dich <span>bewerben</span> möchtest.</h1>
-            <p class="b-hero-sub">In wenigen Minuten bist du durch. Wir melden uns persönlich innerhalb von 48 Stunden zurück. Keine automatisierte Standard-Absage, sondern eine echte Antwort von unserem Team.</p>
+            <p class="b-hero-sub">In wenigen Minuten bist du durch. Wir prüfen deine Unterlagen persönlich und melden uns innerhalb weniger Werktage bei dir zurück.</p>
             <div class="b-hero-meta">
                 <span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    Persönliche Rückmeldung in 48h
+                    Persönliche Rückmeldung in wenigen Werktagen
                 </span>
                 <span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -2031,8 +2054,8 @@ html, body { background: var(--navy, #07162A); }
                     <div class="b-progress-label" id="progressLabel">0 % ausgefüllt</div>
                 </div>
 
-                <form class="b-form-card reveal" id="bewerbungForm" name="bewerbung" action="/bewerbung-bestaetigt/" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
-                    <p hidden><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+                <form class="b-form-card reveal" id="bewerbungForm" name="bewerbung" action="/bewerbung-bestaetigt/" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+                    <p class="b-honeypot" aria-hidden="true"><label>Nicht ausfüllen: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
                     <input type="hidden" name="form-name" value="bewerbung">
 
                     <!-- STEP 1: Position -->
@@ -2143,24 +2166,24 @@ html, body { background: var(--navy, #07162A); }
                         <div class="b-field">
                             <label>Lebenslauf <span class="req">*</span></label>
                             <label class="b-upload" id="cvUpload">
-                                <input type="file" id="cv" name="cv" required accept=".pdf,.doc,.docx" data-upload="cv">
+                                <input type="file" id="cv" name="cv" required accept=".pdf,.doc,.docx" data-upload="cv" data-max-bytes="5242880">
                                 <div class="b-upload-icon">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                                 </div>
                                 <div class="b-upload-title" id="cvTitle">Lebenslauf hochladen (PDF, DOC, DOCX)</div>
-                                <div class="b-upload-sub">Klicken oder Datei hier ablegen · max. 10 MB</div>
+                                <div class="b-upload-sub">Eine Datei · PDF, DOC oder DOCX · max. 5 MB</div>
                             </label>
                         </div>
 
                         <div class="b-field">
                             <label>Weitere Anhänge <span class="opt">(Zeugnisse, Referenzen, Portfolio)</span></label>
                             <label class="b-upload" id="extraUpload">
-                                <input type="file" id="extra" name="extra" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" data-upload="extra">
+                                <input type="file" id="extra" name="extra" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" data-upload="extra" data-max-bytes="2097152">
                                 <div class="b-upload-icon">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 </div>
-                                <div class="b-upload-title" id="extraTitle">Weitere Dateien hinzufügen</div>
-                                <div class="b-upload-sub">Mehrere Dateien möglich · insgesamt max. 25 MB</div>
+                                <div class="b-upload-title" id="extraTitle">Optionalen Anhang hinzufügen</div>
+                                <div class="b-upload-sub">Eine Datei · PDF, DOC, DOCX, JPG oder PNG · max. 2 MB</div>
                             </label>
                         </div>
 
@@ -2336,15 +2359,15 @@ html, body { background: var(--navy, #07162A); }
                             <div class="b-side-step">
                                 <div class="b-side-step-num">2</div>
                                 <div class="b-side-step-body">
-                                    <div class="b-side-step-t">Eingangsbestätigung</div>
-                                    <div class="b-side-step-s">Sofort nach dem Absenden bekommst du eine E-Mail von uns, Bewerbung komplett.</div>
+                                    <div class="b-side-step-t">Bewerbung eingegangen</div>
+                                    <div class="b-side-step-s">Nach dem Absenden siehst du direkt unsere Bestätigungsseite. Dann ist deine Bewerbung sicher bei uns.</div>
                                 </div>
                             </div>
                             <div class="b-side-step">
                                 <div class="b-side-step-num">3</div>
                                 <div class="b-side-step-body">
                                     <div class="b-side-step-t">Persönliche Rückmeldung</div>
-                                    <div class="b-side-step-s">Innerhalb von 48 Stunden hörst du von uns, per Mail oder Telefon.</div>
+                                    <div class="b-side-step-s">Innerhalb weniger Werktage hörst du persönlich von uns, per Mail oder Telefon.</div>
                                 </div>
                             </div>
                             <div class="b-side-step">
@@ -2523,25 +2546,36 @@ html, body { background: var(--navy, #07162A); }
     });
 
     // ═══ File Upload Feedback ═══
-    function setupUpload(inputId, titleId, wrapId) {
+    function formatMegabytes(bytes) {
+        return Math.round(bytes / 1024 / 1024) + ' MB';
+    }
+
+    function setupUpload(inputId, titleId, wrapId, emptyTitle) {
         const input = document.getElementById(inputId);
         const title = document.getElementById(titleId);
         const wrap = document.getElementById(wrapId);
         if (!input) return;
         input.addEventListener('change', () => {
-            if (input.files.length === 1) {
-                title.textContent = '✓ ' + input.files[0].name;
-                wrap.classList.add('has-file');
-            } else if (input.files.length > 1) {
-                title.textContent = `✓ ${input.files.length} Dateien ausgewählt`;
-                wrap.classList.add('has-file');
+            const file = input.files && input.files[0];
+            const maxBytes = Number(input.dataset.maxBytes || 0);
+            const tooLarge = !!(file && maxBytes && file.size > maxBytes);
+
+            input.setCustomValidity(tooLarge ? `Die Datei darf maximal ${formatMegabytes(maxBytes)} groß sein.` : '');
+            wrap.classList.toggle('has-error', tooLarge);
+            wrap.classList.toggle('has-file', !!file && !tooLarge);
+
+            if (tooLarge) {
+                title.textContent = `Datei zu groß · maximal ${formatMegabytes(maxBytes)}`;
+                input.reportValidity();
+            } else if (file) {
+                title.textContent = '✓ ' + file.name;
             } else {
-                wrap.classList.remove('has-file');
+                title.textContent = emptyTitle;
             }
         });
     }
-    setupUpload('cv', 'cvTitle', 'cvUpload');
-    setupUpload('extra', 'extraTitle', 'extraUpload');
+    setupUpload('cv', 'cvTitle', 'cvUpload', 'Lebenslauf hochladen (PDF, DOC, DOCX)');
+    setupUpload('extra', 'extraTitle', 'extraUpload', 'Optionalen Anhang hinzufügen');
 
     // ═══ Scroll Reveal ═══
     if ('IntersectionObserver' in window) {
@@ -2855,6 +2889,18 @@ html, body { background: var(--navy, #07162A); }
     }
     next.addEventListener('click', function () { if (validStep()) show(cur + 1); });
     back.addEventListener('click', function () { show(cur - 1); });
+    form.addEventListener('invalid', function (event) {
+        var section = event.target.closest('.b-form-section');
+        var index = steps.indexOf(section);
+        if (index >= 0 && index !== cur) show(index);
+    }, true);
+    form.addEventListener('submit', function () {
+        var button = form.querySelector('.b-submit');
+        if (!button) return;
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        button.childNodes[0].nodeValue = 'Bewerbung wird gesendet ';
+    });
     show(0);
 })();
 </script>
