@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BAFA-Förderantrag | Schmidtke GmbH</title>
+    <meta name="description" content="Übermitteln Sie hier alle Angaben für Ihren BAFA-Förderantrag bei der Schmidtke GmbH. BAFA-Berater-ID: 226681.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://schmidtke-gmbh.de/bafa-antrag">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://www.cognitoforms.com" crossorigin>
+
+    <style>
+        @font-face {
+            font-family: "SK Modernist";
+            src: url("https://aosparadox.github.io/fonts/sk-modernist-regular-webfont.woff") format("woff");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "SK Modernist";
+            src: url("https://aosparadox.github.io/fonts/sk-modernist-bold-webfont.woff") format("woff");
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --navy: #07162a;
+            --navy-soft: #0d223d;
+            --navy-card: #102943;
+            --red: #ef2f20;
+            --gold: #d9a96f;
+            --white: #ffffff;
+            --text-soft: rgba(255,255,255,.72);
+            --text-muted: rgba(255,255,255,.5);
+            --line: rgba(255,255,255,.1);
+            --shadow: 0 30px 90px rgba(0,0,0,.28);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            color-scheme: dark;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-width: 320px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 15% 5%, rgba(239,47,32,.13), transparent 30rem),
+                radial-gradient(circle at 88% 20%, rgba(63,154,232,.11), transparent 32rem),
+                var(--navy);
+            color: var(--white);
+            font-family: "SK Modernist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: .32;
+            background-image:
+                linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, #000, transparent 68%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .hero {
+            padding: clamp(64px, 9vw, 112px) 0 46px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 22px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 18px rgba(239,47,32,.7);
+        }
+
+        h1 {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1.02;
+            letter-spacing: -.045em;
+            text-wrap: balance;
+        }
+
+        h1 span {
+            color: var(--red);
+        }
+
+        .hero-copy {
+            max-width: 670px;
+            margin: 24px auto 0;
+            color: var(--text-soft);
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.65;
+            text-wrap: balance;
+        }
+
+        .advisor-card {
+            display: inline-grid;
+            gap: 5px;
+            min-width: min(100%, 360px);
+            margin-top: 34px;
+            padding: 20px 30px;
+            border: 1px solid rgba(217,169,111,.42);
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(217,169,111,.11), rgba(255,255,255,.035));
+            box-shadow: 0 18px 55px rgba(0,0,0,.18);
+        }
+
+        .advisor-label {
+            color: var(--text-soft);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .advisor-id {
+            color: var(--white);
+            font-size: clamp(30px, 5vw, 42px);
+            font-weight: 700;
+            letter-spacing: .08em;
+            line-height: 1.2;
+            user-select: all;
+        }
+
+        .form-section {
+            padding: 24px 0 clamp(72px, 10vw, 128px);
+        }
+
+        .form-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 470px);
+            align-items: end;
+            gap: 32px;
+            margin-bottom: 28px;
+        }
+
+        .form-kicker {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            max-width: 650px;
+            font-size: clamp(28px, 4vw, 46px);
+            line-height: 1.08;
+            letter-spacing: -.035em;
+            text-wrap: balance;
+        }
+
+        .form-copy {
+            color: var(--text-soft);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        .form-shell {
+            position: relative;
+            min-height: 680px;
+            padding: clamp(12px, 2.5vw, 32px);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.65);
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: var(--shadow);
+            color-scheme: light;
+        }
+
+        .form-shell iframe {
+            display: block;
+            width: 100% !important;
+            max-width: 100% !important;
+            border: 0 !important;
+        }
+
+        .privacy-note {
+            max-width: 760px;
+            margin: 18px auto 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .privacy-note a {
+            color: rgba(255,255,255,.76);
+            text-underline-offset: 3px;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: rgba(3,12,24,.5);
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 24px;
+            min-height: 116px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .footer-brand {
+            color: var(--white);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -.03em;
+            text-decoration: none;
+        }
+
+        .footer-brand span {
+            color: var(--gold);
+        }
+
+        .footer-copy {
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--white);
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                width: min(100% - 32px, 1180px);
+            }
+
+            .hero {
+                padding-top: 54px;
+            }
+
+            h1 {
+                font-size: clamp(38px, 12vw, 54px);
+            }
+
+            .form-heading {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .form-shell {
+                min-height: 620px;
+                padding: 8px;
+                border-radius: 20px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                padding: 30px 0;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                width: min(100% - 22px, 1180px);
+            }
+
+            .hero {
+                padding-top: 44px;
+            }
+
+            .advisor-card {
+                width: 100%;
+                padding-inline: 18px;
+            }
+
+            .form-shell {
+                padding: 4px;
+                border-radius: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+
+    <!-- VibeTrack: Tracking und Marketing-Pixel nach Einwilligung -->
+    <script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+</head>
+<body>
+    <main>
+        <section class="hero" aria-labelledby="page-title">
+            <div class="container">
+                <span class="eyebrow">BAFA-Förderantrag</span>
+                <h1 id="page-title">Förderung anfragen.<br><span>Angaben sicher übermitteln.</span></h1>
+                <p class="hero-copy">Hier können alle Angaben und Unterlagen für den BAFA-Förderantrag vollständig an die Schmidtke GmbH übermittelt werden.</p>
+
+                <div class="advisor-card" aria-label="BAFA-Berater-ID 226681">
+                    <span class="advisor-label">Unsere BAFA-Berater-ID</span>
+                    <strong class="advisor-id">226681</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section" aria-labelledby="form-title">
+            <div class="container">
+                <div class="form-heading">
+                    <div>
+                        <span class="form-kicker">Förderanfrage</span>
+                        <h2 id="form-title">Angaben für den BAFA-Antrag</h2>
+                    </div>
+                    <p class="form-copy">Bitte füllen Sie das folgende Formular vollständig und gewissenhaft aus. So können wir den Antrag ohne unnötige Rückfragen vorbereiten.</p>
+                </div>
+
+                <div class="form-shell">
+                    <script src="https://www.cognitoforms.com/f/seamless.js" data-key="5uhq6JcsjkOwwVMzyqpILg" data-form="4"></script>
+                    <noscript>Bitte aktivieren Sie JavaScript, damit das BAFA-Formular angezeigt werden kann.</noscript>
+                </div>
+
+                <p class="privacy-note">Hinweise zur Verarbeitung Ihrer Angaben und Unterlagen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a class="footer-brand" href="index.html" aria-label="Zur Startseite der Schmidtke GmbH">schmidtke<span>.</span></a>
+            <div class="footer-copy">© 2026 Schmidtke GmbH · Rottweil</div>
+            <div class="footer-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VibeTrack: Cookie-Einwilligung -->
+    <script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+</body>
+</html>
