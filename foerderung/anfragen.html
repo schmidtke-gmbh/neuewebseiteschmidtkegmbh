@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Förderung anfragen: Sind Sie förderfähig? · Schmidtke GmbH</title>
+<meta name="description" content="Sechs Fragen, Ergebnis sofort: Prüfen Sie, ob Ihr Unternehmen für die staatliche Beratungsförderung in Frage kommt und mit welchem Zuschuss.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://schmidtke-gmbh.de/foerderung/anfragen">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Förderung anfragen: Sind Sie förderfähig?">
+<meta property="og:description" content="Prüfen Sie in zwei Minuten, ob Ihr Unternehmen förderfähig ist. Programm läuft bis 31.12.2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://schmidtke-gmbh.de/foerderung/anfragen">
+<meta property="og:image" content="https://schmidtke-gmbh.de/foerderung/assets/img/foto-unternehmer.webp">
+<meta name="theme-color" content="#0B1B31">
+
+<link rel="preconnect" href="https://aosparadox.github.io" crossorigin>
+<link rel="preconnect" href="https://app.cal.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=8">
+
+<!-- TRACKING_HEAD: Vibetrack (gleicher Tracker wie auf der Hauptseite) -->
+<script>window.dataLayer = window.dataLayer || [];</script>
+<script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+<!-- /TRACKING_HEAD -->
+
+</head>
+<body class="check-page">
+<a class="skip" href="#funnelTitle">Zum Fördercheck</a>
+
+<!-- Statisches Zweitformular für den Rückrufwunsch (Netlify Forms braucht das Markup) -->
+<form name="foerdercheck-rueckruf" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+  <input type="hidden" name="form-name" value="foerdercheck-rueckruf">
+  <input name="bot-field"><input name="name"><input name="firma"><input name="email"><input name="telefon"><input name="quote"><input name="bundesland"><input name="handel2030"><input name="kontaktwunsch"><input name="submitted_at">
+</form>
+
+<!-- ═══════════════ FUNNEL ═══════════════ -->
+<div class="funnel" id="funnel" data-standalone aria-labelledby="funnelTitle">
+  <div class="funnel-top">
+    <div class="container funnel-top-inner">
+      <a href="https://schmidtke-gmbh.de/" class="logo logo-sm" tabindex="-1">schmidtke<span>.</span></a>
+      <span class="funnel-counter" id="funnelCounter">Frage 1 von 6</span>
+      <a class="funnel-close" href="./" id="funnelClose" aria-label="Fördercheck schließen, zurück zur Übersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <div class="funnel-body">
+    <div class="container funnel-inner">
+      <h2 class="sr-only" id="funnelTitle">Fördercheck</h2>
+
+      <!-- Schritt 1 -->
+      <section class="fstep" data-step="1" data-key="bundesland">
+        <p class="fstep-q">Wo hat Ihr Unternehmen seinen Sitz?</p>
+        <p class="fstep-hint">Das entscheidet über die Höhe der Förderung. Tipp: Sie können auch den Buchstaben auf der Tastatur drücken.</p>
+        <div class="tiles tiles-4">
+          <button class="tile" type="button" data-value="Baden-Württemberg">Baden-Württemberg</button>
+          <button class="tile" type="button" data-value="Bayern">Bayern</button>
+          <button class="tile" type="button" data-value="Berlin">Berlin</button>
+          <button class="tile" type="button" data-value="Brandenburg">Brandenburg</button>
+          <button class="tile" type="button" data-value="Bremen">Bremen</button>
+          <button class="tile" type="button" data-value="Hamburg">Hamburg</button>
+          <button class="tile" type="button" data-value="Hessen">Hessen</button>
+          <button class="tile" type="button" data-value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</button>
+          <button class="tile" type="button" data-value="Niedersachsen">Niedersachsen</button>
+          <button class="tile" type="button" data-value="Nordrhein-Westfalen">Nordrhein-Westfalen</button>
+          <button class="tile" type="button" data-value="Rheinland-Pfalz">Rheinland-Pfalz</button>
+          <button class="tile" type="button" data-value="Saarland">Saarland</button>
+          <button class="tile" type="button" data-value="Sachsen">Sachsen</button>
+          <button class="tile" type="button" data-value="Sachsen-Anhalt">Sachsen-Anhalt</button>
+          <button class="tile" type="button" data-value="Schleswig-Holstein">Schleswig-Holstein</button>
+          <button class="tile" type="button" data-value="Thüringen">Thüringen</button>
+        </div>
+      </section>
+
+      <!-- Schritt 1b -->
+      <section class="fstep" data-step="1b" data-key="region">
+        <p class="fstep-q" id="regionQ">Liegt der Sitz in der Region Leipzig?</p>
+        <p class="fstep-hint">In dieser Region gilt ein anderer Fördersatz als im übrigen Bundesland.</p>
+        <div class="tiles tiles-2">
+          <button class="tile" type="button" data-value="ja">Ja</button>
+          <button class="tile" type="button" data-value="nein">Nein</button>
+        </div>
+      </section>
+
+      <!-- Schritt 2 -->
+      <section class="fstep" data-step="2" data-key="mitarbeiter">
+        <p class="fstep-q">Wie viele Mitarbeiter beschäftigen Sie?</p>
+        <div class="tiles tiles-4">
+          <button class="tile" type="button" data-value="1–9">1–9</button>
+          <button class="tile" type="button" data-value="10–49">10–49</button>
+          <button class="tile" type="button" data-value="50–249">50–249</button>
+          <button class="tile" type="button" data-value="250 oder mehr">250 oder mehr</button>
+        </div>
+      </section>
+
+      <!-- Schritt 3 -->
+      <section class="fstep" data-step="3" data-key="umsatz">
+        <p class="fstep-q">Wie hoch ist Ihr Jahresumsatz ungefähr?</p>
+        <div class="tiles tiles-4">
+          <button class="tile" type="button" data-value="bis 2 Mio. €">bis 2 Mio. €</button>
+          <button class="tile" type="button" data-value="2–10 Mio. €">2–10 Mio. €</button>
+          <button class="tile" type="button" data-value="10–50 Mio. €">10–50 Mio. €</button>
+          <button class="tile" type="button" data-value="über 50 Mio. €">über 50 Mio. €</button>
+        </div>
+      </section>
+
+      <!-- Schritt 4 -->
+      <section class="fstep" data-step="4" data-key="branche">
+        <p class="fstep-q">In welcher Branche ist Ihr Unternehmen tätig?</p>
+        <p class="fstep-hint">Die Förderstelle schließt einige Branchen aus. Wir prüfen das sofort.</p>
+        <div class="tiles tiles-list">
+          <button class="tile" type="button" data-value="Coach / Trainer">Coach / Trainer</button>
+          <button class="tile" type="button" data-value="Berater / Consultant">Berater / Consultant</button>
+          <button class="tile" type="button" data-value="Handwerk & Bau">Handwerk &amp; Bau</button>
+          <button class="tile" type="button" data-value="Arzt / Praxis / Gesundheit">Arzt / Praxis / Gesundheit</button>
+          <button class="tile" type="button" data-value="Dienstleister (IT, Agentur, etc.)">Dienstleister (IT, Agentur, etc.)</button>
+          <button class="tile" type="button" data-value="Einzelhandel (Ladengeschäft)">Einzelhandel (Ladengeschäft)</button>
+          <button class="tile" type="button" data-value="Großhandel / E-Commerce">Großhandel / E-Commerce</button>
+          <button class="tile" type="button" data-value="Produktion / Industrie">Produktion / Industrie</button>
+          <button class="tile" type="button" data-value="Immobilien / Makler">Immobilien / Makler</button>
+          <button class="tile" type="button" data-value="Gastronomie / Hotellerie">Gastronomie / Hotellerie</button>
+          <button class="tile" type="button" data-value="Anwalt / Steuerberater">Anwalt / Steuerberater</button>
+          <button class="tile" type="button" data-value="Sonstiges">Sonstiges</button>
+        </div>
+      </section>
+
+      <!-- Schritt 5 -->
+      <section class="fstep" data-step="5" data-key="vorfoerderung">
+        <p class="fstep-q">Haben Sie schon einmal eine staatliche Beratungsförderung genutzt?</p>
+        <div class="tiles tiles-4">
+          <button class="tile" type="button" data-value="Noch nie">Noch nie</button>
+          <button class="tile" type="button" data-value="Einmal">Einmal</button>
+          <button class="tile" type="button" data-value="Zweimal">Zweimal</button>
+          <button class="tile" type="button" data-value="Drei- oder öfter">Drei- oder öfter</button>
+        </div>
+      </section>
+
+      <!-- Schritt 6 -->
+      <section class="fstep" data-step="6" data-key="anliegen">
+        <p class="fstep-q">Woran arbeiten Sie gerade?</p>
+        <div class="tiles tiles-2">
+          <button class="tile" type="button" data-value="Mehr Anfragen gewinnen">Mehr Anfragen gewinnen</button>
+          <button class="tile" type="button" data-value="Sichtbarkeit und Positionierung">Sichtbarkeit und Positionierung</button>
+          <button class="tile" type="button" data-value="Prozesse und KI im Betrieb">Prozesse und KI im Betrieb</button>
+          <button class="tile" type="button" data-value="Etwas anderes">Etwas anderes</button>
+        </div>
+      </section>
+
+      <!-- Rechenschritt -->
+      <section class="fstep fstep-calc" data-step="calc">
+        <div class="calc-card">
+          <div class="calc-head">
+            <p class="fstep-q">Wir rechnen Ihre Förderung durch.</p>
+            <span class="calc-pct" id="calcPct">0&nbsp;%</span>
+          </div>
+          <div class="calc-progress"><i id="calcBar"></i></div>
+          <ol class="calc-list" id="calcList">
+            <li class="calc-line" data-line="standort"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Standort wird geprüft<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="quote"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Fördersatz wird ermittelt<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="kmu"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Unternehmensgröße wird geprüft<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="branche"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Branche wird abgeglichen<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="kontingent"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Kontingent wird geprüft<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="landesprogramm" hidden><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Landesprogramm wird geprüft<span class="dots"></span></span><span class="calc-result"></span></li>
+            <li class="calc-line" data-line="zuschuss"><span class="calc-icon" aria-hidden="true"></span><span class="calc-label">Zuschuss wird berechnet<span class="dots"></span></span><span class="calc-result"></span></li>
+          </ol>
+          <div class="calc-formula" id="calcFormula"><small>Ergebnis</small><span id="calcFormulaText">Fördersatz × Beratungskosten =</span> <b id="calcFormulaSum">•.••• €</b></div>
+        </div>
+      </section>
+
+      <!-- Ausschluss -->
+      <section class="fstep fstep-result" data-step="excluded">
+        <p class="result-headline">Für Sie greift das Programm leider nicht.</p>
+        <p class="result-reason" id="excludedReason"></p>
+        <p class="result-reason result-reason-note" id="excludedNote" hidden>Wir bekommen viele Anfragen von Coaches und Beratern. Leider können wir daran nichts ändern: Die Richtlinie der Förderstelle nimmt diese Branchen aus, ganz gleich, wer berät.</p>
+        <div class="result-alt">
+          <p><strong>Was trotzdem funktioniert:</strong> Auch ohne Förderung lohnt sich ein kurzes Gespräch darüber, wie Sie planbar Anfragen gewinnen.</p>
+          <a class="btn btn-ghost" href="https://schmidtke-gmbh.de/formular"><span>Zum regulären Erstgespräch</span></a>
+        </div>
+      </section>
+
+      <!-- Ergebnis -->
+      <section class="fstep fstep-result" data-step="result">
+        <div class="result-head">
+          <span class="result-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <p class="result-headline">Ihr Unternehmen ist förderfähig.</p>
+            <p class="result-sub" id="resultSub">Nach Ihren Angaben kommen Sie für die staatliche Beratungsförderung in Frage.</p>
+          </div>
+        </div>
+
+        <div class="result-layout" id="resultLayout">
+          <div class="result-card-wrap">
+            <p class="result-lock" id="resultLock"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Ergebnis freischalten</p>
+            <div class="result-blur is-blurred" id="resultBlur">
+              <div class="result-card" id="resultCard" aria-live="polite">
+                <div class="result-value">
+                  <span class="result-num" data-out="quote">80 %</span>
+                  <span class="result-key">Fördersatz nach Ihrem Standort</span>
+                </div>
+                <div class="result-value">
+                  <span class="result-num" data-out="zuschuss">2.800 €</span>
+                  <span class="result-key">bis zu, Zuschuss je Beratung (netto)</span>
+                </div>
+                <div class="result-value">
+                  <span class="result-num">2</span>
+                  <span class="result-key">Beratungen pro Jahr möglich</span>
+                </div>
+                <div class="result-value">
+                  <span class="result-num" data-out="jahr">5.600 €</span>
+                  <span class="result-key">möglicher Zuschuss in diesem Jahr</span>
+                </div>
+              </div>
+              <div class="result-path" id="resultPath">
+                <p class="result-path-title">So kommt die Zahl zustande</p>
+                <ul>
+                  <li><span>Fördersatz für Ihren Standort</span><b data-out="quote2">80 %</b></li>
+                  <li class="sum"><span>Zuschuss je Beratung (netto), nach Prüfung</span><b data-out="zuschuss2">bis zu 2.800 €</b></li>
+                  <li><span>× 2 Beratungen pro Jahr möglich</span><b data-out="jahr2">bis zu 5.600 €</b></li>
+                </ul>
+              </div>
+              <div class="result-bonus" id="resultBonus" hidden>
+                <p class="result-bonus-kicker"><span class="result-bonus-dot" aria-hidden="true"></span>Zusätzlich für Sie gefunden · Landesprogramm Baden-Württemberg</p>
+                <p class="result-bonus-title">Zukunft Handel 2030: Intensivberatung im Wert von <b>bis zu 12.000 €</b></p>
+                <ul class="result-bonus-list">
+                  <li><b>6 bis 15 Beratungstage</b> für den stationären Einzelhandel</li>
+                  <li><b>297 € netto</b> Eigenanteil je Beratungstag, den Rest trägt das Land</li>
+                  <li>Themen: Digitalisierung &amp; KI, Positionierung, Nachfolge, Fachkräfte</li>
+                  <li>Läuft bis <b>31.12.2026</b>, Bewilligung nach Prüfung durch das Land</li>
+                </ul>
+              </div>
+            </div>
+            <p class="result-kontingent" id="resultKontingent" hidden>Hinweis: Sie haben das Kontingent schon teilweise genutzt. Es gilt: höchstens 5 Beratungen bis 31.12.2026 und höchstens 2 pro Jahr. Frühere Förderungen zählen mit.</p>
+            <p class="fineprint">Unverbindliche Orientierung auf Basis Ihrer Angaben. Über die Bewilligung entscheidet die Förderstelle.</p>
+          </div>
+
+          <!-- Formular: statisches Markup, damit Netlify Forms alle Felder kennt -->
+          <form class="lead-form" id="leadForm" name="foerdercheck" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="foerdercheck">
+            <p class="hp"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+            <p class="lead-form-title">Ergebnis anzeigen</p>
+            <p class="lead-form-sub">Wir schicken Ihnen das Ergebnis und rufen Sie nur an, wenn Sie das möchten.</p>
+
+            <div class="field">
+              <label for="f-name">Vorname und Nachname</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+              <span class="field-err">Bitte Vor- und Nachnamen eintragen.</span>
+            </div>
+            <div class="field">
+              <label for="f-firma">Firma</label>
+              <input id="f-firma" name="firma" type="text" autocomplete="organization" required>
+              <span class="field-err">Bitte den Firmennamen eintragen.</span>
+            </div>
+            <div class="field">
+              <label for="f-email">E-Mail</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+              <span class="field-err">Bitte eine gültige E-Mail-Adresse eintragen.</span>
+            </div>
+            <div class="field">
+              <label for="f-tel">Telefon</label>
+              <input id="f-tel" name="telefon" type="tel" autocomplete="tel" inputmode="tel" required>
+              <span class="field-err">Bitte eine Telefonnummer eintragen.</span>
+            </div>
+            <div class="field field-check">
+              <label class="check">
+                <input id="f-ds" name="datenschutz" type="checkbox" value="ja" required>
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-text">Ich habe die <a href="https://schmidtke-gmbh.de/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</span>
+              </label>
+              <span class="field-err">Bitte der Datenverarbeitung zustimmen.</span>
+            </div>
+
+            <!-- Versteckte Felder: Antworten und Ergebnis -->
+            <input type="hidden" name="bundesland" id="h-bundesland">
+            <input type="hidden" name="region" id="h-region">
+            <input type="hidden" name="mitarbeiter" id="h-mitarbeiter">
+            <input type="hidden" name="umsatz" id="h-umsatz">
+            <input type="hidden" name="branche" id="h-branche">
+            <input type="hidden" name="vorfoerderung" id="h-vorfoerderung">
+            <input type="hidden" name="anliegen" id="h-anliegen">
+            <input type="hidden" name="quote" id="h-quote">
+            <input type="hidden" name="zuschuss_je_beratung" id="h-zuschuss">
+            <input type="hidden" name="handel2030" id="h-handel2030">
+            <!-- Versteckte Felder: Herkunft -->
+            <input type="hidden" name="utm_source" id="h-utm_source">
+            <input type="hidden" name="utm_medium" id="h-utm_medium">
+            <input type="hidden" name="utm_campaign" id="h-utm_campaign">
+            <input type="hidden" name="utm_content" id="h-utm_content">
+            <input type="hidden" name="utm_term" id="h-utm_term">
+            <input type="hidden" name="fbclid" id="h-fbclid">
+            <input type="hidden" name="gclid" id="h-gclid">
+            <input type="hidden" name="landing_page" id="h-landing_page">
+            <input type="hidden" name="referrer" id="h-referrer">
+            <input type="hidden" name="submitted_at" id="h-submitted_at">
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="leadSubmit"><span>Ergebnis anzeigen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <p class="form-note">Kein Newsletter, keine Weitergabe. Sie entscheiden im nächsten Schritt, ob wir uns melden.</p>
+          </form>
+        </div>
+
+        <!-- Nach dem Freischalten: Fallstudie + nächste Schritte (außerhalb des form) -->
+        <div class="after" id="after" hidden>
+          <p class="send-warn" id="sendWarn" hidden>Ihre Angaben konnten gerade nicht übertragen werden. Wählen Sie unten einen Termin oder rufen Sie uns an, dann geht nichts verloren.</p>
+
+          <article class="case-card case-card-inline" id="afterCase">
+            <p class="case-branche" id="afterCaseBranche"></p>
+            <h3 id="afterCaseTitle"></h3>
+            <ul class="case-stats" id="afterCaseStats"></ul>
+            <p class="case-note">Ergebnis aus einem Kundenprojekt. Gefördert wird die Beratung, nicht die Umsetzung.</p>
+          </article>
+
+          <div class="next" id="next">
+            <div class="next-head">
+              <p class="eyebrow">Wie geht es weiter?</p>
+              <h3 class="next-title" id="nextTitle">Wählen Sie jetzt einen Telefontermin, oder wir melden uns in den nächsten Tagen bei Ihnen.</h3>
+              <p class="next-sub">Im Gespräch klären wir, ob der geförderte Weg für Sie sinnvoll ist und wie der Antrag gestellt wird. 20 Minuten, kein Verkaufsgespräch.</p>
+            </div>
+            <div class="next-tabs" role="tablist" aria-label="Kontaktweg">
+              <button class="next-tab is-active" type="button" role="tab" aria-selected="true" id="tabCal" data-tab="cal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Termin direkt wählen</span><small>Empfohlen · sofort fest</small></button>
+              <button class="next-tab" type="button" role="tab" aria-selected="false" id="tabCall" data-tab="call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Lieber Rückruf</span><small>Wir melden uns in den nächsten Tagen</small></button>
+            </div>
+
+            <div class="next-panel" id="panelCal" role="tabpanel" aria-labelledby="tabCal">
+              <div class="book" id="book">
+                <div class="book-alert" id="bookAlert"><span id="bookAlertText">Wählen Sie jetzt Ihren Termin, dann ist Ihr Platz fest eingetragen.</span></div>
+                <div class="cal-wrap" id="calWrap">
+                  <div id="calInline" class="cal-inline"></div>
+                  <div class="cal-fallback" id="calFallback" hidden>
+                    <p>Der Kalender lässt sich gerade nicht laden.</p>
+                    <a class="btn btn-primary" id="calFallbackLink" href="https://cal.com/schmidtke-gmbh/20-minuten-gesprach-am-telefon" target="_blank" rel="noopener"><span>Termin bei cal.com wählen</span></a>
+                  </div>
+                </div>
+                <p class="book-escape">Kein passender Termin dabei? Dann rufen Sie direkt an: <a href="tel:+4974194213040">0741 94213040</a></p>
+              </div>
+              <div class="booked" id="booked" hidden>
+                <p class="result-headline">Ihr Termin ist eingetragen.</p>
+                <p>Sie bekommen die Bestätigung per E-Mail. Im Gespräch klären wir, ob der geförderte Weg für Sie sinnvoll ist und wie der Antrag gestellt wird.</p>
+              </div>
+            </div>
+
+            <div class="next-panel" id="panelCall" role="tabpanel" aria-labelledby="tabCall" hidden>
+              <div class="callback" id="callback">
+                <p class="callback-text">Wir rufen Sie in den nächsten Tagen unter <b id="callbackPhone"></b> an und besprechen, ob der geförderte Weg für Sie in Frage kommt.</p>
+                <button class="btn btn-primary btn-lg" type="button" id="callbackBtn"><span>Ja, bitte rufen Sie mich an</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+                <p class="book-escape">Oder direkt: <a href="tel:+4974194213040">0741 94213040</a></p>
+              </div>
+              <div class="booked" id="callbackDone" hidden>
+                <p class="result-headline">Danke, wir melden uns.</p>
+                <p id="callbackDoneText">Wir rufen Sie in den nächsten Tagen an. Wenn es schneller gehen soll: 0741 94213040.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="funnel-bottom">
+    <div class="container funnel-bottom-inner">
+      <button class="funnel-back" type="button" id="funnelBack" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Zurück</button>
+      <span class="funnel-legal">Unverbindlich · Über die Bewilligung entscheidet die Förderstelle</span>
+    </div>
+  </div>
+</div>
+
+<!-- Cal.com Embed -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+</script>
+
+<script src="assets/js/main.js?v=8" defer></script>
+
+<!-- TRACKING_BODY: Vibetrack Cookie-Banner -->
+<script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+<!-- /TRACKING_BODY -->
+</body>
+</html>
