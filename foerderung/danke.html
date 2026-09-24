@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ihr Termin ist eingetragen · Schmidtke GmbH</title>
+<meta name="description" content="Danke, Ihr Telefontermin ist eingetragen. So geht es mit der staatlichen Beratungsförderung weiter.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://schmidtke-gmbh.de/foerderung/danke">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0B1B31">
+
+<link rel="preconnect" href="https://aosparadox.github.io" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=12">
+
+<!-- TRACKING_HEAD: Vibetrack (gleicher Tracker wie auf der Hauptseite). Diese Adresse = voller Lead (Termin gebucht). -->
+<script>window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: 'funnel_complete', funnel: 'foerdercheck' });</script>
+<script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+<!-- /TRACKING_HEAD -->
+</head>
+<body class="check-page">
+
+<div class="funnel" data-standalone aria-labelledby="thanksTitle">
+  <div class="funnel-top">
+    <div class="container funnel-top-inner">
+      <a href="https://schmidtke-gmbh.de/" class="logo logo-sm" tabindex="-1">schmidtke<span>.</span></a>
+      <span class="funnel-counter">Termin eingetragen</span>
+      <a class="funnel-close" href="./" aria-label="Zurück zur Übersicht"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="progress-bar" style="width:100%"></div></div>
+  </div>
+
+  <div class="funnel-body">
+    <div class="container funnel-inner">
+      <section class="fstep fstep-result is-active in thanks" data-step="danke">
+        <span class="result-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+        <h1 class="result-headline" id="thanksTitle">Danke, Ihr Termin ist eingetragen.</h1>
+        <p class="result-sub">Die Bestätigung mit Datum, Uhrzeit und allen Details ist unterwegs zu Ihrer E-Mail-Adresse. Falls sie nicht ankommt, lohnt ein Blick in den Spam-Ordner.</p>
+        <p class="thanks-termin" id="thanksTermin" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="thanksTerminText"></span></p>
+
+        <ol class="thanks-steps" aria-label="So geht es weiter">
+          <li><div><b>Ihr Telefontermin</b><p>Wir rufen Sie zur gebuchten Zeit an. Sie bekommen Ihr persönliches Ergebnis: Fördersatz, Zuschuss je Beratung und der Weg zum Antrag für Ihr Unternehmen. 20 Minuten, kein Verkaufsgespräch.</p></div></li>
+          <li><div><b>Antrag vor Angebotsabschluss</b><p>Wenn die Zusammenarbeit für Sie sinnvoll ist, bereiten wir den Antrag bei der Förderstelle vor. Er geht raus, bevor Sie unser Angebot annehmen.</p></div></li>
+          <li><div><b>Informationsschreiben, dann Start</b><p>Nach dem Schreiben der Förderstelle wird das Angebot abgeschlossen und die Zusammenarbeit beginnt. Den Zuschuss zahlt die Förderstelle nach Prüfung von Bericht und Rechnung aus.</p></div></li>
+        </ol>
+
+        <p class="thanks-note">Termin verschieben? Über den Link in der Bestätigungs-E-Mail oder telefonisch unter <a href="tel:+4974194213040">0741 94213040</a>.</p>
+
+        <div class="thanks-actions">
+          <a class="btn btn-primary" href="https://schmidtke-gmbh.de/"><span>Zur Webseite</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a class="btn btn-ghost" href="./"><span>Zurück zur Förderung</span></a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="funnel-bottom">
+    <div class="container funnel-bottom-inner">
+      <span class="funnel-legal">Unverbindlich · Über die Bewilligung entscheidet die Förderstelle</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Vorname und Termin aus dem Fördercheck (sessionStorage, nur in diesem Tab)
+  (function () {
+    try {
+      var fn = sessionStorage.getItem('fc_vorname');
+      if (fn) document.getElementById('thanksTitle').textContent = 'Danke, ' + fn + '. Ihr Termin ist eingetragen.';
+      var t = sessionStorage.getItem('fc_termin');
+      if (t) { document.getElementById('thanksTerminText').textContent = t; document.getElementById('thanksTermin').hidden = false; }
+    } catch (e) {}
+  })();
+</script>
+
+<!-- TRACKING_BODY: Vibetrack Cookie-Banner -->
+<script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+<!-- /TRACKING_BODY -->
+</body>
+</html>

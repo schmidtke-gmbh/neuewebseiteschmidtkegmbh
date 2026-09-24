@@ -12,10 +12,14 @@
     calLink: 'schmidtke-gmbh/20-minuten-gesprach-am-telefon',
     calOrigin: 'https://app.cal.com',
     calPhoneField: 'attendeePhoneNumber',   // Slug des Telefon-Felds im Cal.com-Event (erste Zusatzfrage)
-    dankeUrl: 'https://schmidtke-gmbh.de/danke?von=foerdercheck',
+    dankeUrl: 'danke.html',      // eigene Danke-Seite des Förderchecks, ohne Kalender: /foerderung/danke (= voller Lead)
+    leadPath: 'lead',            // virtuelle Adresse nach dem Absenden: /foerderung/lead (Netlify-Rewrite auf anfragen.html) (= Lead)
     dankeDelayMs: 2500,
     phoneDisplay: '0741 94213040',
-    funnelName: 'foerdercheck'
+    funnelName: 'foerdercheck',
+    // CRM (SalesSuite über Zapier): Webhook-URLs eintragen, sonst leer lassen. Alternative ohne Code: Netlify Forms → Outgoing webhook (siehe README).
+    crmHookLead: '',      // z. B. 'https://hooks.zapier.com/hooks/catch/9574685/xxxxxxx/' – feuert nach dem Absenden (Lead)
+    crmHookTermin: ''     // feuert nach der Cal.com-Buchung (voller Lead)
   };
 
   /* ─── Förderwerte ─── */
@@ -38,25 +42,9 @@
   };
   var BRANCHE_HINWEIS = { 'Coach / Trainer': true, 'Berater / Consultant': true };
 
-  var CASES = {
-    barwig:   { branche: 'Handwerk · Barwig Group', title: 'Vom Handwerksbetrieb zum regionalen Experten',
-                stats: [['300.000+', 'Aufrufe auf YouTube'], ['60 Min.', 'Eigenaufwand pro Woche'], ['#1', 'KI-Empfehlung in seiner Nische']] },
-    zotzmann: { branche: 'Zahnmedizin · Zotzmann', title: '500+ Anfragen von Privatzahler-Patienten',
-                stats: [['880.000+', 'Aufrufe auf YouTube'], ['40.000', 'Abonnenten'], ['500+', 'Anfragen von Privatzahlern']] },
-    boerner:  { branche: 'Integrative Medizin · Börner Lebenswerk', title: 'Aus Videos wird planbarer Umsatz',
-                stats: [['1 Mio+ €', 'Umsatz über YouTube'], ['4 Mio+', 'Video-Aufrufe'], ['48.000', 'Abonnenten']] }
-  };
-  var CASE_BY_ANLIEGEN = {
-    'Mehr Anfragen gewinnen': 'zotzmann',
-    'Sichtbarkeit und Positionierung': 'boerner',
-    'Prozesse und KI im Betrieb': 'barwig',
-    'Etwas anderes': 'barwig'
-  };
-
   /* ─── Helfer ─── */
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
-  var euro = function (n) { return n.toLocaleString('de-DE') + ' €'; };
   var track = function (event, data) {
     var payload = { event: event, funnel: CONFIG.funnelName };
     for (var k in data) if (Object.prototype.hasOwnProperty.call(data, k)) payload[k] = data[k];
@@ -238,7 +226,8 @@
     if (qs && qs.length > 1) {
       $$('a.js-open-funnel').forEach(function (a) {
         var href = a.getAttribute('href') || 'anfragen.html';
-        if (href.indexOf('?') === -1) a.setAttribute('href', href + qs);
+        if (href.indexOf(qs.slice(1)) > -1) return;
+        a.setAttribute('href', href + (href.indexOf('?') === -1 ? qs : '&' + qs.slice(1)));
       });
     }
     // Alte Verlinkung ?check=1 / #check auf die Formularseite umleiten
@@ -449,7 +438,7 @@
     var kontingentText = answers.vorfoerderung === 'Noch nie' ? 'Noch nicht genutzt · bis zu 2 Beratungen dieses Jahr'
       : answers.vorfoerderung === 'Drei- oder öfter' ? 'Teilweise genutzt · höchstens 5 bis 31.12.2026'
       : answers.vorfoerderung + ' genutzt · weitere Beratungen möglich';
-    // Die Zahlen bleiben hier verdeckt, sie werden erst nach dem Formular freigeschaltet.
+    // Die Zahlen bleiben verdeckt: Fördersatz und Zuschuss bekommt der Interessent im Gespräch (Feld quote/zuschuss geht mit dem Lead an uns).
     var plan = [
       { line: 'standort',   text: answers.bundesland + ' · geprüft' },
       { line: 'quote',      masked: '•• %' },
@@ -481,7 +470,7 @@
         tween(pct, target, function (n) { return n + ' %'; }, 400);
       }, t);
     });
-    // Rechenweg als Formel, Ergebnis bleibt verdeckt bis zum Freischalten
+    // Rechenweg als Formel, Ergebnis bleibt verdeckt
     later(function () {
       $('#calcFormulaText').textContent = 'Fördersatz × Beratungskosten =';
       $('#calcFormulaSum').textContent = '•.••• €';
@@ -490,7 +479,7 @@
     later(showResult, t + 1500);
   }
 
-  /* ─── Ergebnis (unscharf) ─── */
+  /* ─── Ergebnis: Förderfähigkeit ja, Zahlen nur im Lead ─── */
   function fillHidden() {
     var map = {
       bundesland: answers.bundesland || '', region: answers.region || '', mitarbeiter: answers.mitarbeiter || '',
@@ -500,19 +489,24 @@
     };
     for (var k in map) { var el = document.getElementById('h-' + k); if (el) el.value = map[k]; }
     var sub = $('#h-submitted_at'); if (sub) sub.value = new Date().toISOString();
+    var parts = ($('#f-name').value || '').trim().split(/\s+/);
+    var vn = $('#h-vorname'); if (vn) vn.value = parts.length > 1 ? parts.slice(0, -1).join(' ') : parts[0] || '';
+    var nn = $('#h-nachname'); if (nn) nn.value = parts.length > 1 ? parts[parts.length - 1] : '';
   }
 
-  function setOut(name, val) { $$('[data-out="' + name + '"]', stepById.result).forEach(function (e) { e.textContent = val; }); }
+  // CRM-Webhook (JSON), wie das Formular der Hauptseite: alle Felder plus event ('lead' | 'termin'). keepalive, damit der Wechsel zur Danke-Seite nicht abbricht.
+  function sendCrm(hook, event, extra) {
+    if (!hook) return Promise.resolve();
+    var payload = { event: event, quelle: $('#h-quelle').value, funnel: CONFIG.funnelName };
+    $$('input[type="hidden"], input[name="name"], input[name="firma"], input[name="email"], input[name="telefon"]', form).forEach(function (el) { if (el.name && el.name !== 'form-name' && el.name !== 'bot-field') payload[el.name] = el.value; });
+    payload.telefon_e164 = toE164(payload.telefon);
+    payload.antworten = answersSummary();
+    for (var k in (extra || {})) payload[k] = extra[k];
+    return fetch(hook, { method: 'POST', body: JSON.stringify(payload), keepalive: true }).catch(function (err) { if (window.console) console.warn('CRM-Webhook (' + event + ') fehlgeschlagen', err); });
+  }
 
   function showResult() {
-    // Die Zahlen stehen VOR dem Freischalten im DOM und ändern sich danach nicht.
-    setOut('quote', result.quotePct + ' %');
-    setOut('quote2', result.quotePct + ' %');
-    setOut('zuschuss', euro(result.zuschussJeBeratung));
-    setOut('zuschuss2', 'bis zu ' + euro(result.zuschussJeBeratung));
-    setOut('jahr', euro(result.moeglichJahr));
-    setOut('jahr2', 'bis zu ' + euro(result.moeglichJahr));
-    var bonus = $('#resultBonus'); if (bonus) bonus.hidden = !result.handel2030;
+    // Fördersatz und Zuschuss stehen nirgends im DOM, nur in den versteckten Formularfeldern für den Lead.
     $('#resultKontingent').hidden = answers.vorfoerderung !== 'Drei- oder öfter';
     fillHidden();
     track('check_completed', { quote: result.quotePct, foerderfaehig: true });
@@ -577,8 +571,9 @@
       if (done) return; done = true;
       submitBtn.disabled = false;
       sendWarn.hidden = !failed;
-      unlock();
+      unlock(failed);
     };
+    sendCrm(CONFIG.crmHookLead, 'lead');
     postForm(encoded).then(function () { finish(false); }).catch(function (err) {
       if (window.console) console.warn('Lead konnte nicht übertragen werden', err);
       finish(true);   // Ergebnis trotzdem zeigen: Termin und Rückruf fangen den Kontakt auf
@@ -591,29 +586,50 @@
     return n.charAt(0).toUpperCase() + n.slice(1);
   }
 
-  function unlock() {
+  // Nach dem Absenden: Formular und Teaser weg, Termin (Standard) oder Rückruf. Das Ergebnis selbst bleibt verdeckt.
+  function unlock(failed) {
     track('lead_submitted', { quote: result.quotePct });
-    $('#resultLock').classList.add('is-hidden');
-    $('#resultBlur').classList.remove('is-blurred');
-    $('#resultLayout').classList.add('is-unlocked');
-
-    // Fallstudie
-    var c = CASES[CASE_BY_ANLIEGEN[answers.anliegen] || 'barwig'];
-    $('#afterCaseBranche').textContent = c.branche;
-    $('#afterCaseTitle').textContent = c.title;
-    var ul = $('#afterCaseStats'); ul.innerHTML = '';
-    c.stats.forEach(function (s) {
-      var li = document.createElement('li'); var b = document.createElement('strong');
-      b.textContent = s[0]; li.appendChild(b); li.appendChild(document.createTextNode(' ' + s[1])); ul.appendChild(li);
-    });
-
+    markLead(failed);
+    $('#resultLayout').hidden = true;
     var fn = firstName();
-    $('#nextTitle').textContent = (fn ? fn + ', wählen' : 'Wählen') + ' Sie jetzt einen Telefontermin, oder wir melden uns in den nächsten Tagen bei Ihnen.';
+    $('#nextTitle').textContent = (fn ? 'Danke, ' + fn + '. ' : 'Danke. ') + 'Wählen Sie jetzt Ihren Telefontermin, dann bekommen Sie Ihr Ergebnis im Gespräch.';
+    $('#resultSub').textContent = 'Ihre Angaben sind bei uns eingegangen. Ihr persönliches Ergebnis mit Fördersatz und Zuschuss bekommen Sie im Gespräch.';
+    var hd = $('#afterHandel'); if (hd) hd.hidden = !result.handel2030;
     $('#bookAlertText').textContent = 'Wählen Sie jetzt Ihren Termin, dann ist Ihr Platz fest eingetragen.';
     $('#callbackPhone').textContent = $('#f-tel').value.trim();
     $('#after').hidden = false;
     later(function () { var a = $('#after'); if (a && a.scrollIntoView) a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }, 650);
     mountCalendar();
+  }
+
+  // Lead-Stufe als eigene Adresse (/foerderung/lead): VibeTrack, Pixel und Analytics zählen Seitenaufrufe, deshalb hat jede Stufe eine URL.
+  // Der Tracker hängt sich an history.pushState und wertet den neuen Pfad wie einen Seitenaufruf aus.
+  function markLead(failed) {
+    try { sessionStorage.setItem('fc_vorname', firstName()); } catch (e) {}
+    if (failed || !CONFIG.leadPath || window.location.protocol === 'file:') return;
+    try { window.history.pushState({ foerdercheck: 'lead' }, '', CONFIG.leadPath); } catch (e) {}
+  }
+
+  // Telefonnummer ins internationale Format für Cal.com (0741 … → +49741…)
+  function toE164(v) {
+    var d = String(v || '').replace(/[^\d+]/g, '');
+    if (d.indexOf('00') === 0) d = '+' + d.slice(2);
+    if (d.charAt(0) === '0') d = '+49' + d.slice(1);
+    if (d && d.charAt(0) !== '+') d = '+49' + d;
+    return d;
+  }
+
+  // Antworten als Notiz für den Kalendereintrag und das Termin-Formular (ohne Fördersatz: das Ergebnis bleibt bis zum Gespräch verdeckt)
+  function answersSummary() {
+    var parts = [];
+    var add = function (label, v) { if (v) parts.push(label + ': ' + v); };
+    add('Bundesland', answers.bundesland ? answers.bundesland + (answers.region ? ' (Region Leipzig: ' + answers.region + ')' : '') : '');
+    add('Mitarbeiter', answers.mitarbeiter);
+    add('Umsatz', answers.umsatz);
+    add('Branche', answers.branche);
+    add('Bisher gefördert', answers.vorfoerderung);
+    add('Anliegen', answers.anliegen);
+    return parts.length ? 'Fördercheck: ' + parts.join(' · ') : '';
   }
 
   /* ─── Nächste Schritte: Termin oder Rückruf ─── */
@@ -662,8 +678,11 @@
     if (typeof window.Cal !== 'function') { showFallback(); return; }
 
     try {
-      var cfg = { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', name: name, email: email };
-      if (CONFIG.calPhoneField) cfg[CONFIG.calPhoneField] = phone;   // verfällt stillschweigend, wenn das Feld im Event fehlt
+      // Alles vorbelegen, was das Cal.com-Event abfragt (geprüft am 24.09.: Telefon, Telefon als Ort, Thema, Notizen): der Kunde muss nur noch bestätigen
+      var e164 = toE164(phone);
+      var cfg = { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', name: name, email: email, notes: answersSummary(), title: 'Fördercheck: Ergebnis besprechen' };
+      if (CONFIG.calPhoneField) cfg[CONFIG.calPhoneField] = e164;   // verfällt stillschweigend, wenn das Feld im Event fehlt
+      cfg.location = JSON.stringify({ value: 'phone', optionValue: e164 });   // Ort „Telefonnummer des Teilnehmers“
       window.Cal('init', CONFIG.calNamespace, { origin: CONFIG.calOrigin });
       var ns = window.Cal.ns[CONFIG.calNamespace];
       ns('inline', { elementOrSelector: '#calInline', calLink: CONFIG.calLink, config: cfg });
@@ -683,20 +702,65 @@
     if (e.origin !== CONFIG.calOrigin) return;
     var d = e.data;
     if (!d || d.originator !== 'CAL') return;
-    if (d.type === 'bookingSuccessful' || d.type === 'bookingSuccessfulV2') onBooked();
+    if (d.type === 'bookingSuccessful' || d.type === 'bookingSuccessfulV2') onBooked({ detail: { data: d.data } });
   });
 
-  function onBooked() {
+  // Termindaten aus dem Cal.com-Ereignis (V2: startTime/endTime/title, V1: date/duration/eventType)
+  function bookingInfo(e) {
+    var d = (e && e.detail && e.detail.data) || {};
+    var start = d.startTime || d.date || '';
+    var end = d.endTime || '';
+    if (!end && start && d.duration) { try { end = new Date(new Date(start).getTime() + d.duration * 60000).toISOString(); } catch (err) {} }
+    var title = d.title || (d.eventType && (d.eventType.title || d.eventType.slug)) || CONFIG.calNamespace;
+    var fmt = function (iso) { try { return new Date(iso).toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Berlin' }) + ' Uhr'; } catch (err) { return iso; } };
+    return { start: start, end: end, title: title, startText: start ? fmt(start) : '', uid: d.uid || '' };
+  }
+
+  // Voller Lead: Termin gebucht → eigenes Netlify-Formular (Liste „foerdercheck-termin“), dann Danke-Seite (/foerderung/danke)
+  function onBooked(e) {
     if (booked) return;
     booked = true;
-    track('call_booked', {});
+    var info = bookingInfo(e);
+    track('call_booked', { termin: info.start });
     $('#book').classList.add('is-booked');
     $('#booked').hidden = false;
     var b = $('#booked'); if (b.scrollIntoView) b.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    if (CONFIG.dankeUrl) later(function () { window.location.href = CONFIG.dankeUrl; }, CONFIG.dankeDelayMs);
+    try { sessionStorage.setItem('fc_termin', info.startText); } catch (err) {}
+    var data = new URLSearchParams({
+      'form-name': 'foerdercheck-termin', name: $('#f-name').value.trim(), vorname: $('#h-vorname').value, nachname: $('#h-nachname').value, firma: $('#f-firma').value.trim(), quelle: $('#h-quelle').value,
+      email: $('#f-email').value.trim(), telefon: $('#f-tel').value.trim(),
+      termin: info.startText, termin_start: info.start, termin_ende: info.end, termin_titel: info.title, termin_uid: info.uid,
+      antworten: answersSummary(), bundesland: answers.bundesland || '', region: answers.region || '', mitarbeiter: answers.mitarbeiter || '',
+      umsatz: answers.umsatz || '', branche: answers.branche || '', vorfoerderung: answers.vorfoerderung || '', anliegen: answers.anliegen || '',
+      quote: result ? result.quotePct + ' %' : '', zuschuss_je_beratung: result ? result.zuschussJeBeratung : '', handel2030: result && result.handel2030 ? 'ja' : 'nein',
+      utm_source: $('#h-utm_source').value, utm_medium: $('#h-utm_medium').value, utm_campaign: $('#h-utm_campaign').value, utm_content: $('#h-utm_content').value, utm_term: $('#h-utm_term').value,
+      fbclid: $('#h-fbclid').value, gclid: $('#h-gclid').value, landing_page: $('#h-landing_page').value, referrer: $('#h-referrer').value, submitted_at: new Date().toISOString()
+    }).toString();
+    sendCrm(CONFIG.crmHookTermin, 'termin', { termin: info.startText, termin_start: info.start, termin_ende: info.end, termin_titel: info.title, termin_uid: info.uid });
+    var sent = false;
+    var go = function () { if (sent) return; sent = true; if (CONFIG.dankeUrl) window.location.href = CONFIG.dankeUrl; };
+    if (isLocal) { later(go, CONFIG.dankeDelayMs); return; }
+    var opts = { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data, keepalive: true };
+    fetch('/', opts).catch(function () { return fetch(window.location.pathname, opts); })
+      .catch(function (err) { if (window.console) console.warn('Termin-Lead konnte nicht übertragen werden', err); })
+      .then(function () { later(go, 400); });
+    later(go, CONFIG.dankeDelayMs + 2000);   // Netz hängt: trotzdem weiter zur Danke-Seite
   }
+  if (isLocal) window.__fcOnBooked = onBooked;   // nur lokal: Buchung im Test simulieren
 
   /* Deep-Link: ?check=1 öffnet den Fragebogen sofort */
   if (standalone) openFunnel();
   else if (/[?&]check=1/.test(window.location.search) || window.location.hash === '#check') openFunnel();
+
+  /* Start von der Landingpage: ?land=Bayern beantwortet Frage 1 und springt weiter (Zurück führt zu Frage 1) */
+  var landParam = new URLSearchParams(window.location.search).get('land');
+  if (landParam && stepById['1']) {
+    var preTile = $$('.tile', stepById['1']).filter(function (t) { return t.getAttribute('data-value') === landParam; })[0];
+    if (preTile) {
+      preTile.classList.add('is-selected');
+      answers.bundesland = landParam;
+      track('funnel_preset', { land: landParam });
+      advance('1');
+    }
+  }
 })();
