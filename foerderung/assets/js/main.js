@@ -286,9 +286,17 @@
     }
     backBtn.hidden = !(isQuestion && history.length > 0);
 
-    var focusTarget = $('.tile, .fstep-q, .result-headline', el);
+    if (id === 'result') { el.classList.add('has-modal'); placeModal(); }
+    var focusTarget = id === 'result' ? $('#leadFormTitle') : $('.tile, .fstep-q, .result-headline', el);
     if (focusTarget) { if (!focusTarget.hasAttribute('tabindex') && !/BUTTON|INPUT/.test(focusTarget.tagName)) focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus({ preventScroll: true }); }
   }
+
+  // Pop-up beginnt unter der Kopfzeile des Förderchecks, damit Logo und Schließen erreichbar bleiben
+  function placeModal() {
+    var bodyEl = $('.funnel-body', funnel); if (!bodyEl) return;
+    funnel.style.setProperty('--overlay-top', Math.max(0, Math.round(bodyEl.getBoundingClientRect().top)) + 'px');
+  }
+  window.addEventListener('resize', function () { if (current === 'result') placeModal(); });
 
   function openFunnel() {
     lastFocus = document.activeElement;
@@ -591,6 +599,7 @@
     track('lead_submitted', { quote: result.quotePct });
     markLead(failed);
     $('#resultLayout').hidden = true;
+    stepById.result.classList.remove('has-modal');
     var fn = firstName();
     $('#nextTitle').textContent = (fn ? 'Danke, ' + fn + '. ' : 'Danke. ') + 'Wählen Sie jetzt Ihren Telefontermin, dann bekommen Sie Ihr Ergebnis im Gespräch.';
     $('#resultSub').textContent = 'Ihre Angaben sind bei uns eingegangen. Ihr persönliches Ergebnis mit Fördersatz und Zuschuss bekommen Sie im Gespräch.';

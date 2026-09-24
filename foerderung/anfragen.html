@@ -220,13 +220,29 @@
           </div>
         </div>
 
-        <div class="result-layout" id="resultLayout">
+        <div class="result-stage" id="resultLayout">
+          <!-- Bühne: das berechnete Ergebnis, unscharf. Zahlen sind Platzhalter (öffentliche Höchstwerte), nicht das echte Ergebnis. -->
+          <aside class="result-teaser" aria-hidden="true">
+            <p class="result-teaser-kicker"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Ihr Ergebnis, berechnet</p>
+            <div class="result-teaser-grid">
+              <div class="result-teaser-val"><span class="result-teaser-num">80 %</span><span class="result-teaser-key">Fördersatz nach Ihrem Standort</span></div>
+              <div class="result-teaser-val"><span class="result-teaser-num">2.800 €</span><span class="result-teaser-key">Zuschuss je Beratung (netto)</span></div>
+              <div class="result-teaser-val"><span class="result-teaser-num">2</span><span class="result-teaser-key">Beratungen pro Jahr möglich</span></div>
+              <div class="result-teaser-val"><span class="result-teaser-num">5.600 €</span><span class="result-teaser-key">möglicher Zuschuss in diesem Jahr</span></div>
+            </div>
+            <p class="result-teaser-note">Wir schalten Ihr Ergebnis persönlich frei und erklären Ihnen, wie die Zahl zustande kommt und was der nächste Schritt ist.</p>
+          </aside>
+          <p class="result-kontingent" id="resultKontingent" hidden>Hinweis: Sie haben das Kontingent schon teilweise genutzt. Es gilt: höchstens 5 Beratungen bis 31.12.2026 und höchstens 2 pro Jahr. Frühere Förderungen zählen mit.</p>
+          <p class="fineprint">Unverbindliche Orientierung auf Basis Ihrer Angaben. Sie bezahlen die Rechnung zunächst vollständig, der Zuschuss wird nach Prüfung ausgezahlt. Über die Bewilligung entscheidet allein die Förderstelle, ein Rechtsanspruch besteht nicht.</p>
+
+          <!-- Pop-up über der Bühne: liegt fest im Sichtfeld, auch auf dem Handy (dort als Sheet von unten) -->
+          <div class="result-modal" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="leadFormTitle">
           <!-- Formular: statisches Markup, damit Netlify Forms alle Felder kennt -->
         <form class="lead-form" id="leadForm" name="foerdercheck" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="foerdercheck">
           <p class="hp"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
-          <p class="lead-form-title">Ihr persönliches Ergebnis</p>
-          <p class="lead-form-sub">Tragen Sie sich ein. Im Gespräch bekommen Sie Fördersatz, Zuschuss und den Weg zum Antrag für Ihr Unternehmen.</p>
+          <p class="lead-form-title" id="leadFormTitle"><span class="result-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Ihr Unternehmen kommt für die Förderung in Frage.</span></p>
+          <p class="lead-form-sub">Tragen Sie sich ein, dann schalten wir Ihr Ergebnis frei: Fördersatz, Zuschuss je Beratung und der Weg zum Antrag, persönlich im Gespräch.</p>
 
           <div class="field">
             <label for="f-name">Vorname und Nachname</label>
@@ -288,20 +304,8 @@
           <p class="form-note">Kein Newsletter, keine Weitergabe. Im nächsten Schritt wählen Sie Termin oder Rückruf.</p>
         </form>
 
-          <div class="result-side">
-            <aside class="result-teaser" aria-hidden="true">
-              <p class="result-teaser-kicker"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Ihr Ergebnis, berechnet</p>
-              <div class="result-teaser-grid">
-                <div class="result-teaser-val"><span class="result-teaser-num">•• %</span><span class="result-teaser-key">Fördersatz nach Ihrem Standort</span></div>
-                <div class="result-teaser-val"><span class="result-teaser-num">•.••• €</span><span class="result-teaser-key">bis zu, Zuschuss je Beratung (netto)</span></div>
-                <div class="result-teaser-val"><span class="result-teaser-num">•</span><span class="result-teaser-key">Beratungen pro Jahr möglich</span></div>
-                <div class="result-teaser-val"><span class="result-teaser-num">•.••• €</span><span class="result-teaser-key">möglicher Zuschuss in diesem Jahr</span></div>
-              </div>
-              <p class="result-teaser-note">Wir schalten Ihr Ergebnis persönlich frei und erklären Ihnen, wie die Zahl zustande kommt und was der nächste Schritt ist.</p>
-            </aside>
-            <p class="result-kontingent" id="resultKontingent" hidden>Hinweis: Sie haben das Kontingent schon teilweise genutzt. Es gilt: höchstens 5 Beratungen bis 31.12.2026 und höchstens 2 pro Jahr. Frühere Förderungen zählen mit.</p>
-            <p class="fineprint">Unverbindliche Orientierung auf Basis Ihrer Angaben. Sie bezahlen die Rechnung zunächst vollständig, der Zuschuss wird nach Prüfung ausgezahlt. Über die Bewilligung entscheidet allein die Förderstelle, ein Rechtsanspruch besteht nicht.</p>
           </div>
+        </div>
         </div>
 
         <!-- Nach dem Absenden: Termin (Standard) oder Rückruf, außerhalb des form -->
