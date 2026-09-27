@@ -598,17 +598,32 @@
   function unlock(failed) {
     track('lead_submitted', { quote: result.quotePct });
     markLead(failed);
-    $('#resultLayout').hidden = true;
+    revealResult();
     stepById.result.classList.remove('has-modal');
     var fn = firstName();
-    $('#nextTitle').textContent = (fn ? 'Danke, ' + fn + '. ' : 'Danke. ') + 'Wählen Sie jetzt Ihren Telefontermin, dann bekommen Sie Ihr Ergebnis im Gespräch.';
-    $('#resultSub').textContent = 'Ihre Angaben sind bei uns eingegangen. Ihr persönliches Ergebnis mit Fördersatz und Zuschuss bekommen Sie im Gespräch.';
+    $('#nextTitle').textContent = (fn ? 'Danke, ' + fn + '. ' : 'Danke. ') + 'Beim Förderantrag unterstützen wir dich, mit wenig zeitlichem Aufwand für dich.';
+    $('#resultSub').textContent = 'Dein voraussichtliches Ergebnis nach deinen Angaben.';
     var hd = $('#afterHandel'); if (hd) hd.hidden = !result.handel2030;
-    $('#bookAlertText').textContent = 'Wählen Sie jetzt Ihren Termin, dann ist Ihr Platz fest eingetragen.';
+    $('#bookAlertText').textContent = 'Wähl jetzt deinen Termin, dann ist dein Platz fest eingetragen.';
     $('#callbackPhone').textContent = $('#f-tel').value.trim();
     $('#after').hidden = false;
     later(function () { var a = $('#after'); if (a && a.scrollIntoView) a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }, 650);
     mountCalendar();
+  }
+
+  // Ergebnis freischalten: Pop-up weg, echte Werte in die Bühne, Unschärfe raus (Weg A, 25.09.: das Versprechen „Ergebnis anzeigen“ wird eingelöst)
+  function revealResult() {
+    var modal = $('#resultModal'); if (modal) modal.hidden = true;
+    var teaser = $('.result-teaser'); if (!teaser) return;
+    var nums = $$('.result-teaser-num', teaser);
+    var euro = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '\u00a0€'; };
+    var vals = [result.quotePct + '\u00a0%', euro(result.zuschussJeBeratung), '2', euro(result.moeglichJahr)];
+    nums.forEach(function (el, i) { if (vals[i] !== undefined) el.textContent = vals[i]; });
+    var k = $('#teaserKicker'); if (k) k.textContent = 'Dein Ergebnis nach deinen Angaben';
+    var n = $('#teaserNote'); if (n) n.textContent = 'Voraussichtlich nach deinen Angaben' + (result.standortText ? ' (' + result.standortText + ')' : '') + '. Auszahlung nach Prüfung durch die Förderstelle, kein Rechtsanspruch.';
+    teaser.removeAttribute('aria-hidden');
+    var fp = $('.result-stage > .fineprint'); if (fp) fp.style.display = 'none';   // steht jetzt in der Karte selbst
+    requestAnimationFrame(function () { teaser.classList.add('is-revealed'); });
   }
 
   // Lead-Stufe als eigene Adresse (/foerderung/lead): VibeTrack, Pixel und Analytics zählen Seitenaufrufe, deshalb hat jede Stufe eine URL.
@@ -664,7 +679,7 @@
     }).toString();
     var show = function () {
       $('#callback').hidden = true;
-      $('#callbackDoneText').textContent = 'Wir rufen Sie in den nächsten Tagen unter ' + $('#f-tel').value.trim() + ' an. Wenn es schneller gehen soll: ' + CONFIG.phoneDisplay + '.';
+      $('#callbackDoneText').textContent = 'Wir rufen dich in den nächsten Tagen unter ' + $('#f-tel').value.trim() + ' an. Wenn es schneller gehen soll: ' + CONFIG.phoneDisplay + '.';
       $('#callbackDone').hidden = false;
       track('callback_requested', {});
     };
