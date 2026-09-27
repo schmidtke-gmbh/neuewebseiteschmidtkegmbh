@@ -331,7 +331,7 @@
                   <div id="calInline" class="cal-inline"></div>
                   <div class="cal-fallback" id="calFallback" hidden>
                     <p>Der Kalender lässt sich gerade nicht laden.</p>
-                    <a class="btn btn-primary" id="calFallbackLink" href="https://cal.com/schmidtke-gmbh/20-minuten-gesprach-am-telefon" target="_blank" rel="noopener"><span>Termin bei cal.com wählen</span></a>
+                    <a class="btn btn-primary" id="calFallbackLink" href="https://cal.com/schmidtke-gmbh/20-min-forderanfrage-gesprach-am-telefon" target="_blank" rel="noopener"><span>Termin bei cal.com wählen</span></a>
                   </div>
                 </div>
                 <p class="book-escape">Kein passender Termin dabei? Dann ruf direkt an: <a href="tel:+4974194213040">0741 94213040</a></p>
@@ -373,7 +373,7 @@
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 </script>
 
-<script src="assets/js/main.js?v=12" defer></script>
+<script src="assets/js/main.js?v=13" defer></script>
 
 <!-- TRACKING_BODY: Vibetrack Cookie-Banner -->
 <script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>

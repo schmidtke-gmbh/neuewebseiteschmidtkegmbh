@@ -8,8 +8,8 @@
 
   /* ─── Konfiguration: hier austauschen, sonst nirgends ─── */
   var CONFIG = {
-    calNamespace: '20-minuten-gesprach-am-telefon',
-    calLink: 'schmidtke-gmbh/20-minuten-gesprach-am-telefon',
+    calNamespace: '20-min-forderanfrage-gesprach-am-telefon',
+    calLink: 'schmidtke-gmbh/20-min-forderanfrage-gesprach-am-telefon',   // Event „20 Min Förderanfrage – Gespräch am Telefon“ (seit 27.09.)
     calOrigin: 'https://app.cal.com',
     calPhoneField: 'attendeePhoneNumber',   // Slug des Telefon-Felds im Cal.com-Event (erste Zusatzfrage)
     dankeUrl: 'danke.html',      // eigene Danke-Seite des Förderchecks, ohne Kalender: /foerderung/danke (= voller Lead)
@@ -702,11 +702,13 @@
     if (typeof window.Cal !== 'function') { showFallback(); return; }
 
     try {
-      // Alles vorbelegen, was das Cal.com-Event abfragt (geprüft am 24.09.: Telefon, Telefon als Ort, Thema, Notizen): der Kunde muss nur noch bestätigen
+      // Alles vorbelegen, was das Cal.com-Event abfragt (geprüft am 24.09., für das Förderanfrage-Event erneut am 27.09.: Telefon, Telefon als Ort, Thema (Pflicht, versteckt), Notizen): der Kunde muss nur noch bestätigen
       var e164 = toE164(phone);
       var cfg = { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', name: name, email: email, notes: answersSummary(), title: 'Fördercheck: Ergebnis besprechen' };
       if (CONFIG.calPhoneField) cfg[CONFIG.calPhoneField] = e164;   // verfällt stillschweigend, wenn das Feld im Event fehlt
       cfg.location = JSON.stringify({ value: 'phone', optionValue: e164 });   // Ort „Telefonnummer des Teilnehmers“
+      window.Cal.config = window.Cal.config || {};
+      window.Cal.config.forwardQueryParams = true;   // wie im Einbettungscode von Cal.com: URL-Parameter (z. B. UTM) an die Buchung weitergeben
       window.Cal('init', CONFIG.calNamespace, { origin: CONFIG.calOrigin });
       var ns = window.Cal.ns[CONFIG.calNamespace];
       ns('inline', { elementOrSelector: '#calInline', calLink: CONFIG.calLink, config: cfg });

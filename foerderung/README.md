@@ -72,9 +72,9 @@ Typo- und Abstandstokens (`:root` in style.css, abgeglichen mit foerderung.de be
 
 | Schlüssel | Aktuell |
 |---|---|
-| `calLink` | `schmidtke-gmbh/20-minuten-gesprach-am-telefon` |
+| `calLink` | `schmidtke-gmbh/20-min-forderanfrage-gesprach-am-telefon` (Event „20 Min Förderanfrage – Gespräch am Telefon“, `calNamespace` gleichlautend) |
 | `calPhoneField` | `attendeePhoneNumber` – Slug des Telefonfelds im Cal.com-Event. Fehlt das Feld, verfällt die Nummer stillschweigend. |
-| `dankeUrl` | `https://schmidtke-gmbh.de/danke?von=foerdercheck` – Weiterleitung 2,5 s nach erkannter Buchung |
+| `dankeUrl` | `danke.html` (= `/foerderung/danke`, ohne Kalender) – Weiterleitung 2,5 s nach erkannter Buchung |
 | Telefonnummer | `0741 94213040` (im HTML unter dem Kalender) |
 
 ## Tracking (`dataLayer`, Feld `funnel: 'foerdercheck'`)
