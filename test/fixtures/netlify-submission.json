@@ -1,0 +1,15 @@
+{
+  "payload": {
+    "form_name": "erstgespraech",
+    "data": {
+      "email": "MAX@example.com",
+      "vorname": "Max",
+      "nachname": "Mustermann",
+      "firma": "Beispiel GmbH",
+      "telefon": "+49 123",
+      "website": "https://example.com",
+      "branche": "Beratung",
+      "dienstleistung": "SEO"
+    }
+  }
+}

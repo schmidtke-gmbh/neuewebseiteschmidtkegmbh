@@ -1,0 +1,12 @@
+{
+  "triggerEvent": "BOOKING_CREATED",
+  "payload": {
+    "eventTypeId": 7242881,
+    "attendees": [
+      {
+        "name": "Max Mustermann",
+        "email": "max@example.com"
+      }
+    ]
+  }
+}

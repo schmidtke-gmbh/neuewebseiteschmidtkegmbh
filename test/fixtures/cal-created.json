@@ -1,0 +1,14 @@
+{
+  "triggerEvent": "BOOKING_CREATED",
+  "payload": {
+    "uid": "booking-created-1",
+    "eventTypeId": 7242881,
+    "startTime": "2026-10-02T08:00:00.000Z",
+    "attendees": [
+      {
+        "name": "Max Mustermann",
+        "email": "max@example.com"
+      }
+    ]
+  }
+}
