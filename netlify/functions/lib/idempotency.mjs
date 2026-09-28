@@ -33,7 +33,7 @@ export class DurableIdempotency {
     const created = await this.store.setJSON(key, processing, { onlyIfNew: true });
     if (created.modified) return { claimed: true, etag: created.etag, state: processing };
 
-    const current = await this.store.getWithMetadata(key, { type: 'json', consistency: 'strong' });
+    const current = await this.store.getWithMetadata(key, { type: 'json' });
     if (!current) return { claimed: false };
     if (current.data?.status === 'done') {
       return { claimed: false, done: true, value: current.data.value };
@@ -182,7 +182,7 @@ export class DurableBookingState {
   async apply(identity, event) {
     const key = this.storageKey(identity);
     for (let attempt = 0; attempt < this.maxAttempts; attempt += 1) {
-      const current = await this.store.getWithMetadata(key, { type: 'json', consistency: 'strong' });
+      const current = await this.store.getWithMetadata(key, { type: 'json' });
       const { state, decision } = transitionBookingState(current?.data, event);
       const saved = await this.store.setJSON(key, state, current
         ? { onlyIfMatch: current.etag }

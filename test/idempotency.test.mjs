@@ -24,6 +24,35 @@ class MemoryBlobStore {
   }
 }
 
+class EdgeCompatibleMemoryBlobStore extends MemoryBlobStore {
+  async getWithMetadata(key, options = {}) {
+    if (options.consistency === 'strong') {
+      throw new Error('Lambda Blobs context has no uncachedEdgeURL');
+    }
+    return super.getWithMetadata(key, options);
+  }
+}
+
+test('Lambda edge stores work without requesting unavailable strong consistency', async () => {
+  const store = new EdgeCompatibleMemoryBlobStore();
+  const idempotency = new DurableIdempotency({ store, ownerFactory: () => 'edge-owner' });
+
+  await assert.rejects(idempotency.runStep('edge-retry', 'crm', async () => {
+    throw new Error('first attempt fails');
+  }));
+  const retry = await idempotency.runStep('edge-retry', 'crm', async () => ({ recovered: true }));
+
+  const bookings = new DurableBookingState({ store });
+  const booking = await bookings.apply({ email: 'edge@example.com', dealId: 'deal-edge' }, {
+    triggerEvent: 'BOOKING_CREATED', bookingUid: 'edge-booking',
+    startTime: '2026-10-02T08:00:00.000Z', occurredAt: '2026-09-28T14:00:00.000Z',
+  });
+
+  assert.deepEqual(retry, { status: 'executed', value: { recovered: true } });
+  assert.equal(booking.stale, false);
+  assert.equal(booking.state.activeBookingUid, 'edge-booking');
+});
+
 test('concurrent duplicate claims execute a step only once', async () => {
   const store = new MemoryBlobStore();
   const idempotency = new DurableIdempotency({ store, ownerFactory: () => crypto.randomUUID() });
