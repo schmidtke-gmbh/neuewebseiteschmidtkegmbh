@@ -1,0 +1,14 @@
+{
+  "name": "schmidtke-website-automation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.7.13"
+  }
+}

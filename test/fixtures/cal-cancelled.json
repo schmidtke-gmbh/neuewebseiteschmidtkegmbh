@@ -1,0 +1,15 @@
+{
+  "triggerEvent": "BOOKING_CANCELLED",
+  "payload": {
+    "uid": "booking-cancelled-1",
+    "eventTypeId": 7242881,
+    "startTime": "2026-10-02T08:00:00.000Z",
+    "cancellationReason": "Private details that must not reach Slack",
+    "attendees": [
+      {
+        "name": "Max Mustermann",
+        "email": "max@example.com"
+      }
+    ]
+  }
+}
