@@ -127,10 +127,16 @@ export async function processWebsiteLead(event, { client, slack, config, idempot
   if (crmStep.status === 'in-progress') return { status: 'processing' };
 
   const slackStep = await steps.runStep(eventKey, 'slack', () => slack.send({
-    title: 'Neue Webseitenanfrage',
+    title: '🔔 Neue Anfrage über die Webseite!',
     status: 'SalesSuite: Anfrage erfasst',
     name,
     company: clean(data.firma),
+    email,
+    phone: clean(data.telefon),
+    industry: clean(data.branche),
+    service: clean(data.dienstleistung),
+    website: clean(data.website),
+    budget: clean(data.budget),
   }));
   return {
     status: completionStatus(crmStep, slackStep),

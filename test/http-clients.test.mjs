@@ -108,17 +108,35 @@ test('upstream failures redact response bodies and include only safe metadata', 
   });
 });
 
-test('Slack uses plain_text blocks and sends only operational identity fields', async () => {
+test('Slack uses injection-safe plain_text blocks and includes complete website lead details', async () => {
   const capture = captureFetch([new Response('ok', { status: 200 })]);
   const slack = new SlackNotifier({ webhookUrl: 'https://hooks.slack.test/services/test', fetchImpl: capture.fetch });
 
-  await slack.send({ title: 'Neue Webseitenanfrage <script>', status: 'SalesSuite: Anfrage erfasst', name: 'Max *Admin*', company: 'Beispiel & Co.' });
+  await slack.send({
+    title: 'Neue Webseitenanfrage <script>',
+    status: 'SalesSuite: Anfrage erfasst',
+    name: 'Max *Admin*',
+    company: 'Beispiel & Co.',
+    email: 'max@example.com',
+    phone: '+49 123 456789',
+    industry: 'Berater / Consultant',
+    service: 'Zahnarzt',
+    website: 'https://www.zahnarzt-test.de',
+    budget: 'Bis 1.000 € / Monat',
+  });
 
   const payload = JSON.parse(capture.calls[0].options.body);
   assert.equal(payload.text, 'CRM automation update');
   assert.ok(payload.blocks.every((block) => block.text?.type === 'plain_text'));
-  assert.match(JSON.stringify(payload), /Max \*Admin\*/);
-  assert.doesNotMatch(JSON.stringify(payload), /mrkdwn|email|phone|website|reason/i);
+  const serialized = JSON.stringify(payload);
+  assert.match(serialized, /Max \*Admin\*/);
+  assert.match(serialized, /max@example\.com/);
+  assert.match(serialized, /\+49 123 456789/);
+  assert.match(serialized, /Berater \/ Consultant/);
+  assert.match(serialized, /Zahnarzt/);
+  assert.match(serialized, /https:\/\/www\.zahnarzt-test\.de/);
+  assert.match(serialized, /Bis 1\.000 € \/ Monat/);
+  assert.doesNotMatch(serialized, /mrkdwn/);
   assert.ok(capture.calls[0].options.signal instanceof AbortSignal);
 });
 

@@ -8,16 +8,54 @@ export class SlackNotifier {
     this.timeoutMs = timeoutMs;
   }
 
-  async send({ title, status, name, company }) {
-    const detail = [name ? `Name: ${name}` : '', company ? `Unternehmen: ${company}` : '', status]
-      .filter(Boolean)
-      .join('\n');
+  async send({
+    title, status, name, company, email, phone, industry, service, website, budget,
+  }) {
+    const safe = (value, fallback = '–') => {
+      const text = String(value ?? '').trim() || fallback;
+      return text.length > 500 ? `${text.slice(0, 497)}…` : text;
+    };
+    const hasLeadDetails = [email, phone, company, industry, service, website, budget]
+      .some((value) => String(value ?? '').trim());
+    const blocks = [
+      { type: 'header', text: { type: 'plain_text', text: safe(title).slice(0, 150), emoji: true } },
+    ];
+    if (hasLeadDetails) {
+      blocks.push(
+        {
+          type: 'section',
+          text: {
+            type: 'plain_text',
+            text: `👤 Kontakt\nName: ${safe(name)}\nE-Mail: ${safe(email)}\nTelefon: ${safe(phone)}`,
+            emoji: true,
+          },
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'plain_text',
+            text: `🏢 Unternehmen\nUnternehmen: ${safe(company)}\nBranche: ${safe(industry)}\nAngebot: ${safe(service)}\nWebsite: ${safe(website)}`,
+            emoji: true,
+          },
+        },
+        {
+          type: 'section',
+          text: { type: 'plain_text', text: `💰 Werbebudget\n${safe(budget)}`, emoji: true },
+        },
+      );
+    } else {
+      blocks.push({
+        type: 'section',
+        text: { type: 'plain_text', text: `Name: ${safe(name)}`, emoji: true },
+      });
+    }
+    blocks.push({
+      type: 'section',
+      text: { type: 'plain_text', text: safe(status), emoji: true },
+    });
     const payload = {
       text: 'CRM automation update',
-      blocks: [
-        { type: 'header', text: { type: 'plain_text', text: String(title), emoji: true } },
-        { type: 'section', text: { type: 'plain_text', text: detail, emoji: true } },
-      ],
+      blocks,
     };
     const response = await fetchWithTimeout(this.fetch, this.webhookUrl, {
       method: 'POST',
