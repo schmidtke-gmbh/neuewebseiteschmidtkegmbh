@@ -69,7 +69,7 @@ function makeDeps({
   return { calls, client, slack, config, idempotency, bookingState };
 }
 
-test('new website form creates inquiry deal, note and privacy-minimized Slack alert', async () => {
+test('new website form sends the complete lead information to Slack', async () => {
   const deps = makeDeps();
   const result = await processWebsiteLead({
     eventId: 'submission-1',
@@ -92,12 +92,17 @@ test('new website form creates inquiry deal, note and privacy-minimized Slack al
   assert.ok(deps.calls.some(([name, , text]) => name === 'createDealNote' && text.includes('Automation-ID: form:submission-1')));
   const slackMessage = deps.calls.find(([name]) => name === 'slack')[1];
   assert.deepEqual(slackMessage, {
-    title: 'Neue Webseitenanfrage',
+    title: '🔔 Neue Anfrage über die Webseite!',
     status: 'SalesSuite: Anfrage erfasst',
     name: 'Max Mustermann',
     company: 'Beispiel GmbH',
+    email: 'max@example.com',
+    phone: '+49 123',
+    industry: 'Beratung',
+    service: 'SEO',
+    website: 'https://example.com',
+    budget: 'Bis 1.000 € / Monat',
   });
-  assert.doesNotMatch(JSON.stringify(slackMessage), /max@example\.com|\+49 123|https:\/\/example\.com|Beratung|SEO/i);
 });
 
 test('repeat website form does not downgrade an existing first-call deal', async () => {
