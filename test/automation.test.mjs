@@ -88,7 +88,9 @@ test('new website form sends the complete lead information to Slack', async () =
   }, deps);
 
   assert.equal(result.status, 'processed');
-  assert.ok(deps.calls.some(([name, input]) => name === 'createDeal' && input.phaseId === config.phases.inquiry));
+  assert.ok(deps.calls.some(([callName, input]) => callName === 'createDeal'
+    && input.phaseId === config.phases.inquiry
+    && input.name === 'Max Mustermann'));
   assert.ok(deps.calls.some(([name, , text]) => name === 'createDealNote' && text.includes('Automation-ID: form:submission-1')));
   const slackMessage = deps.calls.find(([name]) => name === 'slack')[1];
   assert.deepEqual(slackMessage, {

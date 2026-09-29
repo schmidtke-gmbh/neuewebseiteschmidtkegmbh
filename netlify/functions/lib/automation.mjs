@@ -72,7 +72,7 @@ async function ensureDeal({ email, name, startPhaseId, contactId, client, config
     if (terminalDeal) return terminalDeal;
   }
   const created = await client.createDeal({
-    name: `Website-Anfrage – ${name}`,
+    name,
     contactId,
     pipelineId: config.pipelineId,
     phaseId: startPhaseId,
