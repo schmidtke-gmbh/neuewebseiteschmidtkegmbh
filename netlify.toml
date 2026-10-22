@@ -14,3 +14,14 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fallstudie Chemnitz umbenannt (22.10.2026): alte Adresse dauerhaft weiterleiten
+[[redirects]]
+  from = "/case-fischer"
+  to = "/fallstudie-fischer-kampfsportschule-chemnitz"
+  status = 301
+
+[[redirects]]
+  from = "/case-fischer.html"
+  to = "/fallstudie-fischer-kampfsportschule-chemnitz"
+  status = 301
