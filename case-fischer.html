@@ -935,6 +935,61 @@
 <link rel="stylesheet" href="case-scope.css">
     <!-- VibeTrack: Tracking und Marketing-Pixel nach Einwilligung -->
     <script async src="https://vt.schmidtke-gmbh.de/tracker.js?site-id=VT-AC820796-70835"></script>
+<style>
+    /* Video (Bunny Stream, lädt erst nach Klick) */
+    .vid { padding: 34px 0 56px; }
+    .vid-head { margin-bottom: 26px; max-width: 720px; }
+    .sec-eyebrow { display: inline-block; margin-bottom: 14px; color: var(--gold); font-size: var(--eyebrow-size); font-weight: var(--eyebrow-weight); letter-spacing: var(--eyebrow-track); text-transform: uppercase; }
+    .sec-title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; }
+    .sec-title i { font-style: normal; color: var(--gold); }
+    .vid-frame { position: relative; aspect-ratio: 16/9; overflow: hidden; border: 1px solid var(--border); border-radius: 22px; background: #000; box-shadow: 0 40px 100px -30px rgba(0,0,0,0.7); }
+    .vid-frame > img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; transition: transform 0.8s ease, opacity 0.4s ease; }
+    .vid-frame:hover > img { transform: scale(1.02); opacity: 0.9; }
+    .vid-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(4,13,28,0.88)); pointer-events: none; }
+    .vid-frame.is-playing::after { display: none; }
+    .vid-play { position: absolute; left: 50%; top: 50%; z-index: 2; width: 88px; height: 88px; display: grid; place-items: center; color: #fff; border: 0; border-radius: 50%; background: var(--red); cursor: pointer; transform: translate(-50%, -50%); box-shadow: 0 0 0 12px rgba(230,47,31,0.22), 0 20px 50px -10px rgba(230,47,31,0.6); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .vid-play:hover { transform: translate(-50%, -50%) scale(1.06); box-shadow: 0 0 0 18px rgba(230,47,31,0.18), 0 20px 50px -10px rgba(230,47,31,0.7); }
+    .vid-play svg { width: 30px; height: 30px; margin-left: 4px; }
+    .vid-label { position: absolute; left: 26px; bottom: 22px; z-index: 2; font-size: 14px; color: var(--text-soft); }
+    .vid-label b { display: block; color: #fff; font-size: 17px; }
+    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Landingpage-Showcase */
+    .lp { padding: 90px 0 64px; background: radial-gradient(1100px 520px at 75% 10%, rgba(230,47,31,0.13), transparent 62%); }
+    .lp-head { max-width: 720px; margin-bottom: 52px; }
+    .lp-head p { margin-top: 16px; color: var(--text-soft); font-size: 16.5px; line-height: 1.7; }
+    .lp-stage { position: relative; padding: 0 17% 70px 0; }
+    .lp-browser { overflow: hidden; border: 1px solid var(--border); border-radius: 16px; background: #0b1220; box-shadow: 0 50px 110px -30px rgba(0,0,0,0.75); }
+    .lp-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #111a2b; border-bottom: 1px solid var(--border); }
+    .lp-bar span { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
+    .lp-bar span:nth-child(2) { background: #febc2e; }
+    .lp-bar span:nth-child(3) { background: #28c840; }
+    .lp-bar em { flex: 1; max-width: 340px; margin-left: 14px; padding: 5px 12px; color: var(--text-faint); border-radius: 8px; background: rgba(255,255,255,0.06); font-size: 12px; font-style: normal; }
+    .lp-browser img { width: 100%; }
+    .lp-phone { position: absolute; width: 19%; padding: 6px; border: 1px solid rgba(255,255,255,0.16); border-radius: 30px; background: #05080f; box-shadow: 0 34px 80px -20px rgba(0,0,0,0.85); }
+    .lp-phone img { width: 100%; border-radius: 24px; }
+    .lp-phone-a { right: 12%; bottom: 0; }
+    .lp-phone-b { right: -2%; bottom: 46px; }
+    .lp-cap { position: absolute; left: 0; right: 0; bottom: -34px; color: var(--text-faint); font-size: 12.5px; text-align: center; }
+    .lp-points { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .lp-point { padding: 24px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,255,255,0.03); }
+    .lp-point .no { display: block; margin-bottom: 14px; color: var(--red-bright); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; }
+    .lp-point b { display: block; margin-bottom: 6px; font-size: 19px; letter-spacing: -0.015em; }
+    .lp-point span:last-child { color: var(--text-soft); font-size: 15px; line-height: 1.6; }
+@media (max-width: 860px) {
+    .vid-play { top: 42%; width: 56px; height: 56px; box-shadow: 0 0 0 8px rgba(230,47,31,0.22), 0 14px 34px -10px rgba(230,47,31,0.6); }
+    .vid-play:hover { box-shadow: 0 0 0 10px rgba(230,47,31,0.18), 0 14px 34px -10px rgba(230,47,31,0.7); }
+    .vid-play svg { width: 20px; height: 20px; }
+    .vid-label { left: 14px; bottom: 10px; font-size: 11.5px; }
+    .vid-label b { font-size: 14px; }
+    .lp { padding: 64px 0 40px; }
+    .lp-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0; }
+    .lp-browser { grid-column: 1 / -1; }
+    .lp-phone { position: static; width: auto; border-radius: 26px; }
+    .lp-cap { position: static; grid-column: 1 / -1; }
+    .lp-points { margin-top: 36px; grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
@@ -1077,22 +1132,29 @@
                 <defs><linearGradient id="glGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#D4A574"/><stop offset="0.55" stop-color="#E8845E"/><stop offset="1" stop-color="#FF5A4C"/></linearGradient></defs>
                 <path id="glPath" d="M 20 330 C 260 315, 380 275, 520 215 S 800 105, 980 60"/>
             </svg>
-<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span><b>1 Monat</b><span>bis der neue Kurs ausgebucht war</span></div>
-<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span><b>Mehr Budget</b><span>bei niedrigen Leadpreisen</span></div>
-<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><b>Präsent</b><span>auf Facebook und Instagram in der Region</span></div>
-<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><b>Vertrieb</b><span>Leads bis in Verkauf und Betreuung gedacht</span></div>
+<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span><b>Mehr Leads</b><span>zu deutlich niedrigeren Leadpreisen</span></div>
+<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span><b>Omnipräsent</b><span>auf Facebook und Instagram in der ganzen Region</span></div>
+<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><b>1 Monat</b><span>bis der neue Kurs ausgebucht war</span></div>
+<div class="fact"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><b>Vertrieb</b><span>vom Lead bis zum Mitglied durchdacht</span></div>
         </div>
     </div>
 </section>
 
-<!-- CMS:WIDE -->
-<!-- ═══ BILD BREIT ═══ -->
-<section class="wideimg" aria-hidden="true">
+<!-- ═══ VIDEO (Bunny Stream) ═══ -->
+<!-- Bunny-Einbettungs-URL in data-bunny eintragen, z. B. https://iframe.mediadelivery.net/embed/BIBLIOTHEK/VIDEO-ID -->
+<section class="vid" id="video">
     <div class="container">
-        <img class="reveal" src="assets/kunden/fischer-akademie-weit.jpg" alt="Torsten Fischer in der Kampfsportakademie Chemnitz" loading="lazy" onerror="this.parentElement.parentElement.style.display='none'">
+        <div class="vid-head reveal">
+            <span class="sec-eyebrow">Kundenstimme im Video</span>
+            <h2 class="sec-title">Torsten erzählt, <i>was sich verändert hat.</i></h2>
+        </div>
+        <div class="vid-frame reveal" data-bunny="https://player.mediadelivery.net/embed/752909/cdc3bd25-d592-4516-94e0-8800be94d532">
+            <img src="assets/kunden/fischer-akademie-weit.jpg" alt="Torsten Fischer in der Kampfsportakademie Chemnitz" loading="lazy">
+            <button class="vid-play" type="button" aria-label="Video mit Torsten Fischer abspielen"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></svg></button>
+            <span class="vid-label"><b>Torsten Fischer</b>Inhaber, Kampfsportakademie Chemnitz · 3:30 Min.</span>
+        </div>
     </div>
 </section>
-<!-- /CMS:WIDE -->
 
 <!-- ═══ AUSGANGSLAGE ═══ -->
 <section class="txt">
@@ -1126,10 +1188,36 @@
             <h2 class="reveal">Was wir <i>gemacht haben.</i></h2>
             <div class="reveal">
                 <p><strong>Strategie zuerst.</strong> Am Anfang stand kein Anzeigenpaket, sondern ein Gespräch mit Fabian: Wo steht die Akademie, wo soll sie hin, und welche Hebel bringen sie dorthin?</p>
-                <p><strong>Anzeigen und Creatives auf Facebook und Instagram.</strong> Wir haben die Kampagnen neu aufgebaut, mit Bild- und Videomaterial direkt aus der Akademie und laufend neuen Ideen. So ließ sich das Budget deutlich erhöhen, ohne dass die Leadpreise mitgestiegen sind.</p>
+                <p><strong>Anzeigen und Creatives auf Facebook und Instagram.</strong> Wir haben die Kampagnen neu aufgebaut, mit Bild- und Videomaterial direkt aus der Akademie und laufend neuen Ideen. So ließ sich das Budget deutlich erhöhen, und trotzdem kostet jeder Lead heute deutlich weniger.</p>
+                <p><strong>Eine eigene Landingpage.</strong> Die Anzeigen führen nicht mehr auf die alte Webseite, sondern auf eine Seite, die nur ein Ziel hat: das kostenlose Probetraining. Mit Video im Startbereich, eigener Seite für Eltern und einem kurzen Funnel statt eines langen Formulars.</p>
                 <p><strong>Vom Lead zum Mitglied.</strong> Fabian hat sich nicht nur das Marketing angesehen, sondern auch den Vertrieb: Wie kommen die Anfragen optimal in den Verkauf, in die Betreuung und in die Verwaltung? Erst damit greift alles ineinander.</p>
                 <p><strong>Ein direkter Draht.</strong> Statt Ticketsystem gibt es einen WhatsApp-Kanal direkt mit Fabian, für schnelle Antworten im Alltag.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ LANDINGPAGE ═══ -->
+<section class="lp" aria-labelledby="lp-title">
+    <div class="container">
+        <div class="lp-head reveal">
+            <span class="sec-eyebrow">Landingpage &amp; Funnel</span>
+            <h2 class="sec-title" id="lp-title">Eine Seite, die aus Klicks <i>Probetrainings macht.</i></h2>
+            <p>Gebaut für die Anzeigen auf Facebook und Instagram: Wer klickt, sieht sofort die Akademie, versteht das Angebot und meldet sich in wenigen Schritten zum Probetraining an.</p>
+        </div>
+        <div class="lp-stage reveal">
+            <figure class="lp-browser">
+                <div class="lp-bar" aria-hidden="true"><span></span><span></span><span></span><em>kampfsport-akademie-chemnitz.de</em></div>
+                <img src="assets/kunden/fischer-lp-desktop.jpg" alt="Startseite der Landingpage der Kampfsportakademie Chemnitz am Desktop" loading="lazy">
+            </figure>
+            <figure class="lp-phone lp-phone-a"><img src="assets/kunden/fischer-lp-handy-kinder.jpg" alt="Kinderseite der Landingpage auf dem Handy" loading="lazy"></figure>
+            <figure class="lp-phone lp-phone-b"><img src="assets/kunden/fischer-lp-handy-anfrage.jpg" alt="Probetraining-Funnel auf dem Handy, Frage 1 von 6" loading="lazy"></figure>
+            <span class="lp-cap">Live unter kampfsport-akademie-chemnitz.de</span>
+        </div>
+        <div class="lp-points">
+            <div class="lp-point reveal"><span class="no">01</span><b>Video zuerst</b><span>Ein Rundgang durch die Akademie gleich oben auf der Seite schafft Vertrauen, bevor jemand anfragt.</span></div>
+            <div class="lp-point reveal"><span class="no">02</span><b>Eigene Seite für Eltern</b><span>Wer sein Kind anmelden will, landet auf einer Seite, die genau dafür gemacht ist.</span></div>
+            <div class="lp-point reveal"><span class="no">03</span><b>Sechs kurze Fragen</b><span>Statt eines langen Formulars führt der Funnel Schritt für Schritt zur Anfrage. Die Leads kommen vorsortiert im Vertrieb an.</span></div>
         </div>
     </div>
 </section>
@@ -1151,7 +1239,8 @@
         <div class="txt-grid">
             <h2 class="reveal">Das <i>Ergebnis.</i></h2>
             <div class="reveal">
-                <p>Ein neuer Kurs war <strong>innerhalb eines Monats ausgebucht</strong>. „Das gab's vorher so noch nie“, sagt Torsten. Die Akademie ist auf Facebook und Instagram dauerhaft präsent, das Budget ist gestiegen, die Leadpreise sind niedrig geblieben, und aus mehr Anfragen werden durch den neuen Vertriebsablauf auch mehr Mitglieder.</p>
+                <p><strong>Deutlich mehr Leads zu deutlich niedrigeren Preisen.</strong> Das Werbebudget ist gestiegen, die Kosten pro Lead sind gesunken. Die Akademie ist auf Facebook und Instagram in der ganzen Region präsent, und durch den neuen Vertriebsablauf werden aus mehr Anfragen auch mehr Mitglieder.</p>
+                <p>Ein neuer Kurs war <strong>innerhalb eines Monats ausgebucht</strong>. „Das gab's vorher so noch nie“, sagt Torsten.</p>
                 <p>Am meisten hebt Torsten die individuelle Betreuung hervor: keine Lösung von der Stange, sondern eine, die genau an den Problemen seiner Akademie ansetzt.</p>
             </div>
         </div>
@@ -1176,7 +1265,7 @@
         <div class="sys-grid">
             <div class="reveal">
                 <h2>Diese Leistung steckt<br><i>hinter dem Ergebnis.</i></h2>
-                <p>Strategie, Meta-Anzeigen mit eigenen Creatives und ein Vertriebsablauf, der aus Anfragen Mitglieder macht. Alles mit einem festen Ansprechpartner.</p>
+                <p>Strategie, Meta-Anzeigen mit eigenen Creatives, eine Landingpage mit Funnel und ein Vertriebsablauf, der aus Anfragen Mitglieder macht. Alles mit einem festen Ansprechpartner.</p>
                 <a href="formular.html" class="sys-btn">Ähnliches Projekt besprechen
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
@@ -1184,8 +1273,8 @@
             <div class="sys-orbit case-scope reveal" aria-label="Tatsächlich umgesetzte Leistungen" data-count="4">
                 <span class="case-scope-label">Projektumfang</span>
                 <span class="sys-chip c1"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Strategie</span>
-                <span class="sys-chip c2"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Meta-Anzeigen</span>
-                <span class="sys-chip c3"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Creatives</span>
+                <span class="sys-chip c2"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Meta-Ads &amp; Creatives</span>
+                <span class="sys-chip c3"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Landingpage &amp; Funnel</span>
                 <span class="sys-chip c4"><span class="sys-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>Vertriebsprozess</span>
             </div>
         </div>
@@ -1431,5 +1520,16 @@
 </script>
 <!-- VibeTrack: Cookie-Einwilligung -->
 <script async src="https://vt.schmidtke-gmbh.de/cookie.js?site-id=VT-AC820796-70835"></script>
+<script>
+document.querySelectorAll('.vid-frame').forEach(function (frame) {
+    frame.querySelector('.vid-play').addEventListener('click', function () {
+        var src = frame.dataset.bunny;
+        if (!src) return;
+        var url = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=true&preload=true&responsive=true';
+        frame.classList.add('is-playing');
+        frame.innerHTML = '<iframe src="' + url + '" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Torsten Fischer über die Zusammenarbeit"></iframe>';
+    });
+});
+</script>
 </body>
 </html>
