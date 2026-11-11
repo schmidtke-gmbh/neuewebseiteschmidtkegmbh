@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Interne/Formular-Seiten (zusaetzlich per meta noindex gesichert; NICHT hier sperren,
+# sonst kann Google das noindex nicht lesen)
+Disallow: /netlify/
+Disallow: /.netlify/
+
+Sitemap: https://schmidtke-gmbh.de/sitemap.xml

@@ -86,3 +86,233 @@
   to = "/404.html"
   status = 404
   force = true
+
+# Alte Startseite und .html-Adressen dauerhaft auf die Adresse ohne Endung leiten (11.11.2026)
+[[redirects]]
+  from = "/index-v4"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index-v4.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/foerderung/index.html"
+  to = "/foerderung/"
+  status = 301
+  force = true
+
+# Netlify kennt kein Muster "/*.html", deshalb je Seite eine Regel
+[[redirects]]
+  from = "/agb.html"
+  to = "/agb"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bafa-antrag.html"
+  to = "/bafa-antrag"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bewerbung-bestaetigt.html"
+  to = "/bewerbung-bestaetigt"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bewerbung.html"
+  to = "/bewerbung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-barwig.html"
+  to = "/case-barwig"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-bentivegna.html"
+  to = "/case-bentivegna"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-boerner.html"
+  to = "/case-boerner"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-buck.html"
+  to = "/case-buck"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-detta.html"
+  to = "/case-detta"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-ege.html"
+  to = "/case-ege"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-emrich.html"
+  to = "/case-emrich"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-hellriegel.html"
+  to = "/case-hellriegel"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-lorino.html"
+  to = "/case-lorino"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-michel.html"
+  to = "/case-michel"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-rossegger.html"
+  to = "/case-rossegger"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-tabman.html"
+  to = "/case-tabman"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-vogt.html"
+  to = "/case-vogt"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/case-zotzmann.html"
+  to = "/case-zotzmann"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/danke.html"
+  to = "/danke"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/datenschutz.html"
+  to = "/datenschutz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/done4you.html"
+  to = "/done4you"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fallstudie-fischer-kampfsportschule-chemnitz.html"
+  to = "/fallstudie-fischer-kampfsportschule-chemnitz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fallstudien.html"
+  to = "/fallstudien"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/foerderung/anfragen.html"
+  to = "/foerderung/anfragen"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/foerderung/danke.html"
+  to = "/foerderung/danke"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/formular.html"
+  to = "/formular"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/impressum.html"
+  to = "/impressum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/karriere.html"
+  to = "/karriere"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ki-sichtbarkeit.html"
+  to = "/ki-sichtbarkeit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/termin-gebucht.html"
+  to = "/termin-gebucht"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ueber-fabian.html"
+  to = "/ueber-fabian"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ueber-jasmin.html"
+  to = "/ueber-jasmin"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ueber-uns.html"
+  to = "/ueber-uns"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/youtube-kanal-aufbauen-lassen.html"
+  to = "/youtube-kanal-aufbauen-lassen"
+  status = 301
+  force = true
