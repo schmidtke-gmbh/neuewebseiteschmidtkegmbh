@@ -1,0 +1,23 @@
+/* Agentur-Score: Live-Widget am Desktop. Die feste Karte kommt auf dem Handy und immer dann, wenn das Widget nicht lädt.
+   Karten-Stil aus footer-trust.css der Live-Seite. */
+.agency-score-fallback { box-sizing: border-box; display: none; width: min(100%, 320px); min-height: 96px; padding: 15px 17px; align-items: center; gap: 14px; color: #0b1d37; text-decoration: none; background: #ffffff; border: 1px solid #e4eaf0; border-top: 4px solid #12b981; border-radius: 14px; box-shadow: 0 16px 38px -20px rgba(3, 17, 36, 0.55); }
+.agency-score-star { display: grid; place-items: center; width: 46px; height: 46px; flex: 0 0 46px; border-radius: 13px; color: #ffffff; background: linear-gradient(145deg, #16c78f, #079c6e); font-size: 25px; line-height: 1; box-shadow: 0 9px 22px rgba(18, 185, 129, 0.24); }
+.agency-score-copy { display: block; min-width: 0; text-align: left; }
+.agency-score-title { display: block; margin-bottom: 2px; color: #0b1d37; font-size: 15px; font-weight: 800; letter-spacing: -0.02em; }
+.agency-score-rating { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; color: #079c6e; font-size: 20px; font-weight: 800; line-height: 1.05; }
+.agency-score-rating small { color: #12b981; font-size: 12px; letter-spacing: 0.5px; }
+.agency-score-meta { display: block; margin-top: 5px; color: #5b6574; font-size: 11px; font-weight: 600; line-height: 1.3; }
+
+/* Feste Karte statt Live-Widget: Handy und Touch-Geräte … */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .agency-score-live, .trustmarkt-widget { display: none !important; }
+  .agency-score-fallback { display: flex !important; }
+  .trust-card { width: auto; border-radius: 0; background: none; box-shadow: none; overflow: visible; }
+}
+.agenturmarkt-mobile .agency-score-live, .agenturmarkt-mobile .trustmarkt-widget { display: none !important; }
+.agenturmarkt-mobile .agency-score-fallback { display: flex !important; }
+.agenturmarkt-mobile .trust-card { width: auto; border-radius: 0; background: none; box-shadow: none; overflow: visible; }
+/* … und am Desktop, wenn das Widget blockiert wird (v2.js setzt .no-live) */
+.trust-card.no-live .agency-score-live, .trust-card.no-live .trustmarkt-widget { display: none !important; }
+.trust-card.no-live .agency-score-fallback { display: flex !important; }
+.trust-card.no-live { width: auto; border-radius: 0; background: none; box-shadow: none; overflow: visible; }

@@ -1,0 +1,315 @@
+/* Über-uns-Seite, Entwurf 12.11.2026
+   Baut auf v2.css auf (Farben, Schrift, Knöpfe, Navigation, Abschluss, Fuß).
+   Eigene Klassen beginnen mit „ab-“, damit nichts mit der Startseite kollidiert.
+   Kleine Animationen laufen in Schritten: ueber.js setzt an den Bausteinen die Klassen „on“ und „now“. */
+
+.ab-sec { position: relative; padding: 130px 0; }
+.ab-light { background: var(--paper); color: var(--ink); }
+.ab-2 { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 76px; align-items: center; }
+.ab-copy p { margin-top: 20px; font-size: 17px; line-height: 1.68; color: var(--text-sec); max-width: 33rem; }
+.ab-copy .h2 + p { margin-top: 26px; }
+.ab-copy p strong { color: #fff; }
+.ab-light .ab-copy p { color: var(--slate); }
+.ab-light .ab-copy p strong { color: var(--ink); }
+.ab-sec .h2 { font-size: clamp(31px, 3.75vw, 52px); }
+.ab-sec .ab-h-s { font-size: clamp(27px, 3vw, 42px); line-height: 1.1; }
+/* Überschriften gleichmäßig umbrechen, damit kein einzelnes Wort allein in der letzten Zeile steht */
+.ab-hero .h-hero, .ab-sec .h2, .ab-tl h3, .ab-w-txt h3, .ab-voice blockquote, .ab-me-q { text-wrap: balance; }
+.ab-nb { white-space: nowrap; }
+
+/* ───────── 1 · Hero: echte Fotos, Gesprächsnotiz als lebende Karte ───────── */
+.ab-hero { padding-bottom: 92px; }
+.ab-hero .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; }
+.ab-hero .h-hero { font-size: clamp(36px, 4.05vw, 58px); line-height: 1.07; }
+.ab-hero .hero-sub { margin-top: 22px; max-width: 540px; }
+.ab-hero .found { margin-top: 18px; }
+.ab-hero .fi svg { border-radius: 0; }
+
+.ab-stage { position: relative; height: clamp(470px, 60vh, 570px); }
+.ab-stage::before { content: ""; position: absolute; left: 46%; top: 52%; width: 640px; height: 640px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(230, 47, 31, 0.26) 0%, rgba(230, 47, 31, 0.07) 44%, transparent 68%); pointer-events: none; }
+.ab-ph { position: absolute; margin: 0; overflow: hidden; border-radius: 24px; background: var(--navy-card); box-shadow: 0 44px 90px -34px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.ab-ph img { width: 100%; height: 100%; object-fit: cover; }
+.ab-ph1 { left: 0; top: 3%; width: 86%; aspect-ratio: 3 / 2; animation: abDrift 13s ease-in-out infinite; }
+.ab-ph1 img { animation: abZoom 24s ease-in-out infinite alternate; }
+.ab-ph2 { right: 0; bottom: 0; width: 36%; aspect-ratio: 2 / 3; border-radius: 22px; rotate: 2.5deg; box-shadow: 0 0 0 6px var(--navy), 0 44px 90px -30px rgba(0, 0, 0, 0.9); animation: abDrift 10s ease-in-out -3s infinite; }
+.ab-ph2 figcaption { position: absolute; left: 8px; right: 8px; bottom: 8px; display: flex; align-items: stretch; gap: 10px; padding: 9px 12px 9px 9px; border-radius: 12px; background: rgba(7, 22, 42, 0.8); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.ab-ph2 figcaption i { flex: none; width: 4px; border-radius: 4px; background: var(--red); box-shadow: 0 0 14px var(--red-glow); }
+.ab-ph2 figcaption b { display: block; font-size: 13.5px; line-height: 1.3; white-space: nowrap; }
+.ab-ph2 figcaption small { display: block; font-family: var(--mono); font-size: 10.5px; line-height: 1.45; color: var(--text-sec); white-space: nowrap; }
+@keyframes abDrift { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+@keyframes abZoom { from { scale: 1; } to { scale: 1.07; } }
+
+/* „Seit 2007 auf YouTube“ */
+.ab-since { right: 1%; top: -4%; gap: 11px; padding: 10px 16px 10px 12px; animation: abDrift 11s ease-in-out -7s infinite; }
+.ab-since svg { width: 30px; height: 21px; flex: none; }
+.ab-since b { display: block; font-size: 14.5px; line-height: 1.25; white-space: nowrap; }
+.ab-since small { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--text-sec); white-space: nowrap; }
+
+/* Gesprächsnotiz: drei Punkte füllen sich, erst dann kommt die Empfehlung */
+.ab-note { left: -5%; bottom: 10%; display: block; width: 256px; padding: 16px 18px 14px; border-radius: 18px; animation: abDrift 12s ease-in-out -6s infinite; }
+.ab-note-h { display: flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 11px; color: var(--text-sec); }
+.ab-note ul { margin-top: 13px; display: grid; gap: 10px; }
+.ab-note li { display: grid; grid-template-columns: 98px 1fr 20px; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; color: var(--text-mut); transition: color 0.4s ease; }
+.ab-note li i { position: relative; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+.ab-note li i::after { content: ""; position: absolute; inset: 0; border-radius: 6px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.9)); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.9s var(--ease); }
+.ab-note li svg { width: 20px; height: 20px; padding: 5px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); color: transparent; transition: background 0.3s ease 0.45s, color 0.3s ease 0.45s; }
+.ab-note li.on { color: #fff; }
+.ab-note li.on i::after { transform: scaleX(1); }
+.ab-note li.on svg { background: var(--red); color: #fff; }
+.ab-note-f { margin-top: 13px; padding-top: 11px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--text-dim); transition: color 0.4s ease; }
+.ab-note-f svg { width: 14px; height: 14px; flex: none; transition: color 0.4s ease, transform 0.5s var(--ease); }
+.ab-note-f.on { color: #fff; }
+.ab-note-f.on svg { color: var(--red-bright); transform: translateX(3px); }
+
+/* Fotos und Karten kommen nacheinander ins Bild */
+.js .ab-stage .ab-ph, .js .ab-stage .chip { opacity: 0; transform: translateY(22px) scale(0.97); transition: opacity 0.8s var(--ease), transform 0.9s var(--ease); transition-delay: calc(0.15s + var(--k, 0) * 0.16s); }
+.js .ab-stage.in .ab-ph, .js .ab-stage.in .chip { opacity: 1; transform: none; }
+
+/* ───────── 2 · Haltung: drei Fragen, bevor etwas produziert wird ───────── */
+.ab-q { position: relative; padding: 30px 30px 28px; border-radius: 28px; background: #fff; border: 1px solid var(--line); box-shadow: 0 40px 80px -44px rgba(15, 23, 42, 0.4); }
+.ab-q-h { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--mono); font-size: 12px; color: var(--slate); }
+.ab-q-h span { display: inline-flex; align-items: center; gap: 9px; color: var(--red); }
+.ab-qs { margin-top: 18px; display: grid; gap: 10px; }
+.ab-qs li { display: grid; grid-template-columns: 30px 1fr 30px; align-items: center; gap: 14px; padding: 18px 18px 18px 18px; border-radius: 18px; background: var(--paper); box-shadow: inset 0 0 0 1.5px transparent; transition: background 0.45s ease, box-shadow 0.45s ease, transform 0.6s var(--ease); }
+.ab-qs li > span { font-family: var(--mono); font-size: 13px; color: var(--slate); }
+.ab-qs li p { font-size: 19px; line-height: 1.3; font-weight: 700; letter-spacing: -0.015em; }
+.ab-qs .ab-tick { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #fff; box-shadow: inset 0 0 0 1.5px rgba(15, 23, 42, 0.14); color: transparent; transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease; }
+.ab-qs .ab-tick svg { width: 15px; height: 15px; }
+.ab-qs li.now { background: #fff; box-shadow: inset 0 0 0 1.5px var(--red), 0 18px 34px -20px rgba(230, 47, 31, 0.45); transform: translateX(8px); }
+.ab-qs li.on .ab-tick { background: var(--red); color: #fff; box-shadow: none; }
+.ab-q-res { margin-top: 18px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ab-q-res span { height: 36px; padding: 0 15px; display: inline-flex; align-items: center; border-radius: 100px; background: var(--paper); font-size: 13.5px; font-weight: 700; color: var(--slate); transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease; }
+.ab-q-res svg { width: 14px; height: 14px; flex: none; color: rgba(15, 23, 42, 0.28); }
+.ab-q-res span.on { background: var(--ink); color: #fff; }
+.ab-q-res span.on:last-child { background: var(--red); box-shadow: 0 10px 24px rgba(230, 47, 31, 0.35); }
+.ab-q-note { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.6; color: var(--slate); }
+
+/* ───────── 3 · Fabians Weg: Zeitleiste, die sich beim Scrollen füllt ───────── */
+.ab-story { background: var(--navy-deep); overflow-x: clip; }
+.ab-story::before { content: ""; position: absolute; left: -12%; top: 8%; width: 720px; height: 720px; background: radial-gradient(circle, rgba(22, 51, 92, 0.6) 0%, transparent 66%); pointer-events: none; }
+.ab-story-grid { position: relative; display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); gap: 84px; align-items: start; }
+.ab-me { position: sticky; top: 108px; }
+.ab-me-ph { position: relative; margin: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 5; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.ab-me-ph img { width: 100%; height: 100%; object-fit: cover; }
+.ab-me-ph figcaption { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; align-items: stretch; gap: 13px; padding: 12px 16px 12px 12px; border-radius: 14px; background: rgba(7, 22, 42, 0.78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.ab-me-ph figcaption i { flex: none; width: 4px; border-radius: 4px; background: var(--red); box-shadow: 0 0 14px var(--red-glow); }
+.ab-me-ph figcaption b { display: block; font-size: 16px; line-height: 1.3; }
+.ab-me-ph figcaption small { display: block; font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--text-sec); }
+.ab-me-q { margin-top: 26px; padding-left: 20px; border-left: 3px solid var(--red); font-size: 20px; line-height: 1.42; font-weight: 700; letter-spacing: -0.01em; }
+.ab-tl { position: relative; margin-top: 54px; padding-left: 52px; --p: 0; }
+.ab-tl::before { content: ""; position: absolute; left: 13px; top: 10px; bottom: 10px; width: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); }
+/* Füllung und Punkt bewegen sich per transform (kein Layout-Sprung beim Scrollen). --p = Anteil, --y = Weg des Punkts in px, beides setzt ueber.js */
+.ab-fill { position: absolute; left: 13px; top: 10px; bottom: 10px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, rgba(230, 47, 31, 0.45), var(--red)); box-shadow: 0 0 16px var(--red-glow); transform: scaleY(var(--p)); transform-origin: 50% 0; }
+.ab-tl::after { content: ""; position: absolute; left: 14px; top: 4px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(230, 47, 31, 0.4), 0 0 22px var(--red); transform: translateY(var(--y, 0px)); pointer-events: none; }
+.ab-tl li { position: relative; padding-bottom: 46px; }
+.ab-tl li:last-child { padding-bottom: 0; }
+.ab-tl li::before { content: ""; position: absolute; left: -46px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--navy-deep); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.28); transition: background 0.4s ease, box-shadow 0.4s ease; }
+.ab-when { display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 100px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); font-family: var(--mono); font-size: 12px; color: var(--text-sec); transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
+.ab-tl h3 { margin-top: 12px; font-size: 24px; line-height: 1.2; letter-spacing: -0.02em; }
+.ab-tl p { margin-top: 10px; font-size: 16.5px; line-height: 1.68; color: var(--text-sec); max-width: 36rem; }
+.js .ab-tl li > * { opacity: 0.36; transition: opacity 0.6s ease; }
+.js .ab-tl li.on > * { opacity: 1; }
+.ab-tl li.on::before { background: var(--red); box-shadow: 0 0 0 5px rgba(230, 47, 31, 0.2); }
+.ab-tl li.on .ab-when { background: rgba(230, 47, 31, 0.14); border-color: rgba(230, 47, 31, 0.4); color: #fff; }
+
+/* ───────── 4 · Team ───────── */
+.ab-people { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.ab-p figure { position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; background: #0d1e38; box-shadow: 0 34px 70px -40px rgba(15, 23, 42, 0.55); }
+.ab-p img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.ab-p:hover img { transform: scale(1.045); }
+.ab-p figure::after { content: ""; position: absolute; inset: 52% 0 0; background: linear-gradient(180deg, rgba(4, 13, 28, 0), rgba(4, 13, 28, 0.82)); }
+.ab-p figcaption { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 20px; color: #fff; }
+.ab-p figcaption b { display: block; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em; }
+.ab-p figcaption span { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.4; color: var(--text-sec); }
+.ab-p-tag { position: absolute; z-index: 1; left: 16px; top: 16px; height: 30px; padding: 0 13px 0 11px; display: inline-flex; align-items: center; gap: 8px; border-radius: 100px; background: rgba(7, 22, 42, 0.72); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-family: var(--mono); font-size: 11.5px; color: #fff; }
+.ab-p-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+/* Einblicke: laufende Reihe echter Fotos, über die ganze Breite */
+.ab-strip { margin-top: 76px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.ab-strip-row { display: flex; gap: 14px; width: max-content; padding-right: 14px; animation: mq 96s linear infinite; }
+.ab-strip:hover .ab-strip-row { animation-play-state: paused; }
+.ab-strip img { flex: none; width: 360px; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 18px; }
+.ab-strip-cap { margin-top: 18px; text-align: center; font-size: 14px; color: var(--slate); }
+
+/* ───────── 5 · So arbeiten wir: drei Karten mit kleinen Abläufen ───────── */
+.ab-work { background: var(--navy); overflow: hidden; }
+.ab-ws { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ab-w { display: flex; flex-direction: column; border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, #0f2444 0%, #0a1a33 100%); border: 1px solid var(--border); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
+.ab-w:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.18); }
+.ab-w-vis { position: relative; height: 240px; padding: 24px; overflow: hidden; border-bottom: 1px solid var(--border); background: radial-gradient(ellipse 90% 90% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 70%), radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 1.5px) 0 0 / 18px 18px; }
+.ab-w-txt { padding: 26px 28px 30px; }
+.ab-w-txt small { font-family: var(--mono); font-size: 12px; color: var(--red-bright); }
+.ab-w-txt h3 { margin-top: 10px; font-size: 22px; line-height: 1.22; letter-spacing: -0.02em; }
+.ab-w-txt p { margin-top: 12px; font-size: 15.5px; line-height: 1.62; color: var(--text-sec); }
+/* Karte 1: was wir uns ansehen, daraus die nächsten Schritte */
+.ab-v1 { display: flex; flex-direction: column; justify-content: center; gap: 9px; }
+.ab-v1 .ab-src { align-self: flex-start; height: 34px; padding: 0 14px 0 12px; display: inline-flex; align-items: center; gap: 9px; border-radius: 100px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 13px; font-weight: 700; white-space: nowrap; color: var(--text-mut); opacity: 0.5; transform: translateX(-10px); transition: opacity 0.5s ease, transform 0.6s var(--ease), color 0.4s ease, border-color 0.4s ease; }
+.ab-v1 .ab-src::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.ab-v1 .ab-src:nth-child(2) { margin-left: 20px; }
+.ab-v1 .ab-src:nth-child(3) { margin-left: 40px; }
+.ab-v1 .ab-src.on { opacity: 1; transform: none; color: #fff; border-color: rgba(255, 255, 255, 0.24); }
+.ab-v1 .ab-dst { align-self: flex-end; margin-top: 8px; height: 40px; padding: 0 18px 0 14px; display: inline-flex; align-items: center; gap: 9px; border-radius: 100px; background: rgba(255, 255, 255, 0.06); font-size: 14px; font-weight: 700; color: var(--text-dim); transform: scale(0.96); transition: background 0.45s ease, color 0.45s ease, box-shadow 0.45s ease, transform 0.6s var(--ease); }
+.ab-v1 .ab-dst svg { width: 15px; height: 15px; }
+.ab-v1 .ab-dst.on { background: var(--red); color: #fff; box-shadow: 0 12px 30px rgba(230, 47, 31, 0.45); transform: none; }
+/* Karte 2: zwei Schalter, die zeigen, dass beides geht */
+.ab-v2 { display: grid; align-content: center; gap: 14px; }
+.ab-tg { display: grid; grid-template-columns: 1fr 54px 1fr; align-items: center; gap: 12px; padding: 14px 14px; border-radius: 16px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; line-height: 1.25; font-weight: 700; }
+.ab-tg span { animation: abLab 6.4s ease infinite; }
+.ab-tg span:first-child { text-align: right; }
+.ab-tg span:last-child { animation-delay: -3.2s; }
+.ab-tg i { position: relative; width: 54px; height: 30px; border-radius: 100px; background: rgba(255, 255, 255, 0.12); }
+.ab-tg i::after { content: ""; position: absolute; left: 4px; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); animation: abKnob 6.4s var(--ease) infinite; }
+.ab-tg.ab-b i::after, .ab-tg.ab-b span:first-child { animation-delay: -3.2s; }
+.ab-tg.ab-b span:last-child { animation-delay: 0s; }
+@keyframes abKnob { 0%, 42% { transform: none; } 50%, 92% { transform: translateX(24px); } 100% { transform: none; } }
+@keyframes abLab { 0%, 42% { color: #fff; } 50%, 92% { color: rgba(255, 255, 255, 0.32); } 100% { color: #fff; } }
+/* Karte 3: auffallen, ansprechen, gemeinsam festlegen */
+.ab-v3 { display: grid; align-content: center; gap: 9px; }
+.ab-v3 .ab-st { justify-self: start; height: 34px; padding: 0 14px 0 12px; display: inline-flex; align-items: center; gap: 10px; border-radius: 100px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 13px; font-weight: 700; white-space: nowrap; color: var(--text-mut); transition: color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
+.ab-v3 .ab-st b { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--text-dim); transition: color 0.4s ease; }
+.ab-v3 .ab-st.on { color: #fff; border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.08); }
+.ab-v3 .ab-st.on b { color: var(--red-bright); }
+.ab-v3 .ab-lanes { margin-top: 5px; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.ab-v3 .ab-ln { display: flex; align-items: center; gap: 8px; padding: 11px 10px; border-radius: 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 12.5px; line-height: 1.25; font-weight: 700; white-space: nowrap; color: var(--text-mut); transition: color 0.4s ease, border-color 0.4s ease, background 0.4s ease; }
+.ab-v3 .ab-ln i { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.08); color: transparent; transition: background 0.35s ease, color 0.35s ease; }
+.ab-v3 .ab-ln i svg { width: 12px; height: 12px; }
+.ab-v3 .ab-ln.on { color: #fff; border-color: rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.07); }
+.ab-v3 .ab-ln.on i { background: var(--red); color: #fff; }
+
+/* ───────── 6 · Für wen, dazu eine Kundenstimme ───────── */
+.ab-vals { margin-top: 30px; display: grid; gap: 10px; max-width: 33rem; }
+.ab-vals li { display: flex; align-items: center; gap: 14px; padding: 13px 18px 13px 13px; border-radius: 16px; background: #fff; border: 1px solid var(--line); font-size: 16.5px; line-height: 1.35; font-weight: 700; }
+.ab-vals i { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; display: grid; place-items: center; }
+.ab-vals svg { width: 15px; height: 15px; }
+.ab-voice { position: relative; margin: 0; padding: 44px 44px 34px; border-radius: 30px; overflow: hidden; background: radial-gradient(ellipse 90% 80% at 80% 0%, #16335c 0%, #0a1830 64%); color: #fff; box-shadow: 0 50px 90px -46px rgba(15, 23, 42, 0.7); }
+.ab-voice::before { content: "\201C"; position: absolute; right: 30px; top: 14px; font-family: var(--serif); font-style: italic; font-size: 230px; line-height: 0.82; color: rgba(255, 255, 255, 0.07); pointer-events: none; }
+.ab-voice-l { position: relative; display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 12px; color: var(--text-sec); }
+.ab-voice blockquote { position: relative; margin-top: 24px; font-size: clamp(24px, 2.5vw, 34px); line-height: 1.24; font-weight: 700; letter-spacing: -0.025em; }
+.ab-voice blockquote em { font-style: normal; color: var(--red-bright); }
+.ab-voice figcaption { position: relative; margin-top: 34px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.12); display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 15px; }
+.ab-voice-av { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: center 18%; }
+.ab-voice figcaption b { display: block; font-size: 16.5px; line-height: 1.3; }
+.ab-voice figcaption small { display: block; font-size: 13.5px; color: var(--text-sec); }
+.ab-voice-logo { height: 38px; width: auto; opacity: 0.92; }
+
+/* ───────── 7 · Standort ───────── */
+.ab-place { background: var(--navy); padding-top: 104px; }
+.ab-place .ab-2 { grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr); }
+.ab-place-ph { position: relative; margin: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.ab-place-ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.ab-place-ph:hover img { transform: scale(1.04); }
+.ab-pin { position: absolute; left: 18px; bottom: 18px; display: flex; align-items: center; gap: 13px; padding: 12px 18px 12px 15px; border-radius: 14px; background: rgba(7, 22, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.14); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.ab-pin i { position: relative; flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--red); }
+.ab-pin i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--red); animation: ring 2.2s ease-out infinite; }
+.ab-pin b { display: block; font-size: 15px; line-height: 1.3; }
+.ab-pin small { display: block; font-family: var(--mono); font-size: 11.5px; color: var(--text-sec); }
+.ab-contact { margin: 32px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ab-contact div { padding: 18px 20px; border-radius: 18px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); }
+.ab-contact dt { font-family: var(--mono); font-size: 11.5px; color: var(--text-mut); }
+.ab-contact dd { margin: 8px 0 0; font-size: 16px; line-height: 1.5; font-weight: 700; }
+.ab-contact a { transition: color 0.2s ease; }
+.ab-contact a:hover { color: var(--red-bright); }
+
+/* ───────── Kleinere Bildschirme ───────── */
+@media (max-width: 1100px) {
+  .ab-hero .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .ab-stage { width: 100%; max-width: 620px; margin: 0 auto; height: 520px; }
+  .ab-2, .ab-place .ab-2 { grid-template-columns: 1fr; gap: 52px; }
+  .ab-q, .ab-voice { max-width: 640px; }
+  .ab-story-grid { gap: 56px; }
+  .ab-ws { grid-template-columns: 1fr; }
+  .ab-w { flex-direction: row; }
+  .ab-w-vis { flex: 0 0 46%; height: auto; min-height: 240px; border-bottom: 0; border-right: 1px solid var(--border); }
+  .ab-w-txt { align-self: center; }
+  .ab-place-ph { max-width: 680px; }
+}
+@media (max-width: 900px) {
+  .ab-sec { padding: 92px 0; }
+  .ab-story-grid { grid-template-columns: 1fr; gap: 52px; }
+  .ab-me { position: static; display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: 32px; align-items: end; }
+  .ab-me-q { margin: 0 0 8px; }
+  .ab-hero { padding-bottom: 64px; }
+  .ab-hero .h-hero { font-size: clamp(33px, 8.8vw, 46px); }
+  .ab-place { padding-top: 76px; }
+  .ab-people { gap: 14px; }
+  .ab-p figcaption { left: 16px; right: 16px; bottom: 16px; }
+  .ab-p figcaption b { font-size: 18px; }
+  .ab-p figcaption span { font-size: 13px; }
+  .ab-strip { margin-top: 56px; }
+  .ab-strip img { width: 270px; border-radius: 14px; }
+}
+@media (max-width: 700px) {
+  .ab-w { flex-direction: column; }
+  .ab-w-vis { flex: none; min-height: 0; height: 236px; border-right: 0; border-bottom: 1px solid var(--border); }
+  /* Team als Reihe zum Wischen: drei Hochformat-Karten untereinander wären zu lang */
+  .ab-people { display: flex; gap: 12px; margin: 40px -20px 0; padding: 0 20px 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ab-people::-webkit-scrollbar { display: none; }
+  .ab-p { flex: 0 0 74%; scroll-snap-align: center; }
+  /* in der Wischreihe sind alle Karten sofort da, sonst bliebe die dritte bis zum Wischen unsichtbar */
+  .js .ab-people .ab-p.rv { opacity: 1; transform: none; }
+  .ab-me { grid-template-columns: 1fr; gap: 22px; }
+  .ab-me-ph { max-width: 340px; }
+  .ab-contact { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .ab-sec { padding: 76px 0; }
+  /* Porträt so breit wie die Textspalte (vorher 10 px schmaler und dadurch links versetzt) */
+  .ab-me-ph { max-width: none; }
+  .ab-hero .found { font-size: 14.5px; gap: 8px; }
+  .ab-stage { height: 430px; }
+  .ab-ph1 { width: 92%; top: 7%; border-radius: 18px; }
+  .ab-ph2 { width: 37%; border-radius: 16px; box-shadow: 0 0 0 4px var(--navy), 0 30px 60px -24px rgba(0, 0, 0, 0.9); }
+  .ab-ph2 figcaption { left: 5px; right: 5px; bottom: 5px; gap: 7px; padding: 6px 8px 6px 6px; border-radius: 9px; }
+  .ab-ph2 figcaption i { width: 3px; }
+  .ab-ph2 figcaption b { font-size: 11px; }
+  .ab-ph2 figcaption small { font-size: 10px; }
+  .ab-since { right: 0; top: 0; padding: 8px 12px 8px 10px; gap: 9px; }
+  .ab-since svg { width: 24px; height: 17px; }
+  .ab-since b { font-size: 12.5px; }
+  .ab-since small { font-size: 10.5px; }
+  .ab-note { left: 0; bottom: 4%; width: 208px; padding: 13px 14px 12px; border-radius: 15px; }
+  .ab-note li { grid-template-columns: 88px 1fr 18px; gap: 8px; font-size: 12.5px; }
+  .ab-note li svg { width: 18px; height: 18px; padding: 4px; }
+  .ab-note-f { font-size: 12px; }
+  .ab-q { padding: 22px 16px 22px; border-radius: 22px; }
+  .ab-q-h { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .ab-qs li { grid-template-columns: 24px 1fr 28px; gap: 10px; padding: 15px 14px; border-radius: 15px; }
+  .ab-qs li p { font-size: 16.5px; }
+  .ab-qs li.now { transform: translateX(4px); }
+  .ab-q-res span { height: 33px; padding: 0 12px; font-size: 12.5px; }
+  .ab-q-res svg { display: none; }
+  .ab-tl { margin-top: 40px; padding-left: 40px; }
+  .ab-tl::before, .ab-fill { left: 8px; }
+  .ab-tl::after { left: 9px; }
+  .ab-tl li { padding-bottom: 38px; }
+  .ab-tl li::before { left: -39px; }
+  .ab-tl h3 { font-size: 21px; }
+  .ab-tl p { font-size: 16px; }
+  .ab-me-q { font-size: 18px; }
+  .ab-w-vis { padding: 20px 18px; }
+  .ab-w-txt { padding: 22px 22px 26px; }
+  .ab-v1 .ab-src { font-size: 12.5px; padding: 0 12px 0 10px; }
+  .ab-v1 .ab-src:nth-child(2) { margin-left: 12px; }
+  .ab-v1 .ab-src:nth-child(3) { margin-left: 24px; }
+  .ab-tg { gap: 9px; padding: 12px 10px; font-size: 12.5px; }
+  .ab-voice { padding: 30px 24px 26px; border-radius: 24px; }
+  .ab-voice blockquote { font-size: 23px; }
+  .ab-voice figcaption { grid-template-columns: 48px 1fr; row-gap: 16px; }
+  .ab-voice-av { width: 48px; height: 48px; }
+  .ab-voice-logo { grid-column: 1 / -1; height: 32px; }
+  .ab-vals li { font-size: 15.5px; }
+  .ab-pin { left: 12px; bottom: 12px; padding: 10px 14px 10px 12px; }
+  .ab-strip img { width: 232px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-ph, .ab-ph1 img, .ab-note, .ab-since, .ab-strip-row, .ab-tg span, .ab-tg i::after, .ab-pin i::after { animation: none !important; }
+  .js .ab-stage .ab-ph, .js .ab-stage .chip, .js .ab-tl li > * { opacity: 1; transform: none; transition: none; }
+}
+
+/* Sehr schmale Handys: Notizkarte schmaler, damit sie die Bildunterschrift des kleinen Fotos nicht verdeckt */
+@media (max-width: 350px) {
+  .ab-note { width: 184px; }
+  .ab-note li { grid-template-columns: 78px 1fr 16px; gap: 6px; font-size: 12px; }
+}
+
+/* Notnetz ohne v2.js, siehe v2.css */
+.rv-all .ab-stage .ab-ph, .rv-all .ab-stage .chip, .rv-all .ab-tl li > * { opacity: 1; transform: none; }

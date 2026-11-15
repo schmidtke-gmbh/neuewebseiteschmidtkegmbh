@@ -1,0 +1,722 @@
+/* Impact-Sektion: unveraendert aus der Live-Seite uebernommen (index.html + mobile-layout-fixes.css) */
+/* ══════════ IMPACT-SECTION ══════════ */
+.impact-section {
+  position: relative;
+  background: var(--navy);
+  padding: 0;
+}
+
+/* Durchgehende gepunktete Linie in der Mitte */
+.impact-section::before {
+  content: "";
+  position: absolute;
+  /* Linie startet UNTER dem Logo (das ist mittig in der Sticky-Stage bei ~50vh),
+     also bei 65vh damit ein klarer Abstand entsteht */
+  top: 55vh;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background-image: linear-gradient(to bottom, var(--text-faint) 50%, transparent 50%);
+  background-size: 1px 8px;
+  background-repeat: repeat-y;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ══════════ STICKY STAGE: Headline + Logo + Wave + Crescendo ══════════ */
+.impact-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-start statt center: Inhalt oben → direkt nach Logo-Cloud sichtbar */
+  justify-content: flex-start;
+  padding: 10vh 32px 60px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Wave-BG */
+.impact-wave {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, var(--red-bright) 0%, var(--red) 55%, var(--red-dark) 100%);
+  /* Statt clip-path: transform + mask-image für SOFT Fade-Edge oben */
+  transform: translateY(100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+  will-change: transform;
+  z-index: 1;
+}
+.impact-wave-shine {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,255,255,.18) 0%, transparent 60%);
+  transform: translateY(100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+  will-change: transform;
+  z-index: 2;
+}
+
+/* Intro-Block: Eyebrow + Headline + Scroll-Hint */
+.stage-intro {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 1100px;
+  pointer-events: auto;
+  will-change: opacity, transform;
+}
+.stage-eyebrow {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.6px; 
+  color: var(--text-mut);
+  margin-bottom: 22px;
+}
+.stage-eyebrow .hl { color: var(--red); }
+.stage-h1 {
+  font-size: clamp(36px, 5.6vw, 72px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  margin-bottom: 0;
+}
+.stage-h1 .dot {
+  display: inline-block;
+  width: 14px; height: 14px;
+  background: var(--red);
+  border-radius: 50%;
+  margin-left: 5px;
+  vertical-align: baseline;
+  box-shadow: 0 0 24px var(--red-glow);
+}
+
+/* Scroll-Hint ÜBER dem Logo */
+.scroll-hint {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 36px 0 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+
+  color: var(--text-mut);
+  pointer-events: auto;
+  will-change: opacity, transform;
+}
+.scroll-hint-text {
+  /* Text pulsiert in Opacity, transform vom JS gesteuert */
+  animation: scrollHintTextPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollHintTextPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.scroll-arrow {
+  width: 24px; height: 28px;
+  position: relative;
+  /* Pulse-Animation nur auf dem Pfeil, nicht auf dem ganzen Hint */
+  animation: scrollArrowBob 2.2s ease-in-out infinite;
+}
+.scroll-arrow::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px; height: 20px;
+  background: linear-gradient(to bottom, transparent, var(--red-bright));
+}
+.scroll-arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px; height: 10px;
+  border-right: 2px solid var(--red-bright);
+  border-bottom: 2px solid var(--red-bright);
+}
+@keyframes scrollArrowBob {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* Logo unter Scroll-Hint */
+.stage-logo {
+  position: relative;
+  z-index: 10;
+  width: 86px; height: 86px;
+  margin: 14px 0 0;
+  will-change: transform;
+  pointer-events: auto;
+  background: var(--navy);
+  border-radius: 50%;
+  padding: 12px;
+  transition: background 0.4s ease;
+  backface-visibility: hidden;
+  overflow: visible; /* damit Side-Logos rausragen */
+}
+.stage-logo.on-red { background: var(--red); }
+.stage-logo > svg {
+  width: 100%; height: 100%;
+  display: block;
+  shape-rendering: geometricPrecision;
+  position: relative;
+  z-index: 2;
+}
+/* Sinnbild-Logos schräg ÜBER dem Haupt-Logo (peeken nach oben raus, nicht verdeckt) */
+.stage-logo-side {
+  position: absolute;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  color: white;
+  z-index: 1;
+  opacity: 0.96;
+  will-change: transform;
+  /* Kein transition auf transform — der wird per JS scroll-gesteuert.
+     opacity hat noch eine kurze Transition für Hover/State-Changes. */
+  transition: opacity 0.4s ease;
+}
+.stage-logo-side svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+.stage-logo-ig {
+  left: -16px;
+  transform: translateY(-70%) rotate(-16deg);
+  background: linear-gradient(45deg, #FFD600 0%, #FF7A00 22%, #FF0069 50%, #D300C5 75%, #7638FA 100%);
+}
+.stage-logo-ai {
+  right: -16px;
+  transform: translateY(-70%) rotate(16deg);
+  background: #0F0F0F;
+}
+@media (max-width: 900px) {
+  .stage-logo-side {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+  .stage-logo-side svg { width: 18px; height: 18px; }
+  .stage-logo-ig { left: -12px; }
+  .stage-logo-ai { right: -12px; }
+}
+
+/* Logos im Crescendo nur Mobile sichtbar */
+.cresc-logos { display: none; }
+
+/* Crescendo-Text (am Ende sichtbar) */
+.impact-text {
+  position: absolute;
+  bottom: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  max-width: 880px;
+  padding: 0 32px;
+  z-index: 15;
+  opacity: 0;
+  will-change: opacity, transform;
+  pointer-events: auto;
+}
+.impact-text h2 {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -1.6px;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 26px;
+}
+.impact-text h2 .italic {
+  /* Erzwingt SK Modernist (Brand-Schrift), kein Serif-Italic mehr */
+  font-family: 'SK Modernist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+.impact-text h2 .dot {
+  display: inline-block;
+  width: 12px; height: 12px;
+  background: var(--white);
+  border-radius: 50%;
+  vertical-align: baseline;
+  margin-left: 4px;
+}
+.impact-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 30px;
+  background: var(--white);
+  color: var(--red);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 15px; font-weight: 800;
+  letter-spacing: -.1px;
+  transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 14px 36px rgba(0,0,0,.45);
+}
+.impact-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0,0,0,.55);
+}
+.impact-cta::after {
+  content: "";
+  width: 8px; height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 4px;
+}
+
+/* ── Pairs scrollen ÜBER die Sticky-Stage ── */
+.impact-pairs {
+  position: relative;
+  z-index: 10;
+  margin-top: -100vh;
+  padding: 75vh 32px 0;       /* Balance: erstes Pair startet unter Logo, ohne Side-Logos zu verdecken */
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+.impact-pairs .pair { pointer-events: auto; }
+
+/* Pair-Layout */
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr);
+  gap: 0;
+  margin: 32px 0;             /* war 56px — kompakterer Abstand zwischen den Pairs */
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.pair.show { opacity: 1; transform: translateY(0); }
+.pair-card {
+  padding: 22px 26px;
+  border-radius: 14px;
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.pair-card-left {
+  text-align: right;
+  transition:
+    opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.7s ease;
+}
+/* Linke Karte zerfällt sobald das YT-Logo vorbeigescrollt ist */
+.pair-card-left .pair-text {
+  transition: color 0.7s ease, text-decoration-color 0.7s ease;
+  text-decoration-color: transparent;
+}
+.pair-card-left.is-passed {
+  opacity: 0.18;
+  filter: blur(2.5px) grayscale(0.85);
+  transform: translateY(28px) scale(0.94) rotate(-1.8deg);
+  border-color: rgba(255, 255, 255, 0.03);
+}
+.pair-card-left.is-passed .pair-text {
+  color: rgba(255, 255, 255, 0.42);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 100, 100, 0.5);
+  text-decoration-thickness: 1.5px;
+}
+.pair-card-left.is-passed .pair-eyebrow {
+  color: rgba(255, 255, 255, 0.25);
+}
+.pair-card-right {
+  background: var(--black-soft);
+  border: 1px solid rgba(230,47,31,.18);
+  overflow: hidden;
+  transition:
+    transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.55s ease,
+    border-color 0.55s ease;
+}
+.pair-card-right::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 70%;
+  background: radial-gradient(ellipse 80% 100% at 50% 100%, rgba(230,47,31,.35) 0%, transparent 75%);
+  pointer-events: none;
+  transition: opacity 0.55s ease, height 0.55s ease;
+}
+/* Scroll-Reveal: wenn YT-Logo (Sticky-Mitte) an der Karte vorbeizieht */
+.pair-card-right.is-active {
+  transform: scale(1.055);
+  border-color: rgba(230, 47, 31, 0.55);
+  box-shadow: 0 24px 64px rgba(230, 47, 31, 0.28), 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+.pair-card-right.is-active::before {
+  height: 100%;
+  background: radial-gradient(ellipse 90% 110% at 50% 100%, rgba(230,47,31,.55) 0%, rgba(230,47,31,.15) 50%, transparent 80%);
+}
+.pair-card-right.is-active .pair-icon {
+  background: rgba(230, 47, 31, 0.18);
+  border-color: rgba(230, 47, 31, 0.55);
+  transform: scale(1.12);
+}
+.pair-card-right.is-active .pair-icon svg {
+  stroke: var(--red-bright);
+}
+.pair-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.6px; 
+  color: var(--text-mut);
+  margin-bottom: 10px;
+  position: relative;
+}
+.pair-eyebrow-right { color: rgba(255,255,255,.7); }
+.pair-eyebrow-right .red {
+  color: var(--red-bright);
+  font-weight: 800;
+}
+.pair-text {
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: -.3px;
+  color: var(--white);
+  position: relative;
+}
+.pair-text .light { font-weight: 400; color: rgba(255,255,255,.7); }
+.pair-text .punct { color: var(--red-bright); }
+.pair-card-left .pair-text { font-weight: 700; }
+.pair-card-right .pair-text {
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+.pair-icon {
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.45s ease, border-color 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pair-icon svg {
+  width: 18px; height: 18px;
+  stroke: var(--red-bright);
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.pair-spacer { position: relative; }
+
+/* Growth-Spacer */
+.growth-spacer {
+  height: 55vh;
+  position: relative;
+}
+
+/* ══════════ RESPONSIVE — MOBILE-OPTIMIERT ══════════ */
+/* ═══════════════════════════════════════════════════
+   IMPACT — MOBILE-KONZEPT (komplett überarbeitet)
+   ═══════════════════════════════════════════════════
+   - Stage nicht mehr sticky → normales Scrollen
+   - Logo statisch oben, kein Wandern, kein Wave
+   - Verbindungslinie als gestrichelte vertikale Linie zwischen Pairs
+   - Pairs stapeln untereinander, Mit-Karte stärker hervorgehoben
+*/
+@media (max-width: 900px) {
+  /* Stage komplett aufmachen — kein sticky mehr */
+  .impact-stage {
+    position: static !important;
+    height: auto;
+    padding: 56px 20px 24px;
+    display: block;
+    overflow: visible;
+  }
+  /* Wave + Shine + Crescendo-Text auf Mobile ausblenden */
+  .impact-wave,
+  .impact-wave-shine,
+  .impact-text { display: none !important; }
+
+  /* Headline + Eyebrow zentriert oben */
+  .stage-intro {
+    opacity: 1 !important;
+    transform: none !important;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .stage-eyebrow { font-size: 11px; margin-bottom: 14px; }
+  .stage-h1 {
+    font-size: clamp(26px, 6.5vw, 38px);
+    letter-spacing: -1px;
+    line-height: 1.15;
+  }
+  .scroll-hint { display: none; }
+
+  /* Stage-Logo: zentriert, statisch */
+  .stage-logo {
+    position: relative !important;
+    width: 64px; height: 64px;
+    margin: 8px auto 0;
+    padding: 9px;
+    transform: none !important;
+    z-index: 5;
+  }
+  .stage-logo.on-red { background: var(--red); }
+  /* Side-Logos kompakter, etwas näher ans Hauptlogo */
+  .stage-logo-side { width: 34px; height: 34px; border-radius: 9px; }
+  .stage-logo-side svg { width: 18px; height: 18px; }
+  .stage-logo-ig { left: -10px; transform: translateY(-65%) rotate(-12deg) !important; }
+  .stage-logo-ai { right: -10px; transform: translateY(-65%) rotate(12deg) !important; }
+
+  /* ═══ MOBILE STICKY-STACK EFFEKT ═══
+     Pairs werden sticky mit ascending z-index → legen sich beim Scrollen aufeinander.
+     Am Ende kommt das rote Crescendo mit Wow-Text. */
+  .impact-pairs {
+    margin-top: 0 !important;
+    padding: 24px 16px 0 !important;
+    position: relative;
+    pointer-events: auto;
+  }
+  /* Keine Backbone-Linie auf Mobile (würde mit sticky-stack kollidieren) */
+  .impact-pairs::before { display: none; }
+
+  /* PAIRS: sticky-stack mit opakem BG für Stapel-Effekt */
+  .pair {
+    position: sticky;
+    top: 14vh;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 0 0 72vh 0;        /* Großer Scroll-Track zwischen Pairs */
+    padding: 14px;
+    opacity: 1;
+    transform: none;
+    background: rgba(7, 22, 42, 0.94);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+  .pair:last-of-type { margin-bottom: 12vh; }
+  /* Z-INDEX-STAFFELUNG → jedes nachfolgende Pair legt sich ÜBER das vorige */
+  .impact-pairs > .pair:nth-of-type(1) { z-index: 1; }
+  .impact-pairs > .pair:nth-of-type(2) { z-index: 2; }
+  .impact-pairs > .pair:nth-of-type(3) { z-index: 3; }
+  .impact-pairs > .pair:nth-of-type(4) { z-index: 4; }
+
+  .pair-card { padding: 16px 18px; }
+  .pair-card-left { text-align: left; }
+  .pair-spacer { display: none; }
+  .pair-text { font-size: 14.5px; line-height: 1.4; }
+  .pair-card-right .pair-text { flex-direction: row-reverse; gap: 12px; }
+  .pair-icon { width: 32px; height: 32px; }
+  .pair-icon svg { width: 16px; height: 16px; }
+  .pair-card-right {
+    border-color: rgba(230, 47, 31, 0.30);
+    box-shadow: 0 10px 28px rgba(230, 47, 31, 0.14);
+  }
+  /* Verbindungs-Pfeil zwischen den 2 Karten innerhalb eines Pairs */
+  .pair-card-right { position: relative; margin-top: 30px; }
+  .pair-card-right::before,
+  .pair-card-right.is-active::before {
+    content: "↓";
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: -15px;
+    bottom: auto;
+    transform: translateX(-50%);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 1.5px solid rgba(230, 47, 31, 0.6);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    z-index: 2;
+    transition: background-color 0.35s ease, border-color 0.35s ease;
+  }
+
+  /* MOBILE CRESCENDO — full-bleed, kein Card, fließend in Rot wie Desktop */
+  .impact-section .impact-text {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 0 !important;          /* kein margin → full-bleed */
+    padding: 90px 24px 100px;
+    background: none;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    text-align: center;
+    max-width: none !important;
+    width: 100% !important;
+    overflow: hidden;
+  }
+  .impact-section .impact-text::before { display: none; }
+  .impact-section .impact-text::after { display: none; }
+  /* Logos über der Headline */
+  .impact-section .cresc-logos {
+    display: flex !important;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 3;
+  }
+  .impact-section .cresc-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.10);
+  }
+  .impact-section .cresc-logo svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+  .impact-section .cresc-yt { background: white; }
+  .impact-section .cresc-yt svg { width: 100%; height: 100%; padding: 8px; }
+  .impact-section .cresc-ig { background: linear-gradient(45deg, #FFD600 0%, #FF7A00 22%, #FF0069 50%, #D300C5 75%, #7638FA 100%); }
+  .impact-section .cresc-gpt { background: #0F0F0F; }
+
+  .impact-section .impact-text h2 {
+    font-size: clamp(24px, 6.5vw, 36px);
+    color: white;
+    margin-bottom: 30px;
+    line-height: 1.15;
+    position: relative;
+    z-index: 2;
+    max-width: 460px;
+  }
+  .impact-section .impact-text .italic {
+    font-family: 'SK Modernist', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    color: #FFE0B0;
+  }
+  .impact-section .impact-text .dot {
+    background: white;
+    width: 10px; height: 10px;
+  }
+  .impact-section .impact-cta {
+    background: white;
+    color: var(--red);
+    font-weight: 800;
+    padding: 16px 28px;
+    font-size: 14px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    position: relative;
+    z-index: 2;
+  }
+  .impact-section .impact-cta::after {
+    border-color: var(--red);
+  }
+
+  /* Growth-spacer minimal (genug Raum für scroll-out vom letzten Pair) */
+  .growth-spacer { height: 30vh !important; display: block !important; }
+
+  /* Section-BG dezente Glows aus */
+  .impact-section::before { display: none; }
+}
+
+@media (max-width: 640px) {
+  .impact-stage { padding: 40px 16px 16px; }
+  .stage-h1 { font-size: clamp(22px, 7vw, 30px); }
+  .stage-logo { width: 56px; height: 56px; padding: 8px; }
+  .stage-logo-side { width: 30px; height: 30px; }
+  .stage-logo-side svg { width: 15px; height: 15px; }
+  .pair { margin: 30px 0; }
+  .pair-card { padding: 14px 16px; }
+  .pair-text { font-size: 14px; }
+  .pair-icon { width: 28px; height: 28px; }
+  .pair-card-right::before,
+  .pair-card-right.is-active::before { width: 24px; height: 24px; font-size: 13px; top: -13px; }
+}
+.imp-red-m { display: none; }
+@media (max-width: 900px) {
+  /* Impact: der rote Verlauf gehört zur ganzen Sektion, nicht nur zum Intro */ .impact-wave, .impact-wave-shine { display: none; }
+  .impact-section { isolation: isolate; }
+  .imp-red-m { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to bottom, transparent 0%, transparent 38%, rgba(154,25,21,0.42) 66%, rgba(103,13,18,0.94) 100%), radial-gradient(ellipse 105% 38% at 50% 90%, rgba(230,47,31,0.96) 0%, rgba(154,25,21,0.68) 48%, transparent 82%); opacity: 0; will-change: opacity; }
+  .impact-section > .impact-stage, .impact-section > .impact-pairs, .impact-section > .impact-text { position: relative; z-index: 2; }
+  .pair-card-left.is-passed { opacity: 1 !important; filter: none !important; transform: none !important; }
+  .pair-card-left.is-passed .pair-text { color: var(--white) !important; text-decoration: none !important; }
+  .pair-card-left.is-passed .pair-eyebrow { color: var(--text-mut) !important; }
+}
+
+@media (max-width: 900px) {
+  .impact-section { width: 100%; max-width: 100%; overflow-x: clip; }
+  .impact-stage { position: relative !important; top: auto !important; height: auto !important; min-height: 0 !important; padding: 96px 18px 30px !important; overflow: visible !important; }
+  .stage-intro { width: 100%; max-width: 360px; margin: 0 auto 30px !important; }
+  .stage-h1 { max-width: 350px; margin-inline: auto; font-size: clamp(28px, 8.2vw, 38px) !important; line-height: 1.14 !important; letter-spacing: -0.035em !important; }
+  .stage-logo { margin-top: 14px !important; }
+  .impact-pairs { width: 100%; max-width: 480px; margin: 0 auto !important; padding: 28px 16px 18px !important; }
+  .impact-pairs .pair { position: relative !important; top: auto !important; width: 100%; min-width: 0; min-height: 0; margin: 0 0 24px !important; transform: none !important; }
+  .impact-pairs .pair:last-of-type { margin-bottom: 0 !important; }
+  .pair-card { width: 100%; min-width: 0; }
+  .pair-card-left, .pair-card-right { transform: none !important; }
+  .pair-card-right { overflow: visible !important; }
+  .pair-card-right::before, .pair-card-right.is-active::before { top: -17px !important; width: 32px !important; height: 32px !important; box-sizing: border-box; z-index: 4; line-height: 1; background: #07162a !important; border: 1.5px solid rgba(230, 47, 31, 0.78) !important; box-shadow: 0 8px 22px rgba(230, 47, 31, 0.2); }
+  .pair-icon, .pair-card-right.is-active .pair-icon { width: 36px !important; height: 36px !important; flex: 0 0 36px; border-radius: 10px; transform: none !important; }
+  .pair-icon svg { width: 18px !important; height: 18px !important; }
+  .pair-card-left, .pair-card-left.is-passed { opacity: 1 !important; filter: none !important; transform: none !important; }
+  .pair-card-left.is-passed .pair-text { color: #fff !important; text-decoration: none !important; }
+  .pair-card-left.is-passed .pair-eyebrow { color: rgba(255,255,255,0.54) !important; }
+  .pair-text, .pair-text * { min-width: 0; overflow-wrap: anywhere; }
+  .impact-section .impact-text { width: 100% !important; padding: 72px 18px 80px !important; overflow: visible !important; }
+  .growth-spacer { display: none !important; height: 0 !important; }
+}
+@media (max-width: 420px) {
+  .impact-stage { padding-top: 90px !important; }
+  .impact-pairs { padding-inline: 12px !important; }
+  .impact-pairs .pair { padding: 11px; border-radius: 18px; }
+  .pair-card { padding: 14px 12px; }
+}
+
+/* ───── Runde 19 (15.11.2026): Origami-Icons in den Karten „Mit unserem System“ ─────
+   Größere, dunkle Kachel, damit das weiße Papier wirkt. Die Bewegung kommt aus v2.css (.ori.an), sie läuft nur, solange das Icon im Bild ist. */
+.pair-icon { width: 56px; height: 56px; border-radius: 15px; background: #0a1a33; border-color: rgba(255, 255, 255, 0.14); box-shadow: 0 10px 26px -12px rgba(0, 0, 0, 0.7); }
+.pair-icon .ori { --z: 40px; }
+.pair-card-right.is-active .pair-icon { background: #0a1a33; border-color: rgba(230, 47, 31, 0.75); box-shadow: 0 0 0 5px rgba(230, 47, 31, 0.12), 0 12px 30px -10px rgba(230, 47, 31, 0.45); }
+@media (max-width: 900px) {
+  .pair-icon, .pair-card-right.is-active .pair-icon { width: 52px !important; height: 52px !important; flex: 0 0 52px; border-radius: 14px; }
+  .pair-icon .ori { --z: 36px; }
+}
+
+/* ───── Runde 22 (15.11.2026): Karten am Handy mittig ─────
+   Fabian: Auch hier soll der Text am Handy mittig stehen. In der Karte „Mit unserem System“ sitzt das Icon dafür über dem Text. */
+@media (max-width: 760px) {
+  .pair-card, .pair-card-left, .pair-card-right { text-align: center !important; }
+  .pair-eyebrow, .pair-eyebrow-right { text-align: center; justify-content: center; }
+  .pair-card-right .pair-text { flex-direction: column-reverse; align-items: center; gap: 12px; text-align: center; }
+  .pair-card-right .pair-eyebrow { margin-bottom: 12px; }
+  .pair-card-right { padding-top: 28px !important; }
+}

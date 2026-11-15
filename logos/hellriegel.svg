@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 130" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M65 5a60 60 0 1 1 0 120A60 60 0 0 1 65 5zm-23 18v56l14-8V15a60 60 0 0 0-14 8zm22-11v52l16 9V12a61 61 0 0 0-16 0zm24 3v62l14 8V23a60 60 0 0 0-14-8zM42 91v20a60 60 0 0 0 14 8V83l-14 8zm46-14v42a60 60 0 0 0 14-8V85l-14-8zm-24 0v46a61 61 0 0 0 16 0V86l-16-9z"/>
+  <text x="150" y="60" font-family="Arial, 'SK Modernist', sans-serif" font-size="47" font-weight="800" letter-spacing="4" fill="#fff">HAUKE HELLRIEGEL</text>
+  <text x="150" y="108" font-family="Arial, 'SK Modernist', sans-serif" font-size="31" font-weight="400" letter-spacing="7" fill="#fff" opacity="0.85">BIOLOGISCHE ZAHNMEDIZIN</text>
+</svg>

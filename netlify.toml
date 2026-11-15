@@ -10,6 +10,113 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Sicherheits-Kopfzeilen für alle Adressen (15.11.2026)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Bilder, Videos und Schrift der neuen Seiten im Browser zwischenspeichern (12.11.2026).
+# Ein Bild nie unter gleichem Namen austauschen, sondern neu benennen, sonst sehen Besucher bis zu einer Woche das alte.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/kunden/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/logos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/reels/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/thumbs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/web/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Stylesheets und Skripte der neuen Seiten. Sie werden mit ?v=Nummer eingebunden; nach jeder Änderung die Nummer erhöhen.
+[[headers]]
+  for = "/v2.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/v2.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/v2-impact.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/v2-impact.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/v2-trust.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/d4y.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/d4y.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/ueber.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/ueber.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/fs.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/fs.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 [[headers]]
   for = "/*.html"
   [headers.values]
@@ -312,7 +419,13 @@
   force = true
 
 [[redirects]]
+  from = "/youtube-kanal-aufbauen-lassen"
+  to = "/done4you"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/youtube-kanal-aufbauen-lassen.html"
-  to = "/youtube-kanal-aufbauen-lassen"
+  to = "/done4you"
   status = 301
   force = true

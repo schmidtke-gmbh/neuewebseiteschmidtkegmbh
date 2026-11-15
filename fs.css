@@ -1,0 +1,146 @@
+/* Fallstudien-Seite (fallstudien.html, gebaut von _werkzeug/build_fallstudien.py). Baut auf v2.css auf, gleiche Farben und Formen wie die Startseite. */
+
+/* ── Kopf: eine Spalte, mittig ── */
+.fs-hero { padding: 150px 0 76px; background: radial-gradient(ellipse 70% 80% at 50% 30%, #0e2749 0%, var(--navy) 66%); }
+.fs-hero .rain { -webkit-mask-image: radial-gradient(ellipse 46% 60% at 50% 46%, transparent 55%, #000 100%); mask-image: radial-gradient(ellipse 46% 60% at 50% 46%, transparent 55%, #000 100%); }
+.fs-hero-in { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.fs-hero .crumbs { display: flex; align-items: center; gap: 8px; margin-bottom: 22px; font-size: 13px; color: var(--text-mut); }
+.fs-hero .crumbs [aria-current] { color: var(--text-sec); }
+.fs-hero .h-hero { margin-top: 0; max-width: 900px; font-size: clamp(38px, 5vw, 70px); text-wrap: balance; }
+.fs-hero .hero-sub { margin-top: 20px; max-width: 680px; }
+.fs-hero .hero-ctas { justify-content: center; flex-wrap: wrap; }
+.fs-hero .fs-zu { padding: 0 24px; }
+.fs-zahlen { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; width: min(100%, 880px); }
+.fs-zahlen li { padding: 20px 14px 18px; border-radius: 18px; background: rgba(255, 255, 255, 0.045); border: 1px solid var(--border); }
+.fs-zahlen b { display: block; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.05; letter-spacing: -0.03em; }
+.fs-zahlen span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.35; color: var(--text-mut); }
+
+/* ── Abschnitte ── */
+.fs-sec { padding: 104px 0; }
+.fs-sec.on-paper { background: var(--paper); color: var(--ink); }
+.fs-sec.on-paper + .fs-sec.on-paper { padding-top: 0; }
+
+/* ── Kunden im Video ── */
+.fs-stimmen-in { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.fs-stimmen .lead { margin-top: 20px; }
+.fs-player { padding: 8px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 34px 64px -30px rgba(15, 23, 42, 0.5); }
+.fs-player video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 15px; background: #0b1a30; object-fit: cover; }
+
+/* ── Filter ── */
+.fs-filter { display: grid; gap: 18px; padding: 24px 26px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 26px 54px -36px rgba(15, 23, 42, 0.4); }
+.fs-fg { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 18px; align-items: start; }
+.fs-fg + .fs-fg { padding-top: 18px; border-top: 1px solid var(--line); }
+.fs-fh { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center; }
+.fs-fh i { grid-row: 1 / 3; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: rgba(230, 47, 31, 0.08); color: var(--red); font-family: var(--mono); font-size: 12.5px; font-style: normal; }
+.fs-fh b { font-size: 15.5px; line-height: 1.2; }
+.fs-fh small { font-size: 12.5px; color: var(--slate); }
+.fs-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.fs-pill { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 100px; border: 1px solid var(--line); background: var(--paper); font-size: 14px; font-weight: 700; color: var(--ink); transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s var(--ease); }
+.fs-pill i { font-family: var(--mono); font-size: 11.5px; font-style: normal; font-weight: 400; color: var(--slate); transition: color 0.3s ease; }
+.fs-pill:hover { border-color: rgba(15, 23, 42, 0.3); }
+.fs-pill:active { transform: scale(0.96); }
+.fs-pill.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.fs-pill.on i { color: rgba(255, 255, 255, 0.7); }
+
+/* ── Karten ── */
+.fs-grid { margin-top: 34px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.fs-card { display: flex; flex-direction: column; border-radius: 22px; background: #fff; overflow: hidden; cursor: pointer; box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 30px 60px -40px rgba(15, 23, 42, 0.4); transition: transform 0.35s var(--ease), box-shadow 0.35s ease; }
+.fs-card[hidden] { display: none; }
+.fs-card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(230, 47, 31, 0.35), 0 36px 64px -36px rgba(15, 23, 42, 0.5); }
+.fs-bild { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #dfe5ee; }
+.fs-bild img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; transition: transform 1.2s var(--ease); }
+.fs-card:hover .fs-bild img { transform: scale(1.05); }
+.fs-tag { position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 100px; background: rgba(7, 22, 42, 0.86); color: #fff; font-size: 12px; font-weight: 700; }
+.fs-body { flex: 1; display: flex; flex-direction: column; padding: 22px 24px 22px; }
+.fs-body h3 { font-size: 19px; line-height: 1.25; letter-spacing: -0.015em; }
+.fs-body h3 small { display: block; margin-top: 4px; font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--slate); }
+.fs-q { margin-top: 14px; font-size: 15px; line-height: 1.55; color: #334155; }
+.fs-q::before { content: "\201E"; color: var(--red); } .fs-q::after { content: "\201C"; color: var(--red); }
+.fs-dienste { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.fs-dienste span { padding: 5px 11px; border-radius: 8px; background: rgba(15, 23, 42, 0.05); font-size: 12.5px; font-weight: 700; line-height: 1.3; }
+.fs-body .fall-link { margin: auto 0 0; padding-top: 20px; }
+.fs-leer { margin-top: 34px; padding: 28px; border-radius: 18px; background: #fff; text-align: center; color: var(--slate); }
+.fs-leer .tlink { margin-left: 10px; color: var(--ink); }
+
+/* ── Bewertungen ── */
+.fs-rev .lead { margin: 16px auto 0; }
+.fs-elf { margin-top: 40px; min-height: 120px; }
+
+/* ── Was dahinter steckt ── */
+.fs-sys { background: var(--navy); }
+.fs-sys-in { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(36px, 6vw, 88px); align-items: center; }
+.fs-sys-t p { font-size: 17.5px; line-height: 1.65; color: var(--text-sec); }
+.fs-sys-t p + p { margin-top: 14px; }
+.fs-punkte { margin-top: 30px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.fs-punkte li { padding: 18px 12px 16px; border-radius: 18px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.035); text-align: center; }
+.fs-punkte i { width: 54px; height: 54px; margin: 0 auto; border-radius: 15px; display: grid; place-items: center; background: #0a1a33; border: 1px solid rgba(255, 255, 255, 0.14); }
+.fs-punkte .ori { --z: 36px; --i: inherit; }
+.fs-punkte b { display: block; margin-top: 12px; font-size: 15px; }
+
+@media (max-width: 1000px) {
+  .fs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fs-stimmen-in, .fs-sys-in { grid-template-columns: 1fr; }
+  .fs-fg { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 760px) {
+  /* die lange Auswahl ist nötig: v2.css setzt für den Kopf der Startseite am Handy oben 0, und das träfe sonst auch diese Seite */
+  .hero.fs-hero:not(.d4y-hero):not(.ab-hero) { padding: 104px 0 48px; }
+  .hero.fs-hero:not(.d4y-hero):not(.ab-hero) .h-hero { margin-top: 0; }
+  .fs-hero .hero-ctas { align-self: stretch; }
+  .fs-zahlen { margin-top: 30px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fs-zahlen li { padding: 16px 10px 14px; }
+  main section.fs-sec { padding: 60px 0; }
+  main section.fs-sec.on-paper + .fs-sec.on-paper { padding-top: 0; }
+  .fs-stimmen-in { gap: 26px; }
+  .fs-stimmen .lead { margin-top: 14px; }
+  .fs-filter { padding: 18px 16px; gap: 16px; }
+  .fs-fh { justify-content: center; grid-template-columns: auto auto; text-align: left; }
+  .fs-pills { justify-content: center; gap: 7px; }
+  .fs-pill { min-height: 42px; padding: 0 14px; font-size: 13.5px; }
+  .fs-grid { margin-top: 24px; grid-template-columns: 1fr; gap: 14px; }
+  .fs-body { padding: 18px 20px 20px; text-align: center; }
+  .fs-dienste { justify-content: center; }
+  .fs-body .fall-link { justify-content: center; }
+  .fs-sys-in { gap: 22px; }
+  .fs-sys-t p { text-align: center; font-size: 16.5px; }
+  .fs-punkte { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
+}
+
+/* ── Praxis-Seite (zahnarzt-marketing.html): nutzt Kopf und Karten dieser Datei, dazu Bausteine aus d4y.css ── */
+.pz-quelle { margin-top: 14px; font-size: 13px; color: var(--text-mut); }
+.pz-drei { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pz-vier { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 48px; }
+.pz-sechs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sysl .sysl-k { position: relative; display: block; padding: 24px 22px 26px; border-radius: 18px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.035); }
+.sysl .sysl-k i { width: 54px; height: 54px; border-radius: 15px; background: #0a1a33; border: 1px solid rgba(255, 255, 255, 0.14); display: grid; place-items: center; }
+.sysl .sysl-k:nth-child(2) .ori { --i: 1; } .sysl .sysl-k:nth-child(3) .ori { --i: 2; } .sysl .sysl-k:nth-child(4) .ori { --i: 3; } .sysl .sysl-k:nth-child(5) .ori { --i: 4; } .sysl .sysl-k:nth-child(6) .ori { --i: 5; }
+@media (max-width: 1100px) { .pz-vier { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pz-sechs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .pz-drei, .pz-vier, .pz-sechs { grid-template-columns: 1fr; }
+  .pz-vier { margin-top: 28px; }
+  .pz-drei .sc, .sysl .sysl-k { text-align: center; }
+  .pz-drei .sc-i, .sysl .sysl-k i { margin-left: auto; margin-right: auto; }
+  main .scope-grid.pz-drei { margin-top: 30px; }
+}
+
+/* Kopf der Praxis-Seite: zwei Spalten wie auf der Startseite, rechts die bewegte Wand mit Medizin-Thumbnails und Aufrufzahlen.
+   Am Handy greifen die Regeln der Startseite (Bild zuerst), weil der Kopf dieselben Bausteine nutzt. */
+.pz-hero .crumbs { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; font-size: 13px; color: var(--text-mut); }
+.pz-hero .crumbs [aria-current] { color: var(--text-sec); }
+.pz-hero .h-hero { font-size: clamp(34px, 3.7vw, 56px); line-height: 1.05; text-wrap: balance; }
+.pz-hero .fs-zahlen { margin-top: 30px; width: 100%; gap: 10px; }
+.pz-hero .fs-zahlen li { padding: 14px 10px 13px; text-align: center; border-radius: 16px; }
+.pz-hero .fs-zahlen b { font-size: clamp(21px, 1.9vw, 28px); }
+.pz-hero .fs-zahlen span { font-size: 12px; }
+.pz-hero .pz-me { left: 50%; height: 88%; }
+.pz-chip { left: -4%; bottom: 12%; gap: 12px; padding: 12px 18px 12px 14px; }
+.pz-chip svg { width: 34px; height: 24px; flex: none; }
+.pz-chip b { display: block; font-size: 24px; line-height: 1.05; letter-spacing: -0.02em; }
+.pz-chip small { display: block; margin-top: 2px; font-size: 12px; color: var(--text-sec); }
+@media (max-width: 1100px) { .pz-hero .fs-zahlen { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .pz-hero .crumbs { display: none; }
+  .pz-hero .fs-zahlen { order: 6; margin-top: 22px; align-self: stretch; }
+  .pz-hero .pz-quelle { order: 7; }
+  .pz-hero .pz-me { top: 34px; height: 300px; }
+}

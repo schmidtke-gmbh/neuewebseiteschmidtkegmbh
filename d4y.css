@@ -1,0 +1,207 @@
+/* Unterseite YouTube Done4You (Suchbegriff „YouTube Agentur“), Entwurf 12.11.2026
+   Baut auf v2.css auf. Hier steht nur, was die Startseite nicht schon mitbringt. */
+
+/* ───────── Hero ───────── */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 13px; color: var(--text-mut); }
+.crumbs a { transition: color 0.2s ease; } .crumbs a:hover { color: #fff; }
+.crumbs [aria-current] { color: var(--text-sec); }
+.pill svg { flex: none; width: 22px; height: 15px; }
+.d4y-hero { padding-top: 124px; }
+.d4y-hero .h-hero { margin-top: 20px; font-size: clamp(35px, 3.9vw, 57px); line-height: 1.06; }
+.d4y-hero .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 0.94fr); gap: 56px; }
+.d4y-stage { height: auto; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+/* Hinter den Kanalzahlen läuft eine Wand aus Thumbnails, wie auf der Startseite */
+.d4y-stage .wall { inset: -22% -24% -20% -18%; opacity: 0.6; -webkit-mask-image: radial-gradient(ellipse 70% 62% at 50% 50%, #000 40%, transparent 78%); mask-image: radial-gradient(ellipse 70% 62% at 50% 50%, #000 40%, transparent 78%); }
+.d4y-stage .wall::after { background: linear-gradient(180deg, rgba(14, 39, 73, 0.2), rgba(7, 22, 42, 0.45)); }
+.d4y-stage .wall-col { animation-duration: 84s; } .d4y-stage .wall-col:nth-child(2) { animation-duration: 100s; } .d4y-stage .wall-col:nth-child(3) { animation-duration: 72s; }
+.d4y-stage > .studio, .d4y-stage > .st-tabs { position: relative; z-index: 2; }
+
+/* Kanalzahlen im Hero: ein Fenster wie YouTube Studio, drei echte Kanäle im Wechsel */
+.studio { position: relative; border-radius: 18px; overflow: hidden; background: #fff; color: var(--ink); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.studio-bar { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 16px; background: #f1f4f9; border-bottom: 1px solid var(--line); font-size: 12.5px; font-weight: 700; color: var(--slate); }
+.studio-bar svg { flex: none; width: 24px; height: 17px; }
+.studio-bar em { margin-left: auto; font-style: normal; font-family: var(--mono); font-weight: 400; font-size: 11px; white-space: nowrap; }
+.studio-in { display: grid; }
+/* Erst blendet der alte Kanal aus, dann der neue ein. So liegen nie zwei Texte übereinander. */
+.st-pane { grid-area: 1 / 1; min-width: 0; padding: 22px 24px 22px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s; }
+.st-pane.on { opacity: 1; visibility: visible; transform: none; transition: opacity 0.4s ease 0.2s, transform 0.5s var(--ease) 0.2s, visibility 0s linear 0.2s; }
+.st-who { display: flex; align-items: center; gap: 13px; }
+.st-who img { flex: none; width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+.st-who b { display: block; font-size: 17px; line-height: 1.25; letter-spacing: -0.01em; }
+.st-who span { display: block; font-size: 12.5px; line-height: 1.4; color: var(--slate); }
+.st-nums { margin-top: 20px; display: grid; grid-template-columns: 1.2fr 1fr 1.15fr; gap: 14px; }
+.st-nums small { display: block; font-size: 12px; color: var(--slate); }
+.st-nums b { display: block; margin-top: 2px; font-size: clamp(22px, 2.25vw, 31px); line-height: 1.1; letter-spacing: -0.03em; }
+.st-nums div:first-child b { color: var(--red); }
+.st-nums span { display: block; margin-top: 3px; font-size: 11.5px; line-height: 1.35; color: var(--slate); }
+.st-graph { position: relative; margin-top: 18px; height: 118px; border-radius: 12px; overflow: hidden; background: linear-gradient(#f8f9fc, #f0f3f8); }
+.st-graph svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.st-graph small { position: absolute; left: 12px; top: 9px; font-family: var(--mono); font-size: 10.5px; color: var(--slate); }
+.st-pane .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.st-pane:not(.on) .draw { animation: none; }
+.st-pane.on .draw { animation: drawL 1.6s var(--ease) 0.3s forwards; }
+.st-pane .area { opacity: 0; } .st-pane.on .area { animation: fadeIn 0.9s ease 1s forwards; }
+.st-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.st-tabs button { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 5px; border-radius: 100px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.04); font-size: 13px; font-weight: 700; color: var(--text-sec); white-space: nowrap; transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+.st-tabs button img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+.st-tabs button:hover { border-color: rgba(255, 255, 255, 0.4); color: #fff; }
+.st-tabs button[aria-selected="true"] { background: #fff; border-color: #fff; color: var(--ink); }
+.st-tabs.auto button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--red); transform-origin: 0 50%; animation: stProg 5.2s linear forwards; }
+@keyframes stProg { from { transform: scaleX(0); } }
+
+/* Thumbnail-Band unter dem Hero: zwei Reihen laufen gegenläufig durch */
+.tband { position: relative; background: var(--navy-deep); padding: 30px 0 44px; overflow: hidden; border-top: 1px solid var(--border); }
+.tband p { margin-bottom: 20px; text-align: center; font-size: 13.5px; color: var(--text-mut); }
+.tb-rows { display: grid; gap: 12px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.tb-row { display: flex; gap: 12px; width: max-content; padding-right: 12px; animation: mq 184s linear infinite; }
+.tb-row:nth-child(2) { animation-direction: reverse; animation-duration: 212s; }
+.tb-row img { flex: none; width: 264px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
+/* Thumbnail mit Aufrufzahl: Der Rahmen braucht hier eine feste Breite */
+.tb-row .wy { width: 264px; border-radius: 12px; }
+.tb-row .wy img { display: block; width: 100%; border-radius: 0; }
+.tband:hover .tb-row { animation-play-state: paused; }
+
+/* ───────── Abschnitte ───────── */
+.sec-dark { position: relative; background: var(--navy); padding: 130px 0; }
+.sec-paper { position: relative; background: var(--paper); color: var(--ink); padding: 130px 0; }
+.sec-dark + .sec-dark, .sec-paper + .sec-paper { padding-top: 0; }
+
+/* Leistungsumfang: acht Schritte, eine Markierung läuft der Reihe nach durch */
+.scope-grid { margin-top: 60px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.sc { position: relative; overflow: hidden; padding: 26px 24px 28px; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 24px 50px -36px rgba(15, 23, 42, 0.4); transition: transform 0.35s var(--ease), box-shadow 0.35s ease; }
+.sc:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 30px 56px -30px rgba(15, 23, 42, 0.45); }
+.sc::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--red); transform: scaleX(0); transform-origin: 0 50%; }
+.sc-i { width: 54px; height: 54px; border-radius: 15px; background: #0a1a33; color: var(--red); display: grid; place-items: center; }
+.sc-i .ori { --z: 36px; }
+.sc-i svg { width: 22px; height: 22px; }
+.sc > small { position: absolute; right: 22px; top: 28px; font-family: var(--mono); font-size: 12px; color: #9aa6b8; }
+.sc h3 { margin-top: 18px; font-size: 18.5px; line-height: 1.25; letter-spacing: -0.015em; }
+.sc p { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: var(--slate); }
+.scope-grid.in .sc::before { animation: scLine 12s linear infinite; animation-delay: calc(0.6s + var(--i) * 1.5s); }
+.scope-grid.in .sc-i { animation: scIcon 12s linear infinite; animation-delay: calc(0.6s + var(--i) * 1.5s); }
+@keyframes scLine { 0% { transform: scaleX(0); opacity: 1; } 11% { transform: scaleX(1); opacity: 1; } 12.5% { transform: scaleX(1); opacity: 0; } 100% { transform: scaleX(0); opacity: 0; } }
+@keyframes scIcon { 0%, 11% { background: var(--red); color: #fff; } 13.5%, 100% { background: #0a1a33; color: var(--red); } }
+
+/* Geduld-Kurve: ein Video von Tobias Emrich */
+.curve { margin-top: 112px; display: grid; grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr); gap: clamp(28px, 4vw, 56px); align-items: center; padding: clamp(28px, 4vw, 54px); border-radius: 26px; background: linear-gradient(155deg, #12253f 0%, #0a1830 100%); color: #fff; }
+.curve small { font-family: var(--mono); font-size: 12.5px; color: var(--red-bright); }
+.curve b.num { display: block; margin-top: 12px; font-size: clamp(44px, 5vw, 70px); line-height: 1; letter-spacing: -0.045em; }
+.curve p { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--text-sec); }
+.curve svg { display: block; width: 100%; height: auto; }
+.curve .draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.curve.in .draw { animation: drawL 1.6s var(--ease) 0.4s forwards; }
+.curve.in .draw.late { animation-delay: 1.9s; }
+.curve .area, .curve circle { opacity: 0; } .curve.in .area { animation: fadeIn 1s ease 2.6s forwards; } .curve.in circle { animation: fadeIn 0.4s ease 1.9s forwards; }
+.curve-x { display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--mono); font-size: 11.5px; color: var(--text-mut); }
+.curve-x .on { color: var(--red-bright); }
+.curve .fine { margin-top: 10px; font-size: 12px; color: var(--text-dim); }
+.curve .curve-one { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 15px; }
+.curve .curve-one b { display: inline; margin: 0 4px 0 0; font-size: 22px; letter-spacing: -0.02em; color: #fff; }
+
+/* Warum YouTube: das Fundament, darauf bauen alle anderen Kanäle auf */
+.why { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
+.why .lead { margin-top: 22px; }
+.stack { display: flex; flex-direction: column; gap: 8px; }
+.stack span, .stack b { display: flex; align-items: center; gap: 13px; height: 54px; padding: 0 20px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); font-size: 16px; font-weight: 700; }
+.stack span::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.25); }
+.stack b { height: 78px; border-color: var(--red); background: var(--red); font-size: 21px; letter-spacing: -0.01em; box-shadow: 0 18px 44px rgba(230, 47, 31, 0.4); }
+.stack b svg { flex: none; width: 36px; height: 25px; color: #fff; }
+.stack b em { margin-left: auto; font-style: normal; font-family: var(--mono); font-weight: 400; font-size: 12px; opacity: 0.9; }
+.js .stack > * { opacity: 0; transform: translateY(18px); }
+.stack.in > * { animation: stackIn 0.6s var(--ease) both; animation-delay: calc(0.15s + var(--i) * 0.11s); }
+@keyframes stackIn { to { opacity: 1; transform: none; } }
+.stack.in span::before { animation: stackDot 7s linear infinite; animation-delay: calc(1.4s + var(--i) * 0.5s); }
+@keyframes stackDot { 0%, 100% { background: rgba(255, 255, 255, 0.25); box-shadow: none; } 4%, 10% { background: var(--red-bright); box-shadow: 0 0 12px var(--red-glow); } 18% { background: rgba(255, 255, 255, 0.25); box-shadow: none; } }
+.pts { margin-top: 30px; display: flex; flex-direction: column; }
+.pts li { padding: 18px 0; border-top: 1px solid var(--border); }
+.pts h3 { font-size: 18.5px; line-height: 1.3; letter-spacing: -0.01em; }
+.pts p { margin-top: 5px; font-size: 15.5px; line-height: 1.55; color: var(--text-sec); }
+
+/* Passt das zu dir? */
+.fit { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fit-c { padding: clamp(26px, 3vw, 38px); border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 30px 60px -38px rgba(15, 23, 42, 0.4); }
+.fit-c.no { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(15, 23, 42, 0.11); }
+.fit-c h3 { font-size: 24px; line-height: 1.2; letter-spacing: -0.025em; }
+.fit-c ul { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+.fit-c li { display: grid; grid-template-columns: 24px 1fr; gap: 13px; font-size: 16px; line-height: 1.5; }
+.fit-c li svg { width: 24px; height: 24px; padding: 5px; border-radius: 8px; background: #16a34a; color: #fff; }
+.fit-c.no li { color: var(--slate); }
+.fit-c.no li svg { background: rgba(15, 23, 42, 0.08); color: var(--slate); }
+
+/* Teil des Systems */
+.sysl { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.sysl a { position: relative; display: block; padding: 24px 22px 26px; border-radius: 18px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.035); transition: transform 0.3s var(--ease), border-color 0.3s ease, background 0.3s ease; }
+.sysl a:hover { transform: translateY(-4px); border-color: rgba(230, 47, 31, 0.7); background: rgba(230, 47, 31, 0.07); }
+.sysl i { width: 54px; height: 54px; border-radius: 15px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); display: grid; place-items: center; }
+.sysl i svg { width: 20px; height: 20px; color: var(--red-bright); }
+.sysl b { display: block; margin-top: 16px; font-size: 17.5px; line-height: 1.3; }
+.sysl span { display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.5; color: var(--text-sec); }
+.sysl a > svg { position: absolute; right: 20px; top: 24px; width: 16px; height: 16px; color: var(--text-mut); transition: transform 0.3s var(--ease), color 0.3s ease; }
+.sysl a:hover > svg { transform: translate(3px, -3px); color: #fff; }
+
+/* ───────── Kleinere Bildschirme ───────── */
+@media (max-width: 1100px) {
+  .d4y-hero .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .d4y-stage { max-width: 620px; margin: 0 auto; width: 100%; }
+  .scope-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sysl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .sec-dark, .sec-paper { padding: 92px 0; }
+  .d4y-hero { padding-top: 104px; }
+  .d4y-hero .h-hero { font-size: clamp(33px, 9.2vw, 46px); }
+  .d4y-stage { height: auto; margin-top: 0; }
+  .st-pane { padding: 18px 16px 18px; }
+  .st-nums { grid-template-columns: 1fr 1fr; gap: 14px 12px; }
+  .st-nums div:first-child { grid-column: 1 / -1; }
+  .st-nums div:first-child b { font-size: 34px; }
+  .studio-bar em { display: none; }
+  .st-tabs button { height: 40px; padding: 0 14px 0 5px; font-size: 13px; }
+  .scope-grid { margin-top: 40px; gap: 12px; }
+  .tb-row img { width: 196px; border-radius: 10px; } .tb-rows, .tb-row { gap: 9px; }
+  .tb-row .wy { width: 196px; border-radius: 10px; }
+  .st-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .d4y-stage .wall { opacity: 0.45; }
+  .curve { grid-template-columns: 1fr; margin-top: 84px; }
+  .why { grid-template-columns: 1fr; }
+  .why .stack { order: 2; }
+  .fit { grid-template-columns: 1fr; margin-top: 40px; }
+}
+@media (max-width: 520px) {
+  .scope-grid, .sysl { grid-template-columns: 1fr; }
+  .sc { padding: 22px 20px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-pane .draw, .curve .draw { stroke-dashoffset: 0 !important; animation: none !important; }
+  .st-pane .area, .curve .area, .curve circle { opacity: 1 !important; animation: none !important; }
+  .sc::before, .sc-i, .stack span::before { animation: none !important; }
+}
+
+/* Schmale Handys und Tippflächen, siehe v2.css */
+@media (max-width: 900px) {
+  .crumbs a { position: relative; }
+  .crumbs a::after { content: ""; position: absolute; left: -5px; right: -5px; top: -12px; bottom: -12px; }
+}
+@media (max-width: 350px) {
+  .st-who b { font-size: 15.5px; }
+  .st-nums div:first-child b { font-size: 30px; }
+  .st-tabs button { padding: 0 10px 0 5px; font-size: 12.5px; }
+  .curve-x { font-size: 10.5px; white-space: nowrap; }
+}
+
+/* Notnetz ohne v2.js, siehe v2.css */
+.rv-all .stack > * { opacity: 1; transform: none; }
+.rv-all .curve .area, .rv-all .curve circle { opacity: 1; }
+
+/* ───── Im Detail: drei Karten (monatliche Lieferung, YouTube SEO, Abgrenzung zur Videoagentur) ───── */
+.deep { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.deep article { padding: 34px 30px 32px; border-radius: 24px; background: #fff; border: 1px solid rgba(15, 23, 42, 0.06); box-shadow: 0 30px 70px -44px rgba(15, 23, 42, 0.3); }
+.deep small { font-family: var(--mono); font-size: 12.5px; color: var(--red); }
+.deep h3 { margin-top: 12px; font-size: 23px; line-height: 1.16; letter-spacing: -0.03em; }
+.deep p { margin-top: 12px; font-size: 15.5px; line-height: 1.6; color: var(--slate); }
+.deep .p-checks { margin-top: 18px; }
+.deep .p-checks li { font-size: 15px; }
+@media (max-width: 1000px) { .deep { grid-template-columns: minmax(0, 1fr); margin-top: 40px; } .deep article { padding: 28px 22px 26px; } }
+
+.sysl .ori { --z: 36px; }
+.sysl a:nth-child(2) .ori { --i: 1; } .sysl a:nth-child(3) .ori { --i: 2; } .sysl a:nth-child(4) .ori { --i: 3; }
