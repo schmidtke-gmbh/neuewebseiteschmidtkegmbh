@@ -313,3 +313,46 @@
 
 /* Notnetz ohne v2.js, siehe v2.css */
 .rv-all .ab-stage .ab-ph, .rv-all .ab-stage .chip, .rv-all .ab-tl li > * { opacity: 1; transform: none; }
+
+/* ───── Runde 33 (16.11.2026): Deutschlandkarte mit Radar ab Rottweil ─────
+   Vorbild ist die Karte der Bentivegna-Seite: Wellen laufen vom Standort los, die Kundenorte erscheinen, sobald die Welle sie erreicht.
+   Die Wellen bleiben in der Landesform (Maske). Punkte sind nur Orte aus veröffentlichten Fallstudien. */
+.ab-geo { margin-top: 96px; display: grid; grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr); gap: 76px; align-items: center; }
+.ab-geo-karte { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.geo-map { position: relative; width: 100%; max-width: 400px; aspect-ratio: 585.5141 / 792.66785; }
+.geo-map img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.5)); }
+.gr-ringe { position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask: var(--maske) center / 100% 100% no-repeat; mask: var(--maske) center / 100% 100% no-repeat; }
+.gr-ringe i { position: absolute; left: var(--x); top: var(--y); width: 250%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(255, 84, 70, 0.5); background: radial-gradient(closest-side, rgba(230, 47, 31, 0) 78%, rgba(230, 47, 31, 0.2) 97%, rgba(230, 47, 31, 0) 100%); transform: translate(-50%, -50%) scale(0.02); opacity: 0; }
+.geo-map.in .gr-ringe i { animation: grWelle 5.4s cubic-bezier(0.25, 0.6, 0.4, 1) infinite; }
+.geo-map.in .gr-ringe i:nth-child(2) { animation-delay: 1.8s; }
+.geo-map.in .gr-ringe i:nth-child(3) { animation-delay: 3.6s; }
+@keyframes grWelle { 0% { transform: translate(-50%, -50%) scale(0.02); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+.gr-punkt { position: absolute; z-index: 2; width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16); transform: translate(-50%, -50%) scale(0); opacity: 0; }
+.geo-map.in .gr-punkt { animation: grBlip 0.8s var(--ease) var(--gd) forwards; }
+@keyframes grBlip { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); } 55% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); box-shadow: 0 0 0 14px rgba(255, 255, 255, 0); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16); } }
+.gr-zentrum { position: absolute; z-index: 3; left: var(--x); top: var(--y); width: 18px; height: 18px; border-radius: 50%; background: var(--red); border: 3px solid #fff; box-shadow: 0 4px 16px rgba(230, 47, 31, 0.6); transform: translate(-50%, -50%); }
+.gr-zentrum::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--red); animation: ring 2.2s ease-out infinite; }
+.gr-label { position: absolute; z-index: 3; left: var(--x); top: var(--y); transform: translate(-100%, -100%) translate(-8px, -12px); white-space: nowrap; padding: 6px 12px; border-radius: 100px; background: #fff; color: var(--navy); font-size: 13px; font-weight: 700; line-height: 1.3; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.6); }
+.gr-legende { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 13.5px; color: var(--text-sec); }
+.gr-legende span { display: inline-flex; align-items: center; gap: 9px; }
+.gr-legende i { width: 10px; height: 10px; border-radius: 50%; }
+.gr-legende i.z { background: var(--red); box-shadow: 0 0 0 3px rgba(230, 47, 31, 0.28); }
+.gr-legende i.m { background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16); }
+.rv-all .gr-punkt { opacity: 1; transform: translate(-50%, -50%); }
+@media (prefers-reduced-motion: reduce) { .gr-punkt { opacity: 1 !important; transform: translate(-50%, -50%) !important; animation: none !important; } .gr-ringe { display: none; } .gr-zentrum::after { animation: none; } }
+@media (max-width: 1100px) {
+  .ab-geo { grid-template-columns: 1fr; gap: 44px; margin-top: 72px; }
+}
+@media (max-width: 760px) {
+  .ab-geo { margin-top: 52px; gap: 34px; }
+  .geo-map { max-width: 300px; }
+}
+
+/* Runde 34 (16.11.2026): neben der Karte Fotos vom gelben Gewächshaus statt der Kundenliste */
+.ab-geo-fotos { position: relative; padding-bottom: 64px; }
+.ab-geo-fotos figure { margin: 0; overflow: hidden; }
+.ab-geo-fotos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ab-geo-gross { position: relative; width: 88%; aspect-ratio: 3 / 2; border-radius: 26px; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.ab-geo-klein { position: absolute; right: 0; bottom: 0; width: 44%; aspect-ratio: 7 / 5; border-radius: 20px; border: 5px solid var(--navy); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.9); }
+@media (max-width: 1100px) { .ab-geo-fotos { max-width: 680px; width: 100%; margin: 0 auto; } }
+@media (max-width: 760px) { .ab-geo-fotos { padding-bottom: 44px; } .ab-geo-gross { width: 92%; border-radius: 20px; } .ab-geo-klein { width: 46%; border-radius: 16px; border-width: 4px; } .ab-geo-gross .ab-pin { top: 12px; bottom: auto; } }
