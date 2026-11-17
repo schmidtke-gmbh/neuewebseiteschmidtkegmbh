@@ -620,8 +620,6 @@
     var h = row.dataset.mq.split('|').map(function (t) { return '<span>' + t + '</span>'; }).join('');
     row.innerHTML = h + h;
   });
-  var ytb = $('#ytb');
-  if (ytb) ytb.innerHTML += ytb.innerHTML;
 
   /* ── Hintergrundvideos: laden erst, wenn sie in die Nähe des Bildschirms kommen, und halten an, sobald sie ihn verlassen.
      Bei „weniger Bewegung“ bleibt das Standbild stehen. ── */

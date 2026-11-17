@@ -801,12 +801,11 @@ button.fall-media { width: 100%; text-align: left; cursor: pointer; }
 .ytb-h { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
 .ytb-h h2 { display: flex; align-items: center; gap: 12px; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.025em; line-height: 1.2; }
 .ytb-h h2 svg { width: 40px; height: 28px; flex: none; }
-.ytb-row { display: flex; gap: 16px; padding-right: 16px; width: max-content; animation: mq 60s linear infinite; }
-.ytb-row:hover { animation-play-state: paused; }
-.ytc { width: 330px; border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); transition: transform 0.3s var(--ease), box-shadow 0.3s ease; }
+.ytb-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ytc { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); transition: transform 0.3s var(--ease), box-shadow 0.3s ease; }
 .ytc:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -24px rgba(15, 23, 42, 0.35); }
 .ytc img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.ytc b { display: block; padding: 14px 18px 18px; font-size: 15px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 73px; }
+.ytc b { margin: 13px 16px 16px; font-size: 14.5px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 /* ───────── Fragen ───────── */
 .faq { background: #fff; color: var(--ink); padding: 130px 0; }
@@ -1005,7 +1004,7 @@ button.fall-media { width: 100%; text-align: left; cursor: pointer; }
   .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 36px; }
   .faq-side { position: static; }
   .acc summary { font-size: 17px; padding: 18px 0; } .acc details p { padding-right: 0; }
-  .ytb { padding-bottom: 88px; } .ytc { width: 270px; }
+  .ytb { padding-bottom: 88px; } .ytb-row { grid-template-columns: 1fr 1fr; }
   .ctav { padding: 110px 0; }
   .avpill { white-space: nowrap; font-size: 13.5px; padding-right: 16px; gap: 10px; }
   .avpill .avrow img { width: 30px; height: 30px; margin-left: -9px; }
@@ -1521,3 +1520,49 @@ button.fall-media { width: 100%; text-align: left; cursor: pointer; }
 @keyframes waMarke { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-7px) rotate(-2deg); } }
 @media (max-width: 760px) { .wa-marke { left: -22px; width: 50px; height: 50px; } }
 @media (prefers-reduced-motion: reduce) { .wa-marke { animation: none; } }
+
+/* ───── Runde 37 (17.11.2026): „Mehr über uns“ mit Karte auf der Startseite, YouTube als feste Reihe ─────
+   Die Karten-Regeln stehen gleich lautend auch in ueber.css (dort für die Über-uns-Seite). Wer eine ändert, ändert beide. */
+.geo-map { position: relative; width: 100%; max-width: 400px; aspect-ratio: 585.5141 / 792.66785; }
+.geo-map img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.5)); }
+.gr-ringe { position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask: var(--maske) center / 100% 100% no-repeat; mask: var(--maske) center / 100% 100% no-repeat; }
+.gr-ringe i { position: absolute; left: var(--x); top: var(--y); width: 250%; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(255, 84, 70, 0.5); background: radial-gradient(closest-side, rgba(230, 47, 31, 0) 78%, rgba(230, 47, 31, 0.2) 97%, rgba(230, 47, 31, 0) 100%); transform: translate(-50%, -50%) scale(0.02); opacity: 0; }
+.geo-map.in .gr-ringe i { animation: grWelle 5.4s cubic-bezier(0.25, 0.6, 0.4, 1) infinite; }
+.geo-map.in .gr-ringe i:nth-child(2) { animation-delay: 1.8s; }
+.geo-map.in .gr-ringe i:nth-child(3) { animation-delay: 3.6s; }
+@keyframes grWelle { 0% { transform: translate(-50%, -50%) scale(0.02); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+.gr-punkt { position: absolute; z-index: 2; width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16); transform: translate(-50%, -50%) scale(0); opacity: 0; }
+.geo-map.in .gr-punkt { animation: grBlip 0.8s var(--ease) var(--gd) forwards; }
+@keyframes grBlip { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); } 55% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); box-shadow: 0 0 0 14px rgba(255, 255, 255, 0); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.16); } }
+.gr-zentrum { position: absolute; z-index: 3; left: var(--x); top: var(--y); width: 18px; height: 18px; border-radius: 50%; background: var(--red); border: 3px solid #fff; box-shadow: 0 4px 16px rgba(230, 47, 31, 0.6); transform: translate(-50%, -50%); }
+.gr-zentrum::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--red); animation: ring 2.2s ease-out infinite; }
+.gr-label { position: absolute; z-index: 3; left: var(--x); top: var(--y); transform: translate(-100%, -100%) translate(-8px, -12px); white-space: nowrap; padding: 6px 12px; border-radius: 100px; background: #fff; color: var(--navy); font-size: 13px; font-weight: 700; line-height: 1.3; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.6); }
+.gr-legende { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 13.5px; color: var(--text-sec); }
+.gr-legende span { display: inline-flex; align-items: center; gap: 9px; }
+.gr-legende i { width: 10px; height: 10px; border-radius: 50%; }
+.gr-legende i.z { background: var(--red); box-shadow: 0 0 0 3px rgba(230, 47, 31, 0.28); }
+.gr-legende i.m { background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16); }
+.rv-all .gr-punkt { opacity: 1; transform: translate(-50%, -50%); }
+@media (prefers-reduced-motion: reduce) { .gr-punkt { opacity: 1 !important; transform: translate(-50%, -50%) !important; animation: none !important; } .gr-ringe { display: none; } .gr-zentrum::after { animation: none; } }
+.about-geo { margin-top: 110px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 72px; align-items: center; }
+.about-geo h3 { font-size: clamp(26px, 2.8vw, 38px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+.about-pts { margin-top: 28px; display: grid; gap: 10px; max-width: 36rem; }
+.about-pts li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; padding: 16px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+.about-pts li > i { font-style: normal; font-family: var(--mono); font-size: 12.5px; line-height: 21px; color: var(--red); }
+.about-pts b { display: block; font-size: 16px; line-height: 1.3; }
+.about-pts span { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: var(--slate); }
+.about-geo-k { display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 44px 28px 30px; border-radius: 26px; background: radial-gradient(ellipse 90% 70% at 50% 0%, #0d2444 0%, var(--navy) 72%); color: #fff; box-shadow: 0 40px 80px -40px rgba(15, 23, 42, 0.5); }
+.about-geo-k .geo-map { max-width: 360px; }
+@media (max-width: 1005px) {
+  .about-geo { grid-template-columns: 1fr; gap: 40px; margin-top: 72px; }
+  .about-pts { max-width: none; }
+}
+@media (max-width: 760px) {
+  .about-geo { margin-top: 56px; gap: 32px; }
+  .about-geo-t > .eyebrow, .about-geo h3 { text-align: center; }
+  .about-geo-k { padding: 34px 18px 24px; border-radius: 22px; }
+  .about-geo-k .geo-map { max-width: 280px; }
+  .ytb-row { gap: 10px; }
+  .ytc { border-radius: 14px; }
+  .ytc b { margin: 10px 12px 12px; font-size: 13.5px; -webkit-line-clamp: 3; }
+}
