@@ -128,6 +128,8 @@
 .ab-strip-row { display: flex; gap: 14px; width: max-content; padding-right: 14px; animation: mq 96s linear infinite; }
 .ab-strip:hover .ab-strip-row { animation-play-state: paused; }
 .ab-strip img { flex: none; width: 360px; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 18px; }
+.ab-einblicke { padding: 96px 0; }
+.ab-einblicke .ab-strip { margin-top: 0; }
 .ab-strip-cap { margin-top: 18px; text-align: center; font-size: 14px; color: var(--slate); }
 
 /* ───────── 5 · So arbeiten wir: drei Karten mit kleinen Abläufen ───────── */
