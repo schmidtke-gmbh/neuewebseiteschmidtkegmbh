@@ -122,6 +122,14 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# Kurzer Link für Videogespräche (27.11.2026): schmidtke-gmbh.de/meeting führt in Fabians festen Zoom-Raum.
+# 302 statt 301, damit sich das Ziel später ändern lässt, ohne dass Browser die alte Adresse behalten.
+[[redirects]]
+  from = "/meeting"
+  to = "https://us06web.zoom.us/j/4526858563?pwd=eaXuJkZ7x2VZWe2aCejVwP6vNSncXF.1"
+  status = 302
+  force = true
+
 # Fallstudie Chemnitz umbenannt (22.10.2026): alte Adresse dauerhaft weiterleiten
 [[redirects]]
   from = "/case-fischer"
